@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marbella Custom Cars — PPF, tratamiento cerámico y vinilo en Marbella</title>
+<meta name="description" content="Paint Protection Film, tratamiento cerámico, wrapping y detailing para coches de alta gama en Marbella. Calle Oro 32, Polígono La Ermita.">
+<meta name="theme-color" content="#070708">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+img,svg,canvas,iframe{max-width:100%}
+html,body{overflow-x:hidden}
+
+/* ============================================================
+   PÁGINA 3 — PPF
+   Misma paleta y tipografías que el hero y la de servicios.
+   El visor de color va incrustado más abajo con su propio CSS
+   (todo prefijado .ppf-, no colisiona con esta hoja).
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+img,svg,canvas,iframe{max-width:100%}
+html,body{overflow-x:hidden}
+:root{
+  --ink:#070708; --panel:#0d0d10; --chrome:#f2f2f4; --muted:#a7a7b0; --dim:#6c6c78;
+  --line:rgba(255,255,255,.12); --line-fuerte:rgba(255,255,255,.22);
+  --oro:#C3A266; --oro-claro:#F0DFB4; --oro-hondo:#8A7141;
+  --display:'Archivo',system-ui,sans-serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+
+/* ── cabecera ── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;background:transparent;
+  border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
+/* Velo por detrás de la cabecera: aunque sea transparente, el contenido que
+   pasa por debajo al bajar no se mezcla con el menú. */
+.hdr::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,7,8,.92) 0%,rgba(7,7,8,.62) 55%,rgba(7,7,8,0) 100%);
+  transition:opacity .35s}
+.hdr.solid::before{opacity:0}
+.hdr.solid{background:rgba(7,7,8,.92);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:clamp(14px,2.1vw,22px) 0}
+.brand img{height:clamp(42px,6.9vw,81px);width:auto;display:block}
+.nav{display:none;gap:clamp(18px,2.4vw,34px)}
+@media(min-width:860px){.nav{display:flex}}
+/* ── menú de móvil ── */
+.menu-btn{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;padding:0 8px;background:none;border:0;cursor:pointer;flex:none}
+.menu-btn i{display:block;height:1.5px;background:var(--chrome);border-radius:2px;
+  transition:transform .3s,opacity .2s}
+.menu-btn i:nth-child(1){width:20px}
+.menu-btn i:nth-child(2){width:14px}
+.menu-btn i:nth-child(3){width:20px}
+.menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px}
+.menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.menu-btn:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+@media(min-width:860px){.menu-btn{display:none}}
+
+.panel{position:fixed;left:0;right:0;top:0;z-index:55;
+  background:rgba(7,7,8,.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  padding:calc(clamp(14px,2.1vw,22px)*2 + 42px + 14px) clamp(18px,5vw,40px) 26px;
+  transform:translateY(-101%);transition:transform .38s cubic-bezier(.3,.8,.3,1);}
+.panel.open{transform:translateY(0)}
+.panel a{display:block;font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:clamp(22px,7vw,30px);text-transform:uppercase;letter-spacing:-.01em;
+  color:var(--chrome);text-decoration:none;padding:13px 0;
+  border-bottom:1px solid var(--line)}
+.panel a:last-child{border-bottom:0}
+.panel a:active{color:var(--oro)}
+@media(min-width:860px){.panel{display:none}}
+.nav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:6px 0;position:relative;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--oro);transition:right .3s cubic-bezier(.2,.7,.3,1)}
+.nav a:hover{color:var(--chrome)} .nav a:hover::after{right:0}
+.nav a[aria-current]{color:var(--chrome)} .nav a[aria-current]::after{right:0}
+.lang{display:flex;align-items:center;gap:2px}
+.lang button{
+  display:inline-flex;align-items:center;gap:6px;
+  background:none;border:0;cursor:pointer;padding:6px 7px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);
+  opacity:.5;transition:opacity .2s,color .2s}
+.lang button svg{width:19px;height:13px;flex:none;border-radius:2px;display:block}
+.lang button{padding:6px 7px}
+.lang button:hover{opacity:.85;color:var(--muted)}
+.lang button[aria-pressed="true"]{opacity:1;color:var(--chrome)}
+.lang button:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+@media(max-width:760px){.lang button span{display:none}.lang button{padding:6px 3px}}
+
+/* ── portada de la página ── */
+.tapa{position:relative;overflow:hidden;isolation:isolate;
+  min-height:clamp(400px,64vh,600px);display:flex;align-items:flex-end}
+.tapa img.foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 46%;z-index:-2}
+.tapa::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,7,8,.8) 0%,rgba(7,7,8,.2) 34%,
+                                    rgba(7,7,8,.55) 72%,rgba(7,7,8,.96) 100%)}
+.tapa .wrap{padding-top:clamp(96px,14vh,150px);padding-bottom:clamp(28px,5vh,52px);width:100%}
+.miga{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:14px}
+.miga a{color:var(--dim);text-decoration:none} .miga a:hover{color:var(--chrome)}
+.tapa h1{font-family:var(--display);font-variation-settings:'wdth' 86,'wght' 700;
+  font-size:clamp(34px,6.6vw,80px);line-height:.96;letter-spacing:-.02em;text-transform:uppercase;
+  max-width:16ch;text-shadow:0 2px 40px rgba(0,0,0,.6)}
+.tapa h1 em{font-style:normal;
+  background:linear-gradient(100deg,var(--oro-hondo) 0%,var(--oro) 22%,var(--oro-claro) 40%,
+                                    var(--oro) 58%,var(--oro-claro) 72%,var(--oro-hondo) 100%);
+  background-size:240% 100%;-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  animation:brillo 7s ease-in-out 1s infinite}
+@keyframes brillo{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.tapa p{color:var(--muted);max-width:46ch;margin-top:16px;font-size:clamp(14.5px,1.35vw,17px);
+  text-shadow:0 1px 22px rgba(0,0,0,.85)}
+
+/* ── secciones ── */
+.sec{padding:clamp(48px,8vh,96px) 0}
+.sec-cab{margin-bottom:clamp(24px,4vh,44px)}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--oro);margin-bottom:12px}
+.h2{font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 700;
+  font-size:clamp(26px,4vw,48px);line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+.sub{color:var(--muted);max-width:52ch;margin-top:14px;font-size:clamp(14px,1.25vw,16px)}
+/* Remate en dorado: es la frase que cierra el argumento, así que se separa
+   del párrafo y sube de cuerpo en vez de quedar flotando al costado. */
+/* Instrucción de uso: va debajo del texto, en dorado apagado, para que
+   se lea como "qué hacer" y no como una frase más del párrafo. */
+.pista{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--oro);
+}
+.pista::before{content:"";width:22px;height:1px;background:var(--oro);flex:none}
+
+/* valoración de Google junto al titular: es prueba, y ahí se ve */
+/* Botón de reseña: fondo claro para separarlo de los CTA dorados de
+   presupuesto. Son acciones distintas y conviene que se distingan. */
+.btn-google{
+  display:inline-flex;align-items:center;gap:13px;text-decoration:none;
+  font-family:var(--sans);font-size:clamp(14px,1.5vw,16px);font-weight:600;
+  padding:16px 30px;background:var(--chrome);color:#101014;
+  border:1px solid var(--chrome);
+  transition:background .22s,color .22s}
+.btn-google svg{width:21px;height:21px;flex:none}
+.btn-google:hover{background:transparent;color:var(--chrome)}
+.btn-google:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.cierre .eyebrow{margin-bottom:14px}
+.estrellas-gr{color:var(--oro);font-size:clamp(20px,2.6vw,30px);letter-spacing:.16em;
+  line-height:1;margin-bottom:14px}
+.cierre h2 em{font-style:normal;
+  background:linear-gradient(100deg,var(--oro-hondo) 0%,var(--oro) 22%,var(--oro-claro) 42%,
+                                    var(--oro) 62%,var(--oro-hondo) 100%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  animation:brillo 7s ease-in-out 1s infinite}
+
+.nota-oro{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-top:14px}
+.nota-oro b{font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:20px;color:var(--chrome);line-height:1}
+.nota-oro i{font-style:normal;color:var(--oro);font-size:12px;letter-spacing:.06em}
+.nota-oro span{color:var(--dim);font-size:13px}
+
+.remate{
+  font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 600;
+  font-size:clamp(15px,1.8vw,23px);line-height:1.3;letter-spacing:-.01em;
+  color:var(--oro);max-width:none;margin-top:clamp(16px,2.4vh,24px);
+  padding-left:18px;border-left:2px solid var(--oro);
+}
+
+/* ── fila de factores: sin cajas, sólo un filete por columna ── */
+.evita{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,40px) clamp(18px,3vw,40px);
+  background:none;border:0}
+@media(min-width:820px){.evita{grid-template-columns:repeat(4,1fr)}}
+.evita div{background:none;padding:0;position:relative;padding-top:16px}
+.evita div::before{content:"";position:absolute;top:0;left:0;width:26px;height:2px;background:var(--oro)}
+.evita b{display:block;font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 700;
+  font-size:clamp(15px,1.6vw,18px);text-transform:uppercase;letter-spacing:.02em;
+  line-height:1;margin-bottom:7px}
+.evita span{color:var(--muted);font-size:13.5px;line-height:1.5;display:block}
+
+/* cabecera de sección en dos columnas: el titular deja de empujar al texto hacia abajo */
+.sec-cab.dos{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:900px){
+  .sec-cab.dos{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+    gap:clamp(28px,5vw,64px);align-items:end}
+  .sec-cab.dos .sub{margin-top:0;padding-bottom:4px}
+}
+
+@media(min-width:820px){.cob{grid-template-columns:repeat(3,1fr);gap:14px}}
+
+@media(min-width:760px){.pasos{grid-template-columns:repeat(4,1fr)}}
+
+/* ── preguntas ── */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;
+  font-size:clamp(15px,1.5vw,18px);font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);color:var(--oro);font-size:19px;transition:transform .25s}
+.faq details[open] summary::after{content:"–"}
+.faq summary:focus-visible{outline:2px solid var(--oro);outline-offset:-2px}
+.faq p{color:var(--muted);padding:0 40px 20px 0;font-size:14.5px;max-width:70ch}
+.faq ol{list-style:none;padding:0 40px 20px 0;max-width:70ch}
+.faq ol li{position:relative;padding-left:20px;margin-bottom:11px;
+  color:var(--muted);font-size:14.5px;line-height:1.55}
+/* viñeta dorada en vez de numeración: los pasos se leen igual de ordenados
+   y el bloque queda más limpio */
+.faq ol li::before{content:"";position:absolute;left:0;top:9px;
+  width:6px;height:6px;border-radius:50%;background:var(--oro)}
+.faq ol li b{color:var(--chrome);font-weight:600}
+
+/* ── cierre ── */
+.cierre{border:1px solid var(--line);background:var(--panel);
+  padding:clamp(28px,4.6vw,52px);text-align:center}
+.cierre h2{font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 700;
+  font-size:clamp(24px,3.4vw,40px);text-transform:uppercase;line-height:1.02;letter-spacing:-.015em}
+.cierre p{color:var(--muted);max-width:44ch;margin:14px auto 24px;font-size:14.5px}
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 26px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:9px;border:1px solid var(--oro);
+  background:var(--oro);color:#0b0906;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--oro)}
+.btn svg{width:15px;height:15px;fill:currentColor;flex:none}
+.btn:focus-visible,.nav a:focus-visible,.lang button:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.pie{border-top:1px solid var(--line);padding:clamp(22px,4vh,38px) 0 clamp(40px,7vh,72px);
+  color:var(--dim);font-size:13px;max-width:64ch}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+  .tapa h1 em{background:none;color:var(--oro);-webkit-text-fill-color:var(--oro)}}
+/* ── rejilla de tarjetas: todo el catálogo en una o dos pantallas ── */
+.rejilla{display:grid;grid-template-columns:1fr;gap:12px;align-items:stretch;
+  padding-bottom:clamp(30px,5vh,54px)}
+@media(min-width:760px){.rejilla{grid-template-columns:1fr 1fr;gap:14px}}
+
+.card{border:1px solid var(--line);background:var(--panel);transition:border-color .2s;
+  height:100%;display:flex;flex-direction:column}
+.card.abierta{border-color:var(--oro)}
+.card:hover{border-color:var(--line-fuerte)}
+
+.card-cab{
+  cursor:pointer;position:relative;overflow:hidden;
+  min-height:196px;display:flex;align-items:flex-start;flex:none;
+  width:100%;padding:0;background:none;border:0;color:inherit;font:inherit;text-align:left;
+}
+.card-cab:focus-visible{outline:2px solid var(--oro);outline-offset:-2px}
+
+/* La foto ocupa la derecha de la cabecera y se funde hacia el texto con una
+   máscara, así se ve sin abrir la tarjeta pero no compite con la lectura. */
+.card-foto{
+  position:absolute;top:0;right:0;bottom:0;width:46%;z-index:0;pointer-events:none;
+  background-size:cover;background-position:var(--pos,50% 50%);
+  opacity:.82;transition:opacity .4s ease;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 46%,#000 100%);
+          mask-image:linear-gradient(90deg,transparent 0%,#000 46%,#000 100%);
+}
+.card:hover .card-foto{opacity:1}
+.card.abierta .card-foto{opacity:1}
+
+.card .txt{position:relative;z-index:1;padding:clamp(18px,2.4vw,24px);width:58%;flex:none}
+.fam{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--oro);margin-bottom:8px}
+.card h3{font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 700;
+  font-size:clamp(20px,2.4vw,28px);line-height:1;letter-spacing:-.015em;text-transform:uppercase}
+.card .linea{color:var(--muted);font-size:13.5px;line-height:1.45;margin-top:9px}
+.desde{font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:clamp(17px,1.9vw,22px);line-height:1;margin-top:14px}
+.desde b{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);display:block;margin-bottom:4px;font-variation-settings:normal}
+.desde i{font-style:normal;color:var(--oro);font-size:.62em;vertical-align:.42em;margin-left:1px}
+.mas{display:flex;align-items:center;gap:7px;margin-top:14px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.mas svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .25s}
+.card.abierta .mas svg{transform:rotate(180deg)}
+.card.abierta .mas{color:var(--oro)}
+
+/* en móvil el texto necesita casi todo el ancho */
+@media(max-width:520px){
+  .card-cab{min-height:150px}
+  .card .txt{width:60%;padding:15px}
+  .card-foto{width:40%}
+  .card h3{font-size:19px}
+  .card .linea{font-size:12.5px;margin-top:7px}
+}
+
+/* ── contenido desplegado ── */
+/* El detalle ocupa el alto sobrante y empuja el botón al pie, así los
+   "pedir presupuesto" de las tarjetas de una misma fila quedan alineados
+   aunque una tenga dos opciones y la otra ocho. */
+.detalle{display:none}
+.card.abierta .detalle{padding:0 clamp(18px,2.4vw,24px) clamp(18px,2.4vw,24px);
+  display:flex;flex-direction:column;flex:1;min-height:0}
+/* el botón se apoya en el pie: así las tarjetas de una fila lo tienen a la
+   misma altura aunque una tenga dos opciones y la otra ocho */
+.detalle .btn-min{margin-top:auto;align-self:flex-start}
+.var{display:grid;grid-template-columns:1fr auto;gap:10px 20px;align-items:baseline;
+  padding:11px 0;border-top:1px solid rgba(255,255,255,.07)}
+.var b{font-size:14.5px;font-weight:500}
+.detalle .precio{font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:17px;white-space:nowrap;text-align:right;line-height:1.15}
+.detalle .precio i{font-style:normal;color:var(--oro);font-size:.62em;vertical-align:.42em;margin-left:1px}
+.detalle .precio em{display:block;font-family:var(--mono);font-size:9.5px;font-style:normal;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  font-variation-settings:normal;font-weight:400;margin-top:3px}
+.detalle .precio small{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);font-weight:400;margin-right:4px;font-variation-settings:normal}
+.detalle .precio.consultar,.detalle .precio.pendiente,.detalle .precio.pedir{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:400;font-variation-settings:normal}
+.detalle .precio.pedir{display:inline-flex;align-items:center;gap:7px;
+  color:var(--oro);text-decoration:none;white-space:nowrap;
+  border-bottom:1px solid transparent;transition:border-color .2s}
+.detalle .precio.pedir:hover{border-bottom-color:var(--oro)}
+.detalle .precio.pedir svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+.detalle .precio.consultar{color:var(--muted)} .detalle .precio.pendiente{color:var(--oro-hondo)}
+
+.btn-min{font-family:var(--sans);font-size:12.5px;font-weight:600;padding:11px 18px;margin-top:16px;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--line-fuerte);background:transparent;color:var(--chrome);
+  transition:background .2s,color .2s,border-color .2s}
+.btn-min:hover{background:var(--oro);border-color:var(--oro);color:#0b0906}
+.btn-min svg{width:14px;height:14px;fill:currentColor;flex:none}
+.btn-min:focus-visible,.nav a:focus-visible,.lang button:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+@media(min-width:760px){.esc{grid-template-columns:repeat(4,1fr);gap:12px}}
+
+@media(min-width:620px){.zonas{grid-template-columns:repeat(3,1fr)}}
+
+/* ============================================================
+   MARBELLA CUSTOM CARS — HERO
+   Módulo autónomo, listo para pegar en la web existente.
+   Paleta acromática: el único color de la página son los coches.
+   Las luces del techo se encienden en secuencia siguiendo el
+   ángulo real de los LED del taller (-50°, medido sobre la foto).
+
+   Las imágenes viven en /img y se cargan aparte: la foto del taller
+   con prioridad y el resto en diferido.
+   ============================================================ */
+
+/*/* ───────────── escenario ───────────── */
+.mcc-hero{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+.mcc-photo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 34%;
+  z-index:-3;
+  /* el encendido: arranca apagado y sube */
+  filter:brightness(.34) contrast(1.16) saturate(.55);
+  transform:scale(1.06);
+  animation:mcc-ignite 2.4s cubic-bezier(.22,.8,.28,1) .15s forwards,
+            mcc-deriva 34s ease-in-out 2.6s infinite alternate;
+}
+@media(min-width:900px){.mcc-photo{object-position:50% 18%}}
+@keyframes mcc-ignite{
+  0%  {filter:brightness(.34) contrast(1.16) saturate(.55); transform:scale(1.06)}
+  60% {filter:brightness(1.08) contrast(1.03) saturate(.76)}
+  100%{filter:brightness(1) contrast(1.02) saturate(.74);  transform:scale(1)}
+}
+@keyframes mcc-deriva{from{transform:scale(1)}to{transform:scale(1.045)}}
+
+/* Las luces del taller, extraídas de la propia foto como dos capas
+   (zigzag del techo y tiras de la pared) para poder encenderlas por
+   separado. Van en modo "screen": suman luz, no tapan la imagen. */
+.mcc-led{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 34%;
+  mix-blend-mode:screen;pointer-events:none;
+  opacity:0;
+}
+@media(min-width:900px){.mcc-led{object-position:50% 18%}}
+.mcc-led--pared{z-index:-2;animation:mcc-arranque 1.5s steps(1,end) .35s forwards}
+.mcc-led--techo{z-index:-2;animation:mcc-encender 1.8s cubic-bezier(.3,.6,.2,1) .95s forwards,
+                                    mcc-respirar 9s ease-in-out 2.9s infinite}
+/* las tiras de pared arrancan como un fluorescente: dos golpes y queda */
+@keyframes mcc-arranque{
+  0%{opacity:0} 14%{opacity:.55} 22%{opacity:.1}
+  34%{opacity:.8} 44%{opacity:.25} 100%{opacity:.7}
+}
+@keyframes mcc-encender{from{opacity:0}to{opacity:.85}}
+/* respiración muy leve: da vida sin llamar la atención */
+@keyframes mcc-respirar{0%,100%{opacity:.85}50%{opacity:.66}}
+
+/* velo para que el texto sea legible sobre el suelo claro */
+.mcc-scrim{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    /* solo lo justo: arriba para la cabecera, un poco al pie para los botones */
+    linear-gradient(180deg, rgba(7,7,8,.74) 0%, rgba(7,7,8,.16) 22%,
+                            rgba(7,7,8,.10) 46%, rgba(7,7,8,.42) 78%, rgba(7,7,8,.72) 100%),
+    radial-gradient(86% 60% at 50% 50%, rgba(7,7,8,.20) 0%, transparent 78%);
+}
+
+/* ───────────── contenido ───────────── */
+.mcc-in{
+  --pt:clamp(120px,17vh,180px);
+  position:relative;z-index:5;width:100%;
+  max-width:1180px;margin:0 auto;text-align:center;
+  padding:var(--pt) clamp(20px,5vw,56px) clamp(30px,6vh,64px);
+}
+/* Placa de legibilidad ANCLADA AL TEXTO, no a la ventana: el bloque se
+   apoya abajo, así que su posición cambia con la altura de pantalla y
+   puede caer sobre los LED del techo. Yendo con el texto, siempre lo
+   acompaña. Bordes laterales difuminados para que no se lea como caja. */
+.mcc-in::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:50%;transform:translateX(-50%);
+  top:calc(var(--pt) - 64px);bottom:-24px;width:min(1420px,126%);
+  background:linear-gradient(180deg,
+    transparent 0%, rgba(5,5,7,.74) 9%, rgba(5,5,7,.70) 44%,
+    rgba(5,5,7,.36) 76%, transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 15%,#000 85%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0%,#000 15%,#000 85%,transparent 100%);
+}
+.mcc-eyebrow{
+  font-family:var(--mono);font-size:clamp(10px,1.05vw,12px);letter-spacing:.34em;
+  text-transform:uppercase;color:var(--oro);
+  text-shadow:0 1px 18px rgba(0,0,0,.9);
+  margin-bottom:clamp(16px,2.4vh,26px);
+}
+
+.mcc-h1{
+  font-family:var(--display);
+  font-variation-settings:'wdth' 86,'wght' 700;
+  font-size:clamp(38px,7.6vw,104px);
+  line-height:.92;letter-spacing:-.02em;text-transform:uppercase;
+  margin:0 auto clamp(18px,2.8vh,32px);max-width:15ch;
+  text-shadow:0 2px 44px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.35);
+}
+/* barrido cromado sobre las palabras destacadas */
+.mcc-chrome{
+  background:linear-gradient(100deg,
+    var(--oro-hondo) 0%, var(--oro) 20%, var(--oro-claro) 36%, var(--oro) 50%,
+    var(--oro-claro) 64%, var(--oro) 80%, var(--oro-hondo) 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  animation:mcc-shine 7s ease-in-out 1.2s infinite;
+}
+@keyframes mcc-shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.mcc-lede{
+  font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:var(--muted);
+  max-width:44ch;margin:0 auto clamp(26px,4vh,44px);
+  text-shadow:0 1px 26px rgba(0,0,0,.75);
+}
+
+.mcc-services{
+  font-family:var(--display);
+  font-variation-settings:'wdth' 82,'wght' 600;
+  font-size:clamp(11.5px,1.35vw,16px);letter-spacing:.1em;text-transform:uppercase;
+  line-height:1.9;color:var(--chrome);
+  max-width:60ch;margin:0 auto clamp(26px,4vh,42px);
+  text-shadow:0 1px 22px rgba(0,0,0,.8);
+}
+.mcc-services i{font-style:normal;color:var(--oro);padding:0 .45em}
+
+.mcc-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:clamp(28px,4.6vh,54px)}
+.mcc-btn{
+  font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.02em;
+  padding:15px 28px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--oro);background:var(--oro);color:#0b0906;
+  transition:background .22s,color .22s,border-color .22s;
+}
+.mcc-btn:hover{background:transparent;color:var(--oro)}
+.mcc-btn.ghost{background:transparent;color:var(--chrome);border-color:var(--line)}
+.mcc-btn.ghost:hover{border-color:var(--oro);color:var(--oro)}
+.mcc-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+.mcc-btn:focus-visible,.mcc-nav a:focus-visible,.mcc-lang button:focus-visible{outline:2px solid var(--chrome);outline-offset:3px}
+
+.mcc-proof{
+  display:grid;grid-template-columns:1fr;gap:2px;
+  border-top:1px solid rgba(195,162,102,.34);padding-top:clamp(16px,2.4vh,22px);
+  max-width:840px;margin:0 auto;
+}
+@media(min-width:700px){.mcc-proof{grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,48px)}}
+.mcc-proof div{display:flex;flex-direction:column;gap:5px;padding:7px 0}
+.mcc-proof dt{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.mcc-proof dd{font-size:clamp(13px,1.2vw,15px);color:var(--chrome);font-weight:500}
+
+/* ───────────── entradas ───────────── */
+.rv{opacity:0;transform:translateY(20px);animation:mcc-rise .95s cubic-bezier(.2,.75,.3,1) forwards}
+.d1{animation-delay:.45s}.d2{animation-delay:.62s}.d3{animation-delay:.8s}
+.d4{animation-delay:.96s}.d5{animation-delay:1.12s}.d6{animation-delay:1.28s}
+@keyframes mcc-rise{to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .rv{animation:none;opacity:1;transform:none}
+  .mcc-photo{animation:none;filter:brightness(1) contrast(1.02) saturate(.74);transform:none}
+  .mcc-chrome{animation:none}
+  .mcc-led{animation:none;opacity:.78}
+  .mcc-chrome{background:none;color:var(--oro);-webkit-text-fill-color:var(--oro)}
+  html{scroll-behavior:auto}
+}
+
+/* ============================================================
+   VISOR PPF — módulo autónomo.
+   Para embeber en otra pagina: copiar la seccion .ppf junto con esta
+   hoja de estilos y su bloque de codigo. No usa dependencias.
+   Todo el prefijo .ppf- evita colisiones con estilos existentes.
+   ============================================================ */
+.ppf *,.ppf *::before,.ppf *::after{box-sizing:border-box;margin:0;padding:0}
+
+.ppf{
+  --ink:#08080a;
+  --panel:#111114;
+  --panel-2:#191920;
+  --line:#26262e;
+  --chrome:#e6e6ea;
+  --muted:#8b8b96;
+  --dim:#5a5a66;
+  --sans:'Archivo',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  color:var(--chrome);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  padding:0 0 clamp(20px,4vw,40px);
+  -webkit-font-smoothing:antialiased;
+}
+.ppf-wrap{max-width:1180px;margin:0 auto}
+
+/* ---------- cabecera ---------- */
+
+/* ---------- grilla ---------- */
+.ppf-grid{display:grid;grid-template-columns:1fr;gap:clamp(20px,3vw,36px);align-items:start}
+@media(min-width:900px){.ppf-grid{grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr)}}
+
+/* ---------- escenario ---------- */
+.ppf-stage{position:relative;border:1px solid var(--line);background:var(--panel);overflow:hidden}
+.ppf-stage canvas{display:block;width:100%;height:auto;touch-action:pan-y}
+.ppf-stage::after{ /* viñeta sutil, integra la foto con el panel */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.55);
+}
+.ppf-tag{
+  position:absolute;left:0;bottom:0;z-index:2;
+  display:flex;align-items:stretch;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  background:rgba(8,8,10,.82);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-right:1px solid var(--line);
+}
+.ppf-tag-chip{width:34px;border-right:1px solid var(--line);background:currentColor}
+.ppf-tag-txt{padding:8px 14px;color:var(--chrome);display:flex;gap:10px;align-items:baseline;white-space:nowrap}
+.ppf-tag-txt b{font-weight:500}
+.ppf-tag-txt span{color:var(--dim)}
+/* divisor arrastrable */
+.ppf-split{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .25s}
+.ppf-split.on{opacity:1;pointer-events:auto;cursor:ew-resize;touch-action:pan-y}
+.ppf-split-line{
+  position:absolute;top:0;bottom:0;width:1px;background:var(--chrome);
+  box-shadow:0 0 0 1px rgba(0,0,0,.45);transform:translateX(-.5px);
+}
+.ppf-split-grip{
+  position:absolute;top:50%;left:0;transform:translate(-50%,-50%);
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(8,8,10,.72);backdrop-filter:blur(6px);
+  border:1px solid var(--chrome);
+  display:grid;place-items:center;cursor:ew-resize;touch-action:none;
+}
+.ppf-split-grip svg{width:18px;height:18px;stroke:var(--chrome);fill:none;stroke-width:1.7}
+.ppf-split-grip:focus-visible{outline:2px solid var(--chrome);outline-offset:3px}
+.ppf-side{
+  position:absolute;top:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--chrome);background:rgba(8,8,10,.7);
+  padding:4px 8px;white-space:nowrap;transition:opacity .2s;
+}
+.ppf-side-a{left:12px}
+.ppf-side-b{right:12px}
+
+.ppf-loading{
+  position:absolute;inset:0;display:grid;place-items:center;background:var(--panel);z-index:3;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;
+  transition:opacity .4s;
+}
+.ppf-loading.gone{opacity:0;pointer-events:none}
+
+/* ---------- controles ---------- */
+.ppf-panel{display:flex;flex-direction:column;gap:26px}
+.ppf-label{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+  display:flex;align-items:center;gap:14px;margin-bottom:14px;
+}
+/* filete que va del rótulo al contador: evita que el número quede suelto
+   en el margen derecho sin nada que lo ancle */
+.ppf-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.ppf-label #ppfCount{order:3;color:var(--dim)}
+
+/* mazo de muestras */
+.ppf-deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.ppf-chip{
+  position:relative;border:1px solid var(--line);background:transparent;padding:0;cursor:pointer;
+  text-align:left;transition:border-color .18s,transform .18s;
+}
+.ppf-chip:hover{border-color:#43434f;transform:translateY(-1px)}
+.ppf-chip:focus-visible{outline:2px solid var(--chrome);outline-offset:2px}
+.ppf-chip-face{
+  display:block;              /* sin esto la altura se ignora y no se ve el color */
+  height:46px;position:relative;overflow:hidden;
+  background-image:linear-gradient(118deg,rgba(255,255,255,.34) 0 18%,rgba(255,255,255,0) 42%);
+}
+.ppf-chip[data-finish="satin"] .ppf-chip-face{
+  background-image:linear-gradient(118deg,rgba(255,255,255,.1) 0 30%,rgba(255,255,255,0) 60%);
+}
+.ppf-chip-code{
+  font-family:var(--sans);font-size:11px;letter-spacing:.01em;color:var(--muted);
+  padding:7px 8px 8px;border-top:1px solid var(--line);display:block;
+  line-height:1.25;min-height:2.5em;
+}
+.ppf-chip[aria-pressed="true"]{border-color:var(--chrome)}
+.ppf-chip[aria-pressed="true"] .ppf-chip-code{color:var(--chrome)}
+
+.ppf-note{
+  font-size:12px;line-height:1.6;color:var(--dim);border-top:1px solid var(--line);padding-top:14px;
+}
+.ppf-note code{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+@media(prefers-reduced-motion:reduce){.ppf *{transition:none!important;animation:none!important}}
+
+/* ── ubicación ── */
+.marco{position:relative;border:1px solid var(--line);background:#0b0b0e;overflow:hidden}
+.marco a{display:block;position:relative}
+.marco img{display:block;width:100%;height:auto}
+.marco .pin{position:absolute;left:42%;top:48%;width:16px;height:16px;margin:-8px 0 0 -8px;
+  border-radius:50%;background:var(--oro);
+  box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
+@media(prefers-reduced-motion:no-preference){.marco .pin{animation:latido 3.4s ease-in-out infinite}}
+@keyframes latido{0%,100%{box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
+                  50%{box-shadow:0 0 0 12px rgba(195,162,102,.06),0 0 22px rgba(195,162,102,.35)}}
+
+/* Tres accesos del mismo peso: ubicación, WhatsApp y reseña.
+   Misma insignia circular en los tres para que se lean como botones. */
+.contacto{display:grid;grid-template-columns:1fr;gap:12px;
+  border-top:1px solid var(--line);margin-top:24px;padding-top:24px}
+@media(min-width:760px){.contacto{grid-template-columns:repeat(3,1fr);gap:14px}}
+
+.acceso{display:flex;align-items:center;gap:16px;text-decoration:none;
+  border:1px solid var(--line);padding:20px 20px;min-height:88px;
+  transition:border-color .22s,background .22s}
+.acceso:hover{border-color:var(--oro);background:rgba(195,162,102,.05)}
+.acceso:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+/* La insignia se declara MÁS específica que ".acceso span": si no, hereda
+   display:block de la regla del texto y el icono se descoloca a la esquina. */
+.acceso .insignia{
+  flex:0 0 46px;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--line-fuerte);
+  display:flex;align-items:center;justify-content:center;
+  margin:0;padding:0;font-size:0;
+  transition:border-color .22s,background .22s}
+.acceso:hover .insignia{border-color:var(--oro);background:rgba(195,162,102,.1)}
+.acceso .insignia svg{width:20px;height:20px;display:block;flex:none}
+.acceso .insignia .linea{stroke:var(--oro);fill:none;stroke-width:1.6;stroke-linejoin:round}
+.acceso .insignia .solido{fill:var(--oro)}
+
+/* Bloque de redes: mismo marco y misma altura que los accesos, pero con
+   tres insignias más pequeñas en lugar de una grande y un texto. */
+.acceso.redes{cursor:default}
+.acceso.redes:hover{border-color:var(--line);background:none}
+.redes-lista{display:flex;gap:10px;flex:none}
+/* mismas insignias que los demás accesos, sólo que tres en fila */
+.red{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-fuerte);
+  display:flex;align-items:center;justify-content:center;flex:none;
+  transition:border-color .22s,background .22s}
+.red:hover{border-color:var(--oro);background:rgba(195,162,102,.1)}
+.red svg{width:20px;height:20px;fill:var(--oro);display:block}
+.red:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+.acceso .txt{display:block;min-width:0}
+.acceso .txt b{display:block;font-size:15px;font-weight:600;color:var(--chrome);line-height:1.3}
+
+/* ── niveles desplegables dentro de una tarjeta ── */
+.nivel{border-top:1px solid rgba(255,255,255,.07)}
+.nivel:first-child{border-top:0}
+.nivel-cab{display:grid;grid-template-columns:1fr auto auto;align-items:center;
+  gap:8px clamp(12px,2.4vw,22px);width:100%;padding:15px 0;
+  background:none;border:0;cursor:pointer;text-align:left;color:inherit;font:inherit;
+  transition:opacity .2s}
+.nivel-cab:hover{opacity:.92}
+.nivel-cab:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+.nivel-nom{display:flex;flex-direction:column;gap:4px;min-width:0}
+.nivel-nom b{font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:clamp(15px,1.75vw,18.5px);line-height:1.05;text-transform:uppercase;
+  letter-spacing:.005em;color:var(--chrome)}
+.nivel-nom span{font-family:var(--sans);font-size:12.5px;letter-spacing:0;
+  color:var(--dim);line-height:1.45;font-weight:400}
+.nivel-precio{text-align:right;white-space:nowrap}
+.nivel-flecha{width:11px;height:11px;flex:none;stroke:var(--dim);fill:none;stroke-width:2;
+  transition:transform .3s,stroke .2s}
+.nivel.abierto .nivel-flecha{transform:rotate(180deg);stroke:var(--oro)}
+.nivel.abierto .nivel-nom b{color:var(--oro)}
+
+.nivel-det{display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .38s cubic-bezier(.3,.8,.3,1)}
+.nivel.abierto .nivel-det{grid-template-rows:1fr}
+.nivel-det > div{overflow:hidden}
+.nivel-cuerpo{padding:2px 0 22px;display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:680px){
+  .nivel-cuerpo{grid-template-columns:minmax(0,200px) minmax(0,1fr);
+    gap:clamp(18px,2.6vw,28px);align-items:start}
+  .nivel-cuerpo.sin-foto{grid-template-columns:1fr}
+}
+.nivel-foto{border:1px solid var(--line);overflow:hidden;background:var(--panel)}
+.nivel-foto img{display:block;width:100%;height:auto;
+  opacity:0;transform:scale(1.03);transition:opacity .5s ease .06s,transform .6s ease .06s}
+.nivel.abierto .nivel-foto img{opacity:1;transform:scale(1)}
+.incluye{list-style:none;display:grid;gap:10px;margin-bottom:16px}
+.incluye li{position:relative;padding-left:19px;color:var(--muted);font-size:13.5px;line-height:1.55}
+.incluye li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;
+  border-radius:50%;background:var(--oro)}
+.incluye li.base{color:var(--chrome);font-weight:600}
+.ideal{font-size:13px;line-height:1.55;color:var(--dim);
+  padding-left:15px;border-left:1px solid var(--oro-hondo);max-width:54ch}
+@media(max-width:520px){
+  .nivel-cab{grid-template-columns:1fr auto}
+  .nivel-flecha{grid-column:2;grid-row:2;justify-self:end;margin-top:-4px}
+  .nivel-precio{grid-column:2;grid-row:1}
+}
+
+/* ═══════════ AJUSTES DE MÓVIL ═══════════ */
+@media(max-width:640px){
+  /* el hero respira: menos aire arriba y textos más contenidos */
+  .mcc-in{--pt:clamp(96px,14vh,120px);padding-bottom:34px}
+  .mcc-h1{font-size:clamp(34px,10.5vw,52px);line-height:.94}
+  .mcc-lede{font-size:15px;max-width:34ch}
+  .mcc-services{font-size:11.5px;line-height:2;letter-spacing:.06em}
+  .mcc-cta{gap:9px}
+  .mcc-btn{flex:1 1 100%;justify-content:center;padding:14px 18px}
+  .mcc-proof{gap:0}
+  .mcc-proof div{padding:9px 0;border-top:1px solid var(--line)}
+  .mcc-proof div:first-child{border-top:0}
+
+  /* secciones más juntas */
+  .sec{padding:clamp(38px,7vh,56px) 0}
+  .h2{font-size:clamp(25px,8vw,34px)}
+  .remate{font-size:17px;padding-left:14px}
+  .evita{gap:22px 20px}
+
+  /* visor */
+  .ppf-deck{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:7px}
+  .ppf-chip-face{height:38px}
+  .ppf-chip-code{font-size:10.5px;padding:6px 7px 7px;min-height:2.6em}
+  .ppf-split-grip{width:38px;height:38px}
+  .ppf-tag-txt{padding:7px 11px;font-size:10.5px}
+
+  /* preguntas */
+  .faq summary{font-size:15px;padding:16px 34px 16px 0}
+  .faq p,.faq ol{padding-right:0}
+
+  /* contacto y cierre */
+  .acceso{padding:16px;min-height:76px;gap:13px}
+  .acceso .insignia{flex:0 0 42px;width:42px;height:42px}
+  .acceso .txt b{font-size:14px}
+  .red{width:42px;height:42px}
+  .cierre{padding:26px 20px}
+  .cierre h2{font-size:clamp(24px,8vw,32px)}
+  .btn-google{width:100%;justify-content:center;padding:15px 20px}
+  .nota-oro{gap:6px}
+}
+
+@media(max-width:400px){
+  .mcc-h1{font-size:32px}
+  .ppf-deck{grid-template-columns:1fr 1fr}
+  .acceso .txt b{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Marbella Custom Cars">
+      <img src="img/logo.webp" width="520" height="338" alt="Marbella Custom Cars">
+    </a>
+    <nav class="nav">
+      <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
+      <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
+      <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
+      <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="panel" aria-label="Menú">
+      <i></i><i></i><i></i>
+    </button>
+    <div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es" title="Español" aria-label="Español" aria-pressed="true"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#C60B1E"/><rect y="3.5" width="21" height="7" fill="#FFC400"/></svg><span>ES</span></button><button type="button" data-lang="en" title="English" aria-label="English" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#012169"/><path d="M0 0l21 14M21 0L0 14" stroke="#fff" stroke-width="2.6"/><path d="M0 0l21 14M21 0L0 14" stroke="#C8102E" stroke-width="1.4"/><path d="M10.5 0v14M0 7h21" stroke="#fff" stroke-width="4"/><path d="M10.5 0v14M0 7h21" stroke="#C8102E" stroke-width="2.2"/></svg><span>EN</span></button><button type="button" data-lang="pt" title="Português" aria-label="Português" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#DA291C"/><path d="M2 0h6.4v14H2z" fill="#046A38"/><circle cx="8.4" cy="7" r="3" fill="#FFE900" stroke="#046A38" stroke-width=".7"/></svg><span>PT</span></button><button type="button" data-lang="ru" title="Русский" aria-label="Русский" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#fff"/><rect y="4.67" width="21" height="4.66" fill="#0039A6"/><rect y="9.33" width="21" height="4.67" rx="0" fill="#D52B1E"/></svg><span>RU</span></button></div>
+  </div>
+</header>
+
+<nav class="panel" id="panel" aria-label="Menú">
+  <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
+  <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
+  <a href="#color" data-es="Simulador" data-en="Colour preview" data-pt="Simulador" data-ru="Подбор цвета">Simulador</a>
+  <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
+  <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
+</nav>
+<main id="top">
+<section class="mcc-hero">
+
+  <img class="mcc-photo" fetchpriority="high" width="900" height="1600" src="img/taller.webp"
+       alt="Instalaciones de Marbella Custom Cars: pasillo de boxes con iluminación LED">
+  <img class="mcc-led mcc-led--pared" loading="lazy" src="img/led-pared.webp" alt="" aria-hidden="true">
+  <img class="mcc-led mcc-led--techo" loading="lazy" src="img/led-techo.webp" alt="" aria-hidden="true">
+  <div class="mcc-scrim" aria-hidden="true"></div>
+
+  <div class="mcc-in">
+
+    <p class="mcc-eyebrow rv d1"
+       data-es="Car detailing premium en Marbella" data-pt="Car detailing premium em Marbella" data-ru="Премиальный детейлинг в Марбелье"
+       data-en="Premium car detailing in Marbella">Car detailing premium en Marbella</p>
+
+    <h1 class="mcc-h1">
+      <span class="rv d2" data-es="Especialistas en " data-pt="Especialistas no " data-ru="Специалисты по " data-en="Specialists in ">Especialistas en </span><span class="mcc-chrome rv d2" data-es="el cuidado" data-pt="cuidado" data-ru="уходу" data-en="taking care">el cuidado</span><span class="rv d3" data-es=" de tu coche" data-pt=" do seu carro" data-ru=" за вашим автомобилем" data-en=" of your car"> de tu coche</span>
+    </h1>
+
+    <p class="mcc-lede rv d4"
+       data-es="Máxima protección, acabado impecable y atención al detalle." data-pt="Máxima proteção, acabamento impecável e atenção ao detalhe." data-ru="Максимальная защита, безупречный результат и внимание к деталям."
+       data-en="Maximum protection, a flawless finish and attention to detail.">
+      Máxima protección, acabado impecable y atención al detalle.
+    </p>
+
+    <!-- Orden por rentabilidad: PPF, cerámico y vinilo primero. -->
+    <p class="mcc-services rv d5"
+       data-es="PPF (Paint Protection Film)<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>PPF para embarcaciones<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización" data-pt="PPF (Paint Protection Film)<i>•</i>Tratamento cerâmico<i>•</i>Wrapping<i>•</i>PPF para embarcações<i>•</i>Polimento profissional<i>•</i>Body kits<i>•</i>Personalização" data-ru="PPF (защитная плёнка)<i>•</i>Керамическое покрытие<i>•</i>Оклейка винилом<i>•</i>PPF для катеров<i>•</i>Профессиональная полировка<i>•</i>Обвесы<i>•</i>Индивидуальный тюнинг"
+       data-en="PPF (Paint Protection Film)<i>•</i>Ceramic coating<i>•</i>Wrapping<i>•</i>Marine PPF<i>•</i>Professional polishing<i>•</i>Body kits<i>•</i>Personalisation">
+      PPF (Paint Protection Film)<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>PPF para embarcaciones<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización
+    </p>
+
+    <div class="mcc-cta rv d5">
+      <!-- El texto del WhatsApp va prerrellenado: el bot arranca sabiendo el servicio -->
+      <a class="mcc-btn" id="waHero"
+         href="https://wa.me/34672936398?text=Hola%2C%20quiero%20presupuesto%20de%20PPF.%20Mi%20coche%20es%3A%20"
+         data-es="Presupuesto por WhatsApp" data-pt="Orçamento por WhatsApp" data-ru="Расчёт в WhatsApp" data-en="Get a quote on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.09c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.49l-.45.52c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>
+        Presupuesto por WhatsApp
+      </a>
+      <a class="mcc-btn ghost" href="#servicios"
+         data-es="Ver servicios y precios" data-pt="Ver serviços e preços" data-ru="Услуги и цены" data-en="Services &amp; pricing">Ver servicios y precios</a>
+    
+
+      </div>
+
+    <!-- ⚠ PENDIENTE: cuando Joaquín confirme la marca (Global) y el estatus de
+         distribución, esa es la prueba más fuerte que tiene y debería ir acá. -->
+    <dl class="mcc-proof rv d6">
+      <div>
+        <dt data-es="Vehículos" data-pt="Veículos" data-ru="Автомобили" data-en="Vehicles">Vehículos</dt>
+        <dd data-es="Alta gama, deportivos y clásicos" data-pt="Alta gama, desportivos e clássicos" data-ru="Премиум, спорткары и классика" data-en="High-end, sports and classic">Alta gama, deportivos y clásicos</dd>
+      </div>
+      <div>
+        <dt data-es="Taller" data-pt="Oficina" data-ru="Мастерская" data-en="Workshop">Taller</dt>
+        <dd data-es="Calle Oro 32 · Marbella" data-pt="Calle Oro 32 · Marbella" data-ru="Calle Oro 32 · Марбелья" data-en="Calle Oro 32 · Marbella">Calle Oro 32 · Marbella</dd>
+      </div>
+      <div>
+        <dt data-es="Atención" data-pt="Atendimento" data-ru="Языки" data-en="We speak">Atención</dt>
+        <dd data-es="Español · English" data-pt="Português · English" data-ru="Русский · English" data-en="Español · English">Español · English</dd>
+      </div>
+    </dl>
+
+  </div>
+</section>
+  <div class="wrap" id="servicios">
+    <section class="sec">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="Catálogo completo" data-pt="Catálogo completo" data-ru="Полный каталог" data-en="Full catalogue">Catálogo completo</p>
+        <h2 class="h2" data-es="Servicios" data-pt="Serviços" data-ru="Услуги" data-en="Services">Servicios</h2>
+        <p class="sub" data-es="Toca cualquier servicio para ver las opciones y los precios." data-pt="Toque em qualquer serviço para ver as opções e os preços." data-ru="Нажмите на любую услугу, чтобы увидеть варианты и цены."
+                       data-en="Tap any service to see options and pricing.">Toca cualquier servicio para ver las opciones y los precios.</p>
+      </div>
+      <div class="rejilla" id="lista"></div>
+    </section>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ── qué evita ── -->
+    <section class="sec" id="ppf">
+      <div class="sec-cab">
+        <h2 class="h2" style="max-width:20ch"
+            data-es="Repintar cuesta más que proteger" data-pt="Repintar custa mais do que proteger" data-ru="Перекраска обходится дороже защиты" data-en="Repainting costs more than protecting">Repintar cuesta más que proteger</h2>
+        <p class="sub" data-es="En un coche de alta gama la pintura de fábrica es parte del valor. El PPF pone 200 micras de poliuretano por delante: la grava se queda ahí."
+                       data-en="On a high-end car the factory paint is part of its value. PPF puts 200 microns of polyurethane in front of it: the gravel stops there."
+                       data-pt="Num carro de alta gama a pintura de fábrica faz parte do valor. O PPF põe 200 mícrones de poliuretano à frente: a gravilha fica por ali."
+                       data-ru="У премиального автомобиля заводская краска — часть его стоимости. PPF ставит перед ней 200 микрон полиуретана: гравий остаётся в плёнке.">
+          En un coche de alta gama la pintura de fábrica es parte del valor. El PPF pone 200 micras de poliuretano por delante: la grava se queda ahí.
+        </p>
+        <p class="remate" data-es="Una vez que se repinta, ya no es lo mismo." data-pt="Depois de repintado, nunca mais volta." data-ru="После перекраски её уже не вернуть."
+                          data-en="Once it has been resprayed, it never comes back.">
+          Una vez que se repinta, ya no es lo mismo.
+        </p>
+      </div>
+      <div class="evita">
+        <div><b data-es="Grava" data-pt="Gravilha" data-ru="Гравий" data-en="Stone chips">Grava</b><span data-es="Impactos de autovía en el frontal." data-pt="Impactos de autoestrada na frente." data-ru="Удары камней по передней части на трассе." data-en="Motorway impacts on the front end.">Impactos de autovía en el frontal.</span></div>
+        <div><b data-es="Lavado" data-pt="Lavagem" data-ru="Мойка" data-en="Washing">Lavado</b><span data-es="Microrayado del túnel y la esponja." data-pt="Micro-riscos do túnel e da esponja." data-ru="Микроцарапины от автомоек и губок." data-en="Swirls from roller washes and sponges.">Microrayado del túnel y la esponja.</span></div>
+
+
+        <div><b data-es="Sol" data-pt="Sol" data-ru="Солнце" data-en="Sun">Sol</b><span data-es="El UV apaga el color y reseca el barniz." data-pt="O UV apaga a cor e resseca o verniz." data-ru="Ультрафиолет гасит цвет и сушит лак." data-en="UV dulls the colour and dries the lacquer.">El UV apaga el color y reseca el barniz.</span></div>
+        <div><b data-es="Uso" data-pt="Uso" data-ru="Эксплуатация" data-en="Daily use">Uso</b><span data-es="Cantos, tiradores y roces de aparcamiento." data-pt="Arestas, puxadores e roçadelas de estacionamento." data-ru="Кромки дверей, ручки и парковочные потёртости." data-en="Edges, handles and car-park scuffs.">Cantos, tiradores y roces de aparcamiento.</span></div>
+      </div>
+
+
+
+    </section>
+    
+  </div>
+
+  <!-- ── visor de color ── -->
+  <div class="wrap">
+    <section class="sec" id="color" style="padding-bottom:0">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="Simulador de color" data-pt="Simulador de cor" data-ru="Подбор цвета" data-en="Colour preview">Simulador de color</p>
+        <h2 class="h2" style="max-width:18ch"
+            data-es="Mira cómo queda antes de decidir" data-pt="Veja como fica antes de decidir" data-ru="Посмотрите результат до того, как решите" data-en="See how it looks before you decide">Mira cómo queda antes de decidir</h2>
+        <p class="sub" data-es="Sirve igual para PPF de color y para wrapping: en los dos casos la pintura de fábrica queda intacta debajo." data-pt="Serve tanto para PPF de cor como para wrapping: nos dois casos a pintura de fábrica fica intacta por baixo." data-ru="Подходит и для цветной плёнки PPF, и для винила: в обоих случаях заводская краска остаётся нетронутой."
+                       data-en="It works the same for colour PPF and for wrapping: in both cases the factory paint stays untouched underneath.">
+          Sirve igual para PPF de color y para wrapping: en los dos casos la pintura de fábrica queda intacta debajo.
+        </p>
+        <p class="pista" data-es="Elige un color y arrastra la línea para compararlo con el original" data-pt="Escolha uma cor e arraste a linha para comparar com o original" data-ru="Выберите цвет и потяните линию, чтобы сравнить с оригиналом"
+                         data-en="Pick a colour and drag the divider to compare it with the original">
+          Elige un color y arrastra la línea para compararlo con el original
+        </p>
+      </div>
+    </section>
+  </div>
+
+<section class="ppf" id="visor">
+ <div class="ppf-wrap">
+
+  <div class="ppf-grid">
+
+    <div class="ppf-stage">
+      <canvas id="ppfCanvas" role="img"
+        aria-label="Ferrari SF90 con el color de lámina seleccionado"></canvas>
+      <div class="ppf-split" id="ppfSplit">
+        <span class="ppf-side ppf-side-a" id="ppfSideA" data-es="Original" data-pt="Original" data-ru="Оригинал" data-en="Original">Original</span>
+        <span class="ppf-side ppf-side-b" id="ppfSideB">—</span>
+        <div class="ppf-split-line" id="ppfLine">
+          <div class="ppf-split-grip" id="ppfGrip" role="slider" tabindex="0"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+               aria-label="Comparar original y color nuevo">
+            <svg viewBox="0 0 24 24"><path d="M9 6L4 12l5 6M15 6l5 6-5 6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="ppf-loading" id="ppfLoading" data-es="Cargando" data-pt="A carregar" data-ru="Загрузка" data-en="Loading">Cargando</div>
+      <div class="ppf-tag" id="ppfTag" style="color:#0158EE">
+        <div class="ppf-tag-chip"></div>
+        <div class="ppf-tag-txt">
+          <b id="ppfTagName">Azul original</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="ppf-panel">
+
+      <div>
+        <p class="ppf-label">
+          <span data-es="Carta de colores" data-pt="Carta de cores" data-ru="Палитра" data-en="Colour range">Carta de colores</span>
+          <span id="ppfCount">—</span>
+        </p>
+        <div class="ppf-deck" id="ppfDeck" role="group" aria-label="Colores de lámina"></div>
+      </div>
+
+      <p class="ppf-note"
+         data-es="Los colores son una simulación de referencia: el tono real cambia según la luz, el acabado de la lámina y el estado de la pintura de debajo. Consúltanos por la carta y la disponibilidad exacta antes de decidir."
+         data-en="The colours are a reference simulation: the real tone changes with the light, the film finish and the condition of the paint underneath. Ask us for the actual range and availability before you decide."
+         data-pt="As cores são uma simulação de referência: o tom real muda com a luz, o acabamento da película e o estado da pintura por baixo. Consulte-nos sobre a carta e a disponibilidade exata antes de decidir."
+         data-ru="Цвета — ориентировочная симуляция: реальный оттенок зависит от освещения, типа плёнки и состояния краски под ней. Уточните у нас актуальную палитру и наличие перед тем, как выбрать.">
+        Los colores son una simulación de referencia: el tono real cambia según la luz, el acabado de la lámina y el estado de la pintura de debajo. Consúltanos por la carta y la disponibilidad exacta antes de decidir.
+      </p>
+
+    </div>
+  </div>
+ </div>
+</section>
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. CARTA DE COLORES
+   Para cargar la carta real: reemplazar esta lista.
+   code = SKU del fabricante · name/nameEn = nombre comercial
+   hex  = color de la lámina · finish = 'gloss' | 'satin'
+   ============================================================ */
+const FILMS = [
+  {code:"MCC-101", name:"Blanco perla", namePt:"Branco pérola", nameRu:"Белый перламутр",     nameEn:"Pearl white",     hex:"#E8E8E4", finish:"gloss"},
+  {code:"MCC-104", name:"Gris nardo", namePt:"Cinzento nardo", nameRu:"Серый Nardo",       nameEn:"Nardo grey",      hex:"#9A9C9C", finish:"satin"},
+  {code:"MCC-107", name:"Gris cemento", namePt:"Cinzento cimento", nameRu:"Серый цемент",     nameEn:"Cement grey",     hex:"#6E7071", finish:"satin"},
+  {code:"MCC-112", name:"Antracita", namePt:"Antracite", nameRu:"Антрацит",        nameEn:"Anthracite",      hex:"#3A3D40", finish:"satin"},
+  {code:"MCC-118", name:"Negro piano", namePt:"Preto piano", nameRu:"Чёрный рояль",      nameEn:"Piano black",     hex:"#141416", finish:"gloss"},
+  {code:"MCC-121", name:"Negro satinado", namePt:"Preto acetinado", nameRu:"Чёрный сатин",   nameEn:"Satin black",     hex:"#1C1D1F", finish:"satin"},
+  {code:"MCC-203", name:"Azul marino", namePt:"Azul-marinho", nameRu:"Тёмно-синий",      nameEn:"Deep navy",       hex:"#152A4E", finish:"gloss"},
+  {code:"MCC-208", name:"Azul eléctrico", namePt:"Azul elétrico", nameRu:"Электрик",   nameEn:"Electric blue",   hex:"#123FA8", finish:"gloss"},
+  {code:"MCC-214", name:"Azul hielo", namePt:"Azul gelo", nameRu:"Ледяной голубой",       nameEn:"Ice blue",        hex:"#7FA8C4", finish:"satin"},
+  {code:"MCC-219", name:"Turquesa", namePt:"Turquesa", nameRu:"Бирюзовый",         nameEn:"Turquoise",       hex:"#0E7B84", finish:"gloss"},
+  {code:"MCC-302", name:"Verde británico", namePt:"Verde britânico", nameRu:"Британский зелёный",  nameEn:"British green",   hex:"#124A32", finish:"gloss"},
+  {code:"MCC-307", name:"Verde militar", namePt:"Verde militar", nameRu:"Хаки",    nameEn:"Military green",  hex:"#4A5340", finish:"satin"},
+  {code:"MCC-311", name:"Verde lima", namePt:"Verde-lima", nameRu:"Лаймовый",       nameEn:"Lime green",      hex:"#7FBE28", finish:"gloss"},
+  {code:"MCC-402", name:"Amarillo racing", namePt:"Amarelo racing", nameRu:"Гоночный жёлтый",  nameEn:"Racing yellow",   hex:"#F0C000", finish:"gloss"},
+  {code:"MCC-405", name:"Amarillo mostaza", namePt:"Amarelo mostarda", nameRu:"Горчичный", nameEn:"Mustard yellow",  hex:"#C9A227", finish:"satin"},
+  {code:"MCC-408", name:"Naranja fuego", namePt:"Laranja fogo", nameRu:"Огненный оранжевый",    nameEn:"Fire orange",     hex:"#E25309", finish:"gloss"},
+  {code:"MCC-411", name:"Naranja quemado", namePt:"Laranja queimado", nameRu:"Терракотовый",  nameEn:"Burnt orange",    hex:"#B4491C", finish:"satin"},
+  {code:"MCC-414", name:"Cobre", namePt:"Cobre", nameRu:"Медный",            nameEn:"Copper",          hex:"#9C5A2E", finish:"satin"},
+  {code:"MCC-501", name:"Rojo carmín", namePt:"Vermelho carmim", nameRu:"Кармин",      nameEn:"Carmine red",     hex:"#B01324", finish:"gloss"},
+  {code:"MCC-506", name:"Burdeos", namePt:"Bordeaux", nameRu:"Бордо",          nameEn:"Bordeaux",        hex:"#5C1626", finish:"gloss"},
+  {code:"MCC-512", name:"Rosa polvo", namePt:"Rosa velho", nameRu:"Пыльная роза",       nameEn:"Dusty pink",      hex:"#C98B94", finish:"satin"},
+  {code:"MCC-604", name:"Púrpura", namePt:"Púrpura", nameRu:"Пурпурный",          nameEn:"Purple",          hex:"#4B2270", finish:"gloss"},
+  {code:"MCC-611", name:"Champán", namePt:"Champanhe", nameRu:"Шампань",          nameEn:"Champagne",       hex:"#C4AE86", finish:"satin"},
+  {code:"MCC-618", name:"Bronce", namePt:"Bronze", nameRu:"Бронза",           nameEn:"Bronze",          hex:"#6E5A33", finish:"satin"}
+];
+
+/* Estadísticas de la pintura original de esta foto (se recalculan al
+   generar la máscara; si se cambia la foto hay que actualizarlas). */
+const BASE_L   = 0.4550;
+const BASE_S   = 0.9513;
+const BASE_HEX = "#0158EE";
+/* KNEE = a partir de qué luminosidad empieza la caída suave hacia el blanco. */
+const KNEE = 0.62;
+
+const CAR_SRC  = "img/visor-coche.webp";
+const MASK_SRC = "img/visor-mascara.webp";
+
+/* ============================================================
+   2. UTILIDADES DE COLOR
+   ============================================================ */
+function hexToRgb(h){
+  h = h.replace('#','');
+  if(h.length===3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+}
+function rgbToHsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const mx=Math.max(r,g,b), mn=Math.min(r,g,b), l=(mx+mn)/2;
+  let h=0, s=0;
+  if(mx!==mn){
+    const d=mx-mn;
+    s = l>0.5 ? d/(2-mx-mn) : d/(mx+mn);
+    if(mx===r)      h=((g-b)/d + (g<b?6:0));
+    else if(mx===g) h=((b-r)/d + 2);
+    else            h=((r-g)/d + 4);
+    h/=6;
+  }
+  return [h,s,l];
+}
+function hue2rgb(p,q,t){
+  if(t<0)t+=1; if(t>1)t-=1;
+  if(t<1/6) return p+(q-p)*6*t;
+  if(t<1/2) return q;
+  if(t<2/3) return p+(q-p)*(2/3-t)*6;
+  return p;
+}
+
+/* ============================================================
+   3. MOTOR DE RECOLOREADO
+   Oscurecer = multiplicar la luminosidad · Aclarar = trama (screen).
+   Los dos conservan negros y blancos, así que no se aplasta el modelado.
+   Los reflejos especulares (claros y desaturados) se preservan aparte:
+   en un coche negro brillante los brillos siguen siendo blancos.
+   ============================================================ */
+const cv   = document.getElementById('ppfCanvas');
+const ctx  = cv.getContext('2d', {willReadFrequently:true});
+let baseData=null, outData=null, W=0, Hh=0, srcImg=null;
+let idx=null, pS=null, pL=null, pA=null, pD=null, pSpec=null, N=0;
+let current=null, currentFinish='gloss', split=0.5;
+
+function build(imgEl, maskEl){
+  srcImg = imgEl;
+  W = imgEl.naturalWidth; Hh = imgEl.naturalHeight;
+  cv.width = W; cv.height = Hh;
+
+  ctx.drawImage(imgEl,0,0);
+  baseData = ctx.getImageData(0,0,W,Hh);
+  outData  = ctx.createImageData(W,Hh);
+
+  /* La máscara viene a menor resolución (es suave, no pierde nada) y en dos
+     canales: R = cuánto se recolorea el píxel, G = cuánto se neutraliza el
+     color original. El canal G es lo que quita el tinte de la pintura vieja
+     en reflejos y bordes sin llegar a pintarlos. */
+  const mc = document.createElement('canvas');
+  mc.width=W; mc.height=Hh;
+  const mx = mc.getContext('2d', {willReadFrequently:true});
+  mx.drawImage(maskEl, 0, 0, W, Hh);
+  const md = mx.getImageData(0,0,W,Hh).data;
+
+  const bd = baseData.data;
+  let n=0;
+  for(let i=0;i<W*Hh;i++) if(md[i*4] > 4 || md[i*4+1] > 4) n++;
+  N=n;
+  idx=new Int32Array(n); pS=new Float32Array(n); pL=new Float32Array(n);
+  pA=new Float32Array(n); pD=new Float32Array(n); pSpec=new Float32Array(n);
+
+  let k=0;
+  for(let i=0;i<W*Hh;i++){
+    const a = md[i*4], dcn = md[i*4+1];
+    if(a<=4 && dcn<=4) continue;
+    const p=i*4;
+    const hsl = rgbToHsl(bd[p],bd[p+1],bd[p+2]);
+    idx[k]=p; pS[k]=hsl[1]; pL[k]=hsl[2]; pA[k]=a/255; pD[k]=dcn/255;
+    // especularidad: claro y poco saturado => reflejo, no pintura
+    const t = Math.min(1, Math.max(0, (hsl[2]-0.55)/0.30));
+    pSpec[k] = t*t*(3-2*t) * (1-Math.min(1,hsl[1]/0.55));
+    k++;
+  }
+  document.getElementById('ppfLoading').classList.add('gone');
+}
+
+function recompute(hex, finish){
+  if(!baseData) return;
+  const bd = baseData.data, od = outData.data;
+  od.set(bd);
+
+  if(hex){
+    const rgb = hexToRgb(hex);
+    const t   = rgbToHsl(rgb[0],rgb[1],rgb[2]);
+    const tH=t[0], tS=t[1], tL=t[2];
+    const satin = finish==='satin';
+
+    const kMul   = tL/BASE_L;
+    const sScale = tS/BASE_S;
+    const specK  = satin ? 0.22 : 1.0;
+
+    for(let k=0;k<N;k++){
+      const p=idx[k];
+      let L=pL[k];
+      const Lorig=L;
+
+      /* Multiplicar la luminosidad conserva el modelado: una sombra sigue
+         siendo sombra. La caída exponencial evita que los colores claros
+         se quemen a blanco plano al pasarse de 1. */
+      L = L*kMul;
+      if(L > KNEE) L = KNEE + (1-KNEE)*(1 - Math.exp(-(L-KNEE)/(1-KNEE)));
+      // devolver los reflejos especulares
+      const sp = pSpec[k]*specK;
+      if(sp>0) L = L*(1-sp) + Lorig*sp;
+
+      let S = Math.min(1, pS[k]*sScale);
+
+      if(satin){
+        if(L>0.58) L = 0.58 + (L-0.58)*0.42;   // aplasta el brillo
+        L = L*0.95 + 0.045;                     // levanta la sombra
+        S *= 0.9;
+      }
+
+      let r,g,b;
+      if(S===0){ r=g=b=L; }
+      else{
+        const q = L<0.5 ? L*(1+S) : L+S-L*S;
+        const pp = 2*L-q;
+        r=hue2rgb(pp,q,tH+1/3); g=hue2rgb(pp,q,tH); b=hue2rgb(pp,q,tH-1/3);
+      }
+      /* En los bordes la máscara es parcial, así que parte del píxel sigue
+         siendo la pintura roja de abajo. Antes de mezclar, se tira el color
+         original hacia el gris: así no queda fleco rojo alrededor del coche. */
+      const a=pA[k], ia=1-a, d=pD[k];
+      const gy = 0.299*bd[p] + 0.587*bd[p+1] + 0.114*bd[p+2];
+      const nd = 1-d;
+      od[p]   = (r*255)*a + (bd[p]  *nd + gy*d)*ia;
+      od[p+1] = (g*255)*a + (bd[p+1]*nd + gy*d)*ia;
+      od[p+2] = (b*255)*a + (bd[p+2]*nd + gy*d)*ia;
+    }
+  }
+  paint();
+}
+
+/* Dibuja el recoloreado y tapa la franja izquierda con la foto original.
+   El divisor no recalcula ningún píxel: solo mueve dónde se corta. */
+function paint(){
+  if(!outData) return;
+  ctx.putImageData(outData,0,0);
+  if(current && split < 0.999){
+    const sw = Math.max(1, Math.round(W*split));
+    ctx.drawImage(srcImg, 0,0,sw,Hh, 0,0,sw,Hh);
+  }
+}
+
+function setSplit(v, redraw){
+  split = Math.min(1, Math.max(0, v));
+  line.style.left = (split*100)+'%';
+  grip.setAttribute('aria-valuenow', Math.round(split*100));
+  if(redraw!==false) paint();
+  const a=document.getElementById('ppfSideA');
+  a.style.opacity = split < 0.14 ? 0 : 1;
+  sideB.style.opacity = split > 0.86 ? 0 : 1;
+}
+
+/* ============================================================
+   4. INTERFAZ
+   ============================================================ */
+const deck    = document.getElementById('ppfDeck');
+const tag     = document.getElementById('ppfTag');
+const tagName = document.getElementById('ppfTagName');
+const splitEl = document.getElementById('ppfSplit');
+const line    = document.getElementById('ppfLine');
+const grip    = document.getElementById('ppfGrip');
+const sideB   = document.getElementById('ppfSideB');
+let lang = 'es';
+/* etiqueta del color de fábrica del coche del visor */
+const ORIG={es:'Azul original',en:'Original blue',pt:'Azul original',ru:'Оригинальный синий'};
+
+FILMS.forEach(function(f,i){
+  const b = document.createElement('button');
+  b.type='button'; b.className='ppf-chip';
+  b.setAttribute('aria-pressed','false');
+  b.dataset.i=i; b.dataset.finish=f.finish;
+  b.title = f.name+' — '+f.code;
+  b.innerHTML = '<span class="ppf-chip-face" style="background-color:'+f.hex+'"></span>'
+              + '<span class="ppf-chip-code"></span>';
+  b.addEventListener('click', function(){ select(i); });
+  deck.appendChild(b);
+});
+document.getElementById('ppfCount').textContent = FILMS.length;
+pintaNombres();
+
+function select(i){
+  current = (i===null) ? null : FILMS[i];
+  deck.querySelectorAll('.ppf-chip').forEach(function(c){
+    c.setAttribute('aria-pressed', String(Number(c.dataset.i)===i));
+  });
+  if(current){
+    currentFinish = current.finish;      /* cada lámina trae su propio acabado */
+    tag.style.color = current.hex;
+    tagName.textContent = NOMBRE(current);
+    sideB.textContent = NOMBRE(current);
+    splitEl.classList.add('on');
+    setSplit(split>0.999 ? 1 : 0.5, false);
+    recompute(current.hex, currentFinish);
+  }else{
+    tag.style.color = BASE_HEX;
+    tagName.textContent = ORIG[lang]||ORIG.es;
+    splitEl.classList.remove('on');
+    recompute(null);
+  }
+}
+/* Las muestras llevan el nombre comercial. Se reescriben al cambiar
+   de idioma, porque el nombre cambia y el código ya no se muestra. */
+/* nombre del color en el idioma activo */
+function NOMBRE(f){
+  return lang==='en' ? f.nameEn : lang==='pt' ? f.namePt : lang==='ru' ? f.nameRu : f.name;
+}
+function pintaNombres(){
+  deck.querySelectorAll('.ppf-chip').forEach(function(c){
+    var f=FILMS[Number(c.dataset.i)];
+    var n=NOMBRE(f);
+    c.querySelector('.ppf-chip-code').textContent=n;
+    c.title=n;
+  });
+}
+function finishLabel(f){
+  if(lang==='es') return f==='satin' ? 'satinado' : 'brillo';
+  return f==='satin' ? 'satin' : 'gloss';
+}
+
+/* arrastrar el divisor sobre la imagen */
+function posFromEvent(e){
+  const r = cv.getBoundingClientRect();
+  return (e.clientX - r.left) / r.width;
+}
+let dragging = false;
+splitEl.addEventListener('pointerdown', function(e){
+  if(!current) return;
+  dragging = true;
+  splitEl.setPointerCapture(e.pointerId);
+  setSplit(posFromEvent(e));
+});
+splitEl.addEventListener('pointermove', function(e){
+  if(!dragging) return;
+  e.preventDefault();
+  setSplit(posFromEvent(e));
+});
+['pointerup','pointercancel'].forEach(function(ev){
+  splitEl.addEventListener(ev, function(){ dragging=false; });
+});
+grip.addEventListener('keydown', function(e){
+  const step = e.shiftKey ? 0.1 : 0.02;
+  if(e.key==='ArrowLeft'){ e.preventDefault(); setSplit(split-step); }
+  if(e.key==='ArrowRight'){ e.preventDefault(); setSplit(split+step); }
+  if(e.key==='Home'){ e.preventDefault(); setSplit(0); }
+  if(e.key==='End'){ e.preventDefault(); setSplit(1); }
+});
+
+/* idioma */
+function setLang(l){
+  lang=l;
+  
+  document.querySelectorAll('#visor [data-es]').forEach(function(el){
+    el.innerHTML = el.getAttribute('data-'+l);
+  });
+  pintaNombres();
+  if(current){
+    tagName.textContent = NOMBRE(current);
+    sideB.textContent   = NOMBRE(current);
+  }else{
+    tagName.textContent = ORIG[l]||ORIG.es;
+  }
+}
+/* el idioma lo manda la página, no un selector propio */
+document.addEventListener('mcc:lang', function(e){ setLang(e.detail); });
+
+/* arranque */
+let loaded=0; const img=new Image(), msk=new Image();
+function ready(){ if(++loaded===2){ build(img,msk); select(null); } }
+img.onload=ready; msk.onload=ready;
+img.src=CAR_SRC; msk.src=MASK_SRC;
+
+})();
+</script>
+
+  <div class="wrap">
+    
+
+    <!-- ── preguntas ──
+         ⚠ PENDIENTE de Joaquín: años de garantía del fabricante y duración
+            declarada de la lámina. No se ponen cifras hasta confirmarlas. -->
+    <section class="sec" id="faq">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="Dudas" data-pt="Dúvidas" data-ru="Вопросы" data-en="Questions">Dudas</p>
+        <h2 class="h2" data-es="Preguntas frecuentes" data-pt="Perguntas frequentes" data-ru="Частые вопросы" data-en="Frequently asked">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary data-es="¿En qué se diferencian PPF, wrapping y cerámico?" data-pt="Qual é a diferença entre PPF, wrapping e cerâmico?" data-ru="Чем отличаются PPF, винил и керамика?" data-en="What is the difference between PPF, wrapping and ceramic?">¿En qué se diferencian PPF, wrapping y cerámico?</summary>
+          <p data-es="Son tres productos distintos y sólo uno protege de verdad. El <b>PPF</b> es una lámina de poliuretano de unas 200 micras: tiene cuerpo suficiente para absorber el impacto de una piedra antes de que llegue a la pintura. El <b>wrapping</b> es vinilo, una fracción de ese espesor: cambia el color y protege del roce y del sol, pero no frena una piedra. El <b>cerámico</b> no es una lámina sino un sellado líquido: aporta dureza superficial, brillo y repelencia al agua, pero tampoco absorbe impactos. Por eso no compiten entre sí y se pueden combinar." data-pt="São três produtos diferentes e só um protege a sério. O <b>PPF</b> é uma película de poliuretano com cerca de 200 mícrones: tem corpo suficiente para absorver o impacto de uma pedra antes de chegar à pintura. O <b>wrapping</b> é vinil, uma fração dessa espessura: muda a cor e protege do atrito e do sol, mas não trava uma pedra. O <b>cerâmico</b> não é uma película mas um selante líquido: dá dureza superficial, brilho e repelência à água, mas também não absorve impactos. Por isso não competem entre si e podem combinar-se." data-ru="Это три разных продукта, и по-настоящему защищает только один. <b>PPF</b> — полиуретановая плёнка толщиной около 200 микрон: её тела достаточно, чтобы погасить удар камня до того, как он дойдёт до краски. <b>Винил</b> тоньше в несколько раз: он меняет цвет и защищает от потёртостей и солнца, но камень не остановит. <b>Керамика</b> — не плёнка, а жидкое покрытие: даёт поверхностную твёрдость, блеск и водоотталкивание, но удары тоже не гасит. Поэтому они не конкурируют между собой и хорошо сочетаются."
+             data-en="They are three different products and only one really protects. <b>PPF</b> is a polyurethane film around 200 microns thick: it has enough body to absorb a stone impact before it reaches the paint. <b>Wrapping</b> is vinyl, a fraction of that thickness: it changes the colour and shields against rubbing and sun, but it will not stop a stone. <b>Ceramic</b> is not a film but a liquid sealant: it adds surface hardness, gloss and water repellency, but it does not absorb impacts either. That is why they do not compete and can be combined.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Cera o cerámico?" data-pt="Cera ou cerâmico?" data-ru="Воск или керамика?" data-en="Wax or ceramic?">¿Cera o cerámico?</summary>
+          <p data-es="Depende de cuánto quieras que dure. La <b>cera rápida</b> se aplica en minutos durante el lavado: da brillo y algo de protección, pero se va pronto. La <b>cera natural</b> de carnauba brasileña es la que más profundidad de color aporta, aunque tampoco aguanta demasiado. La <b>cera sintética</b>, de polímeros y resinas acrílicas, cierra los poros de la pintura para que las impurezas no se asienten y dura bastante más. Y el <b>cerámico</b>, compuestos de cuarzo que cristalizan sobre la pintura, es el que más dura y el único con resistencia real al arañazo del lavado." data-pt="Depende de quanto tempo quiser que dure. A <b>cera rápida</b> aplica-se em minutos durante a lavagem: dá brilho e alguma proteção, mas vai-se depressa. A <b>cera natural</b> de carnaúba brasileira é a que mais profundidade de cor dá, embora também não aguente muito. A <b>cera sintética</b>, de polímeros e resinas acrílicas, fecha os poros da pintura para que as impurezas não assentem e dura bastante mais. E o <b>cerâmico</b>, compostos de quartzo que cristalizam sobre a pintura, é o que mais dura e o único com resistência real ao risco da lavagem." data-ru="Зависит от того, насколько долго вы хотите сохранить эффект. <b>Быстрый воск</b> наносится за минуты прямо во время мойки: даёт блеск и небольшую защиту, но держится недолго. <b>Натуральный воск</b> из бразильской карнаубы лучше всех подчёркивает глубину цвета, но тоже недолговечен. <b>Синтетический воск</b> из полимеров и акриловых смол закрывает поры краски, чтобы загрязнения не оседали, и держится заметно дольше. А <b>керамика</b> — соединения кварца, кристаллизующиеся на краске — держится дольше всего и единственная реально сопротивляется царапинам от мойки."
+             data-en="It depends how long you want it to last. <b>Quick wax</b> goes on in minutes during the wash: gloss and some protection, but it does not last. <b>Natural wax</b> from Brazilian carnauba gives the most depth of colour, though it does not hold up long either. <b>Synthetic wax</b>, made of polymers and acrylic resins, closes the pores of the paint so contaminants cannot settle in and lasts considerably longer. And <b>ceramic</b>, quartz compounds that crystallise over the paint, lasts the longest and is the only one with real resistance to wash scratching.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Por qué hay que pulir antes de sellar?" data-pt="Porque é preciso polir antes de selar?" data-ru="Зачем полировать перед нанесением покрытия?" data-en="Why does it need polishing before sealing?">¿Por qué hay que pulir antes de sellar?</summary>
+          <p data-es="Porque el cerámico realza tanto el brillo que deja al descubierto cualquier imperfección de debajo: la tela de araña de los lavados incorrectos, el desgaste del sol y las marcas de contaminación quedan selladas y a la vista. El pulido retira una capa microscópica de laca y devuelve el brillo y la profundidad antes de sellar. Los arañazos leves se eliminan si están sobre la laca; si llegaron a la imprimación solo se pueden disimular, y eso lo decimos antes de empezar, no después." data-pt="Porque o cerâmico realça tanto o brilho que põe a descoberto qualquer imperfeição por baixo: a teia de aranha das lavagens incorretas, o desgaste do sol e as marcas de contaminação ficam seladas e à vista. O polimento retira uma camada microscópica de verniz e devolve o brilho e a profundidade antes de selar. Os riscos leves eliminam-se se estiverem no verniz; se chegaram ao primário só podem ser disfarçados, e isso dizemos antes de começar, não depois." data-ru="Потому что керамика настолько усиливает блеск, что выявляет любой дефект под ней: «паутинку» от неправильной мойки, выгорание от солнца и следы загрязнений — всё это окажется запечатано и на виду. Полировка снимает микроскопический слой лака и возвращает блеск и глубину перед нанесением покрытия. Лёгкие царапины уходят, если они в слое лака; если они дошли до грунта, их можно только замаскировать — и мы говорим об этом до начала работ, а не после."
+             data-en="Because ceramic lifts the gloss so much that it exposes any imperfection underneath: swirl marks from incorrect washing, sun wear and contamination marks all get sealed in and on show. Polishing removes a microscopic layer of lacquer and restores gloss and depth before sealing. Light scratches come out if they sit in the lacquer; if they reached the primer they can only be disguised, and we say so before starting, not after.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Cómo es el proceso?" data-pt="Como é o processo?" data-ru="Как проходит работа?" data-en="What does the process look like?">¿Cómo es el proceso?</summary>
+          <ol>
+            <li data-es="<b>Diagnóstico.</b> Revisamos el estado de la pintura y confirmamos el precio cerrado antes de empezar." data-pt="<b>Diagnóstico.</b> Verificamos o estado da pintura e confirmamos o preço fechado antes de começar." data-ru="<b>Осмотр.</b> Оцениваем состояние краски и подтверждаем окончательную цену до начала работ."
+                data-en="<b>Assessment.</b> We check the condition of the paint and confirm a firm price before starting."><b>Diagnóstico.</b> Revisamos el estado de la pintura y confirmamos el precio cerrado antes de empezar.</li>
+            <li data-es="<b>Preparación.</b> Lavado y descontaminación. Si la pintura lo necesita, corrección previa: lo que quede debajo se queda ahí." data-pt="<b>Preparação.</b> Lavagem e descontaminação. Se a pintura precisar, correção prévia: o que ficar por baixo fica lá." data-ru="<b>Подготовка.</b> Мойка и очистка от въевшихся загрязнений. Если краске нужно — предварительная коррекция: всё, что останется под плёнкой, останется там навсегда."
+                data-en="<b>Preparation.</b> Wash and decontamination. If the paint needs it, correction first: whatever is underneath stays there."><b>Preparación.</b> Lavado y descontaminación. Si la pintura lo necesita, corrección previa: lo que quede debajo se queda ahí.</li>
+            <li data-es="<b>Instalación.</b> Patrón cortado a la medida del modelo y aplicación en box cerrado, sin polvo." data-pt="<b>Instalação.</b> Molde cortado à medida do modelo e aplicação em box fechado, sem pó." data-ru="<b>Нанесение.</b> Выкройка точно по модели автомобиля и работа в закрытом боксе без пыли."
+                data-en="<b>Installation.</b> Pattern cut to the exact model and applied in a closed, dust-free bay."><b>Instalación.</b> Patrón cortado a la medida del modelo y aplicación en box cerrado, sin polvo.</li>
+            <li data-es="<b>Entrega.</b> Revisión pieza por pieza y tiempo de curado antes de que el coche salga." data-pt="<b>Entrega.</b> Revisão peça a peça e tempo de cura antes de o carro sair." data-ru="<b>Выдача.</b> Проверка каждой детали и время на полимеризацию до того, как автомобиль покинет мастерскую."
+                data-en="<b>Handover.</b> Panel-by-panel inspection and curing time before the car leaves."><b>Entrega.</b> Revisión pieza por pieza y tiempo de curado antes de que el coche salga.</li>
+          </ol>
+        </details>
+        <details>
+          <summary data-es="¿Se nota que el coche lleva lámina?" data-pt="Nota-se que o carro tem película?" data-ru="Заметно ли, что на машине плёнка?" data-en="Can you tell the car has film on it?">¿Se nota que el coche lleva lámina?</summary>
+          <p data-es="Bien instalada, no. La lámina es transparente y los cortes se esconden en los cantos de cada pieza. Lo que sí se nota es el brillo: la superficie queda más lisa que la pintura desnuda." data-pt="Bem instalada, não. A película é transparente e os cortes escondem-se nas arestas de cada peça. O que se nota é o brilho: a superfície fica mais lisa do que a pintura nua." data-ru="При правильной установке — нет. Плёнка прозрачная, а линии реза прячутся по кромкам деталей. Заметен блеск: поверхность становится глаже, чем открытая краска."
+             data-en="Properly installed, no. The film is clear and the cuts are tucked into the edge of each panel. What you do notice is the gloss: the surface ends up smoother than bare paint.">
+            Bien instalada, no. La lámina es transparente y los cortes se esconden en los cantos de cada pieza. Lo que sí se nota es el brillo: la superficie queda más lisa que la pintura desnuda.
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Se puede quitar más adelante?" data-pt="Pode ser removida mais tarde?" data-ru="Можно ли снять её позже?" data-en="Can it be removed later on?">¿Se puede quitar más adelante?</summary>
+          <p data-es="Sí, y esa es la gracia. Se retira con calor y la pintura de debajo aparece como el día que se aplicó. Por eso funciona tan bien en coches que se piensan vender." data-pt="Sim, e é essa a vantagem. Retira-se com calor e a pintura por baixo aparece como no dia em que foi aplicada. Por isso funciona tão bem em carros que se pensa vender." data-ru="Да, и в этом весь смысл. Плёнка снимается нагревом, а краска под ней выглядит как в день нанесения. Поэтому это так хорошо работает для машин, которые планируют продавать."
+             data-en="Yes, and that is the whole point. It comes off with heat and the paint underneath looks like the day it went on. That is why it works so well on cars you plan to sell.">
+            Sí, y esa es la gracia. Se retira con calor y la pintura de debajo aparece como el día que se aplicó. Por eso funciona tan bien en coches que se piensan vender.
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Cuánto tiempo se queda el coche en el taller?" data-pt="Quanto tempo fica o carro na oficina?" data-ru="Сколько автомобиль остаётся в мастерской?" data-en="How long does the car stay at the workshop?">¿Cuánto tiempo se queda el coche en el taller?</summary>
+          <p data-es="Depende de la cobertura y del estado de la pintura. Un sectorizado sale en el día; un full body ocupa el box varios días, sobre todo si hay corrección previa. Te damos la fecha de entrega al confirmar el presupuesto." data-pt="Depende da cobertura e do estado da pintura. Um trabalho por zonas sai no próprio dia; um full body ocupa o box vários dias, sobretudo se houver correção prévia. Damos-lhe a data de entrega ao confirmar o orçamento." data-ru="Зависит от объёма оклейки и состояния краски. Локальная защита делается за день; full body занимает бокс на несколько дней, особенно если нужна предварительная коррекция. Дату выдачи называем при подтверждении сметы."
+             data-en="It depends on the coverage and the condition of the paint. A sectional job is done within the day; a full body takes the bay for several days, especially if correction is needed first. We give you a handover date when the quote is confirmed.">
+            Depende de la cobertura y del estado de la pintura. Un sectorizado sale en el día; un full body ocupa el box varios días, sobre todo si hay corrección previa. Te damos la fecha de entrega al confirmar el presupuesto.
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Puedo lavarlo como siempre?" data-pt="Posso lavá-lo como sempre?" data-ru="Можно ли мыть машину как обычно?" data-en="Can I wash it as usual?">¿Puedo lavarlo como siempre?</summary>
+          <p data-es="Sí, con lavado a mano y pH neutro. Lo que conviene evitar son los túneles de rodillos y las pistolas a presión muy cerca de los cantos. Te explicamos el mantenimiento al entregar el coche." data-pt="Sim, com lavagem à mão e pH neutro. O que convém evitar são os túneis de rolos e as máquinas de pressão muito perto das arestas. Explicamos-lhe a manutenção na entrega do carro." data-ru="Да, ручная мойка и pH-нейтральный шампунь. Избегать стоит щёточных моек и мойки под высоким давлением вплотную к кромкам. Правила ухода объясняем при выдаче автомобиля."
+             data-en="Yes, by hand and with pH-neutral shampoo. What to avoid are roller washes and pressure washers held close to the edges. We go through the maintenance with you at handover.">
+            Sí, con lavado a mano y pH neutro. Lo que conviene evitar son los túneles de rodillos y las pistolas a presión muy cerca de los cantos. Te explicamos el mantenimiento al entregar el coche.
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Y si la pintura ya tiene arañazos?" data-pt="E se a pintura já tiver riscos?" data-ru="А если на краске уже есть царапины?" data-en="What if the paint already has scratches?">¿Y si la pintura ya tiene arañazos?</summary>
+          <p data-es="Se corrigen antes. La lámina sella lo que haya debajo, así que cualquier marca que no se trate queda ahí dentro para siempre. En el diagnóstico te decimos si hace falta y cuánto suma." data-pt="Corrigem-se antes. A película sela o que estiver por baixo, por isso qualquer marca não tratada fica lá dentro para sempre. No diagnóstico dizemos se é preciso e quanto acrescenta." data-ru="Их устраняют заранее. Плёнка запечатывает всё, что под ней, поэтому любой необработанный дефект останется внутри навсегда. На осмотре скажем, нужна ли коррекция и сколько она добавит."
+             data-en="They get corrected first. The film seals whatever is underneath, so any mark left untreated stays in there for good. At the assessment we tell you whether it is needed and what it adds.">
+            Se corrigen antes. La lámina sella lo que haya debajo, así que cualquier marca que no se trate queda ahí dentro para siempre. En el diagnóstico te decimos si hace falta y cuánto suma.
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Sirve también para embarcaciones?" data-pt="Também serve para embarcações?" data-ru="Подходит ли это для катеров?" data-en="Does it work on boats too?">¿Sirve también para embarcaciones?</summary>
+          <p data-es="Sí. Aplicamos PPF en barcos y motos de agua, donde el sol y la sal son todavía más agresivos que en carretera. Se presupuesta aparte, según la eslora y las zonas a cubrir." data-pt="Sim. Aplicamos PPF em barcos e motas de água, onde o sol e o sal são ainda mais agressivos do que na estrada. É orçamentado à parte, conforme o comprimento e as zonas a cobrir." data-ru="Да. Мы наносим PPF на катера и гидроциклы, где солнце и соль агрессивнее, чем на дороге. Смета считается отдельно — по длине судна и зонам покрытия."
+             data-en="Yes. We apply PPF to boats and jet skis, where sun and salt are even harsher than on the road. It is quoted separately, based on length and the areas to be covered.">
+            Sí. Aplicamos PPF en barcos y motos de agua, donde el sol y la sal son todavía más agresivos que en carretera. Se presupuesta aparte, según la eslora y las zonas a cubrir.
+          </p>
+        </details>
+        <details>
+          <summary data-es="Qué hace falta" data-pt="O que é preciso" data-ru="Что понадобится" data-en="What you need">Qué hace falta</summary>
+          <p data-es="Champú de pH neutro, que lubrica y encapsula la suciedad sin retirar el tratamiento. Guante o manopla de lana de cordero o microfibra. Toalla de secado. Dos cubos, o uno con doble compartimento. Y prelavado solo si el coche viene muy sucio." data-pt="Champô de pH neutro, que lubrifica e encapsula a sujidade sem retirar o tratamento. Luva de lã de cordeiro ou microfibra. Toalha de secagem. Dois baldes, ou um com duplo compartimento. E pré-lavagem só se o carro vier muito sujo." data-ru="pH-нейтральный шампунь: он смазывает и обволакивает грязь, не снимая покрытие. Варежка из овечьей шерсти или микрофибры. Полотенце для сушки. Два ведра или одно с двумя отсеками. И предварительная мойка — только если машина очень грязная."
+             data-en="pH-neutral shampoo, which lubricates and encapsulates dirt without stripping the coating. A lambswool or microfibre wash mitt. A drying towel. Two buckets, or one with two compartments. And a pre-wash only if the car is very dirty.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="A la hora de lavar" data-pt="Na hora de lavar" data-ru="Как мыть" data-en="When washing">A la hora de lavar</summary>
+          <p data-es="Nunca al sol. Con mucha suciedad, primero manguera o hidrolimpiadora para retirar lo grueso. Empieza por los pasos de rueda y las llantas, así no esparces esa suciedad por la carrocería. Después champú con el guante, suave y sin presión, en tramos cortos y en línea recta. Enjuaga el guante en el cubo de agua limpia para dejar allí la suciedad, vuelve al champú y repite." data-pt="Nunca ao sol. Com muita sujidade, primeiro mangueira ou máquina de pressão para retirar o grosso. Comece pelas cavas das rodas e pelas jantes, assim não espalha essa sujidade pela carroçaria. Depois champô com a luva, suave e sem pressão, em troços curtos e em linha reta. Enxagúe a luva no balde de água limpa para deixar lá a sujidade, volte ao champô e repita." data-ru="Никогда на солнце. Если грязи много, сначала смойте основное шлангом или аппаратом высокого давления. Начинайте с колёсных арок и дисков, чтобы не разнести эту грязь по кузову. Затем шампунь варежкой — мягко, без нажима, короткими прямыми движениями. Полощите варежку в ведре с чистой водой, чтобы грязь оставалась там, возвращайтесь к шампуню и повторяйте."
+             data-en="Never in direct sun. If the car is very dirty, start with a hose or pressure washer to take off the worst. Begin with wheel arches and wheels, so you don't spread that dirt across the bodywork. Then shampoo with the mitt, gently and without pressure, in short straight passes. Rinse the mitt in the clean-water bucket to leave the dirt there, go back to the shampoo and repeat.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="A la hora de secar" data-pt="Na hora de secar" data-ru="Как сушить" data-en="When drying">A la hora de secar</summary>
+          <p data-es="El error más común es dejarlo secar al sol o al aire. Un coche húmedo es un imán para las partículas del ambiente, y esas partículas son las que dañan la pintura. Hay dos técnicas: por arrastre, extendiendo la microfibra sobre la superficie desde el techo y tirando de las puntas hacia abajo sin apretar; y por apoyo, colocando la microfibra encima y presionando con la palma para que la toalla absorba el agua sin generar fricción." data-pt="O erro mais comum é deixá-lo secar ao sol ou ao ar. Um carro húmido é um íman para as partículas do ambiente, e são essas partículas que danificam a pintura. Há duas técnicas: por arrasto, estendendo a microfibra sobre a superfície a partir do tejadilho e puxando pelas pontas para baixo sem apertar; e por apoio, colocando a microfibra por cima e pressionando com a palma para que a toalha absorva a água sem gerar fricção." data-ru="Самая частая ошибка — оставить машину сохнуть на солнце или на воздухе. Влажный кузов притягивает частицы из воздуха, а именно они повреждают краску. Есть два приёма: протяжка — микрофибру расстилают по поверхности от крыши и тянут за края вниз без нажима; и промакивание — микрофибру кладут сверху и прижимают ладонью, чтобы полотенце впитало воду без трения."
+             data-en="The most common mistake is letting it air-dry or dry in the sun. A wet car is a magnet for airborne particles, and those particles are what damage the paint. There are two techniques: dragging, laying the microfibre flat from the roof and pulling it down by the corners without pressing; and blotting, placing the microfibre on the surface and pressing with your palm so the towel absorbs the water without creating friction.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="Qué evitar siempre" data-pt="O que evitar sempre" data-ru="Чего избегать всегда" data-en="What to always avoid">Qué evitar siempre</summary>
+          <p data-es="Túneles de rodillos, esponjas duras, productos agresivos o desengrasantes de uso general, y lavar o secar con el coche caliente al sol. Cualquiera de esas cosas acorta la vida del tratamiento por el que pagaste." data-pt="Túneis de rolos, esponjas duras, produtos agressivos ou desengordurantes de uso geral, e lavar ou secar com o carro quente ao sol. Qualquer uma dessas coisas encurta a vida do tratamento que pagou." data-ru="Щёточных моек, жёстких губок, агрессивной химии и универсальных обезжиривателей, а также мойки и сушки на разогретом солнцем кузове. Любое из этого сокращает срок службы покрытия, за которое вы заплатили."
+             data-en="Roller washes, hard sponges, aggressive or general-purpose degreasers, and washing or drying while the car is hot in the sun. Any of these shortens the life of the treatment you paid for.">
+          </p>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ── por qué pulir antes ── -->
+    
+
+    <!-- ── escalera de protección ── -->
+    
+
+    <!-- ── guía de mantenimiento ── -->
+    
+  </div>
+
+  <div class="wrap">
+    <section class="sec" id="ubicacion">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="Dónde estamos" data-pt="Onde estamos" data-ru="Где мы находимся" data-en="Where we are">Dónde estamos</p>
+        <h2 class="h2" data-es="Polígono La Ermita, Marbella" data-pt="Polígono La Ermita, Marbella" data-ru="Промзона La Ermita, Марбелья" data-en="Polígono La Ermita, Marbella">Polígono La Ermita, Marbella</h2>
+        <p class="nota-oro"><b>5,0</b><i>★★★★★</i><span data-es="en Google" data-en="on Google" data-pt="no Google" data-ru="в Google">en Google</span></p>
+      </div>
+
+      <!-- ⚠ TEMPORAL — SÓLO PARA VISTA PREVIA.
+           Captura de Google Maps: no se publica así (el contenido de Maps es de
+           Google y su uso permitido es el iframe). ANTES DE SUBIR, cambiar el
+           <img> de abajo por:
+             <iframe title="Marbella Custom Cars" loading="lazy"
+               referrerpolicy="no-referrer-when-downgrade"
+               src="https://maps.google.com/maps?q=36.511952,-4.8673708&z=16&output=embed"></iframe> -->
+      <div class="marco">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=36.511952,-4.8673708"
+           target="_blank" rel="noopener" aria-label="Abrir la ubicación en Google Maps">
+          <img src="img/mapa.webp" loading="lazy" alt="Marbella Custom Cars en Calle Oro 32, Polígono La Ermita, Marbella">
+          <span class="pin" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="contacto">
+
+
+        <a class="acceso" id="waUbic" target="_blank" rel="noopener" href="#">
+          <span class="insignia"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="solido" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+          <span class="txt">
+            <b data-es="Escríbenos por WhatsApp" data-pt="Fale connosco no WhatsApp" data-ru="Напишите нам в WhatsApp" data-en="Message us on WhatsApp">Escríbenos por WhatsApp</b>
+          </span>
+        </a>
+
+        <a class="acceso" href="mailto:marbellacustomcars@gmail.com">
+          <span class="insignia"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="linea" x="3" y="5" width="18" height="14" rx="2.6"/><path class="linea" d="M3.6 6.6l8.4 6 8.4-6"/></svg></span>
+          <span class="txt">
+            <b data-es="Escríbenos un correo" data-en="Send us an email" data-pt="Envie-nos um email" data-ru="Напишите нам на почту">Escríbenos un correo</b>
+          </span>
+        </a>
+        <div class="acceso redes">
+          <span class="redes-lista">
+            <a class="red" href="https://www.instagram.com/marbellacustomcars/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 114-4 4 4 0 01-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+            <a class="red" href="https://www.youtube.com/@MarbellaCustomCars" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a class="red" href="https://www.tiktok.com/@marbellacustomcars" target="_blank" rel="noopener" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+          </span>
+          <span class="txt">
+            <b data-es="Síguenos" data-en="Follow us" data-pt="Siga-nos" data-ru="Мы в соцсетях">Síguenos</b>
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section class="sec" id="contacto">
+      <div class="cierre">
+        <p class="eyebrow" data-es="¿Has pasado ya por el taller?" data-en="Been to the workshop?" data-pt="Já passou pela oficina?" data-ru="Уже были у нас?">¿Has pasado ya por el taller?</p>
+        <p class="estrellas-gr" aria-hidden="true">★★★★★</p>
+        <h2><span data-es="Déjanos " data-en="Leave us " data-pt="Deixe-nos " data-ru="Оставьте ">Déjanos </span><em data-es="tu reseña" data-en="a review" data-pt="a sua avaliação" data-ru="отзыв">tu reseña</em></h2>
+        <p data-es="Un minuto de tu tiempo ayuda a que otros encuentren el taller."
+           data-en="A minute of your time helps others find the workshop."
+           data-pt="Um minuto do seu tempo ajuda outros a encontrar a oficina."
+           data-ru="Одна минута вашего времени поможет другим найти мастерскую.">
+          Un minuto de tu tiempo ayuda a que otros encuentren el taller.
+        </p>
+        <a class="btn-google" target="_blank" rel="noopener"
+           href="https://search.google.com/local/writereview?placeid=ChIJD30solDZcg0RqnzteCX1OXI">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.27c0-.79-.07-1.54-.2-2.27H12v4.3h6.46a5.5 5.5 0 01-2.4 3.62v3h3.87c2.26-2.09 3.57-5.17 3.57-8.65z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.94-2.91l-3.87-3a7.2 7.2 0 01-10.72-3.79H1.35v3.09A12 12 0 0012 24z"/><path fill="#FBBC05" d="M5.35 14.3a7.2 7.2 0 010-4.6V6.61H1.35a12 12 0 000 10.78z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0A12 12 0 001.35 6.61l4 3.09A7.15 7.15 0 0112 4.75z"/></svg>
+          <span data-es="Dejar una reseña en Google" data-en="Leave a review on Google" data-pt="Deixar uma avaliação no Google" data-ru="Оставить отзыв в Google">Dejar una reseña en Google</span>
+        </a>
+      </div>
+      <p class="pie" data-es="Marbella Custom Cars · Calle Oro 32, Polígono La Ermita, Marbella · Los importes son orientativos y corresponden a vehículos de tamaño estándar." data-pt="Marbella Custom Cars · Calle Oro 32, Polígono La Ermita, Marbella · Os valores são orientativos e referem-se a veículos de tamanho padrão." data-ru="Marbella Custom Cars · Calle Oro 32, Polígono La Ermita, Марбелья · Цены ориентировочные и указаны для автомобилей стандартного размера."
+                     data-en="Marbella Custom Cars · Calle Oro 32, Polígono La Ermita, Marbella · Figures are indicative and apply to standard-size vehicles."></p>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   CATÁLOGO
+   Un servicio vive en UNA sola familia, elegida por zona del coche.
+   Por eso el cerámico no es una categoría suelta: el de llantas está
+   en Llantas, el antilluvia en Cristales y el de cuero en Interior.
+
+   precio:  {t:'fijo'|'desde'|'rango'|'consultar'|'pendiente', v:'...', nota:'...'}
+   ⚠ Todo lo que aparezca como 'pendiente' está esperando precio de Joaquín.
+   ============================================================ */
+var WA = '34672936398';
+
+/* Fotos de tarjeta. Para añadir una a otro servicio: subirla acá y poner
+   foto:FOTOS.<clave> en el servicio correspondiente. */
+var FOTOS = {
+  ppf:      'img/srv-ppf.webp',
+  ceramico: 'img/srv-ceramico.webp',
+  wrapping: 'img/srv-wrapping.webp',
+  bodykits: 'img/srv-bodykits.webp',
+  llantas:  'img/srv-llantas.webp',
+  lavado:   'img/srv-lavado.webp',
+  interior:  'img/srv-interior.webp',
+  cristales: 'img/srv-cristales.webp',
+  nGold:     'img/nivel-gold.webp',
+  nBlack:    'img/nivel-black.webp',
+  nPlatinum: 'img/nivel-platinum.webp',
+  nMotor:    'img/nivel-motor.webp'
+};
+
+var FAMILIAS = [
+{ id:'proteccion', es:'Protección', pt:'Proteção', ru:'Защита', en:'Protection', servicios:[
+
+  { id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
+    dEs:'Lámina invisible contra piedras y arañazos.',
+    dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
+    dEn:'Invisible film against stone chips and scratches.',
+    v:[
+      {es:'Full body', pt:'Full body', ru:'Full body', en:'Full body',
+       p:{t:'rango', v:'4.200 – 5.000'}},
+      {es:'Full front', pt:'Full front', ru:'Full front', en:'Full front',
+       p:{t:'rango', v:'1.500 – 2.000'}},
+      {es:'Sectorizado', pt:'Por zonas', ru:'Локальная защита', en:'Sectional',
+       p:{t:'pendiente'}}
+    ]},
+
+  { id:'ceramico', es:'Tratamiento cerámico', pt:'Tratamento cerâmico', ru:'Керамическое покрытие', en:'Ceramic coating', foto:FOTOS.ceramico,
+    dEs:'Sella la pintura, repele agua y suciedad.',
+    dPt:'Sela a pintura, repele água e sujidade.', dRu:'Запечатывает краску, отталкивает воду и грязь.',
+    dEn:'Seals the paint, repels water and dirt.',
+    v:[
+      {es:'Carrocería Signature', pt:'Carroçaria Signature', ru:'Кузов Signature', en:'Bodywork Signature',
+       p:{t:'fijo', v:'800'}},
+      {es:'Carrocería Premium', pt:'Carroçaria Premium', ru:'Кузов Premium', en:'Bodywork Premium',
+       p:{t:'fijo', v:'1.000'}},
+      {es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', p:{t:'pendiente'}},
+      {es:'Cristales', pt:'Vidros', ru:'Стёкла', en:'Glass', p:{t:'pendiente'}},
+      {es:'Plásticos exteriores', pt:'Plásticos exteriores', ru:'Наружный пластик', en:'Exterior plastics', p:{t:'pendiente'}},
+      {es:'Tela de capota', pt:'Capota de lona', ru:'Тканевая крыша', en:'Soft top', p:{t:'pendiente'}},
+      {es:'Tela del interior', pt:'Tecidos do interior', ru:'Ткани салона', en:'Interior fabric', p:{t:'pendiente'}},
+      {es:'Cueros del interior', pt:'Pele do interior', ru:'Кожа салона', en:'Interior leather', p:{t:'pendiente'}}
+    ]}
+]},
+
+{ id:'estetica', es:'Estética', pt:'Estética', ru:'Внешний вид', en:'Styling', servicios:[
+
+  { id:'wrapping', es:'Wrapping', pt:'Wrapping', ru:'Оклейка винилом', en:'Wrapping', foto:FOTOS.wrapping,
+    dEs:'Cambio de color reversible, sin tocar la pintura.',
+    dPt:'Mudança de cor reversível, sem tocar na pintura.', dRu:'Обратимая смена цвета без вреда для краски.',
+    dEn:'Reversible colour change, factory paint untouched.',
+    v:[
+      {es:'Wrapping total', pt:'Wrapping total', ru:'Полная оклейка', en:'Full wrap',
+       p:{t:'consultar'}},
+      {es:'Wrapping parcial', pt:'Wrapping parcial', ru:'Частичная оклейка', en:'Partial wrap',
+       p:{t:'pendiente'}},
+      {es:'Personalizado', pt:'Personalizado', ru:'Индивидуальный дизайн', en:'Custom design',
+       p:{t:'consultar'}}
+    ]},
+
+  { id:'bodykits', es:'Body kits', pt:'Body kits', ru:'Обвесы', en:'Body kits', foto:FOTOS.bodykits,
+    dEs:'Aerodinámica y piezas de carbono a medida.',
+    dPt:'Aerodinâmica e peças de carbono à medida.', dRu:'Аэродинамика и карбон на заказ.',
+    dEn:'Aerodynamics and bespoke carbon parts.',
+    v:[
+      {es:'Spoilers y alerones', pt:'Spoilers e ailerons', ru:'Спойлеры и антикрылья', en:'Spoilers and wings',
+       p:{t:'pendiente'}},
+      {es:'Parrilla y carcasas de espejo', pt:'Grelha e capas de espelho', ru:'Решётка и накладки зеркал', en:'Grille and mirror caps',
+       p:{t:'pendiente'}},
+      {es:'Escapes', pt:'Escapes', ru:'Выхлопные системы', en:'Exhausts',
+       p:{t:'pendiente'}},
+      {es:'Volantes personalizados', pt:'Volantes personalizados', ru:'Рули на заказ', en:'Custom steering wheels',
+       p:{t:'consultar'}}
+    ]}
+]},
+
+{ id:'ruedas', es:'Ruedas y cristales', pt:'Rodas e vidros', ru:'Диски и стёкла', en:'Wheels & glass', servicios:[
+
+  { id:'llantas', es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', foto:FOTOS.llantas,
+    dEs:'Reparación, pintura y protección cerámica.',
+    dPt:'Reparação, pintura e proteção cerâmica.', dRu:'Ремонт, покраска и керамическая защита.',
+    dEn:'Repair, paint and ceramic protection.',
+    v:[
+      {es:'Reparación y pintura', pt:'Reparação e pintura', ru:'Ремонт и покраска', en:'Repair and paint',
+       p:{t:'pendiente'}},
+      {es:'Pulido y cerámico', pt:'Polimento e cerâmico', ru:'Полировка и керамика', en:'Polish and ceramic',
+       p:{t:'desde', v:'290'}},
+      {es:'Pintura de pinzas', pt:'Pintura de pinças', ru:'Покраска суппортов', en:'Caliper paint',
+       p:{t:'pendiente'}}
+    ]},
+
+  { id:'cristales', es:'Tintado de cristales', pt:'Tintagem de vidros', ru:'Тонировка стёкол', en:'Window tinting', foto:FOTOS.cristales,
+    dEs:'Menos calor, menos UV, más privacidad.',
+    dPt:'Menos calor, menos UV, mais privacidade.', dRu:'Меньше жары и ультрафиолета, больше приватности.',
+    dEn:'Less heat, less UV, more privacy.',
+    v:[
+      {es:'Lámina nanocerámica', pt:'Película nanocerâmica', ru:'Нанокерамическая плёнка', en:'Nano-ceramic film',
+       p:{t:'pendiente'}},
+      {es:'Lámina polarizada premium', pt:'Película escurecida premium', ru:'Тонировочная плёнка премиум', en:'Premium tinted film',
+       p:{t:'pendiente'}},
+      {es:'Tratamiento antilluvia', pt:'Tratamento anti-chuva', ru:'Антидождь', en:'Rain-repellent treatment',
+       p:{t:'desde', v:'190'}}
+    ]}
+]},
+
+{ id:'interior', es:'Interior y lavado', pt:'Interior e lavagem', ru:'Салон и мойка', en:'Interior & wash', servicios:[
+
+  { id:'int', es:'Interior', pt:'Interior', ru:'Салон', en:'Interior', foto:FOTOS.interior,
+    dEs:'Limpieza a fondo y protección de cuero y telas.',
+    dPt:'Limpeza a fundo e proteção de pele e tecidos.', dRu:'Глубокая чистка и защита кожи и тканей.',
+    dEn:'Deep clean and protection for leather and fabrics.',
+    v:[
+      {es:'Limpieza completa de interior', pt:'Limpeza completa de interior', ru:'Полная химчистка салона', en:'Full interior detailing',
+       p:{t:'desde', v:'250', nota:'coche pequeño', notaEn:'small car'},
+       sub:{es:'Limpieza profunda del habitáculo', en:'Deep clean of the cabin',
+            pt:'Limpeza profunda do habitáculo', ru:'Глубокая чистка салона'},
+       pts:{es:['Inyección-extracción en moquetas, alfombrillas, techo y maletero','Acondicionamiento de plásticos, volante, puertas y palanca'],
+            en:['Hot-water extraction on carpets, mats, headliner and boot','Plastics, steering wheel, door cards and gear lever conditioned'],
+            pt:['Injeção-extração em alcatifas, tapetes, tejadilho e mala','Condicionamento de plásticos, volante, portas e alavanca'],
+            ru:['Экстракторная чистка ковролина, ковриков, потолка и багажника','Обработка пластика, руля, дверных карт и рычага КПП']}},
+      {es:'Extra: tratamiento cerámico para cueros', pt:'Extra: tratamento cerâmico para peles',
+       ru:'Дополнительно: керамика для кожи салона', en:'Add-on: ceramic coating for leather',
+       p:{t:'pendiente'}}
+    ]},
+
+  { id:'lavado', es:'Lavado', pt:'Lavagem', ru:'Мойка', en:'Wash', foto:FOTOS.lavado,
+    dEs:'Mantenimiento periódico en tres niveles.',
+    dPt:'Manutenção periódica em três níveis.', dRu:'Регулярный уход в трёх уровнях.',
+    dEn:'Regular maintenance in three levels.',
+    v:[
+      {es:'Gold', en:'Gold', pt:'Gold', ru:'Gold',
+       p:{t:'fijo', v:'150'}, foto:FOTOS.nGold,
+       sub:{es:'Lavado detallado con acabado express', en:'Detailed wash with express finish',
+            pt:'Lavagem detalhada com acabamento express', ru:'Детальная мойка с экспресс-финишем'},
+       pts:{es:['Lavado exterior detallado','Cera líquida: brillo y protección ligera','Aspirado del interior'],
+            en:['Detailed exterior wash','Liquid wax: gloss and light protection','Interior vacuuming'],
+            pt:['Lavagem exterior detalhada','Cera líquida: brilho e proteção ligeira','Aspiração do interior'],
+            ru:['Детальная наружная мойка','Жидкий воск: блеск и лёгкая защита','Уборка салона пылесосом']},
+       ideal:{es:'Para mantener el coche impecable a diario.',
+              en:'To keep the car spotless day to day.',
+              pt:'Para manter o carro impecável no dia a dia.',
+              ru:'Чтобы автомобиль был безупречен каждый день.'}},
+
+      {es:'Black', en:'Black', pt:'Black', ru:'Black',
+       p:{t:'fijo', v:'250'}, foto:FOTOS.nBlack,
+       sub:{es:'Detalle exterior + interior premium', en:'Exterior detail + premium interior',
+            pt:'Detalhe exterior + interior premium', ru:'Экстерьер + премиальный салон'},
+       pts:{es:['Todo lo de Gold, más:','Descontaminación química y barra de arcilla','Cera en pasta premium','Interior completo y loción para cuero'],
+            en:['Everything in Gold, plus:','Chemical decontamination and clay bar','Premium paste wax','Full interior and leather lotion'],
+            pt:['Tudo o do Gold, mais:','Descontaminação química e barra de argila','Cera em pasta premium','Interior completo e loção para pele'],
+            ru:['Всё, что в Gold, плюс:','Химическая очистка и глина','Премиальный воск в пасте','Полный салон и лосьон для кожи']},
+       ideal:{es:'Mantenimiento a fondo con acabado profesional.',
+              en:'Thorough maintenance with a professional finish.',
+              pt:'Manutenção a fundo com acabamento profissional.',
+              ru:'Тщательный уход с профессиональным результатом.'}},
+
+      {es:'Platinum', en:'Platinum', pt:'Platinum', ru:'Platinum',
+       p:{t:'fijo', v:'350'}, foto:FOTOS.nPlatinum,
+       sub:{es:'Detallado integral de alta gama', en:'Full high-end detailing',
+            pt:'Detalhe integral de alta gama', ru:'Полный детейлинг премиум-класса'},
+       pts:{es:['Todo lo de Black, más:','Ruedas desmontadas: neumático, pasos y guardabarros','Descontaminación química y mecánica','Cera sintética: aspecto mojado, UV e hidrofóbica'],
+            en:['Everything in Black, plus:','Wheels off: tyre, arches and liners','Chemical and mechanical decontamination','Synthetic wax: wet look, UV, hydrophobic'],
+            pt:['Tudo o do Black, mais:','Rodas desmontadas: pneu, cavas e guarda-lamas','Descontaminação química e mecânica','Cera sintética: efeito molhado, UV e hidrofóbica'],
+            ru:['Всё, что в Black, плюс:','Колёса сняты: шина, арки и подкрылки','Химическая и механическая очистка','Синтетический воск: мокрый блеск, UV, гидрофоб']},
+       ideal:{es:'Para alta gama, clásicos y clientes exigentes.',
+              en:'For high-end cars, classics and demanding owners.',
+              pt:'Para alta gama, clássicos e clientes exigentes.',
+              ru:'Для премиума, классики и требовательных владельцев.'}},
+
+      {es:'Lavado de motor', en:'Engine bay detailing', pt:'Lavagem de motor', ru:'Мойка моторного отсека',
+       p:{t:'fijo', v:'90'}, foto:FOTOS.nMotor,
+       sub:{es:'Vano motor a fondo', en:'Engine bay in depth', pt:'Vão do motor a fundo', ru:'Моторный отсек полностью'},
+       pts:{es:['Desengrasante especial y vapor, protegiendo lo sensible','Secado con aire comprimido','Tratamiento de plásticos y gomas'],
+            en:['Dedicated degreaser and steam, protecting sensitive parts','Compressed-air drying','Plastics and rubbers treated'],
+            pt:['Desengordurante especial e vapor, protegendo o sensível','Secagem com ar comprimido','Plásticos e borrachas tratados'],
+            ru:['Специальный обезжириватель и пар, с защитой узлов','Сушка сжатым воздухом','Обработка пластика и резины']},
+       ideal:{es:'Suelto o sumado a cualquier nivel.',
+              en:'On its own or added to any level.',
+              pt:'À parte ou somado a qualquer nível.',
+              ru:'Отдельно или в дополнение к любому уровню.'}}
+    ]}
+]}
+];
+
+/* ── plantillas ── */
+var T = {
+  es:{desde:'Desde', consultar:'Consultar', pendiente:'A confirmar', pide:'Pedir presupuesto', ver:'Ver opciones',
+      wa:function(x){return 'Hola Marbella Custom Cars, quiero más información sobre: '+x+'. Mi coche es: ';}},
+  en:{desde:'From', consultar:'On request', pendiente:'To confirm', pide:'Request a quote', ver:'See options',
+      wa:function(x){return 'Hi Marbella Custom Cars, I would like more information about: '+x+'. My car is: ';}},
+  pt:{desde:'Desde', consultar:'Sob consulta', pendiente:'A confirmar', pide:'Pedir orçamento', ver:'Ver opções',
+      wa:function(x){return 'Olá Marbella Custom Cars, queria mais informação sobre: '+x+'. O meu carro é: ';}},
+  ru:{desde:'от', consultar:'по запросу', pendiente:'уточняется', pide:'Запросить расчёт', ver:'Показать варианты',
+      wa:function(x){return 'Здравствуйте, Marbella Custom Cars! Хочу узнать подробнее про: '+x+'. Мой автомобиль: ';}}
+};
+var lang='es';
+
+/* texto en el idioma activo, con el español como respaldo */
+function L(o){ return o[lang] || o.es; }
+function DESC(o){
+  return lang==='en' ? o.dEn
+       : lang==='pt' ? (o.dPt || o.dEn)
+       : lang==='ru' ? (o.dRu || o.dEn)
+       : o.dEs;
+}
+
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+var ctxNombre='';
+function precioHTML(p){
+  if(!p) return '';
+  var t=T[lang];
+  if(p.t==='consultar') return '<div class="precio consultar">'+t.consultar+'</div>';
+  if(p.t==='pendiente'){
+    /* en vez de un "a confirmar" muerto, un enlace que abre WhatsApp con
+       el servicio ya escrito */
+    return '<a class="precio pedir" target="_blank" rel="noopener" href="https://wa.me/'+WA
+         + '?text='+encodeURIComponent(t.wa(ctxNombre))+'">'+t.pide
+         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>';
+  }
+  var nota = lang==='es' ? p.nota : (p.notaEn||p.nota);
+  var pre  = p.t==='desde' ? '<small>'+t.desde+'</small>' : '';
+  return '<div class="precio">'+pre+esc(p.v)+'<i>€</i>'+(nota?'<em>'+esc(nota)+'</em>':'')+'</div>';
+}
+
+/* Precio de anclaje de la tarjeta: el más bajo real del servicio.
+   Si ninguna variante tiene precio todavía, no se muestra nada. */
+function anclaje(srv){
+  var min=null;
+  srv.v.forEach(function(v){
+    if(!v.p||!v.p.v) return;
+    var n=parseFloat(String(v.p.v).split('–')[0].replace(/\./g,'').trim());
+    if(!isNaN(n) && (min===null || n<min)) min=n;
+  });
+  if(min===null) return '';
+  var n = String(min).replace(/\B(?=(\d{3})+(?!\d))/g,'.');   /* 4200 -> 4.200 */
+  return '<div class="desde"><b>'+T[lang].desde+'</b>'+n+'<i>€</i></div>';
+}
+
+function render(){
+  var t=T[lang], out='';
+  FAMILIAS.forEach(function(f){
+    f.servicios.forEach(function(s){
+      var vs='';
+      s.v.forEach(function(v,k){
+        ctxNombre = L(s)+' — '+L(v);
+        if(!v.pts){                                   /* variante simple */
+          vs+='<div class="var"><b>'+esc(L(v))+'</b>'+precioHTML(v.p)+'</div>';
+          return;
+        }
+        /* variante con detalle: cabecera pulsable + panel con foto y puntos */
+        var id='nv-'+s.id+'-'+k;
+        var pts=(v.pts[lang]||v.pts.es).map(function(x,n){
+          return '<li'+(n===0&&/^(Todo|Everything|Tudo|Всё)/.test(x)?' class="base"':'')+'>'+esc(x)+'</li>';
+        }).join('');
+        vs+='<article class="nivel" data-nivel="'+id+'">'
+          + '<button class="nivel-cab" type="button" aria-expanded="false" aria-controls="'+id+'">'
+          + '<span class="nivel-nom"><b>'+esc(L(v))+'</b><span>'+esc(L(v.sub))+'</span></span>'
+          + '<span class="nivel-precio">'+precioHTML(v.p)+'</span>'
+          + '<svg class="nivel-flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
+          + '</button>'
+          + '<div class="nivel-det" id="'+id+'"><div>'
+          + '<div class="nivel-cuerpo'+(v.foto?'':' sin-foto')+'">'
+          + (v.foto ? '<span class="nivel-foto"><img loading="lazy" alt="'+esc(L(s)+' — '+L(v))+'" src="'+v.foto+'"></span>' : '')
+          + '<div><ul class="incluye">'+pts+'</ul>'
+          + (v.ideal ? '<p class="ideal">'+esc(L(v.ideal))+'</p>' : '')
+          + '</div></div></div></div></article>';
+      });
+      var foto = s.foto ? '<span class="card-foto" style="background-image:url('+s.foto+');'
+                   + (s.pos?'--pos:'+s.pos:'')+'"></span>' : '';
+      out+='<div class="card" id="srv-'+s.id+'">'
+         + '<button class="card-cab" type="button" aria-expanded="false">'+foto
+         + '<div class="txt">'
+         + '<span class="fam">'+esc(L(f))+'</span>'
+         + '<h3>'+esc(L(s))+'</h3>'
+         + '<p class="linea">'+esc(DESC(s))+'</p>'
+         + anclaje(s)
+         + '<span class="mas">'+esc(t.ver)+' ('+s.v.length+')'
+         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>'
+         + '</div></button><div class="detalle">'+vs
+         + '<a class="btn-min" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='
+         + encodeURIComponent(t.wa(L(s)))+'">'
+         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.09c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.49l-.45.52c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>'
+         + t.pide+'</a></div></div>';
+    });
+  });
+  document.getElementById('lista').innerHTML=out;
+  conectaNiveles();
+  conectaTarjetas();
+}
+
+function setLang(l){
+  lang=l;
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.setAttribute('aria-pressed',String(b.dataset.lang===l));});
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    var v=el.getAttribute('data-'+l); if(v!==null) el.innerHTML=v;});
+  render();
+}
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+
+render();
+if(!(navigator.language||'').toLowerCase().startsWith('es')) setLang('en');
+
+/* ── niveles desplegables dentro de las tarjetas ──
+   Toque o clic siempre; en equipos con ratón además se abre al pasar por
+   encima, salvo que se haya fijado con un clic. */
+var puedeHover = !!(window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches);
+var nivelFijado = null;
+function abreNivel(n,v){
+  n.classList.toggle('abierto',v);
+  n.querySelector('.nivel-cab').setAttribute('aria-expanded',String(v));
+}
+function conectaTarjetas(){
+  document.querySelectorAll('.card').forEach(function(c){
+    c.querySelector('.card-cab').addEventListener('click',function(){
+      var abierta=c.classList.toggle('abierta');
+      this.setAttribute('aria-expanded',String(abierta));
+    });
+  });
+}
+function conectaNiveles(){
+  nivelFijado=null;
+  document.querySelectorAll('.nivel').forEach(function(n){
+    var hermanos=function(){ return n.parentElement.querySelectorAll('.nivel'); };
+    n.querySelector('.nivel-cab').addEventListener('click',function(e){
+      e.stopPropagation();
+      var abierto=n.classList.contains('abierto');
+      hermanos().forEach(function(o){ if(o!==n) abreNivel(o,false); });
+      if(abierto && nivelFijado===n){ abreNivel(n,false); nivelFijado=null; }
+      else { abreNivel(n,true); nivelFijado=n; }
+    });
+    if(puedeHover){
+      n.addEventListener('mouseenter',function(){
+        if(nivelFijado) return;
+        hermanos().forEach(function(o){ if(o!==n) abreNivel(o,false); });
+        abreNivel(n,true);
+      });
+      n.addEventListener('mouseleave',function(){
+        if(nivelFijado!==n) abreNivel(n,false);
+      });
+    }
+  });
+}
+document.addEventListener('click',function(){ nivelFijado=null; });
+
+/* ── idioma unificado: tarjetas, secciones y visor ── */
+var WAG='34672936398';
+function setLangGlobal(l){
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.setAttribute('aria-pressed',String(b.dataset.lang===l));});
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    var v=el.getAttribute('data-'+l); if(v!==null) el.innerHTML=v;});
+  var txt = ({
+    es:'Hola Marbella Custom Cars, quiero más información y presupuesto. Mi coche es: ',
+    en:'Hi Marbella Custom Cars, I would like more information and a quote. My car is: ',
+    pt:'Olá Marbella Custom Cars, queria mais informação e um orçamento. O meu carro é: ',
+    ru:'Здравствуйте, Marbella Custom Cars! Хочу узнать подробнее и получить расчёт. Мой автомобиль: '
+  })[l] || '';
+  ['waBtn','waHero','waUbic'].forEach(function(id){
+    var a=document.getElementById(id);
+    if(a) a.href='https://wa.me/'+WAG+'?text='+encodeURIComponent(txt);
+  });
+  setLang(l);
+  document.dispatchEvent(new CustomEvent('mcc:lang',{detail:l}));
+}
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click',function(){setLangGlobal(b.dataset.lang);});});
+/* idioma inicial según el navegador; si no está entre los cuatro, inglés */
+(function(){
+  var n=(navigator.language||'en').toLowerCase().slice(0,2);
+  setLangGlobal(['es','en','pt','ru'].indexOf(n)>=0 ? n : 'en');
+})();
+
+/* ── menú de móvil ── */
+var mb=document.getElementById('menuBtn'), panel=document.getElementById('panel');
+function abre(v){
+  mb.setAttribute('aria-expanded',String(v));
+  panel.classList.toggle('open',v);
+  document.body.style.overflow = v ? 'hidden' : '';
+}
+mb.addEventListener('click',function(){ abre(mb.getAttribute('aria-expanded')!=='true'); });
+panel.addEventListener('click',function(e){ if(e.target.tagName==='A') abre(false); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') abre(false); });
+window.addEventListener('resize',function(){ if(innerWidth>=860) abre(false); });
+
+/* ── cabecera sólida al salir del hero ── */
+var hdr=document.getElementById('hdr');
+function marca(){ hdr.classList.toggle('solid', window.scrollY > 40); }
+marca();
+window.addEventListener('scroll',marca,{passive:true});
+window.addEventListener('resize',marca);
+})();
+</script>
+</body>
+</html>
