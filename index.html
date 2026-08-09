@@ -6,9 +6,18 @@
 <title>Marbella Custom Cars — PPF, tratamiento cerámico y vinilo en Marbella</title>
 <meta name="description" content="Paint Protection Film, tratamiento cerámico, wrapping y detailing para coches de alta gama en Marbella. Calle Oro 32, Polígono La Ermita.">
 <meta name="theme-color" content="#070708">
+
+<!-- Favicon. El SVG lo usan los navegadores modernos; el .ico y los PNG
+     quedan de respaldo para Safari viejo y para el icono de escritorio. -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 img,svg,canvas,iframe{max-width:100%}
@@ -51,6 +60,16 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
 .brand img{height:clamp(42px,6.9vw,81px);width:auto;display:block}
 .nav{display:none;gap:clamp(18px,2.4vw,34px)}
 @media(min-width:860px){.nav{display:flex}}
+
+/* En móvil el .nav está oculto, así que el flex con space-between dejaba
+   sólo tres hijos y empujaba la hamburguesa al centro. Se agrupan idiomas
+   y menú a la derecha, pegados al borde. */
+@media(max-width:859px){
+  .hdr-in{gap:8px}
+  .lang{order:2;margin-left:auto}
+  .menu-btn{order:3}
+  .brand{min-width:0;flex:0 1 auto}
+}
 /* ── menú de móvil ── */
 .menu-btn{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
   width:40px;height:40px;padding:0 8px;background:none;border:0;cursor:pointer;flex:none}
@@ -96,6 +115,35 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
 .lang button[aria-pressed="true"]{opacity:1;color:var(--chrome)}
 .lang button:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
 @media(max-width:760px){.lang button span{display:none}.lang button{padding:6px 3px}}
+
+/* ── botón flotante de WhatsApp ──────────────────────────────────────
+   Dorado sólido con el icono en negro: destaca sobre el fondo oscuro sin
+   romper la paleta. Sin mensaje predeterminado, para que la persona
+   escriba lo que quiera. */
+.wa-flota{
+  position:fixed;right:clamp(16px,3.2vw,28px);bottom:clamp(16px,3.2vw,28px);
+  z-index:50;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--oro);color:#070708;text-decoration:none;
+  box-shadow:0 6px 22px rgba(0,0,0,.45);
+  transition:transform .22s,box-shadow .22s,background .22s,opacity .22s}
+.wa-flota svg{width:30px;height:30px;fill:#070708;display:block}
+.wa-flota:hover{transform:translateY(-2px);background:#d4b478;
+  box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.wa-flota:active{transform:translateY(0)}
+.wa-flota:focus-visible{outline:2px solid var(--chrome);outline-offset:4px}
+@media(prefers-reduced-motion:no-preference){
+  .wa-flota{animation:wa-pulso 3.6s ease-out infinite}
+  .wa-flota:hover{animation:none}
+}
+@keyframes wa-pulso{
+  0%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 0 rgba(195,162,102,.45)}
+  70%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 16px rgba(195,162,102,0)}
+  100%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 0 rgba(195,162,102,0)}
+}
+/* Con el menú de móvil abierto el botón estorba */
+body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
+@media(max-width:520px){.wa-flota{width:52px;height:52px}.wa-flota svg{width:27px;height:27px}}
 
 /* ── portada de la página ── */
 .tapa{position:relative;overflow:hidden;isolation:isolate;
@@ -628,12 +676,46 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
 .marco{position:relative;border:1px solid var(--line);background:#0b0b0e;overflow:hidden}
 .marco a{display:block;position:relative}
 .marco img{display:block;width:100%;height:auto}
+
+/* Mapa real en modo oscuro (Leaflet + teselas CARTO).
+   Reemplaza la captura de Google, que además no se puede publicar. */
+#mapa{width:100%;height:clamp(300px,42vw,440px);background:#0b0b0e;
+  filter:saturate(.7) contrast(1.05)}
+/* Leaflet inyecta su propio fondo claro: lo forzamos al negro de la marca */
+.leaflet-container{background:#0b0b0e!important;font-family:var(--sans)}
+.leaflet-tile-pane{opacity:.92}
+/* Controles de zoom con la estética del resto */
+.leaflet-control-zoom{border:0!important;box-shadow:none!important}
+.leaflet-control-zoom a{background:rgba(12,12,15,.92)!important;color:var(--oro)!important;
+  border:1px solid var(--line-fuerte)!important;width:32px!important;height:32px!important;
+  line-height:30px!important;font-size:17px!important;font-weight:400!important}
+.leaflet-control-zoom a:hover{background:rgba(195,162,102,.12)!important;
+  border-color:var(--oro)!important}
+.leaflet-control-attribution{background:rgba(7,7,8,.78)!important;
+  color:var(--dim)!important;font-size:10px!important;padding:2px 7px!important}
+.leaflet-control-attribution a{color:var(--muted)!important}
+
+/* Pin: el mismo latido dorado que ya usaba la captura */
 .marco .pin{position:absolute;left:42%;top:48%;width:16px;height:16px;margin:-8px 0 0 -8px;
   border-radius:50%;background:var(--oro);
   box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
-@media(prefers-reduced-motion:no-preference){.marco .pin{animation:latido 3.4s ease-in-out infinite}}
+.pin-mapa{width:16px;height:16px;border-radius:50%;background:var(--oro);
+  box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
+@media(prefers-reduced-motion:no-preference){
+  .marco .pin,.pin-mapa{animation:latido 3.4s ease-in-out infinite}}
 @keyframes latido{0%,100%{box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
                   50%{box-shadow:0 0 0 12px rgba(195,162,102,.06),0 0 22px rgba(195,162,102,.35)}}
+
+/* Botón "cómo llegar" flotando sobre el mapa */
+.mapa-ir{position:absolute;right:14px;bottom:32px;z-index:500;
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  background:rgba(7,7,8,.9);border:1px solid var(--line-fuerte);
+  padding:11px 16px;font-family:var(--sans);font-size:13px;font-weight:600;
+  color:var(--chrome);letter-spacing:.01em;
+  transition:border-color .22s,background .22s}
+.mapa-ir:hover{border-color:var(--oro);background:rgba(195,162,102,.1);color:var(--oro)}
+.mapa-ir:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.mapa-ir svg{width:14px;height:14px;stroke:var(--oro);fill:none;stroke-width:1.8}
 
 /* Tres accesos del mismo peso: ubicación, WhatsApp y reseña.
    Misma insignia circular en los tres para que se lean como botones. */
@@ -825,9 +907,9 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
 
     <!-- Orden por rentabilidad: PPF, cerámico y vinilo primero. -->
     <p class="mcc-services rv d5"
-       data-es="PPF (Paint Protection Film)<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>PPF para embarcaciones<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización" data-pt="PPF (Paint Protection Film)<i>•</i>Tratamento cerâmico<i>•</i>Wrapping<i>•</i>PPF para embarcações<i>•</i>Polimento profissional<i>•</i>Body kits<i>•</i>Personalização" data-ru="PPF (защитная плёнка)<i>•</i>Керамическое покрытие<i>•</i>Оклейка винилом<i>•</i>PPF для катеров<i>•</i>Профессиональная полировка<i>•</i>Обвесы<i>•</i>Индивидуальный тюнинг"
-       data-en="PPF (Paint Protection Film)<i>•</i>Ceramic coating<i>•</i>Wrapping<i>•</i>Marine PPF<i>•</i>Professional polishing<i>•</i>Body kits<i>•</i>Personalisation">
-      PPF (Paint Protection Film)<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>PPF para embarcaciones<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización
+       data-es="<i>•</i>Protección PPF<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización<i>•</i>" data-pt="<i>•</i>Proteção PPF<i>•</i>Tratamento cerâmico<i>•</i>Wrapping<i>•</i>Polimento profissional<i>•</i>Body kits<i>•</i>Personalização<i>•</i>" data-ru="<i>•</i>Защитная плёнка PPF<i>•</i>Керамическое покрытие<i>•</i>Оклейка винилом<i>•</i>Профессиональная полировка<i>•</i>Обвесы<i>•</i>Индивидуальный тюнинг<i>•</i>"
+       data-en="<i>•</i>PPF paint protection<i>•</i>Ceramic coating<i>•</i>Wrapping<i>•</i>Professional polishing<i>•</i>Body kits<i>•</i>Personalisation<i>•</i>">
+      <i>•</i>Protección PPF<i>•</i>Tratamiento cerámico<i>•</i>Wrapping<i>•</i>Pulido profesional<i>•</i>Body kits<i>•</i>Personalización<i>•</i>
     </p>
 
     <div class="mcc-cta rv d5">
@@ -947,7 +1029,7 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
         </div>
       </div>
       <div class="ppf-loading" id="ppfLoading" data-es="Cargando" data-pt="A carregar" data-ru="Загрузка" data-en="Loading">Cargando</div>
-      <div class="ppf-tag" id="ppfTag" style="color:#0158EE">
+      <div class="ppf-tag" id="ppfTag" style="color:#0050EE">
         <div class="ppf-tag-chip"></div>
         <div class="ppf-tag-txt">
           <b id="ppfTagName">Azul original</b>
@@ -1016,9 +1098,9 @@ const FILMS = [
 
 /* Estadísticas de la pintura original de esta foto (se recalculan al
    generar la máscara; si se cambia la foto hay que actualizarlas). */
-const BASE_L   = 0.4550;
-const BASE_S   = 0.9513;
-const BASE_HEX = "#0158EE";
+const BASE_L   = 0.3731;
+const BASE_S   = 0.7310;
+const BASE_HEX = "#0050EE";
 /* KNEE = a partir de qué luminosidad empieza la caída suave hacia el blanco. */
 const KNEE = 0.62;
 
@@ -1443,18 +1525,29 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
         <p class="nota-oro"><b>5,0</b><i>★★★★★</i><span data-es="en Google" data-en="on Google" data-pt="no Google" data-ru="в Google">en Google</span></p>
       </div>
 
-      <!-- ⚠ TEMPORAL — SÓLO PARA VISTA PREVIA.
-           Captura de Google Maps: no se publica así (el contenido de Maps es de
-           Google y su uso permitido es el iframe). ANTES DE SUBIR, cambiar el
-           <img> de abajo por:
-             <iframe title="Marbella Custom Cars" loading="lazy"
-               referrerpolicy="no-referrer-when-downgrade"
-               src="https://maps.google.com/maps?q=36.511952,-4.8673708&z=16&output=embed"></iframe> -->
+      <!-- El mapa se inicializa solo cuando entra en pantalla (ver script al
+           final): así no descarga teselas si el visitante nunca baja hasta aquí. -->
       <div class="marco">
-        <a href="https://www.google.com/maps/dir/?api=1&destination=36.511952,-4.8673708"
-           target="_blank" rel="noopener" aria-label="Abrir la ubicación en Google Maps">
-          <img src="img/mapa.webp" loading="lazy" alt="Marbella Custom Cars en Calle Oro 32, Polígono La Ermita, Marbella">
-          <span class="pin" aria-hidden="true"></span>
+        <!-- Mapa interactivo en modo oscuro. Si por lo que sea no carga
+             Leaflet, queda visible la imagen de respaldo de abajo. -->
+        <div id="mapa" role="application"
+             aria-label="Mapa de Marbella Custom Cars, Calle Oro 32, Polígono La Ermita"></div>
+
+        <noscript>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=36.511952,-4.8673708"
+             target="_blank" rel="noopener">
+            <img src="img/mapa.webp" alt="Marbella Custom Cars en Calle Oro 32, Polígono La Ermita, Marbella">
+          </a>
+        </noscript>
+
+        <a class="mapa-ir"
+           href="https://www.google.com/maps/dir/?api=1&destination=36.511952,-4.8673708"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          <span data-es="Cómo llegar" data-pt="Como chegar" data-ru="Как добраться" data-en="Get directions">Cómo llegar</span>
         </a>
       </div>
 
@@ -1915,6 +2008,7 @@ var mb=document.getElementById('menuBtn'), panel=document.getElementById('panel'
 function abre(v){
   mb.setAttribute('aria-expanded',String(v));
   panel.classList.toggle('open',v);
+  document.body.classList.toggle('menu-abierto',v);
   document.body.style.overflow = v ? 'hidden' : '';
 }
 mb.addEventListener('click',function(){ abre(mb.getAttribute('aria-expanded')!=='true'); });
@@ -1930,5 +2024,83 @@ window.addEventListener('scroll',marca,{passive:true});
 window.addEventListener('resize',marca);
 })();
 </script>
+
+<!-- ── mapa oscuro ──────────────────────────────────────────────────────
+     Leaflet + teselas CARTO "dark matter". Se carga en diferido y sólo
+     cuando la sección entra en pantalla. Si falla, se muestra la imagen
+     de respaldo y la web sigue funcionando igual. -->
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){
+  var CONTENEDOR = document.getElementById('mapa');
+  if(!CONTENEDOR) return;
+
+  var LAT = 36.511952, LON = -4.8673708;
+  var iniciado = false;
+
+  function respaldo(){
+    // Sin Leaflet: dejamos la captura para no mostrar un hueco negro.
+    CONTENEDOR.style.display = 'none';
+    var img = new Image();
+    img.src = 'img/mapa.webp';
+    img.alt = 'Marbella Custom Cars en Calle Oro 32, Polígono La Ermita, Marbella';
+    img.style.cssText = 'display:block;width:100%;height:auto';
+    CONTENEDOR.parentNode.insertBefore(img, CONTENEDOR);
+  }
+
+  function iniciar(){
+    if(iniciado) return;
+    if(typeof L === 'undefined'){ respaldo(); return; }
+    iniciado = true;
+
+    var mapa = L.map(CONTENEDOR, {
+      center: [LAT, LON],
+      zoom: 16,
+      zoomControl: true,
+      scrollWheelZoom: false,          // no secuestra el scroll de la página
+      dragging: !L.Browser.mobile,     // en móvil el dedo desplaza la página
+      attributionControl: true
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      subdomains: 'abcd',
+      attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(mapa);
+
+    // Pin dorado con el mismo latido del resto de la web
+    L.marker([LAT, LON], {
+      icon: L.divIcon({
+        className: '',
+        html: '<span class="pin-mapa"></span>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      }),
+      keyboard: false,
+      interactive: false
+    }).addTo(mapa);
+
+    // Al hacer clic sí permitimos zoom con rueda, que es lo esperable
+    mapa.on('click', function(){ mapa.scrollWheelZoom.enable(); });
+    mapa.on('mouseout', function(){ mapa.scrollWheelZoom.disable(); });
+  }
+
+  function arranque(){
+    if(!('IntersectionObserver' in window)){ iniciar(); return; }
+    var obs = new IntersectionObserver(function(entradas){
+      if(entradas[0].isIntersecting){ obs.disconnect(); iniciar(); }
+    }, { rootMargin: '250px' });
+    obs.observe(CONTENEDOR);
+  }
+
+  window.addEventListener('load', arranque);
+})();
+</script><!-- Botón flotante de WhatsApp. Sin ?text=, a propósito: abre el chat
+     vacío para que la persona escriba lo que quiera. -->
+<a class="wa-flota" href="https://wa.me/34672936398" target="_blank" rel="noopener"
+   aria-label="Escríbenos por WhatsApp" title="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 </body>
 </html>
