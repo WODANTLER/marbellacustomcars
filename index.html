@@ -674,16 +674,20 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 
 /* ── ubicación ── */
 .marco{position:relative;border:1px solid var(--line);background:#0b0b0e;overflow:hidden}
-.marco a{display:block;position:relative}
+/* Ojo: esta regla es para el enlace de la imagen de respaldo. Sin el :not()
+   pisaba al botón "cómo llegar" (mas especifica que .mapa-ir) y lo sacaba
+   del mapa, dejandolo como una barra ancha debajo. */
+.marco a:not(.mapa-ir){display:block;position:relative}
 .marco img{display:block;width:100%;height:auto}
 
 /* Mapa real en modo oscuro (Leaflet + teselas CARTO).
-   Reemplaza la captura de Google, que además no se puede publicar. */
+   Las teselas dark ya son casi negras: hay que SUBIRLES brillo, no bajarlo,
+   o las calles no se distinguen del fondo. */
 #mapa{width:100%;height:clamp(300px,42vw,440px);background:#0b0b0e;
-  filter:saturate(.7) contrast(1.05)}
+  filter:brightness(1.55) saturate(.5) contrast(.95)}
 /* Leaflet inyecta su propio fondo claro: lo forzamos al negro de la marca */
 .leaflet-container{background:#0b0b0e!important;font-family:var(--sans)}
-.leaflet-tile-pane{opacity:.92}
+.leaflet-tile-pane{opacity:1}
 /* Controles de zoom con la estética del resto */
 .leaflet-control-zoom{border:0!important;box-shadow:none!important}
 .leaflet-control-zoom a{background:rgba(12,12,15,.92)!important;color:var(--oro)!important;
@@ -695,11 +699,16 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   color:var(--dim)!important;font-size:10px!important;padding:2px 7px!important}
 .leaflet-control-attribution a{color:var(--muted)!important}
 
+/* Misma viñeta que usa el visor: integra el mapa con el panel en vez de
+   dejar un rectángulo gris pegado sobre el negro. */
+.marco::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:450;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
+
 /* Pin: el mismo latido dorado que ya usaba la captura */
 .marco .pin{position:absolute;left:42%;top:48%;width:16px;height:16px;margin:-8px 0 0 -8px;
   border-radius:50%;background:var(--oro);
   box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
-.pin-mapa{width:16px;height:16px;border-radius:50%;background:var(--oro);
+.pin-mapa{display:block;width:16px;height:16px;border-radius:50%;background:var(--oro);
   box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
 @media(prefers-reduced-motion:no-preference){
   .marco .pin,.pin-mapa{animation:latido 3.4s ease-in-out infinite}}
@@ -707,7 +716,7 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
                   50%{box-shadow:0 0 0 12px rgba(195,162,102,.06),0 0 22px rgba(195,162,102,.35)}}
 
 /* Botón "cómo llegar" flotando sobre el mapa */
-.mapa-ir{position:absolute;right:14px;bottom:32px;z-index:500;
+.mapa-ir{position:absolute;left:14px;bottom:14px;z-index:500;
   display:inline-flex;align-items:center;gap:9px;text-decoration:none;
   background:rgba(7,7,8,.9);border:1px solid var(--line-fuerte);
   padding:11px 16px;font-family:var(--sans);font-size:13px;font-weight:600;
