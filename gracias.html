@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Recibido! — Marbella Custom Cars</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#070708">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ── Meta Pixel ──────────────────────────────────────────────────
+     ⚠ PONER EL MISMO ID QUE EN index.html en MCC_PIXEL_ID.
+     Esta página es el destino de los dos formularios de Kommo:
+     aquí se dispara el evento Lead (100% fiable, sin depender de
+     detectar el envío dentro del iframe).
+     - gracias.html            → lead del formulario de presupuesto
+     - gracias.html?goto=wpp   → lead del gate de WhatsApp (redirige al chat) -->
+<script>
+window.MCC_PIXEL_ID = ''; /* ej: '1234567890123456' */
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var esWpp = /(?:\?|&)goto=wpp/.test(location.search);
+if(window.MCC_PIXEL_ID){
+  fbq('init', window.MCC_PIXEL_ID);
+  fbq('track','PageView');
+  fbq('track','Lead',{content_name: esWpp ? 'gate-whatsapp' : 'form-presupuesto'});
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#070708; --panel:#0d0d10; --chrome:#f2f2f4; --muted:#a7a7b0; --dim:#6c6c78;
+  --line:rgba(255,255,255,.12); --line-fuerte:rgba(255,255,255,.22);
+  --oro:#C3A266; --oro-claro:#F0DFB4; --oro-hondo:#8A7141;
+  --display:'Archivo',system-ui,sans-serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+html,body{height:100%}
+body{background:var(--ink);color:var(--chrome);font-family:var(--sans);line-height:1.6;
+  -webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;
+  padding:24px}
+.caja{width:min(560px,100%);background:var(--panel);border:1px solid var(--line-fuerte);
+  border-radius:16px;padding:clamp(30px,6vw,52px);text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.tic{width:74px;height:74px;margin:0 auto 22px;border-radius:50%;
+  border:2px solid var(--oro);display:flex;align-items:center;justify-content:center;
+  animation:pop .5s cubic-bezier(.2,.8,.3,1.2)}
+.tic svg{width:34px;height:34px;stroke:var(--oro);fill:none;stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+h1{font-family:var(--display);font-variation-settings:'wdth' 88,'wght' 700;
+  font-size:clamp(28px,6vw,40px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;
+  margin-bottom:14px}
+h1 em{font-style:normal;color:var(--oro)}
+p{color:var(--muted);font-size:clamp(14.5px,1.6vw,16.5px);max-width:38ch;margin:0 auto 10px}
+.botones{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.02em;
+  padding:15px 26px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--oro);background:var(--oro);color:#0b0906;
+  transition:background .22s,color .22s}
+.btn:hover{background:transparent;color:var(--oro)}
+.btn.ghost{background:transparent;color:var(--chrome);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--oro);color:var(--oro)}
+.btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+.mini{margin-top:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<main class="caja">
+  <div class="tic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg></div>
+
+  <!-- Los textos cambian según el origen (formulario o gate de WhatsApp) -->
+  <h1 id="tit">¡<em>Recibido</em>!</h1>
+  <p id="txt">Hemos recibido tu solicitud. Te contactaremos lo antes posible con tu presupuesto.</p>
+
+  <div class="botones" id="botones">
+    <a class="btn" id="btnWpp" href="https://wa.me/34672936398?text=Hola%2C%20acabo%20de%20dejar%20mis%20datos%20en%20la%20web.%20Quiero%20pedir%20un%20presupuesto.">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.09c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.49l-.45.52c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>
+      Escribirnos por WhatsApp
+    </a>
+    <a class="btn ghost" href="index.html">Volver a la web</a>
+  </div>
+
+  <p class="mini">Marbella Custom Cars · Calle Oro 32 · Marbella</p>
+</main>
+
+<script>
+(function(){
+  var WA_URL = 'https://wa.me/34672936398?text=' +
+    encodeURIComponent('Hola, acabo de dejar mis datos en la web. Quiero pedir un presupuesto.');
+  if(/(?:\?|&)goto=wpp/.test(location.search)){
+    document.getElementById('tit').innerHTML = '¡<em>Listo</em>!';
+    document.getElementById('txt').textContent = 'Tus datos ya están con nosotros. Abriendo WhatsApp…';
+    /* margen para que el píxel dispare el Lead antes de salir */
+    setTimeout(function(){ location.href = WA_URL; }, 1200);
+  }
+})();
+</script>
+
+</body>
+</html>
