@@ -19,18 +19,16 @@
      - gracias.html            → lead del formulario de presupuesto
      - gracias.html?goto=wpp   → lead del gate de WhatsApp (redirige al chat) -->
 <script>
-window.MCC_PIXEL_ID = ''; /* ej: '1234567890123456' */
+window.MCC_PIXEL_ID = '4384965891721827'; /* PIXEL SITIO WEB MCC */
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 var esWpp = /(?:\?|&)goto=wpp/.test(location.search);
-if(window.MCC_PIXEL_ID){
-  fbq('init', window.MCC_PIXEL_ID);
-  fbq('track','PageView');
-  fbq('track','Lead',{content_name: esWpp ? 'gate-whatsapp' : 'form-presupuesto'});
-}
+fbq('init','4384965891721827');
+fbq('track','PageView');
+fbq('track','Lead',{content_name: esWpp ? 'gate-whatsapp' : 'form-presupuesto'});
 </script>
 
 <style>
