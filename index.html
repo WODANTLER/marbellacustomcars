@@ -56,6 +56,12 @@ html,body{overflow-x:hidden}
   --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 html{scroll-behavior:smooth}
+/* La cabecera es fija y flota por encima del contenido, así que cada
+   destino de ancla necesita reservarse esa altura. Va del alto real de
+   la cabecera en móvil (70px) al de escritorio (125px), más aire. */
+#top,#presupuesto,#servicios,#ppf,#color,#faq,#ubicacion,#presupuesto-final,#contacto,#resenas{
+  scroll-margin-top:clamp(88px,10.5vw,146px);
+}
 body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
   -webkit-font-smoothing:antialiased;line-height:1.6}
 .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
@@ -958,7 +964,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
       <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
       <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
       <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
-      <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
+      <a href="#presupuesto-final" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
     </nav>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="panel" aria-label="Menú">
       <i></i><i></i><i></i>
@@ -973,7 +979,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
   <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
   <a href="#color" data-es="Simulador" data-en="Colour preview" data-pt="Simulador" data-ru="Подбор цвета">Simulador</a>
   <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
-  <a href="#contacto" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
+  <a href="#presupuesto-final" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
 </nav>
 <main id="top">
 <section class="mcc-hero">
@@ -1737,7 +1743,7 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
   </div>
 
   <div class="wrap">
-    <section class="sec" id="contacto">
+    <section class="sec" id="resenas">
       <div class="cierre">
         <p class="eyebrow" data-es="¿Has pasado ya por el taller?" data-en="Been to the workshop?" data-pt="Já passou pela oficina?" data-ru="Уже были у нас?">¿Has pasado ya por el taller?</p>
         <p class="estrellas-gr" aria-hidden="true">★★★★★</p>
