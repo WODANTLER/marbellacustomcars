@@ -76,8 +76,11 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
   transition:opacity .35s}
 .hdr.solid::before{opacity:0}
 .hdr.solid{background:rgba(7,7,8,.92);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+/* Ojo con el atajo "padding: X 0": anulaba el margen lateral que da .wrap
+   y en móvil dejaba el logo pegado al borde de la pantalla. Se usa
+   padding-block para tocar sólo arriba y abajo. */
 .hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:clamp(14px,2.1vw,22px) 0}
+  padding-block:clamp(14px,2.1vw,22px)}
 .brand img{height:clamp(42px,6.9vw,81px);width:auto;display:block}
 .nav{display:none;gap:clamp(18px,2.4vw,34px)}
 @media(min-width:860px){.nav{display:flex}}
@@ -86,7 +89,7 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
    sólo tres hijos y empujaba la hamburguesa al centro. Se agrupan idiomas
    y menú a la derecha, pegados al borde. */
 @media(max-width:859px){
-  .hdr-in{gap:8px}
+  .hdr-in{gap:8px;padding-inline:clamp(22px,5.6vw,28px)}
   .lang{order:2;margin-left:auto}
   .menu-btn{order:3}
   .brand{min-width:0;flex:0 1 auto}
