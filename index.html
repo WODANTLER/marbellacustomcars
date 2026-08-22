@@ -422,7 +422,7 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 .mcc-hero{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
 .mcc-photo{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 34%;
+  object-position:50% 46%;
   z-index:-3;
   /* el encendido: arranca apagado y sube */
   filter:brightness(.34) contrast(1.16) saturate(.55);
@@ -430,7 +430,7 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   animation:mcc-ignite 2.4s cubic-bezier(.22,.8,.28,1) .15s forwards,
             mcc-deriva 34s ease-in-out 2.6s infinite alternate;
 }
-@media(min-width:900px){.mcc-photo{object-position:50% 18%}}
+@media(min-width:900px){.mcc-photo{object-position:50% 40%}}
 @keyframes mcc-ignite{
   0%  {filter:brightness(.34) contrast(1.16) saturate(.55); transform:scale(1.06)}
   60% {filter:brightness(1.08) contrast(1.03) saturate(.76)}
@@ -443,11 +443,11 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
    separado. Van en modo "screen": suman luz, no tapan la imagen. */
 .mcc-led{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 34%;
+  object-position:50% 46%;
   mix-blend-mode:screen;pointer-events:none;
   opacity:0;
 }
-@media(min-width:900px){.mcc-led{object-position:50% 18%}}
+@media(min-width:900px){.mcc-led{object-position:50% 40%}}
 .mcc-led--pared{z-index:-2;animation:mcc-arranque 1.5s steps(1,end) .35s forwards}
 .mcc-led--techo{z-index:-2;animation:mcc-encender 1.8s cubic-bezier(.3,.6,.2,1) .95s forwards,
                                     mcc-respirar 9s ease-in-out 2.9s infinite}
@@ -980,7 +980,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 <main id="top">
 <section class="mcc-hero">
 
-  <img class="mcc-photo" fetchpriority="high" width="900" height="1600" src="img/taller.webp"
+  <img class="mcc-photo" fetchpriority="high" width="1024" height="1536" src="img/taller.webp"
        alt="Instalaciones de Marbella Custom Cars: pasillo de boxes con iluminación LED">
   <img class="mcc-led mcc-led--pared" loading="lazy" src="img/led-pared.webp" alt="" aria-hidden="true">
   <img class="mcc-led mcc-led--techo" loading="lazy" src="img/led-techo.webp" alt="" aria-hidden="true">
