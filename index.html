@@ -750,33 +750,31 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 @keyframes latido{0%,100%{box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
                   50%{box-shadow:0 0 0 12px rgba(195,162,102,.06),0 0 22px rgba(195,162,102,.35)}}
 
-/* En móvil el botón flotante se pisaba con los controles de Leaflet y
-   con la atribución. Pasa a ser una barra debajo del mapa, dentro del
-   mismo marco: se ve entero y se pulsa sin apuntar. */
+/* El pin de 16px se perdía sobre las teselas oscuras en pantallas
+   pequeñas: crece y lleva un halo más marcado, recentrado con margen
+   negativo para que siga señalando el punto exacto. */
 @media(max-width:640px){
-  .mapa-ir{position:static!important;width:100%;justify-content:center;
-    border:0!important;border-top:1px solid var(--line)!important;
-    background:rgba(7,7,8,.94)!important;padding:15px 16px!important;
-    font-size:14px}
-  /* El pin de 16px se perdía sobre las teselas oscuras: crece y le
-     damos un halo más marcado, recentrándolo para que siga apuntando
-     al punto exacto. */
   .pin-mapa{width:22px;height:22px;margin:-3px 0 0 -3px;
     border:2px solid rgba(7,7,8,.55);
     box-shadow:0 0 0 5px rgba(195,162,102,.28),0 0 22px rgba(195,162,102,.65)}
   #mapa{height:clamp(320px,58vw,400px)}
 }
 
-/* Botón "cómo llegar" flotando sobre el mapa */
-.mapa-ir{position:absolute;right:14px;bottom:32px;z-index:500;
-  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
-  background:rgba(7,7,8,.9);border:1px solid var(--line-fuerte);
-  padding:11px 16px;font-family:var(--sans);font-size:13px;font-weight:600;
+/* "Cómo llegar": va DEBAJO del mapa, no encima. Flotando dentro del
+   marco competía con los controles de zoom y con la atribución de
+   Leaflet, y quedaba un rectángulo raro cruzado por el texto del mapa. */
+.mapa-ir{display:flex;width:fit-content;margin:16px auto 0 0;
+  align-items:center;gap:11px;text-decoration:none;
+  background:transparent;border:1px solid var(--line-fuerte);
+  padding:16px 28px;font-family:var(--sans);font-size:15px;font-weight:600;
   color:var(--chrome);letter-spacing:.01em;
-  transition:border-color .22s,background .22s}
+  transition:border-color .22s,background .22s,color .22s}
+@media(max-width:640px){
+  .mapa-ir{width:100%;justify-content:center;padding:16px;font-size:14.5px}
+}
 .mapa-ir:hover{border-color:var(--oro);background:rgba(195,162,102,.1);color:var(--oro)}
 .mapa-ir:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
-.mapa-ir svg{width:14px;height:14px;stroke:var(--oro);fill:none;stroke-width:1.8}
+.mapa-ir svg{width:19px;height:19px;stroke:var(--oro);fill:none;stroke-width:1.8;flex:none}
 
 /* Tres accesos del mismo peso: ubicación, WhatsApp y reseña.
    Misma insignia circular en los tres para que se lean como botones. */
@@ -1786,7 +1784,10 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
           </a>
         </noscript>
 
-        <a class="mapa-ir"
+
+      </div>
+
+      <a class="mapa-ir"
            href="https://www.google.com/maps/dir/?api=1&destination=36.511952,-4.8673708"
            target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1795,7 +1796,6 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
           </svg>
           <span data-es="Cómo llegar" data-pt="Como chegar" data-ru="Как добраться" data-en="Get directions">Cómo llegar</span>
         </a>
-      </div>
 
       <div class="contacto">
 
