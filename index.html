@@ -1011,11 +1011,26 @@ body.wa-modal-abierto{overflow:hidden}
 body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 
 /* formulario repetido al fondo: iframe de la página alojada de Kommo */
+/* ── SECCIÓN FINAL: texto a la izquierda, formulario a la derecha ──
+   Antes el texto iba arriba a todo lo ancho y el formulario debajo
+   centrado: en escritorio quedaban dos tercios de negro vacío. */
+#presupuesto-final .sec{display:grid;gap:clamp(26px,4vh,44px)}
+#presupuesto-final .sec-cab{margin-bottom:0}
+@media(min-width:900px){
+  #presupuesto-final .sec{
+    grid-template-columns:minmax(0,1fr) minmax(380px,480px);
+    gap:clamp(40px,6vw,88px);align-items:center}
+  /* El texto se apoya en el formulario en vez de flotar arriba */
+  #presupuesto-final .sec-cab{align-self:center}
+  #presupuesto-final .sub{max-width:34ch}
+  #presupuesto-final .h2{font-size:clamp(34px,4.6vw,58px)}
+}
+
 /* El formulario de Kommo va en un iframe y ya trae su propia tarjeta
    oscura por dentro. Si le ponemos borde y fondo aquí, se ven dos cajas
    negras encajadas. Se deja transparente y sin marco: sólo se ve la de
    Kommo, que además coincide con la paleta. */
-.presu-final{max-width:600px;margin:0 auto;
+.presu-final{max-width:600px;margin-inline:auto;
   /* Un iframe corriente no sabe medirse: hay que darle el alto a mano.
      Si algún día el formulario gana o pierde campos, se toca AQUÍ y
      nada más. Con menos alto del necesario sale barra de scroll dentro;
