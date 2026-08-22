@@ -146,7 +146,10 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
    romper la paleta. Sin mensaje predeterminado, para que la persona
    escriba lo que quiera. */
 .wa-flota{
-  position:fixed;right:clamp(16px,3.2vw,28px);bottom:clamp(16px,3.2vw,28px);
+  position:fixed;right:clamp(16px,3.2vw,28px);
+  /* En iPhone la barra de Safari se come los últimos píxeles: sin el
+     margen seguro del sistema, el botón queda detrás y no se ve. */
+  bottom:calc(clamp(16px,3.2vw,28px) + env(safe-area-inset-bottom,0px));
   z-index:50;width:58px;height:58px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:var(--oro);color:#070708;text-decoration:none;
@@ -422,15 +425,17 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 /*/* ───────────── escenario ───────────── */
 .mcc-hero{position:relative;min-height:100svh;overflow:hidden;display:flex;
   align-items:flex-end;isolation:isolate;
-  /* Un poco más alto que la ventana: entra el coche entero y sobra
-     franja para fundir la foto con la sección siguiente. */
-  padding-bottom:clamp(120px,17vh,210px)}
+  /* En escritorio el hero crece un poco por debajo de la ventana para
+     que entre más coche. En móvil NO: ahí la pantalla ya es vertical y
+     ese alto extra dejaba media pantalla de foto vacía. */
+  padding-bottom:0}
+@media(min-width:860px){.mcc-hero{padding-bottom:clamp(70px,10vh,150px)}}
 /* La disolución: va por encima de la foto pero por debajo del texto, y
    remata en el mismo negro que el resto de la página, así no se ve
    dónde acaba la imagen. */
 .mcc-hero::after{
   content:"";position:absolute;left:0;right:0;bottom:0;z-index:-1;
-  height:clamp(200px,30vh,380px);pointer-events:none;
+  height:clamp(170px,26vh,360px);pointer-events:none;
   background:linear-gradient(180deg,
     rgba(7,7,8,0) 0%, rgba(7,7,8,.35) 34%, rgba(7,7,8,.72) 62%,
     rgba(7,7,8,.93) 84%, var(--ink) 100%);
@@ -440,16 +445,16 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   object-position:50% 52%;
   z-index:-3;
   /* el encendido: arranca apagado y sube */
-  filter:brightness(.34) contrast(1.16) saturate(.55);
+  filter:brightness(.34) contrast(1.16) saturate(.60);
   transform:scale(1.06);
   animation:mcc-ignite 2.4s cubic-bezier(.22,.8,.28,1) .15s forwards,
             mcc-deriva 34s ease-in-out 2.6s infinite alternate;
 }
 @media(min-width:900px){.mcc-photo{object-position:50% 52%}}
 @keyframes mcc-ignite{
-  0%  {filter:brightness(.34) contrast(1.16) saturate(.55); transform:scale(1.06)}
-  60% {filter:brightness(1.08) contrast(1.03) saturate(.76)}
-  100%{filter:brightness(1) contrast(1.02) saturate(.74);  transform:scale(1)}
+  0%  {filter:brightness(.34) contrast(1.16) saturate(.60); transform:scale(1.06)}
+  60% {filter:brightness(1.18) contrast(1.06) saturate(1.00)}
+  100%{filter:brightness(1.10) contrast(1.05) saturate(.96);  transform:scale(1)}
 }
 @keyframes mcc-deriva{from{transform:scale(1)}to{transform:scale(1.045)}}
 
@@ -480,8 +485,8 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     /* solo lo justo: arriba para la cabecera, un poco al pie para los botones */
-    linear-gradient(180deg, rgba(7,7,8,.74) 0%, rgba(7,7,8,.16) 22%,
-                            rgba(7,7,8,.10) 46%, rgba(7,7,8,.28) 76%, rgba(7,7,8,.44) 100%),
+    linear-gradient(180deg, rgba(7,7,8,.70) 0%, rgba(7,7,8,.10) 22%,
+                            rgba(7,7,8,.04) 46%, rgba(7,7,8,.22) 76%, rgba(7,7,8,.40) 100%),
     radial-gradient(86% 60% at 50% 50%, rgba(7,7,8,.20) 0%, transparent 78%);
 }
 
@@ -516,9 +521,9 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 .mcc-h1{
   font-family:var(--display);
   font-variation-settings:'wdth' 86,'wght' 700;
-  font-size:clamp(38px,7.6vw,104px);
-  line-height:.92;letter-spacing:-.02em;text-transform:uppercase;
-  margin:0 auto clamp(18px,2.8vh,32px);max-width:15ch;
+  font-size:clamp(42px,8.4vw,112px);
+  line-height:.94;letter-spacing:-.02em;text-transform:uppercase;
+  margin:0 auto clamp(22px,3.4vh,38px);max-width:15ch;
   text-shadow:0 2px 44px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.35);
 }
 /* barrido cromado sobre las palabras destacadas */
@@ -580,7 +585,7 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 
 @media(prefers-reduced-motion:reduce){
   .rv{animation:none;opacity:1;transform:none}
-  .mcc-photo{animation:none;filter:brightness(1) contrast(1.02) saturate(.74);transform:none}
+  .mcc-photo{animation:none;filter:brightness(1.10) contrast(1.05) saturate(.96);transform:none}
   .mcc-chrome{animation:none}
   .mcc-led{animation:none;opacity:.78}
   .mcc-chrome{background:none;color:var(--oro);-webkit-text-fill-color:var(--oro)}
@@ -845,18 +850,55 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   .nivel-precio{grid-column:2;grid-row:1}
 }
 
+/* ═══════ HERO EN MÓVIL Y TABLET ═══════
+   Hasta 1099px, que es donde arranca la versión de escritorio. Antes
+   esto estaba en 640 y entre 641 y 1099 el hero se quedaba sin reglas:
+   ahí es donde se veía descuadrado. */
+@media(max-width:1099px){
+  /* El bloque se centra en la pantalla y deja libre la esquina del
+     botón flotante de WhatsApp (58px + 28 de separación). */
+  .mcc-hero{align-items:center}
+  /* El margen lateral roba ancho al titular, y "ESPECIALISTAS" es una
+     palabra que no se puede partir: pasa de 20 a 14px en el móvil. */
+  .mcc-in{--pt:clamp(84px,11.5vh,110px);
+    padding-inline:clamp(14px,3.6vw,40px);
+    padding-bottom:clamp(90px,12vh,116px)}
+  .mcc-eyebrow{margin-bottom:clamp(20px,3vh,30px)}
+
+  /* Medido con la propia Archivo a ancho de letra 62: "ESPECIALISTAS EN"
+     ocupa 6,26 em. Con el ancho máximo en 6,9 em el titular cae siempre
+     en tres líneas, mida lo que mida la pantalla, y el tamaño sube con
+     ella en vez de cambiar el número de líneas. */
+  /* Máximo real en tres líneas: 64px en un móvil de 390. Con 5,3 em de
+     ancho la primera línea es "ESPECIALISTAS" y las tres caben; pedir
+     más obligaría a una cuarta línea o se saldría de la pantalla.
+     El interlineado sube a 0,98 y los márgenes crecen: entre las tres
+     cosas el bloque ocupa unos 70px más de alto. */
+  .mcc-h1{font-variation-settings:'wdth' 62,'wght' 800;
+    font-size:clamp(48px,17.2vw,92px);line-height:.98;letter-spacing:-.022em;
+    margin:clamp(14px,2vh,24px) auto clamp(36px,4.8vh,52px);max-width:5.3em}
+  /* El ruso tiene palabras más largas ("АВТОМОБИЛЕМ"): su propia medida. */
+  html[lang="ru"] .mcc-h1{font-size:clamp(40px,14.4vw,78px);max-width:6.6em}
+
+  .mcc-lede{font-size:clamp(16px,4.2vw,21px);line-height:1.62;max-width:27ch;
+    margin-bottom:clamp(28px,3.8vh,42px)}
+  .mcc-services{font-size:clamp(11px,2.9vw,14px);line-height:2.15;letter-spacing:.06em;
+    margin-bottom:clamp(32px,4.4vh,48px)}
+
+  /* Botones a sangre: se comen el margen lateral del contenedor y
+     llegan al borde de la pantalla. */
+  .mcc-cta{gap:10px;margin-bottom:0;
+    margin-inline:calc(-1 * clamp(20px,5vw,56px))}
+  .mcc-btn{flex:1 1 100%;justify-content:center;padding:18px 18px;border-radius:0}
+
+  /* La franja de vehículos/taller/atención ocupaba tres filas sobre la
+     foto y cargaba la imagen. Esos datos ya están en contacto y en el pie. */
+  .mcc-proof{display:none}
+}
+
 /* ═══════════ AJUSTES DE MÓVIL ═══════════ */
 @media(max-width:640px){
-  /* el hero respira: menos aire arriba y textos más contenidos */
-  .mcc-in{--pt:clamp(96px,14vh,120px);padding-bottom:34px}
-  .mcc-h1{font-size:clamp(34px,10.5vw,52px);line-height:.94}
-  .mcc-lede{font-size:15px;max-width:34ch}
-  .mcc-services{font-size:11.5px;line-height:2;letter-spacing:.06em}
-  .mcc-cta{gap:9px}
-  .mcc-btn{flex:1 1 100%;justify-content:center;padding:14px 18px}
-  .mcc-proof{gap:0}
-  .mcc-proof div{padding:9px 0;border-top:1px solid var(--line)}
-  .mcc-proof div:first-child{border-top:0}
+  /* Las reglas del hero están en el bloque de 1099px, más arriba. */
 
   /* secciones más juntas */
   .sec{padding:clamp(38px,7vh,56px) 0}
@@ -887,7 +929,9 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 }
 
 @media(max-width:400px){
-  .mcc-h1{font-size:32px}
+  /* Aquí había un .mcc-h1{font-size:32px} que, por ir al final de la
+     hoja, pisaba el tamaño del titular en cualquier móvil de 400px o
+     menos. Se quita: el tamaño lo decide el bloque del hero. */
   .ppf-deck{grid-template-columns:1fr 1fr}
   .acceso .txt b{font-size:13.5px}
 }
@@ -921,9 +965,18 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 /* Sin formulario en el hero: una sola columna centrada, como estaba
    antes de las dos columnas. El texto manda y respira. */
 @media(min-width:1100px){
-  .mcc-in{--pt:clamp(110px,15vh,160px)}
-  .mcc-hero-txt .mcc-h1{max-width:18ch;font-size:clamp(40px,5.2vw,76px)}
-  .mcc-hero-txt .mcc-services{max-width:62ch;text-wrap:balance}
+  .mcc-in{--pt:clamp(104px,13.5vh,150px)}
+  /* 15 caracteres por línea: el titular cae en tres líneas apiladas,
+     igual que en móvil, en vez de dos larguísimas de borde a borde. */
+  .mcc-hero-txt .mcc-h1{max-width:15ch;font-size:clamp(48px,6.2vw,92px);
+    line-height:.95;margin-bottom:clamp(26px,3.2vh,40px)}
+  .mcc-hero-txt .mcc-eyebrow{margin-bottom:clamp(20px,2.6vh,30px)}
+  /* La frase cabe entera en una línea: se le da ancho suficiente. */
+  .mcc-hero-txt .mcc-lede{max-width:68ch;margin-bottom:clamp(30px,3.8vh,48px)}
+  /* Y el listado, en dos líneas en vez de tres: con 62ch se quedaba
+     corto y partía por tres sitios. */
+  .mcc-hero-txt .mcc-services{max-width:940px;text-wrap:balance;
+    margin-bottom:clamp(32px,4vh,50px)}
 }
 
 /* ============================================================
@@ -958,10 +1011,25 @@ body.wa-modal-abierto{overflow:hidden}
 body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 
 /* formulario repetido al fondo: iframe de la página alojada de Kommo */
-.presu-final{max-width:640px;margin:0 auto}
-.presu-final iframe{display:block;width:100%;height:660px;border:1px solid var(--line);
-  border-radius:14px;background:#070708}
-@media(max-width:560px){.presu-final iframe{height:700px}}
+/* El formulario de Kommo va en un iframe y ya trae su propia tarjeta
+   oscura por dentro. Si le ponemos borde y fondo aquí, se ven dos cajas
+   negras encajadas. Se deja transparente y sin marco: sólo se ve la de
+   Kommo, que además coincide con la paleta. */
+.presu-final{max-width:600px;margin:0 auto;
+  /* Un iframe corriente no sabe medirse: hay que darle el alto a mano.
+     Si algún día el formulario gana o pierde campos, se toca AQUÍ y
+     nada más. Con menos alto del necesario sale barra de scroll dentro;
+     con más, Kommo centra el formulario y deja hueco arriba y abajo. */
+  --alto-form:640px}
+.presu-final iframe{display:block;width:100%;height:var(--alto-form);
+  border:0;background:transparent;color-scheme:dark}
+@media(max-width:900px){.presu-final{--alto-form:660px}}
+@media(max-width:560px){
+  /* A sangre en móvil: el formulario aprovecha todo el ancho en vez de
+     quedar encajonado, que es lo que lo hacía verse apretado. */
+  .presu-final{--alto-form:700px;max-width:none;
+    margin-inline:calc(-1 * clamp(20px,5vw,56px))}
+}
 </style>
 </head>
 <body>
@@ -1021,9 +1089,9 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 
     <!-- Orden por rentabilidad: PPF, cerámico y vinilo primero. -->
     <p class="mcc-services rv d5"
-       data-es="<i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización<i>&bull;</i>" data-pt="<i>&bull;</i>Proteção PPF<wbr><i>&bull;</i>Tratamento cerâmico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Polimento profissional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalização<i>&bull;</i>" data-ru="<i>&bull;</i>Защитная плёнка PPF<wbr><i>&bull;</i>Керамическое покрытие<wbr><i>&bull;</i>Оклейка винилом<wbr><i>&bull;</i>Профессиональная полировка<wbr><i>&bull;</i>Обвесы<wbr><i>&bull;</i>Индивидуальный тюнинг<i>&bull;</i>"
-       data-en="<i>&bull;</i>PPF paint protection<wbr><i>&bull;</i>Ceramic coating<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Professional polishing<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalisation<i>&bull;</i>">
-      <i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización<i>&bull;</i>
+       data-es="<i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización" data-pt="<i>&bull;</i>Proteção PPF<wbr><i>&bull;</i>Tratamento cerâmico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Polimento profissional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalização" data-ru="<i>&bull;</i>Защитная плёнка PPF<wbr><i>&bull;</i>Керамическое покрытие<wbr><i>&bull;</i>Оклейка винилом<wbr><i>&bull;</i>Профессиональная полировка<wbr><i>&bull;</i>Обвесы<wbr><i>&bull;</i>Индивидуальный тюнинг"
+       data-en="<i>&bull;</i>PPF paint protection<wbr><i>&bull;</i>Ceramic coating<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Professional polishing<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalisation">
+      <i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización
     </p>
 
     <div class="mcc-cta rv d5">
