@@ -750,6 +750,23 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 @keyframes latido{0%,100%{box-shadow:0 0 0 4px rgba(195,162,102,.22),0 0 18px rgba(195,162,102,.5)}
                   50%{box-shadow:0 0 0 12px rgba(195,162,102,.06),0 0 22px rgba(195,162,102,.35)}}
 
+/* En móvil el botón flotante se pisaba con los controles de Leaflet y
+   con la atribución. Pasa a ser una barra debajo del mapa, dentro del
+   mismo marco: se ve entero y se pulsa sin apuntar. */
+@media(max-width:640px){
+  .mapa-ir{position:static!important;width:100%;justify-content:center;
+    border:0!important;border-top:1px solid var(--line)!important;
+    background:rgba(7,7,8,.94)!important;padding:15px 16px!important;
+    font-size:14px}
+  /* El pin de 16px se perdía sobre las teselas oscuras: crece y le
+     damos un halo más marcado, recentrándolo para que siga apuntando
+     al punto exacto. */
+  .pin-mapa{width:22px;height:22px;margin:-3px 0 0 -3px;
+    border:2px solid rgba(7,7,8,.55);
+    box-shadow:0 0 0 5px rgba(195,162,102,.28),0 0 22px rgba(195,162,102,.65)}
+  #mapa{height:clamp(320px,58vw,400px)}
+}
+
 /* Botón "cómo llegar" flotando sobre el mapa */
 .mapa-ir{position:absolute;right:14px;bottom:32px;z-index:500;
   display:inline-flex;align-items:center;gap:9px;text-decoration:none;
@@ -885,11 +902,9 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   .mcc-services{font-size:clamp(11px,2.9vw,14px);line-height:2.15;letter-spacing:.06em;
     margin-bottom:clamp(32px,4.4vh,48px)}
 
-  /* Botones a sangre: se comen el margen lateral del contenedor y
-     llegan al borde de la pantalla. */
-  .mcc-cta{gap:10px;margin-bottom:0;
-    margin-inline:calc(-1 * clamp(20px,5vw,56px))}
-  .mcc-btn{flex:1 1 100%;justify-content:center;padding:18px 18px;border-radius:0}
+  /* Los botones respetan el margen lateral, como el resto del bloque. */
+  .mcc-cta{gap:10px;margin-bottom:0}
+  .mcc-btn{flex:1 1 100%;justify-content:center;padding:18px 18px}
 
   /* La franja de vehículos/taller/atención ocupaba tres filas sobre la
      foto y cargaba la imagen. Esos datos ya están en contacto y en el pie. */
@@ -1042,8 +1057,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 @media(max-width:560px){
   /* A sangre en móvil: el formulario aprovecha todo el ancho en vez de
      quedar encajonado, que es lo que lo hacía verse apretado. */
-  .presu-final{--alto-form:700px;max-width:none;
-    margin-inline:calc(-1 * clamp(20px,5vw,56px))}
+  .presu-final{--alto-form:700px}
 }
 </style>
 </head>
@@ -1595,6 +1609,38 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
   <div class="wrap">
     
 
+  </div>
+
+<!-- ── PRESUPUESTO, justo antes de las preguntas frecuentes: el
+       visitante ya ha visto servicios y precios y llega convencido. Mismo formulario de Kommo (misma
+       etapa y mismos leads), embebido como página alojada para no
+       duplicar el script del embed. ── -->
+  <div class="wrap" id="presupuesto-final">
+    <section class="sec">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="¿Te lo has mirado todo?" data-en="Seen everything you needed?" data-pt="Já viu tudo?" data-ru="Всё посмотрели?">¿Te lo has mirado todo?</p>
+        <h2 class="h2" data-es="Hablemos de tu coche" data-en="Let's talk about your car" data-pt="Falemos do seu carro" data-ru="Поговорим о вашем авто">Hablemos de tu coche</h2>
+        <p class="sub" data-es="Déjanos tu teléfono y te preparamos un presupuesto a medida, sin compromiso."
+                       data-en="Leave your phone number and we will prepare a tailored, no-obligation quote."
+                       data-pt="Deixe o seu telefone e preparamos um orçamento à medida, sem compromisso."
+                       data-ru="Оставьте номер телефона — подготовим индивидуальный расчёт без обязательств.">
+          Déjanos tu teléfono y te preparamos un presupuesto a medida, sin compromiso.</p>
+      </div>
+      <div class="presu-final">
+        <iframe src="https://forms.kommo.com/rzvtmtr" title="Formulario de presupuesto"
+                loading="lazy" referrerpolicy="origin"></iframe>
+        <p class="presu-legal"
+           data-es='Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.'
+           data-en='By submitting you accept the <a href="privacidad.html">privacy policy</a>.'
+           data-pt='Ao enviar aceita a <a href="privacidad.html">política de privacidade</a>.'
+           data-ru='Отправляя форму, вы принимаете <a href="privacidad.html">политику конфиденциальности</a>.'>
+          Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+
     <!-- ── preguntas ──
          ⚠ PENDIENTE de Joaquín: años de garantía del fabricante y duración
             declarada de la lámina. No se ponen cifras hasta confirmarlas. -->
@@ -1781,33 +1827,7 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
     </section>
   </div>
 
-  <!-- ── PRESUPUESTO, otra vez al fondo: para quien recorrió toda la
-       página y llega convencido. Mismo formulario de Kommo (misma
-       etapa y mismos leads), embebido como página alojada para no
-       duplicar el script del embed. ── -->
-  <div class="wrap" id="presupuesto-final">
-    <section class="sec">
-      <div class="sec-cab">
-        <p class="eyebrow" data-es="¿Te lo has mirado todo?" data-en="Seen everything you needed?" data-pt="Já viu tudo?" data-ru="Всё посмотрели?">¿Te lo has mirado todo?</p>
-        <h2 class="h2" data-es="Hablemos de tu coche" data-en="Let's talk about your car" data-pt="Falemos do seu carro" data-ru="Поговорим о вашем авто">Hablemos de tu coche</h2>
-        <p class="sub" data-es="Déjanos tu teléfono y te preparamos un presupuesto a medida, sin compromiso."
-                       data-en="Leave your phone number and we will prepare a tailored, no-obligation quote."
-                       data-pt="Deixe o seu telefone e preparamos um orçamento à medida, sem compromisso."
-                       data-ru="Оставьте номер телефона — подготовим индивидуальный расчёт без обязательств.">
-          Déjanos tu teléfono y te preparamos un presupuesto a medida, sin compromiso.</p>
-      </div>
-      <div class="presu-final">
-        <iframe src="https://forms.kommo.com/rzvtmtr" title="Formulario de presupuesto"
-                loading="lazy" referrerpolicy="origin"></iframe>
-        <p class="presu-legal"
-           data-es='Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.'
-           data-en='By submitting you accept the <a href="privacidad.html">privacy policy</a>.'
-           data-pt='Ao enviar aceita a <a href="privacidad.html">política de privacidade</a>.'
-           data-ru='Отправляя форму, вы принимаете <a href="privacidad.html">политику конфиденциальности</a>.'>
-          Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.</p>
-      </div>
-    </section>
-  </div>
+
 
   <div class="wrap">
     <section class="sec" id="resenas">
