@@ -59,7 +59,7 @@ html{scroll-behavior:smooth}
 /* La cabecera es fija y flota por encima del contenido, así que cada
    destino de ancla necesita reservarse esa altura. Va del alto real de
    la cabecera en móvil (70px) al de escritorio (125px), más aire. */
-#top,#presupuesto,#servicios,#ppf,#color,#faq,#ubicacion,#presupuesto-final,#contacto,#resenas{
+#top,#servicios,#ppf,#color,#faq,#ubicacion,#presupuesto-final,#contacto,#resenas{
   scroll-margin-top:clamp(88px,10.5vw,146px);
 }
 body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
@@ -901,21 +901,14 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 .presu-legal a{color:var(--muted)} .presu-legal a:hover{color:var(--oro)}
 
 /* móvil y tablet: la tarjeta va debajo del texto del hero */
-.mcc-hero-form{width:100%;max-width:560px;margin:clamp(26px,5vh,44px) auto 0}
+.mcc-hero-txt{text-align:center}
 
-/* desktop ancho: hero a dos columnas, texto izquierda + formulario derecha */
+/* Sin formulario en el hero: una sola columna centrada, como estaba
+   antes de las dos columnas. El texto manda y respira. */
 @media(min-width:1100px){
-  .mcc-in{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(400px,.94fr);
-    gap:clamp(32px,4vw,72px);align-items:center;text-align:left}
-  .mcc-hero-form{margin:0;max-width:none}
-  .mcc-hero-txt .mcc-h1{margin-left:0;margin-right:0;max-width:14ch;
-    font-size:clamp(36px,4.6vw,68px)}
-  .mcc-hero-txt .mcc-lede{margin-left:0;margin-right:0}
-  .mcc-hero-txt .mcc-services{margin-left:0;margin-right:0;max-width:56ch;
-    text-wrap:balance}
-  .mcc-hero-txt .mcc-cta{justify-content:flex-start}
-  .mcc-hero-txt .mcc-proof{margin-left:0}
   .mcc-in{--pt:clamp(110px,15vh,160px)}
+  .mcc-hero-txt .mcc-h1{max-width:18ch;font-size:clamp(40px,5.2vw,76px)}
+  .mcc-hero-txt .mcc-services{max-width:62ch;text-wrap:balance}
 }
 
 /* ============================================================
@@ -963,7 +956,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
       <img src="img/logo.webp" width="520" height="338" alt="Marbella Custom Cars">
     </a>
     <nav class="nav">
-      <a href="#presupuesto" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
+      <a href="#presupuesto-final" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
       <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
       <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
       <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
@@ -977,7 +970,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 </header>
 
 <nav class="panel" id="panel" aria-label="Menú">
-  <a href="#presupuesto" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
+  <a href="#presupuesto-final" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
   <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
   <a href="#ppf" data-es="Por qué PPF" data-en="Why PPF" data-pt="Porquê PPF" data-ru="Почему PPF">Por qué PPF</a>
   <a href="#color" data-es="Simulador" data-en="Colour preview" data-pt="Simulador" data-ru="Подбор цвета">Simulador</a>
@@ -1050,33 +1043,6 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
     </dl>
 
    </div><!-- /.mcc-hero-txt -->
-
-   <!-- ── FORMULARIO DE PRESUPUESTO (Kommo) ─────────────────────
-        Desktop: columna derecha del hero. Móvil: debajo del texto,
-        en el primer scroll. Los envíos crean el lead en "Nuevo lead"
-        y redirigen a gracias.html (ahí se dispara el Lead del píxel). -->
-   <div class="mcc-hero-form rv d6" id="presupuesto">
-     <div class="presu-card">
-       <p class="presu-tit"
-          data-es="Pide tu <i>presupuesto</i>" data-en="Get your <i>quote</i>"
-          data-pt="Peça o seu <i>orçamento</i>" data-ru="Запросите <i>расчёт</i>">Pide tu <i>presupuesto</i></p>
-       <p class="presu-sub"
-          data-es="Solo necesitamos tu teléfono. Te contactamos lo antes posible."
-          data-en="We only need your phone number. We will contact you as soon as possible."
-          data-pt="Só precisamos do seu telefone. Entraremos em contacto o mais rápido possível."
-          data-ru="Достаточно номера телефона — мы свяжемся с вами как можно скорее.">
-         Solo necesitamos tu teléfono. Te contactamos lo antes posible.</p>
-       <div class="presu-form">
-         <script>!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1723831",hash:"016c6534eb6898a4c4f79b3eb783506a",locale:"es"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");</script><script id="amoforms_script_1723831" async="async" charset="utf-8" src="https://forms.kommo.com/forms/assets/js/amoforms.js?1786549453"></script>
-       </div>
-       <p class="presu-legal"
-          data-es='Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.'
-          data-en='By submitting you accept the <a href="privacidad.html">privacy policy</a>.'
-          data-pt='Ao enviar aceita a <a href="privacidad.html">política de privacidade</a>.'
-          data-ru='Отправляя форму, вы принимаете <a href="privacidad.html">политику конфиденциальности</a>.'>
-         Al enviar aceptas la <a href="privacidad.html">política de privacidad</a>.</p>
-     </div>
-   </div>
 
   </div>
 </section>
