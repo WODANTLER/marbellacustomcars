@@ -4,8 +4,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Marbella Custom Cars — PPF, tratamiento cerámico y vinilo en Marbella</title>
-<meta name="description" content="Paint Protection Film, tratamiento cerámico, wrapping y detailing para coches de alta gama en Marbella. Calle Oro 32, Polígono La Ermita.">
+<title>Detailing en Marbella — PPF, cerámico y wrapping | Marbella Custom Cars</title>
+<meta name="description" content="Detailing premium en Marbella: PPF, tratamiento cerámico, wrapping y vinilo, pulido y quitabollos sin pintar para coches de alta gama. Taller en Calle Oro 32, Polígono La Ermita.">
+<link rel="canonical" href="https://marbellacustomcars.com/">
+
+<!-- Para cuando el enlace se comparte por WhatsApp, Instagram o Google -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Marbella Custom Cars">
+<meta property="og:url" content="https://marbellacustomcars.com/">
+<meta property="og:title" content="Detailing en Marbella — PPF, cerámico y wrapping">
+<meta property="og:description" content="Detailing premium para coches de alta gama en Marbella. PPF, tratamiento cerámico, wrapping, pulido y quitabollos.">
+<meta property="og:image" content="https://marbellacustomcars.com/img/hero-ferrari.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Detailing en Marbella — Marbella Custom Cars">
+<meta name="twitter:description" content="PPF, tratamiento cerámico, wrapping y detailing para coches de alta gama.">
+<meta name="twitter:image" content="https://marbellacustomcars.com/img/hero-ferrari.jpg">
+
+<!-- Datos estructurados. Es lo que lee Google (y los buscadores con IA)
+     para entender qué es este negocio, dónde está y qué hace. Sin esto
+     tiene que adivinarlo del texto.
+     No se declara valoración media a propósito: marcar estrellas que el
+     buscador no puede verificar por su cuenta es motivo de penalización. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDetailing",
+  "@id": "https://marbellacustomcars.com/#negocio",
+  "name": "Marbella Custom Cars",
+  "description": "Centro de detailing y protección de pintura en Marbella. PPF, tratamiento cerámico, wrapping y vinilado, pulido, quitabollos sin pintar y lavado premium para coches de alta gama.",
+  "url": "https://marbellacustomcars.com/",
+  "telephone": "+34672936398",
+  "image": "https://marbellacustomcars.com/img/hero-ferrari.jpg",
+  "priceRange": "€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Oro 32, Polígono La Ermita",
+    "addressLocality": "Marbella",
+    "addressRegion": "Málaga",
+    "postalCode": "29603",
+    "addressCountry": "ES"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 36.511952, "longitude": -4.8673708 },
+  "areaServed": [
+    {"@type":"City","name":"Marbella"}, {"@type":"City","name":"Puerto Banús"},
+    {"@type":"City","name":"Estepona"}, {"@type":"City","name":"Málaga"}
+  ],
+  "availableLanguage": ["es","en","pt","ru"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de detailing y protección",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Detailing premium","description":"Programa integral: PPF exterior e interior, cerámico, limpieza completa y mantenimiento."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"PPF — Paint Protection Film","alternateName":"Lámina de protección de pintura","description":"Lámina de poliuretano de 200 micras contra piedras y arañazos."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tratamiento cerámico","description":"Sellado que aporta dureza, brillo y repelencia al agua."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wrapping — vinilado de coches","alternateName":"Vinilo para coches","description":"Cambio de color reversible con vinilo, sin tocar la pintura."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Pulido y corrección de pintura"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Quitabollos sin pintar","alternateName":"Reparación de granizo · paintless dent removal","description":"Abolladuras y daños por granizo eliminados sin pintar ni masilla, conservando la pintura original."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Lavado y detailing de interior"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tintado de cristales"}}
+    ]
+  }
+}
+</script>
 <meta name="theme-color" content="#070708">
 
 <!-- Favicon. El SVG lo usan los navegadores modernos; el .ico y los PNG
@@ -145,12 +206,35 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
    Dorado sólido con el icono en negro: destaca sobre el fondo oscuro sin
    romper la paleta. Sin mensaje predeterminado, para que la persona
    escriba lo que quiera. */
-.wa-flota{
+/* Los dos botones flotantes: llamar y WhatsApp. El contenedor es el
+   que se posiciona; los botones sólo se colocan uno al lado del otro. */
+.flotantes{
   position:fixed;right:clamp(16px,3.2vw,28px);
   /* En iPhone la barra de Safari se come los últimos píxeles: sin el
-     margen seguro del sistema, el botón queda detrás y no se ve. */
+     margen seguro del sistema, los botones quedan detrás y no se ven. */
   bottom:calc(clamp(16px,3.2vw,28px) + env(safe-area-inset-bottom,0px));
-  z-index:50;width:58px;height:58px;border-radius:50%;
+  z-index:50;display:flex;align-items:center;gap:clamp(10px,2vw,14px);
+}
+
+/* Llamar: mismo tamaño, pero en contorno. El de WhatsApp queda relleno
+   y sigue siendo el principal; éste acompaña sin competir. */
+.tel-flota{
+  width:58px;height:58px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;text-decoration:none;
+  background:rgba(9,9,12,.92);border:1px solid var(--oro);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 6px 22px rgba(0,0,0,.45);
+  transition:transform .22s,background .22s,box-shadow .22s,opacity .22s}
+.tel-flota svg{width:26px;height:26px;fill:var(--oro);display:block}
+.tel-flota:hover{transform:translateY(-2px);background:var(--oro);
+  box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.tel-flota:hover svg{fill:#070708}
+.tel-flota:active{transform:translateY(0)}
+.tel-flota:focus-visible{outline:2px solid var(--chrome);outline-offset:4px}
+
+.wa-flota{
+  position:relative;flex:none;
+  width:58px;height:58px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:var(--oro);color:#070708;text-decoration:none;
   box-shadow:0 6px 22px rgba(0,0,0,.45);
@@ -170,8 +254,12 @@ body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
   100%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 0 rgba(195,162,102,0)}
 }
 /* Con el menú de móvil abierto el botón estorba */
-body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
-@media(max-width:520px){.wa-flota{width:52px;height:52px}.wa-flota svg{width:27px;height:27px}}
+body.menu-abierto .flotantes{opacity:0;pointer-events:none}
+@media(max-width:520px){
+  .wa-flota,.tel-flota{width:52px;height:52px}
+  .wa-flota svg{width:27px;height:27px}
+  .tel-flota svg{width:24px;height:24px}
+}
 
 /* ── portada de la página ── */
 .tapa{position:relative;overflow:hidden;isolation:isolate;
@@ -760,6 +848,16 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   #mapa{height:clamp(320px,58vw,400px)}
 }
 
+/* Oscurecido del mapa de OpenStreetMap: se invierte el brillo y se gira
+   el tono 180° para deshacer el viraje de color que deja una inversión
+   a secas (un parque verde saldría magenta). Después se dessatura y se
+   apaga, para acercarlo a la paleta del sitio.
+   Se aplica sólo al panel de teselas: el pin y los controles quedan
+   con sus colores. */
+.mapa-oscurecido .leaflet-tile-pane{
+  filter:invert(1) hue-rotate(180deg) saturate(.30) brightness(.76) contrast(1.08);
+}
+
 /* "Cómo llegar": va DEBAJO del mapa, no encima. Flotando dentro del
    marco competía con los controles de zoom y con la atribución de
    Leaflet, y quedaba un rectángulo raro cruzado por el texto del mapa. */
@@ -909,6 +1007,67 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
   .mcc-proof{display:none}
 }
 
+
+/* ═══════════ RESEÑAS DE GOOGLE ═══════════
+   Se muestran en el idioma en que las escribieron: que convivan el
+   español y el inglés dice "aquí atienden a clientes internacionales"
+   mejor que cualquier frase nuestra.
+   Los avatares son monogramas, no las fotos de perfil de Google: ver
+   la nota del bloque de datos, más abajo. */
+.op-resumen{display:flex;align-items:center;gap:clamp(10px,1.6vw,18px);
+  flex-wrap:wrap;margin-top:clamp(14px,2vh,20px)}
+.op-nota{font-family:var(--display);font-variation-settings:'wdth' 90,'wght' 700;
+  font-size:clamp(34px,4.4vw,48px);line-height:1;color:var(--chrome)}
+.op-estrellas{color:var(--oro);font-size:clamp(15px,1.8vw,19px);letter-spacing:.16em}
+.op-cuenta{font-size:14px;color:var(--muted)}
+.op-todas{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--oro);text-decoration:none;
+  border-bottom:1px solid rgba(195,162,102,.4);padding-bottom:2px;
+  transition:border-color .2s}
+.op-todas:hover{border-color:var(--oro)}
+
+.op-carro{position:relative;overflow:hidden;margin-top:clamp(26px,4vh,42px)}
+.op-pista{display:flex;gap:clamp(14px,1.8vw,22px);
+  transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+@media(prefers-reduced-motion:reduce){.op-pista{transition:none}}
+
+.op-card{flex:0 0 100%;box-sizing:border-box;
+  border:1px solid var(--line);background:var(--panel);
+  padding:clamp(20px,2.6vw,30px);display:flex;flex-direction:column;gap:14px}
+@media(min-width:760px){.op-card{flex-basis:calc((100% - clamp(14px,1.8vw,22px))/2)}}
+@media(min-width:1180px){.op-card{flex-basis:calc((100% - 2*clamp(14px,1.8vw,22px))/3)}}
+
+.op-quien{display:flex;align-items:center;gap:13px}
+.op-avatar{width:44px;height:44px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-variation-settings:'wdth' 92,'wght' 700;
+  font-size:16px;color:#0b0906;letter-spacing:.01em}
+.op-nombre{display:block;font-size:15px;font-weight:600;color:var(--chrome);line-height:1.25}
+.op-meta{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim);margin-top:3px}
+.op-card .op-estrellas{font-size:14px;letter-spacing:.14em}
+
+.op-texto{color:var(--muted);font-size:14.5px;line-height:1.62;margin:0;
+  display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.op-card.abierta .op-texto{-webkit-line-clamp:unset;overflow:visible}
+.op-trad{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dim);margin:-4px 0 0}
+.op-mas{align-self:flex-start;background:none;border:0;cursor:pointer;padding:0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--oro);margin-top:auto}
+.op-mas:hover{color:var(--oro-claro)}
+
+.op-mando{display:flex;align-items:center;gap:14px;margin-top:clamp(18px,2.6vh,26px)}
+.op-puntos{display:flex;gap:7px;flex:1;flex-wrap:wrap}
+.op-punto{width:7px;height:7px;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.22);transition:background .2s,transform .2s}
+.op-punto[aria-current="true"]{background:var(--oro);transform:scale(1.35)}
+.op-flecha{width:40px;height:40px;flex:none;border:1px solid var(--line-fuerte);
+  background:transparent;color:var(--chrome);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
+.op-flecha:hover{border-color:var(--oro);background:rgba(195,162,102,.08);color:var(--oro)}
+.op-flecha svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+
 /* ═══════════ AJUSTES DE MÓVIL ═══════════ */
 @media(max-width:640px){
   /* Las reglas del hero están en el bloque de 1099px, más arriba. */
@@ -1021,7 +1180,7 @@ body.menu-abierto .wa-flota{opacity:0;pointer-events:none}
 .wa-modal-alt a{color:var(--dim);text-decoration:underline;text-underline-offset:3px}
 .wa-modal-alt a:hover{color:var(--oro)}
 body.wa-modal-abierto{overflow:hidden}
-body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
+body.wa-modal-abierto .flotantes{opacity:0;pointer-events:none}
 
 /* formulario repetido al fondo: iframe de la página alojada de Kommo */
 /* ── SECCIÓN FINAL: texto a la izquierda, formulario a la derecha ──
@@ -1116,8 +1275,8 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
 
     <!-- Orden por rentabilidad: PPF, cerámico y vinilo primero. -->
     <p class="mcc-services rv d5"
-       data-es="<i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización" data-pt="<i>&bull;</i>Proteção PPF<wbr><i>&bull;</i>Tratamento cerâmico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Polimento profissional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalização" data-ru="<i>&bull;</i>Защитная плёнка PPF<wbr><i>&bull;</i>Керамическое покрытие<wbr><i>&bull;</i>Оклейка винилом<wbr><i>&bull;</i>Профессиональная полировка<wbr><i>&bull;</i>Обвесы<wbr><i>&bull;</i>Индивидуальный тюнинг"
-       data-en="<i>&bull;</i>PPF paint protection<wbr><i>&bull;</i>Ceramic coating<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Professional polishing<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalisation">
+       data-es="<i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping y vinilo<wbr><i>&bull;</i>Quitabollos<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización" data-pt="<i>&bull;</i>Proteção PPF<wbr><i>&bull;</i>Tratamento cerâmico<wbr><i>&bull;</i>Wrapping e vinil<wbr><i>&bull;</i>Remoção de amolgadelas<wbr><i>&bull;</i>Polimento profissional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalização" data-ru="<i>&bull;</i>Защитная плёнка PPF<wbr><i>&bull;</i>Керамическое покрытие<wbr><i>&bull;</i>Оклейка винилом<wbr><i>&bull;</i>Удаление вмятин<wbr><i>&bull;</i>Профессиональная полировка<wbr><i>&bull;</i>Обвесы<wbr><i>&bull;</i>Индивидуальный тюнинг"
+       data-en="<i>&bull;</i>PPF paint protection<wbr><i>&bull;</i>Ceramic coating<wbr><i>&bull;</i>Wrapping and vinyl<wbr><i>&bull;</i>Dent removal<wbr><i>&bull;</i>Professional polishing<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalisation">
       <i>&bull;</i>Protección PPF<wbr><i>&bull;</i>Tratamiento cerámico<wbr><i>&bull;</i>Wrapping<wbr><i>&bull;</i>Pulido profesional<wbr><i>&bull;</i>Body kits<wbr><i>&bull;</i>Personalización
     </p>
 
@@ -1162,7 +1321,7 @@ body.wa-modal-abierto .wa-flota{opacity:0;pointer-events:none}
       <div class="sec-cab">
         <p class="eyebrow" data-es="Catálogo completo" data-pt="Catálogo completo" data-ru="Полный каталог" data-en="Full catalogue">Catálogo completo</p>
         <h2 class="h2" data-es="Servicios" data-pt="Serviços" data-ru="Услуги" data-en="Services">Servicios</h2>
-        <p class="sub" data-es="Toca cualquier servicio para ver las opciones y los precios." data-pt="Toque em qualquer serviço para ver as opções e os preços." data-ru="Нажмите на любую услугу, чтобы увидеть варианты и цены."
+        <p class="sub" data-es="PPF, tratamiento cerámico, vinilo, quitabollos y detailing. Toca cualquier servicio para ver opciones y precios." data-pt="Toque em qualquer serviço para ver as opções e os preços." data-ru="Нажмите на любую услугу, чтобы увидеть варианты и цены."
                        data-en="Tap any service to see options and pricing.">Toca cualquier servicio para ver las opciones y los precios.</p>
       </div>
       <div class="rejilla" id="lista"></div>
@@ -1645,9 +1804,33 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
     <section class="sec" id="faq">
       <div class="sec-cab">
         <p class="eyebrow" data-es="Dudas" data-pt="Dúvidas" data-ru="Вопросы" data-en="Questions">Dudas</p>
-        <h2 class="h2" data-es="Preguntas frecuentes" data-pt="Perguntas frequentes" data-ru="Частые вопросы" data-en="Frequently asked">Preguntas frecuentes</h2>
+        <h2 class="h2" data-es="Preguntas frecuentes sobre detailing y protección" data-pt="Perguntas frequentes" data-ru="Частые вопросы" data-en="Frequently asked">Preguntas frecuentes</h2>
       </div>
       <div class="faq">
+        <details>
+          <summary data-es="¿Qué es exactamente el detailing?" data-pt="O que é exatamente o detailing?" data-ru="Что такое детейлинг?" data-en="What exactly is car detailing?">¿Qué es exactamente el detailing?</summary>
+          <p data-es="No es un lavado caro. Un lavado limpia lo que se ve; el <b>detailing</b> devuelve el coche al estado de fábrica y lo deja protegido para que se mantenga así. Eso incluye descontaminar la pintura de partículas que el jabón no arrastra, corregir el lacado con pulido para quitar el remolineado, tratar cueros y plásticos del interior uno por uno, y sellar el resultado con cerámico o con lámina. Un lavado dura una semana; un detailing bien hecho se nota durante meses."
+             data-pt="Não é uma lavagem cara. Uma lavagem limpa o que se vê; o <b>detailing</b> devolve o carro ao estado de fábrica e deixa-o protegido para que assim se mantenha. Isso inclui descontaminar a pintura de partículas que o sabão não arrasta, corrigir o verniz com polimento para tirar os riscos circulares, tratar peles e plásticos do interior um a um, e selar o resultado com cerâmico ou com película. Uma lavagem dura uma semana; um detailing bem feito nota-se durante meses."
+             data-ru="Это не дорогая мойка. Мойка убирает то, что видно; <b>детейлинг</b> возвращает автомобиль в заводское состояние и защищает его, чтобы он таким и остался. Сюда входит очистка краски от частиц, которые не смывает шампунь, полировка лака для удаления голограмм, обработка кожи и пластика салона по отдельности и финальная защита керамикой или плёнкой. Мойки хватает на неделю; хороший детейлинг виден месяцами."
+             data-en="It is not an expensive car wash. A wash cleans what you can see; <b>detailing</b> takes the car back to factory condition and then protects it so it stays that way. That means decontaminating the paint of particles no shampoo will lift, correcting the clear coat by machine polishing to remove swirl marks, treating every leather and plastic surface inside one at a time, and sealing the result with a ceramic coating or with film. A wash lasts a week; proper detailing shows for months.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Cada cuánto conviene hacer un detailing completo?" data-pt="De quanto em quanto tempo convém fazer um detailing completo?" data-ru="Как часто нужен полный детейлинг?" data-en="How often should a full detailing be done?">¿Cada cuánto conviene hacer un detailing completo?</summary>
+          <p data-es="Depende de dónde duerma el coche y de cuánto se use. En la costa, con sal en el aire y sol fuerte casi todo el año, lo habitual es un <b>detailing</b> completo al año y mantenimientos cada dos o tres meses. Si el coche está en garaje y se usa los fines de semana, puede estirarse a año y medio. Lo que no conviene es esperar a que la pintura pida corrección: pulir quita lacado, y el lacado no es infinito. Con la pintura ya sellada, los mantenimientos son mucho más rápidos y baratos."
+             data-pt="Depende de onde o carro dorme e de quanto se usa. Na costa, com sal no ar e sol forte quase todo o ano, o habitual é um <b>detailing</b> completo por ano e manutenções a cada dois ou três meses. Se o carro fica em garagem e só se usa aos fins de semana, pode esticar-se a ano e meio. O que não convém é esperar que a pintura peça correção: polir tira verniz, e o verniz não é infinito."
+             data-ru="Зависит от того, где стоит машина и как часто ездит. На побережье, где в воздухе соль, а солнце сильное почти круглый год, обычно делают полный <b>детейлинг</b> раз в год и поддерживающий уход каждые два-три месяца. Если машина в гараже и ездит по выходным, можно растянуть до полутора лет. Чего не стоит делать — ждать, пока краска потребует коррекции: полировка снимает лак, а лак не бесконечен."
+             data-en="It depends on where the car sleeps and how much it is driven. On the coast, with salt in the air and strong sun most of the year, the usual pattern is a full <b>detailing</b> once a year with maintenance every two or three months. If the car lives in a garage and comes out at weekends, it can stretch to eighteen months. What you should not do is wait until the paint needs correcting: polishing removes clear coat, and clear coat is finite.">
+          </p>
+        </details>
+        <details>
+          <summary data-es="¿Se puede quitar un bollo sin pintar?" data-pt="É possível tirar uma amolgadela sem pintar?" data-ru="Можно ли убрать вмятину без покраски?" data-en="Can a dent be removed without repainting?">¿Se puede quitar un bollo sin pintar?</summary>
+          <p data-es="Casi siempre sí. El <b>quitabollos</b> sin pintar trabaja la chapa desde dentro con varillas, empujando el metal hasta su forma original sin tocar el lacado. Sirve para golpes de aparcamiento, puertas y sobre todo para <b>granizo</b>, que suele dejar muchas abolladuras pequeñas y poco profundas. Las condiciones son dos: que la pintura no esté rota y que se pueda acceder por detrás de la pieza. Si la pintura está partida o el golpe cae sobre un nervio muy marcado, ahí ya hace falta chapa y pintura convencional. La ventaja de no pintar es doble: conserva la pintura original, que es lo que valora un tasador, y se hace en horas en vez de días."
+             data-pt="Quase sempre. O sistema sem pintura trabalha a chapa por dentro com varetas, empurrando o metal até à forma original sem tocar no verniz. Serve para toques de estacionamento, portas e sobretudo para <b>granizo</b>, que costuma deixar muitas amolgadelas pequenas e pouco profundas. As condições são duas: que a pintura não esteja partida e que se possa aceder por trás da peça. A vantagem é dupla: conserva a pintura original, que é o que um avaliador valoriza, e faz-se em horas em vez de dias."
+             data-ru="Почти всегда да. Технология без покраски работает изнутри крючками: металл выдавливают в исходную форму, не трогая лак. Подходит для парковочных вмятин, дверей и особенно для <b>града</b>, который оставляет много мелких неглубоких вмятин. Условий два: краска не должна быть повреждена и к детали нужен доступ сзади. Плюс двойной: сохраняется заводская краска, которую ценит оценщик, и работа занимает часы, а не дни."
+             data-en="Almost always. <b>Paintless dent removal</b> works the panel from behind with rods, pushing the metal back to its original shape without touching the clear coat. It suits car park dings, doors and above all <b>hail damage</b>, which tends to leave many small shallow dents. Two conditions: the paint must not be broken, and the back of the panel has to be reachable. If the paint is cracked or the dent sits on a sharp body crease, it becomes conventional bodywork and respray. The upside is double: the factory paint stays original, which is what a valuer looks at, and the job takes hours instead of days.">
+          </p>
+        </details>
         <details>
           <summary data-es="¿En qué se diferencian PPF, wrapping y cerámico?" data-pt="Qual é a diferença entre PPF, wrapping e cerâmico?" data-ru="Чем отличаются PPF, винил и керамика?" data-en="What is the difference between PPF, wrapping and ceramic?">¿En qué se diferencian PPF, wrapping y cerámico?</summary>
           <p data-es="Son tres productos distintos y sólo uno protege de verdad. El <b>PPF</b> es una lámina de poliuretano de unas 200 micras: tiene cuerpo suficiente para absorber el impacto de una piedra antes de que llegue a la pintura. El <b>wrapping</b> es vinilo, una fracción de ese espesor: cambia el color y protege del roce y del sol, pero no frena una piedra. El <b>cerámico</b> no es una lámina sino un sellado líquido: aporta dureza superficial, brillo y repelencia al agua, pero tampoco absorbe impactos. Por eso no compiten entre sí y se pueden combinar." data-pt="São três produtos diferentes e só um protege a sério. O <b>PPF</b> é uma película de poliuretano com cerca de 200 mícrones: tem corpo suficiente para absorver o impacto de uma pedra antes de chegar à pintura. O <b>wrapping</b> é vinil, uma fração dessa espessura: muda a cor e protege do atrito e do sol, mas não trava uma pedra. O <b>cerâmico</b> não é uma película mas um selante líquido: dá dureza superficial, brilho e repelência à água, mas também não absorve impactos. Por isso não competem entre si e podem combinar-se." data-ru="Это три разных продукта, и по-настоящему защищает только один. <b>PPF</b> — полиуретановая плёнка толщиной около 200 микрон: её тела достаточно, чтобы погасить удар камня до того, как он дойдёт до краски. <b>Винил</b> тоньше в несколько раз: он меняет цвет и защищает от потёртостей и солнца, но камень не остановит. <b>Керамика</b> — не плёнка, а жидкое покрытие: даёт поверхностную твёрдость, блеск и водоотталкивание, но удары тоже не гасит. Поэтому они не конкурируют между собой и хорошо сочетаются."
@@ -1830,6 +2013,38 @@ img.src=CAR_SRC; msk.src=MASK_SRC;
 
 
   <div class="wrap">
+    <!-- ── reseñas ── -->
+    <section class="sec" id="opiniones">
+      <div class="sec-cab">
+        <p class="eyebrow" data-es="Lo que dicen los clientes" data-pt="O que dizem os clientes"
+           data-ru="Что говорят клиенты" data-en="What our clients say">Lo que dicen los clientes</p>
+        <h2 class="h2" data-es="Reseñas en Google" data-pt="Avaliações no Google"
+            data-ru="Отзывы в Google" data-en="Google reviews">Reseñas en Google</h2>
+        <div class="op-resumen">
+          <span class="op-nota">5,0</span>
+          <span class="op-estrellas" aria-hidden="true">★★★★★</span>
+          <span class="op-cuenta" data-es="71 reseñas · todas de 5 estrellas"
+                data-pt="71 avaliações · todas de 5 estrelas"
+                data-ru="71 отзыв · все на 5 звёзд"
+                data-en="71 reviews · all five stars">71 reseñas · todas de 5 estrellas</span>
+          <a class="op-todas" target="_blank" rel="noopener"
+             href="https://search.google.com/local/reviews?placeid=ChIJD30solDZcg0RqnzteCX1OXI"
+             data-es="Ver todas en Google" data-pt="Ver todas no Google"
+             data-ru="Смотреть все в Google" data-en="See them all on Google">Ver todas en Google</a>
+        </div>
+      </div>
+
+      <div class="op-carro"><div class="op-pista" id="opPista"></div></div>
+
+      <div class="op-mando">
+        <div class="op-puntos" id="opPuntos"></div>
+        <button class="op-flecha" id="opAnt" type="button" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="op-flecha" id="opSig" type="button" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </section>
+
     <section class="sec" id="resenas">
       <div class="cierre">
         <p class="eyebrow" data-es="¿Has pasado ya por el taller?" data-en="Been to the workshop?" data-pt="Já passou pela oficina?" data-ru="Уже были у нас?">¿Has pasado ya por el taller?</p>
@@ -1881,124 +2096,27 @@ var FOTOS = {
   nGold:     'img/nivel-gold.webp',
   nBlack:    'img/nivel-black.webp',
   nPlatinum: 'img/nivel-platinum.webp',
-  nMotor:    'img/nivel-motor.webp'
+  nMotor:    'img/nivel-motor.webp',
+  quitabollos: 'img/srv-quitabollos.jpg',
+  premium:     'img/srv-premium.jpg'
 };
 
-var FAMILIAS = [
-{ id:'proteccion', es:'Protección', pt:'Proteção', ru:'Защита', en:'Protection', servicios:[
+/* Etiqueta de familia que sale en cada tarjeta. Ya no agrupa: el
+   catálogo va en una sola lista ordenada de más barato a más caro. */
+var FAM = {
+  proteccion:{es:'Protección',   pt:'Proteção',        ru:'Защита',           en:'Protection'},
+  estetica:  {es:'Estética',     pt:'Estética',        ru:'Внешний вид',      en:'Styling'},
+  ruedas:    {es:'Ruedas y cristales', pt:'Rodas e vidros', ru:'Диски и стёкла', en:'Wheels & glass'},
+  interior:  {es:'Interior y lavado',  pt:'Interior e lavagem', ru:'Салон и мойка', en:'Interior & wash'},
+  carroceria:{es:'Carrocería',   pt:'Carroçaria',      ru:'Кузов',            en:'Bodywork'},
+  integral:  {es:'Servicio integral',  pt:'Serviço integral', ru:'Комплексная услуга', en:'Full programme'}
+};
 
-  { id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
-    dEs:'Lámina invisible contra piedras y arañazos.',
-    dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
-    dEn:'Invisible film against stone chips and scratches.',
-    v:[
-      {es:'Full body', pt:'Full body', ru:'Full body', en:'Full body',
-       p:{t:'rango', v:'4.200 – 5.000'}},
-      {es:'Full front', pt:'Full front', ru:'Full front', en:'Full front',
-       p:{t:'rango', v:'1.500 – 2.000'}},
-      {es:'Sectorizado', pt:'Por zonas', ru:'Локальная защита', en:'Sectional',
-       p:{t:'pendiente'}}
-    ]},
+/* ORDEN: de más barato a más caro. Para mover un servicio de sitio,
+   basta con cambiarlo de posición en esta lista. */
+var SERVICIOS = [
 
-  { id:'ceramico', es:'Tratamiento cerámico', pt:'Tratamento cerâmico', ru:'Керамическое покрытие', en:'Ceramic coating', foto:FOTOS.ceramico,
-    dEs:'Sella la pintura, repele agua y suciedad.',
-    dPt:'Sela a pintura, repele água e sujidade.', dRu:'Запечатывает краску, отталкивает воду и грязь.',
-    dEn:'Seals the paint, repels water and dirt.',
-    v:[
-      {es:'Carrocería Signature', pt:'Carroçaria Signature', ru:'Кузов Signature', en:'Bodywork Signature',
-       p:{t:'fijo', v:'800'}},
-      {es:'Carrocería Premium', pt:'Carroçaria Premium', ru:'Кузов Premium', en:'Bodywork Premium',
-       p:{t:'fijo', v:'1.000'}},
-      {es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', p:{t:'pendiente'}},
-      {es:'Cristales', pt:'Vidros', ru:'Стёкла', en:'Glass', p:{t:'pendiente'}},
-      {es:'Plásticos exteriores', pt:'Plásticos exteriores', ru:'Наружный пластик', en:'Exterior plastics', p:{t:'pendiente'}},
-      {es:'Tela de capota', pt:'Capota de lona', ru:'Тканевая крыша', en:'Soft top', p:{t:'pendiente'}},
-      {es:'Tela del interior', pt:'Tecidos do interior', ru:'Ткани салона', en:'Interior fabric', p:{t:'pendiente'}},
-      {es:'Cueros del interior', pt:'Pele do interior', ru:'Кожа салона', en:'Interior leather', p:{t:'pendiente'}}
-    ]}
-]},
-
-{ id:'estetica', es:'Estética', pt:'Estética', ru:'Внешний вид', en:'Styling', servicios:[
-
-  { id:'wrapping', es:'Wrapping', pt:'Wrapping', ru:'Оклейка винилом', en:'Wrapping', foto:FOTOS.wrapping,
-    dEs:'Cambio de color reversible, sin tocar la pintura.',
-    dPt:'Mudança de cor reversível, sem tocar na pintura.', dRu:'Обратимая смена цвета без вреда для краски.',
-    dEn:'Reversible colour change, factory paint untouched.',
-    v:[
-      {es:'Wrapping total', pt:'Wrapping total', ru:'Полная оклейка', en:'Full wrap',
-       p:{t:'consultar'}},
-      {es:'Wrapping parcial', pt:'Wrapping parcial', ru:'Частичная оклейка', en:'Partial wrap',
-       p:{t:'pendiente'}},
-      {es:'Personalizado', pt:'Personalizado', ru:'Индивидуальный дизайн', en:'Custom design',
-       p:{t:'consultar'}}
-    ]},
-
-  { id:'bodykits', es:'Body kits', pt:'Body kits', ru:'Обвесы', en:'Body kits', foto:FOTOS.bodykits,
-    dEs:'Aerodinámica y piezas de carbono a medida.',
-    dPt:'Aerodinâmica e peças de carbono à medida.', dRu:'Аэродинамика и карбон на заказ.',
-    dEn:'Aerodynamics and bespoke carbon parts.',
-    v:[
-      {es:'Spoilers y alerones', pt:'Spoilers e ailerons', ru:'Спойлеры и антикрылья', en:'Spoilers and wings',
-       p:{t:'pendiente'}},
-      {es:'Parrilla y carcasas de espejo', pt:'Grelha e capas de espelho', ru:'Решётка и накладки зеркал', en:'Grille and mirror caps',
-       p:{t:'pendiente'}},
-      {es:'Escapes', pt:'Escapes', ru:'Выхлопные системы', en:'Exhausts',
-       p:{t:'pendiente'}},
-      {es:'Volantes personalizados', pt:'Volantes personalizados', ru:'Рули на заказ', en:'Custom steering wheels',
-       p:{t:'consultar'}}
-    ]}
-]},
-
-{ id:'ruedas', es:'Ruedas y cristales', pt:'Rodas e vidros', ru:'Диски и стёкла', en:'Wheels & glass', servicios:[
-
-  { id:'llantas', es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', foto:FOTOS.llantas,
-    dEs:'Reparación, pintura y protección cerámica.',
-    dPt:'Reparação, pintura e proteção cerâmica.', dRu:'Ремонт, покраска и керамическая защита.',
-    dEn:'Repair, paint and ceramic protection.',
-    v:[
-      {es:'Reparación y pintura', pt:'Reparação e pintura', ru:'Ремонт и покраска', en:'Repair and paint',
-       p:{t:'pendiente'}},
-      {es:'Pulido y cerámico', pt:'Polimento e cerâmico', ru:'Полировка и керамика', en:'Polish and ceramic',
-       p:{t:'desde', v:'290'}},
-      {es:'Pintura de pinzas', pt:'Pintura de pinças', ru:'Покраска суппортов', en:'Caliper paint',
-       p:{t:'pendiente'}}
-    ]},
-
-  { id:'cristales', es:'Tintado de cristales', pt:'Tintagem de vidros', ru:'Тонировка стёкол', en:'Window tinting', foto:FOTOS.cristales,
-    dEs:'Menos calor, menos UV, más privacidad.',
-    dPt:'Menos calor, menos UV, mais privacidade.', dRu:'Меньше жары и ультрафиолета, больше приватности.',
-    dEn:'Less heat, less UV, more privacy.',
-    v:[
-      {es:'Lámina nanocerámica', pt:'Película nanocerâmica', ru:'Нанокерамическая плёнка', en:'Nano-ceramic film',
-       p:{t:'pendiente'}},
-      {es:'Lámina polarizada premium', pt:'Película escurecida premium', ru:'Тонировочная плёнка премиум', en:'Premium tinted film',
-       p:{t:'pendiente'}},
-      {es:'Tratamiento antilluvia', pt:'Tratamento anti-chuva', ru:'Антидождь', en:'Rain-repellent treatment',
-       p:{t:'desde', v:'190'}}
-    ]}
-]},
-
-{ id:'interior', es:'Interior y lavado', pt:'Interior e lavagem', ru:'Салон и мойка', en:'Interior & wash', servicios:[
-
-  { id:'int', es:'Interior', pt:'Interior', ru:'Салон', en:'Interior', foto:FOTOS.interior,
-    dEs:'Limpieza a fondo y protección de cuero y telas.',
-    dPt:'Limpeza a fundo e proteção de pele e tecidos.', dRu:'Глубокая чистка и защита кожи и тканей.',
-    dEn:'Deep clean and protection for leather and fabrics.',
-    v:[
-      {es:'Limpieza completa de interior', pt:'Limpeza completa de interior', ru:'Полная химчистка салона', en:'Full interior detailing',
-       p:{t:'desde', v:'250', nota:'coche pequeño', notaEn:'small car'},
-       sub:{es:'Limpieza profunda del habitáculo', en:'Deep clean of the cabin',
-            pt:'Limpeza profunda do habitáculo', ru:'Глубокая чистка салона'},
-       pts:{es:['Inyección-extracción en moquetas, alfombrillas, techo y maletero','Acondicionamiento de plásticos, volante, puertas y palanca'],
-            en:['Hot-water extraction on carpets, mats, headliner and boot','Plastics, steering wheel, door cards and gear lever conditioned'],
-            pt:['Injeção-extração em alcatifas, tapetes, tejadilho e mala','Condicionamento de plásticos, volante, portas e alavanca'],
-            ru:['Экстракторная чистка ковролина, ковриков, потолка и багажника','Обработка пластика, руля, дверных карт и рычага КПП']}},
-      {es:'Extra: tratamiento cerámico para cueros', pt:'Extra: tratamento cerâmico para peles',
-       ru:'Дополнительно: керамика для кожи салона', en:'Add-on: ceramic coating for leather',
-       p:{t:'pendiente'}}
-    ]},
-
-  { id:'lavado', es:'Lavado', pt:'Lavagem', ru:'Мойка', en:'Wash', foto:FOTOS.lavado,
+  { fam:'interior', id:'lavado', es:'Lavado', pt:'Lavagem', ru:'Мойка', en:'Wash', foto:FOTOS.lavado,
     dEs:'Mantenimiento periódico en tres niveles.',
     dPt:'Manutenção periódica em três níveis.', dRu:'Регулярный уход в трёх уровнях.',
     dEn:'Regular maintenance in three levels.',
@@ -2053,8 +2171,172 @@ var FAMILIAS = [
               en:'On its own or added to any level.',
               pt:'À parte ou somado a qualquer nível.',
               ru:'Отдельно или в дополнение к любому уровню.'}}
+    ]},
+
+  { fam:'ruedas', id:'cristales', es:'Tintado de cristales', pt:'Tintagem de vidros', ru:'Тонировка стёкол', en:'Window tinting', foto:FOTOS.cristales,
+    dEs:'Menos calor, menos UV, más privacidad.',
+    dPt:'Menos calor, menos UV, mais privacidade.', dRu:'Меньше жары и ультрафиолета, больше приватности.',
+    dEn:'Less heat, less UV, more privacy.',
+    v:[
+      {es:'Lámina nanocerámica', pt:'Película nanocerâmica', ru:'Нанокерамическая плёнка', en:'Nano-ceramic film',
+       p:{t:'pendiente'}},
+      {es:'Lámina polarizada premium', pt:'Película escurecida premium', ru:'Тонировочная плёнка премиум', en:'Premium tinted film',
+       p:{t:'pendiente'}},
+      {es:'Tratamiento antilluvia', pt:'Tratamento anti-chuva', ru:'Антидождь', en:'Rain-repellent treatment',
+       p:{t:'desde', v:'190'}}
+    ]},
+
+  { fam:'interior', id:'int', es:'Interior', pt:'Interior', ru:'Салон', en:'Interior', foto:FOTOS.interior,
+    dEs:'Limpieza a fondo y protección de cuero y telas.',
+    dPt:'Limpeza a fundo e proteção de pele e tecidos.', dRu:'Глубокая чистка и защита кожи и тканей.',
+    dEn:'Deep clean and protection for leather and fabrics.',
+    v:[
+      {es:'Limpieza completa de interior', pt:'Limpeza completa de interior', ru:'Полная химчистка салона', en:'Full interior detailing',
+       p:{t:'desde', v:'250', nota:'coche pequeño', notaEn:'small car'},
+       sub:{es:'Limpieza profunda del habitáculo', en:'Deep clean of the cabin',
+            pt:'Limpeza profunda do habitáculo', ru:'Глубокая чистка салона'},
+       pts:{es:['Inyección-extracción en moquetas, alfombrillas, techo y maletero','Acondicionamiento de plásticos, volante, puertas y palanca'],
+            en:['Hot-water extraction on carpets, mats, headliner and boot','Plastics, steering wheel, door cards and gear lever conditioned'],
+            pt:['Injeção-extração em alcatifas, tapetes, tejadilho e mala','Condicionamento de plásticos, volante, portas e alavanca'],
+            ru:['Экстракторная чистка ковролина, ковриков, потолка и багажника','Обработка пластика, руля, дверных карт и рычага КПП']}},
+      {es:'Extra: tratamiento cerámico para cueros', pt:'Extra: tratamento cerâmico para peles',
+       ru:'Дополнительно: керамика для кожи салона', en:'Add-on: ceramic coating for leather',
+       p:{t:'pendiente'}}
+    ]},
+
+  { fam:'carroceria', id:'quitabollos', foto:FOTOS.quitabollos, pos:'58% 52%',
+    es:'Quitabollos', pt:'Remoção de amolgadelas', ru:'Удаление вмятин', en:'Paintless dent removal',
+    dEs:'Quitabollos sin pintar: golpes y granizo fuera, sin masilla.',
+    dPt:'Amolgadelas removidas sem pintura nem massa.',
+    dRu:'Вмятины убираются без покраски и шпатлёвки.',
+    dEn:'Paintless dent removal: dings and hail out, no filler.',
+    v:[
+      {es:'Bollo pequeño: puerta, aleta o capó', pt:'Amolgadela pequena: porta, guarda-lamas ou capô',
+       ru:'Небольшая вмятина: дверь, крыло или капот', en:'Small dent: door, wing or bonnet',
+       p:{t:'pendiente'}},
+      {es:'Bollo grande o sobre nervio', pt:'Amolgadela grande ou sobre nervura',
+       ru:'Крупная вмятина или на ребре жёсткости', en:'Large dent or on a body crease',
+       p:{t:'pendiente'}},
+      {es:'Granizo: coche completo', pt:'Granizo: carro completo',
+       ru:'Град: весь автомобиль', en:'Hail damage: full car',
+       p:{t:'consultar'}}
+    ]},
+
+  { fam:'ruedas', id:'llantas', es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', foto:FOTOS.llantas,
+    dEs:'Reparación, pintura y protección cerámica.',
+    dPt:'Reparação, pintura e proteção cerâmica.', dRu:'Ремонт, покраска и керамическая защита.',
+    dEn:'Repair, paint and ceramic protection.',
+    v:[
+      {es:'Reparación y pintura', pt:'Reparação e pintura', ru:'Ремонт и покраска', en:'Repair and paint',
+       p:{t:'pendiente'}},
+      {es:'Pulido y cerámico', pt:'Polimento e cerâmico', ru:'Полировка и керамика', en:'Polish and ceramic',
+       p:{t:'desde', v:'290'}},
+      {es:'Pintura de pinzas', pt:'Pintura de pinças', ru:'Покраска суппортов', en:'Caliper paint',
+       p:{t:'pendiente'}}
+    ]},
+
+  { fam:'proteccion', id:'ceramico', es:'Tratamiento cerámico', pt:'Tratamento cerâmico', ru:'Керамическое покрытие', en:'Ceramic coating', foto:FOTOS.ceramico,
+    dEs:'Sella la pintura, repele agua y suciedad.',
+    dPt:'Sela a pintura, repele água e sujidade.', dRu:'Запечатывает краску, отталкивает воду и грязь.',
+    dEn:'Seals the paint, repels water and dirt.',
+    v:[
+      {es:'Carrocería Signature', pt:'Carroçaria Signature', ru:'Кузов Signature', en:'Bodywork Signature',
+       p:{t:'fijo', v:'800'}},
+      {es:'Carrocería Premium', pt:'Carroçaria Premium', ru:'Кузов Premium', en:'Bodywork Premium',
+       p:{t:'fijo', v:'1.000'}},
+      {es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', p:{t:'pendiente'}},
+      {es:'Cristales', pt:'Vidros', ru:'Стёкла', en:'Glass', p:{t:'pendiente'}},
+      {es:'Plásticos exteriores', pt:'Plásticos exteriores', ru:'Наружный пластик', en:'Exterior plastics', p:{t:'pendiente'}},
+      {es:'Tela de capota', pt:'Capota de lona', ru:'Тканевая крыша', en:'Soft top', p:{t:'pendiente'}},
+      {es:'Tela del interior', pt:'Tecidos do interior', ru:'Ткани салона', en:'Interior fabric', p:{t:'pendiente'}},
+      {es:'Cueros del interior', pt:'Pele do interior', ru:'Кожа салона', en:'Interior leather', p:{t:'pendiente'}}
+    ]},
+
+  { fam:'estetica', id:'wrapping', es:'Wrapping', pt:'Wrapping', ru:'Оклейка винилом', en:'Wrapping', foto:FOTOS.wrapping,
+    dEs:'Vinilo de cambio de color, reversible y sin tocar la pintura.',
+    dPt:'Mudança de cor reversível, sem tocar na pintura.', dRu:'Обратимая смена цвета без вреда для краски.',
+    dEn:'Colour-change vinyl wrap, reversible, factory paint untouched.',
+    v:[
+      {es:'Wrapping total', pt:'Wrapping total', ru:'Полная оклейка', en:'Full wrap',
+       p:{t:'consultar'}},
+      {es:'Wrapping parcial', pt:'Wrapping parcial', ru:'Частичная оклейка', en:'Partial wrap',
+       p:{t:'pendiente'}},
+      {es:'Personalizado', pt:'Personalizado', ru:'Индивидуальный дизайн', en:'Custom design',
+       p:{t:'consultar'}}
+    ]},
+
+  { fam:'estetica', id:'bodykits', es:'Body kits', pt:'Body kits', ru:'Обвесы', en:'Body kits', foto:FOTOS.bodykits,
+    dEs:'Aerodinámica y piezas de carbono a medida.',
+    dPt:'Aerodinâmica e peças de carbono à medida.', dRu:'Аэродинамика и карбон на заказ.',
+    dEn:'Aerodynamics and bespoke carbon parts.',
+    v:[
+      {es:'Spoilers y alerones', pt:'Spoilers e ailerons', ru:'Спойлеры и антикрылья', en:'Spoilers and wings',
+       p:{t:'pendiente'}},
+      {es:'Parrilla y carcasas de espejo', pt:'Grelha e capas de espelho', ru:'Решётка и накладки зеркал', en:'Grille and mirror caps',
+       p:{t:'pendiente'}},
+      {es:'Escapes', pt:'Escapes', ru:'Выхлопные системы', en:'Exhausts',
+       p:{t:'pendiente'}},
+      {es:'Volantes personalizados', pt:'Volantes personalizados', ru:'Рули на заказ', en:'Custom steering wheels',
+       p:{t:'consultar'}}
+    ]},
+
+  { fam:'proteccion', id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
+    dEs:'PPF: lámina invisible contra piedras y arañazos.',
+    dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
+    dEn:'Invisible film against stone chips and scratches.',
+    v:[
+      {es:'Full body', pt:'Full body', ru:'Full body', en:'Full body',
+       p:{t:'rango', v:'4.200 – 5.000'}},
+      {es:'Full front', pt:'Full front', ru:'Full front', en:'Full front',
+       p:{t:'rango', v:'1.500 – 2.000'}},
+      {es:'Sectorizado', pt:'Por zonas', ru:'Локальная защита', en:'Sectional',
+       p:{t:'pendiente'}}
+    ]},
+
+  { fam:'integral', id:'premium', foto:FOTOS.premium, pos:'50% 42%',
+    es:'Premium Detailing', pt:'Premium Detailing', ru:'Premium Detailing', en:'Premium Detailing',
+    dEs:'El coche entero protegido por dentro y por fuera.',
+    dPt:'O carro inteiro protegido por dentro e por fora.',
+    dRu:'Автомобиль защищён снаружи и изнутри.',
+    dEn:'The whole car protected inside and out.',
+    v:[
+      {es:'Programa completo', pt:'Programa completo', ru:'Полная программа', en:'Complete programme',
+       p:{t:'consultar'}, foto:FOTOS.premium,
+       sub:{es:'Fuera, dentro y después', en:'Outside, inside and after',
+            pt:'Fora, dentro e depois', ru:'Снаружи, внутри и потом'},
+       pts:{es:['PPF Full Body: la carrocería entera bajo lámina',
+                'PPF de interior: piano black, salpicadero y consola',
+                'Tratamiento cerámico sobre el PPF',
+                'Limpieza completa de interior, antes de laminar',
+                'Lavado de motor',
+                'Tres Lavados Black durante el año',
+                'Kit de limpieza Marbella Custom Cars'],
+            en:['Full-body PPF: the whole bodywork under film',
+                'Interior PPF: piano black, dashboard and console',
+                'Ceramic coating over the PPF',
+                'Full interior detailing, done before the film goes on',
+                'Engine bay detailing',
+                'Three Black washes through the year',
+                'Marbella Custom Cars cleaning kit'],
+            pt:['PPF Full Body: toda a carroçaria sob película',
+                'PPF de interior: piano black, tablier e consola',
+                'Tratamento cerâmico sobre o PPF',
+                'Limpeza completa de interior, antes de aplicar a película',
+                'Lavagem de motor',
+                'Três Lavagens Black ao longo do ano',
+                'Kit de limpeza Marbella Custom Cars'],
+            ru:['PPF на весь кузов: кузов целиком под плёнкой',
+                'PPF в салоне: piano black, панель и консоль',
+                'Керамика поверх PPF',
+                'Полная химчистка салона — до оклейки, не после',
+                'Мойка моторного отсека',
+                'Три мойки Black в течение года',
+                'Набор для ухода Marbella Custom Cars']},
+       ideal:{es:'Para quien acaba de comprar el coche y quiere devolverlo intacto.',
+              en:'For someone who has just bought the car and wants to hand it back untouched.',
+              pt:'Para quem acabou de comprar o carro e quer devolvê-lo intacto.',
+              ru:'Для тех, кто только купил автомобиль и хочет вернуть его нетронутым.'}}
     ]}
-]}
 ];
 
 /* ── plantillas ── */
@@ -2115,8 +2397,9 @@ function anclaje(srv){
 
 function render(){
   var t=T[lang], out='';
-  FAMILIAS.forEach(function(f){
-    f.servicios.forEach(function(s){
+  SERVICIOS.forEach(function(s){
+    var f = FAM[s.fam];
+    (function(){
       var vs='';
       s.v.forEach(function(v,k){
         ctxNombre = L(s)+' — '+L(v);
@@ -2158,7 +2441,7 @@ function render(){
          + encodeURIComponent(t.wa(L(s)))+'">'
          + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.09c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.49l-.45.52c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>'
          + t.pide+'</a></div></div>';
-    });
+    })();
   });
   document.getElementById('lista').innerHTML=out;
   conectaNiveles();
@@ -2240,6 +2523,16 @@ function setLangGlobal(l){
     var a=document.getElementById(id);
     if(a) a.href='https://wa.me/'+WAG+'?text='+encodeURIComponent(txt);
   });
+  /* El botón de llamar no lleva texto visible, sólo etiqueta accesible:
+     se traduce aquí para que el lector de pantalla la diga en el idioma
+     que esté seleccionado. */
+  var tel = document.querySelector('.tel-flota');
+  if(tel){
+    var et = ({es:'Llamar a Marbella Custom Cars', en:'Call Marbella Custom Cars',
+               pt:'Ligar para a Marbella Custom Cars', ru:'Позвонить в Marbella Custom Cars'})[l];
+    var tt = ({es:'Llamar', en:'Call', pt:'Ligar', ru:'Позвонить'})[l];
+    if(et){ tel.setAttribute('aria-label', et); tel.setAttribute('title', tt); }
+  }
   setLang(l);
   document.dispatchEvent(new CustomEvent('mcc:lang',{detail:l}));
 }
@@ -2310,11 +2603,31 @@ window.addEventListener('resize',marca);
       attributionControl: true
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      subdomains: 'abcd',
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
-    }).addTo(mapa);
+    /* ── EL MAPA BASE ───────────────────────────────────────────────
+       CARTO empezó a exigir clave para sus teselas oscuras y marca con
+       "API KEY REQUIRED" las que van sin ella.
+
+       · Con clave  → teselas oscuras de CARTO, el estilo de siempre.
+                      La clave es gratis y no hace falta cuenta:
+                      carto.com/basemaps/apikey
+       · Sin clave  → teselas de OpenStreetMap, que son claras, y las
+                      oscurecemos por CSS invirtiendo el brillo. Ni
+                      clave ni terceros que puedan cortarlo.            */
+    var CLAVE_CARTO = '';   /* ← pegar aquí la clave gratuita */
+
+    if (CLAVE_CARTO) {
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=' + CLAVE_CARTO, {
+        maxZoom: 19,
+        subdomains: 'abcd',
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(mapa);
+    } else {
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+      }).addTo(mapa);
+      CONTENEDOR.classList.add('mapa-oscurecido');
+    }
 
     // Pin dorado con el mismo latido del resto de la web
     L.marker([LAT, LON], {
@@ -2409,10 +2722,227 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') cerrar(); 
 
 <!-- Botón flotante de WhatsApp: abre el gate del modal (el href queda
      como respaldo si falla el JS). -->
+<div class="flotantes">
+
+<a class="tel-flota" href="tel:+34672936398"
+   aria-label="Llamar a Marbella Custom Cars" title="Llamar">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.85 21 3 13.15 3 3.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+</a>
+
 <a class="wa-flota" href="https://wa.me/34672936398" target="_blank" rel="noopener"
    aria-label="Escríbenos por WhatsApp" title="WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+</div>
+
+
+<!-- ── reseñas de Google ────────────────────────────────────────────
+     Se transcriben tal cual las escribió cada cliente, en su idioma.
+     Los avatares son monogramas y no las fotos de perfil de Google:
+     rehospedar la foto de una persona en una web comercial es tratar
+     un dato personal suyo, y el nombre y el texto (que son públicos)
+     ya dan toda la credibilidad. Además evita depender de una URL de
+     Google que puede caducar. -->
+<script>
+(function(){
+  var pista = document.getElementById('opPista');
+  if(!pista) return;
+
+  /* Cada reseña guarda su idioma original en "l" y el texto en los
+     cuatro. Si la página está en el idioma original se muestra tal
+     cual; si no, se muestra traducida y se avisa, igual que hace
+     Google. Traducir sin decirlo sería atribuir a alguien palabras
+     que no escribió. */
+  var OPINIONES = [
+    {n:'Matis Clouet', g:{es:'BMW M3 G80 CS',en:'BMW M3 G80 CS',pt:'BMW M3 G80 CS',ru:'BMW M3 G80 CS'}, f:'2026-06', l:'en', t:{
+     en:"Just got my BMW M3 G80 CS back after a full covering job and I'm honestly speechless. The quality of the film itself is insane, super clean finish, deep gloss, and it sits on the bodywork like it was painted that way from factory. No grey peel, no haze, no visible seams anywhere. You really have to put your face on the car to even tell there's film on it. What got me is how precise the work is. Every edge wrapped perfectly, every curve followed exactly, even on the trickier areas like the front splitter, the carbon mirrors and the rear diffuser. Not a single bubble, not a lifted edge, nothing to redo. And the speed honestly threw me off. I was expecting to leave the car for a long stretch knowing how complex the CS bodywork is, but they delivered way faster than I thought, and the quality didn't drop for a second. The car looks better than the day I picked it up from BMW. If you've got a serious car, this is where you bring it. 10/10.",
+     es:"Acabo de recoger mi BMW M3 G80 CS después de un forrado completo y sinceramente me he quedado sin palabras. La calidad de la lámina es una barbaridad: acabado limpísimo, brillo profundo, y se asienta sobre la carrocería como si viniera pintada así de fábrica. Sin piel de naranja, sin velo, sin costuras visibles por ningún lado. Tienes que pegar la cara al coche para darte cuenta de que lleva lámina. Lo que me ha impresionado es la precisión. Cada canto forrado perfecto, cada curva seguida con exactitud, incluso en las zonas complicadas como el splitter delantero, los espejos de carbono y el difusor trasero. Ni una burbuja, ni un borde levantado, nada que rehacer. Y la rapidez me descolocó. Esperaba dejar el coche una buena temporada sabiendo lo compleja que es la carrocería del CS, pero lo entregaron mucho antes de lo que pensaba y la calidad no bajó ni un segundo. El coche está mejor que el día que lo recogí en BMW. Si tienes un coche serio, es aquí donde lo llevas. 10/10.",
+     pt:"Acabei de receber o meu BMW M3 G80 CS depois de um forramento completo e sinceramente fiquei sem palavras. A qualidade da película é absurda: acabamento limpíssimo, brilho profundo, e assenta na carroçaria como se tivesse vindo pintada assim de fábrica. Sem casca de laranja, sem véu, sem costuras visíveis. Tens de colar a cara ao carro para perceber que tem película. O que me impressionou foi a precisão: cada aresta forrada na perfeição, cada curva seguida com exactidão, mesmo nas zonas difíceis como o splitter dianteiro, os espelhos de carbono e o difusor traseiro. Nem uma bolha, nem um bordo levantado. E a rapidez apanhou-me de surpresa: entregaram muito antes do que eu esperava e a qualidade não caiu um segundo. O carro está melhor do que no dia em que o levantei na BMW. Se tens um carro a sério, é aqui que o levas. 10/10.",
+     ru:"Забрал свой BMW M3 G80 CS после полной оклейки и, честно говоря, потерял дар речи. Качество плёнки невероятное: идеально чистый результат, глубокий блеск, и она лежит на кузове так, будто он с завода такой. Ни шагрени, ни мутности, ни одного видимого шва. Нужно вплотную подойти к машине, чтобы вообще понять, что на ней плёнка. Больше всего поразила точность работы: каждая кромка завёрнута идеально, каждый изгиб повторён точно, даже на сложных местах — переднем сплиттере, карбоновых зеркалах и заднем диффузоре. Ни одного пузыря, ни одного отошедшего края. И скорость удивила: я готовился оставить машину надолго, зная, насколько сложный кузов у CS, но отдали намного быстрее, и качество не просело ни на секунду. Машина выглядит лучше, чем в день, когда я забрал её из BMW. Если у вас серьёзный автомобиль — везите сюда. 10/10."}},
+
+    {n:'le podcast du scale', g:{es:'Lamborghini Huracán EVO',en:'Lamborghini Huracán EVO',pt:'Lamborghini Huracán EVO',ru:'Lamborghini Huracán EVO'}, f:'2026-06', l:'en', t:{
+     en:"Just got my Huracán EVO back and honestly I keep walking around it. The finish on the film is mental, super deep, clean, glossy. You really can't tell there's anything on the car unless someone points it out. The Huracán is not a car you wrap easily. Sharp angles all over the place, the front splitter, the side skirts, the vents at the back, the carbon bits. They nailed every single piece. Every edge is tucked properly, every line follows the body perfectly, no bubbles, no lifted corners. What really got me is how fast they pulled it off. Usually shops are either fast or clean, these guys are both, which is rare. If you've got a supercar and you care about how it's looked after, just go straight to them. Properly impressed.",
+     es:"Acabo de recoger mi Huracán EVO y sinceramente no paro de dar vueltas a su alrededor. El acabado de la lámina es una locura: muy profundo, limpio, brillante. No se nota que el coche lleve nada encima a menos que alguien te lo señale. El Huracán no es un coche fácil de forrar. Ángulos marcados por todas partes, el splitter delantero, los taloneros, las salidas traseras, las piezas de carbono. Han clavado cada pieza. Cada canto bien rematado, cada línea sigue la carrocería a la perfección, sin burbujas ni esquinas levantadas. Lo que más me sorprendió fue lo rápido que lo hicieron. Normalmente un taller es rápido o es limpio; estos son las dos cosas, y eso es raro. Si tienes un superdeportivo y te importa cómo lo cuidan, ve directo a ellos. Impresionado de verdad.",
+     pt:"Acabei de receber o meu Huracán EVO e sinceramente não paro de andar à volta dele. O acabamento da película é uma loucura: muito profundo, limpo, brilhante. Não se nota que o carro tem alguma coisa a menos que alguém aponte. O Huracán não é um carro fácil de forrar. Ângulos marcados por todo o lado, o splitter dianteiro, as saias laterais, as saídas traseiras, as peças de carbono. Acertaram em cada peça. Cada aresta bem rematada, cada linha segue a carroçaria na perfeição, sem bolhas nem cantos levantados. O que mais me surpreendeu foi a rapidez. Normalmente uma oficina é rápida ou é limpa; estes são as duas coisas, e isso é raro. Se tens um superdesportivo e te importas com como o tratam, vai directo a eles. Impressionado a sério.",
+     ru:"Забрал свой Huracán EVO и, честно, до сих пор хожу вокруг него кругами. Финиш плёнки безумный: очень глубокий, чистый, глянцевый. Не понять, что на машине что-то есть, пока тебе не покажут. Huracán — не тот автомобиль, который легко оклеить. Острые углы повсюду: передний сплиттер, пороги, задние воздуховоды, карбоновые детали. Они справились с каждой деталью. Каждая кромка аккуратно заведена, каждая линия точно повторяет кузов, ни пузырей, ни отошедших углов. Больше всего удивила скорость. Обычно мастерская либо быстрая, либо аккуратная; здесь и то и другое, а это редкость. Если у вас суперкар и вам важно, как за ним ухаживают, — идите сразу к ним. Впечатлён по-настоящему."}},
+
+    {n:'Natalia Degtiareva', g:{es:'PPF',en:'PPF',pt:'PPF',ru:'PPF'}, f:'2026-04', l:'en', t:{
+     en:"I had my car wrapped with protective PPF here and I'm extremely happy with the result! The team at Marbella Custom Cars are true professionals. They explained everything in detail, helped me choose the right film, showed examples of their work, and answered all my questions. The job was done very carefully and with great quality — the car looks perfect, like it just came out of the showroom. I also want to highlight their customer service: very attentive, honest, and clearly passionate about what they do. Now I can drive without worrying about chips or small damage. Highly recommended.",
+     es:"Me forraron el coche con PPF de protección y estoy encantada con el resultado. El equipo de Marbella Custom Cars son auténticos profesionales. Me lo explicaron todo con detalle, me ayudaron a elegir la lámina adecuada, me enseñaron ejemplos de su trabajo y respondieron a todas mis preguntas. El trabajo se hizo con muchísimo cuidado y una calidad estupenda: el coche está perfecto, como recién salido del concesionario. También quiero destacar su atención: muy pendientes, honestos y se nota que les apasiona lo que hacen. Ahora puedo conducir sin preocuparme por los picotazos ni los daños pequeños. Muy recomendable.",
+     pt:"Forraram-me o carro com PPF de proteção e estou encantada com o resultado. A equipa da Marbella Custom Cars são verdadeiros profissionais. Explicaram tudo em detalhe, ajudaram-me a escolher a película certa, mostraram exemplos do trabalho deles e responderam a todas as minhas perguntas. O trabalho foi feito com muito cuidado e grande qualidade: o carro está perfeito, como acabado de sair do stand. Quero também destacar o atendimento: muito atentos, honestos e nota-se que são apaixonados pelo que fazem. Agora posso conduzir sem me preocupar com pedras nem pequenos danos. Muito recomendável.",
+     ru:"Мне оклеили машину защитной плёнкой PPF, и я в полном восторге от результата! Команда Marbella Custom Cars — настоящие профессионалы. Всё подробно объяснили, помогли выбрать подходящую плёнку, показали примеры своих работ и ответили на все вопросы. Работа сделана очень аккуратно и качественно: машина выглядит идеально, будто только что из салона. Отдельно отмечу сервис: внимательные, честные, и видно, что они по-настоящему любят своё дело. Теперь я езжу и не переживаю из-за сколов и мелких повреждений. Очень рекомендую."}},
+
+    {n:'Chris H', g:{es:'Limpieza a fondo',en:'Deep clean',pt:'Limpeza a fundo',ru:'Глубокая чистка'}, f:'2026-07', l:'es', t:{
+     es:"Llevé mi vehículo aquí para una limpieza a fondo y detallada. Hicieron un trabajo fantástico, superando todas las expectativas. El coche, que tiene más de 20 años y nunca había recibido una limpieza profunda, quedó como nuevo. Joaquín también me ayudó a gestionar el transporte del vehículo, ya que yo estaba fuera de la ciudad. Recomiendo encarecidamente probar los servicios de MCC.",
+     en:"I took my car here for a deep, detailed clean. They did a fantastic job, well beyond what I expected. The car is over 20 years old and had never had a proper deep clean, and it came back like new. Joaquín also helped me arrange transport for the vehicle, since I was out of town. I strongly recommend trying MCC's services.",
+     pt:"Levei o meu veículo aqui para uma limpeza a fundo e detalhada. Fizeram um trabalho fantástico, superando todas as expectativas. O carro, que tem mais de 20 anos e nunca tinha recebido uma limpeza profunda, ficou como novo. O Joaquín ainda me ajudou a tratar do transporte do veículo, já que eu estava fora da cidade. Recomendo vivamente experimentar os serviços da MCC.",
+     ru:"Пригнал сюда машину на глубокую детальную чистку. Сделали превосходно, лучше всех ожиданий. Автомобилю больше 20 лет, и глубокой чистки у него никогда не было — вернули как новый. Хоакин ещё и помог организовать доставку машины, потому что меня не было в городе. Настоятельно рекомендую услуги MCC."}},
+
+    {n:'Raúl Fortes Román', g:{es:'Wrapping y PPF',en:'Wrapping and PPF',pt:'Wrapping e PPF',ru:'Оклейка и PPF'}, f:'2025-09', l:'es', t:{
+     es:"Llevé mi coche a Marbella Custom Cars para un servicio completo de Car Wrapping y PPF, y quedé impresionado por el resultado. Joaquín, el dueño, es un auténtico profesional: atento, minucioso y apasionado por su trabajo. Se nota la dedicación y el cuidado que pone en cada detalle, especialmente en el Car Detailing, que dejó mi vehículo como nuevo. Sin duda, el mejor lugar en Marbella si buscas calidad, atención personalizada y un acabado impecable. ¡Muy recomendable!",
+     en:"I took my car to Marbella Custom Cars for a full wrapping and PPF service and I was blown away by the result. Joaquín, the owner, is a real professional: attentive, meticulous and passionate about his work. You can see the dedication and care he puts into every detail, especially in the detailing, which left my car like new. Without a doubt the best place in Marbella if you are after quality, personal attention and a flawless finish. Highly recommended!",
+     pt:"Levei o meu carro à Marbella Custom Cars para um serviço completo de wrapping e PPF e fiquei impressionado com o resultado. O Joaquín, o dono, é um verdadeiro profissional: atento, minucioso e apaixonado pelo seu trabalho. Nota-se a dedicação e o cuidado que põe em cada detalhe, especialmente no detailing, que deixou o meu veículo como novo. Sem dúvida o melhor sítio em Marbella se procuras qualidade, atendimento personalizado e um acabamento impecável. Muito recomendável!",
+     ru:"Пригнал машину в Marbella Custom Cars на полную оклейку винилом и PPF и был впечатлён результатом. Хоакин, владелец, — настоящий профессионал: внимательный, дотошный и увлечённый своим делом. Видно, сколько внимания он уделяет каждой мелочи, особенно в детейлинге, после которого машина стала как новая. Без сомнения, лучшее место в Марбелье, если вам нужно качество, индивидуальный подход и безупречный результат. Очень рекомендую!"}},
+
+    {n:'LK Bhr', g:{es:'Land Rover Defender',en:'Land Rover Defender',pt:'Land Rover Defender',ru:'Land Rover Defender'}, f:'2026-02', l:'en', t:{
+     en:"Brought my Defender for some work — fitting a spoiler, side steps, wheel spacers as well as paint the brake calipers. The team at Marbella Custom Cars did a fantastic job, and delivered my car with a perfect detailing. Excellent service and staff, and high quality job.",
+     es:"Llevé mi Defender para varios trabajos: montar un spoiler, estribos laterales, separadores de rueda y pintar las pinzas de freno. El equipo de Marbella Custom Cars hizo un trabajo fantástico y me entregó el coche con un detailing perfecto. Servicio y trato excelentes, y trabajo de alta calidad.",
+     pt:"Levei o meu Defender para vários trabalhos: montar um spoiler, estribos laterais, espaçadores de roda e pintar as pinças de travão. A equipa da Marbella Custom Cars fez um trabalho fantástico e entregou-me o carro com um detailing perfeito. Serviço e atendimento excelentes, e trabalho de alta qualidade.",
+     ru:"Пригнал свой Defender на несколько работ: установка спойлера, боковых подножек, проставок и покраска тормозных суппортов. Команда Marbella Custom Cars сделала всё отлично и отдала машину с безупречным детейлингом. Прекрасный сервис, прекрасные люди и качественная работа."}},
+
+    {n:'Cristian Peke', g:{es:'Detailing y cerámico',en:'Detailing and ceramic',pt:'Detailing e cerâmico',ru:'Детейлинг и керамика'}, f:'2025-09', l:'es', t:{
+     es:"He traído el coche para que le hagan un servicio de car detailing y tratamiento cerámico, lo han dejado como nuevo. El sitio súper lindo y limpio. La atención muy exclusiva y profesional. Muy contento con el trabajo, lo recomiendo al 100%.",
+     en:"I brought the car in for a detailing service and ceramic coating, and they left it like new. The place is beautiful and spotless. The service is exclusive and professional. Very happy with the work, I recommend them 100%.",
+     pt:"Trouxe o carro para um serviço de detailing e tratamento cerâmico, deixaram-no como novo. O sítio é lindíssimo e impecável. O atendimento muito exclusivo e profissional. Muito contente com o trabalho, recomendo a 100%.",
+     ru:"Пригнал машину на детейлинг и керамическое покрытие — вернули как новую. Само место очень красивое и чистое. Обслуживание индивидуальное и профессиональное. Очень доволен работой, рекомендую на все сто."}},
+
+    {n:'Markitos 537', g:{es:'Detailing',en:'Detailing',pt:'Detailing',ru:'Детейлинг'}, f:'2025-09', l:'es', t:{
+     es:"Excelente servicio de detailing. Dejaron mi coche como nuevo, con un brillo espectacular y atención a cada detalle. Un equipo profesional y se nota que aman lo que hacen. Totalmente recomendable para quien quiera cuidar su coche como se merece. Literalmente me devolvieron la ilusión que tenía cuando lo compré, sigan así, gracias.",
+     en:"Excellent detailing service. They left my car like new, with a spectacular shine and attention to every detail. A professional team, and you can tell they love what they do. Absolutely recommended for anyone who wants to look after their car properly. They literally gave me back the excitement I had when I bought it. Keep it up, thank you.",
+     pt:"Excelente serviço de detailing. Deixaram o meu carro como novo, com um brilho espectacular e atenção a cada detalhe. Uma equipa profissional e nota-se que amam o que fazem. Totalmente recomendável para quem queira cuidar do carro como merece. Literalmente devolveram-me a ilusão que tinha quando o comprei. Continuem assim, obrigado.",
+     ru:"Отличный детейлинг. Машину вернули как новую, с потрясающим блеском и вниманием к каждой детали. Профессиональная команда, и видно, что они любят своё дело. Однозначно рекомендую всем, кто хочет ухаживать за машиной как следует. Они буквально вернули мне то ощущение, которое было при покупке. Так держать, спасибо."}},
+
+    {n:'Christopher Rodríguez Molina', g:{es:'Porsche Cayenne',en:'Porsche Cayenne',pt:'Porsche Cayenne',ru:'Porsche Cayenne'}, f:'2025-11', l:'es', t:{
+     es:"Increíble experiencia y de ahora en adelante siempre me lo harán ellos. Joaquín, un crack.",
+     en:"Incredible experience, and from now on they are the only ones who will touch my car. Joaquín is a star.",
+     pt:"Experiência incrível e de agora em diante são sempre eles a tratar do meu carro. O Joaquín é um craque.",
+     ru:"Невероятный опыт, и теперь моей машиной будут заниматься только они. Хоакин — мастер."}},
+
+    {n:'Olexandr Filonenko', g:{es:'Pulido de puerta',en:'Door polishing',pt:'Polimento de porta',ru:'Полировка двери'}, f:'2025-12', l:'es', t:{
+     es:"Llegué sin cita. ¡Me pulieron la puerta del coche de forma rápida y eficiente!",
+     en:"I turned up without an appointment. They polished the car door quickly and efficiently!",
+     pt:"Cheguei sem marcação. Puliram-me a porta do carro de forma rápida e eficiente!",
+     ru:"Приехал без записи. Отполировали дверь машины быстро и качественно!"}}
+  ];
+
+  var IDIOMA = {es:{es:'español',en:'inglés',pt:'portugués',ru:'ruso'},
+               en:{es:'Spanish',en:'English',pt:'Portuguese',ru:'Russian'},
+               pt:{es:'espanhol',en:'inglês',pt:'português',ru:'russo'},
+               ru:{es:'испанского',en:'английского',pt:'португальского',ru:'русского'}};
+  var TXT = {
+    es:{mas:'Leer más', menos:'Leer menos', trad:'Traducido del ', meses:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']},
+    en:{mas:'Read more', menos:'Read less', trad:'Translated from ', meses:['January','February','March','April','May','June','July','August','September','October','November','December']},
+    pt:{mas:'Ler mais', menos:'Ler menos', trad:'Traduzido do ', meses:['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro']},
+    ru:{mas:'Читать далее', menos:'Свернуть', trad:'Перевод с ', meses:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']}
+  };
+  function idi(){ var l=document.documentElement.getAttribute('lang')||'es'; return TXT[l]?l:'es'; }
+  function esc(x){return String(x).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  /* Color del monograma: se deriva del propio nombre, así cada persona
+     tiene siempre el mismo y no hay que asignarlos a mano. */
+  function tono(nombre){
+    var h=0; for(var i=0;i<nombre.length;i++) h=(h*31+nombre.charCodeAt(i))%360;
+    return 'hsl('+(38+(h%26))+' '+(34+(h%14))+'% '+(58+(h%12))+'%)';
+  }
+  function iniciales(n){
+    var p=n.trim().split(/\s+/);
+    return (p[0][0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase();
+  }
+  function fecha(f){
+    var t=TXT[idi()], y=f.split('-')[0], m=parseInt(f.split('-')[1],10)-1;
+    return idi()==='ru' ? (t.meses[m]+' '+y) : (t.meses[m][0].toUpperCase()+t.meses[m].slice(1)+' '+y);
+  }
+
+  var pos=0, temp=null;
+
+  function porVista(){
+    var w=window.innerWidth;
+    return w>=1180 ? 3 : (w>=760 ? 2 : 1);
+  }
+  function paginas(){ return Math.max(1, OPINIONES.length - porVista() + 1); }
+
+  function pinta(){
+    var l=idi(), t=TXT[l], out='';
+    OPINIONES.forEach(function(o,i){
+      out += '<article class="op-card">'
+           + '<div class="op-quien">'
+           + '<span class="op-avatar" style="background:'+tono(o.n)+'" aria-hidden="true">'+esc(iniciales(o.n))+'</span>'
+           + '<span><b class="op-nombre">'+esc(o.n)+'</b>'
+           + '<span class="op-meta">'+esc(o.g)+' · '+esc(fecha(o.f))+'</span></span>'
+           + '</div>'
+           + '<p class="op-estrellas" aria-label="5 de 5">★★★★★</p>'
+           + '<p class="op-texto" id="opt-'+i+'">'+esc(o.t[l] || o.t[o.l])+'</p>'
+           + (o.l!==l ? '<p class="op-trad">'+t.trad+IDIOMA[l][o.l]+'</p>' : '')
+           + '<button class="op-mas" type="button" data-i="'+i+'" aria-expanded="false">'+t.mas+'</button>'
+           + '</article>';
+    });
+    pista.innerHTML = out;
+
+    /* El botón "leer más" sólo aparece si el texto está realmente cortado */
+    pista.querySelectorAll('.op-card').forEach(function(c){
+      var p=c.querySelector('.op-texto'), b=c.querySelector('.op-mas');
+      if(p.scrollHeight <= p.clientHeight + 2) b.style.display='none';
+    });
+
+    var pts=document.getElementById('opPuntos'), h='';
+    for(var k=0;k<paginas();k++)
+      h+='<button class="op-punto" type="button" data-p="'+k+'" aria-label="'+(k+1)+'"></button>';
+    pts.innerHTML=h;
+    mueve(Math.min(pos, paginas()-1));
+  }
+
+  function mueve(p){
+    pos = (p + paginas()) % paginas();
+    var card = pista.querySelector('.op-card');
+    if(!card) return;
+    var paso = card.getBoundingClientRect().width
+             + parseFloat(getComputedStyle(pista).columnGap || 0);
+    pista.style.transform = 'translateX(' + (-pos*paso) + 'px)';
+    document.querySelectorAll('.op-punto').forEach(function(b,i){
+      b.setAttribute('aria-current', String(i===pos));
+    });
+  }
+
+  function auto(){
+    clearInterval(temp);
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    temp = setInterval(function(){
+      /* si alguien está leyendo una reseña completa, no se le mueve
+         el carrusel debajo: se espera a que la vuelva a plegar */
+      if(pista.querySelector('.op-card.abierta')) return;
+      mueve(pos+1);
+    }, 6500);
+  }
+
+  document.getElementById('opAnt').addEventListener('click',function(){mueve(pos-1);auto();});
+  document.getElementById('opSig').addEventListener('click',function(){mueve(pos+1);auto();});
+  document.getElementById('opPuntos').addEventListener('click',function(e){
+    var b=e.target.closest('.op-punto'); if(b){ mueve(+b.dataset.p); auto(); }});
+  pista.addEventListener('click',function(e){
+    var b=e.target.closest('.op-mas'); if(!b) return;
+    var c=b.closest('.op-card'), ab=c.classList.toggle('abierta');
+    b.textContent = TXT[idi()][ab?'menos':'mas'];
+    b.setAttribute('aria-expanded', String(ab));
+    auto();                    /* el propio temporizador ya respeta las abiertas */
+  });
+
+  /* el carrusel se detiene mientras el ratón o el foco están encima */
+  var carro=document.querySelector('.op-carro');
+  carro.addEventListener('mouseenter',function(){clearInterval(temp);});
+  carro.addEventListener('mouseleave',auto);
+  carro.addEventListener('focusin',function(){clearInterval(temp);});
+
+  /* arrastre con el dedo */
+  var x0=null;
+  carro.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;clearInterval(temp);},{passive:true});
+  carro.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var d=e.changedTouches[0].clientX-x0;
+    if(Math.abs(d)>40) mueve(pos + (d<0?1:-1));
+    x0=null; auto();
+  },{passive:true});
+
+  var ancho=window.innerWidth;
+  window.addEventListener('resize',function(){
+    if(Math.abs(window.innerWidth-ancho)<40) return;   /* la barra del móvil no cuenta */
+    ancho=window.innerWidth; pinta();
+  });
+  document.addEventListener('mcc:lang', pinta);
+  pinta(); auto();
+})();
+</script>
 
 </body>
 </html>
