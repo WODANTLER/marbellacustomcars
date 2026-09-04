@@ -80,19 +80,52 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- ── Meta Pixel ────────────────────────────────────────────────────────
-     ⚠ PONER EL ID REAL DEL PÍXEL en MCC_PIXEL_ID (solo números).
-     Con el ID vacío el píxel no se inicializa y no rompe nada.
-     El evento Lead NO se dispara aquí: se dispara en gracias.html,
-     adonde redirigen los dos formularios de Kommo al enviarse. -->
+<!-- ══════════ ETIQUETAS DE PUBLICIDAD Y CONSENTIMIENTO ══════════
+     Orden obligatorio: primero el modo de consentimiento con todo
+     denegado, y sólo después las etiquetas. Si se cargan antes, ya
+     han escrito cookies y el consentimiento llega tarde.
+     Google exige Consent Mode v2 para el tráfico europeo: sin él
+     limita la medición de conversiones en la UE.               -->
 <script>
-window.MCC_PIXEL_ID = '4384965891721827'; /* PIXEL SITIO WEB MCC */
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-if(window.MCC_PIXEL_ID){fbq('init',window.MCC_PIXEL_ID);fbq('track','PageView');}
+window.MCC_PIXEL_ID = '4384965891721827';   /* Píxel de Meta */
+window.MCC_ADS_ID   = 'AW-17089526484';     /* Google Ads    */
+
+/* ── 1. Consent Mode v2: por defecto, todo denegado ── */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
+  analytics_storage:'denied', wait_for_update: 500
+});
+gtag('js', new Date());
+gtag('config', window.MCC_ADS_ID);
+
+/* ── 2. Las etiquetas sólo se cargan si ya hay un sí guardado ── */
+window.MCC_consentimiento = (function(){
+  try { return localStorage.getItem('mcc-cookies'); } catch(e){ return null; }
+})();
+
+function mccCargarEtiquetas(){
+  if(window.MCC_etiquetasCargadas) return;
+  window.MCC_etiquetasCargadas = true;
+
+  gtag('consent','update',{
+    ad_storage:'granted', ad_user_data:'granted',
+    ad_personalization:'granted', analytics_storage:'granted'
+  });
+
+  var g=document.createElement('script'); g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id='+window.MCC_ADS_ID;
+  document.head.appendChild(g);
+
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  if(window.MCC_PIXEL_ID){ fbq('init', window.MCC_PIXEL_ID); fbq('track','PageView'); }
+}
+if(window.MCC_consentimiento === 'si') mccCargarEtiquetas();
 </script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
@@ -1068,6 +1101,26 @@ body.menu-abierto .flotantes{opacity:0;pointer-events:none}
 .op-flecha:hover{border-color:var(--oro);background:rgba(195,162,102,.08);color:var(--oro)}
 .op-flecha svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 
+
+/* ═══════════ AVISO DE COOKIES ═══════════ */
+.ck{position:fixed;left:0;right:0;bottom:0;z-index:95;
+  background:rgba(9,9,12,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line-fuerte);
+  padding:clamp(16px,2.4vw,22px) clamp(18px,4vw,40px);
+  padding-bottom:calc(clamp(16px,2.4vw,22px) + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:clamp(14px,2.4vw,28px);flex-wrap:wrap;
+  transform:translateY(110%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.ck.ver{transform:translateY(0)}
+.ck p{flex:1 1 320px;font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+.ck a{color:var(--oro);text-decoration:underline;text-underline-offset:2px}
+.ck-btns{display:flex;gap:10px;flex-wrap:wrap}
+.ck-btn{font-family:var(--sans);font-size:13.5px;font-weight:600;cursor:pointer;
+  padding:13px 22px;border:1px solid var(--line-fuerte);background:transparent;
+  color:var(--chrome);transition:border-color .2s,background .2s,color .2s}
+.ck-btn:hover{border-color:var(--oro);color:var(--oro)}
+.ck-btn.si{background:var(--oro);border-color:var(--oro);color:#0b0906}
+.ck-btn.si:hover{background:var(--oro-claro);border-color:var(--oro-claro);color:#0b0906}
+@media(max-width:560px){.ck-btn{flex:1 1 auto;justify-content:center;text-align:center}}
 /* ═══════════ AJUSTES DE MÓVIL ═══════════ */
 @media(max-width:640px){
   /* Las reglas del hero están en el bloque de 1099px, más arriba. */
@@ -2944,5 +2997,71 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') cerrar(); 
 })();
 </script>
 
+
+<!-- Aviso de cookies. Aparece sólo si no hay respuesta guardada. -->
+<div class="ck" id="ck" hidden>
+  <p data-es='Usamos cookies de Google y Meta para medir la publicidad. Puedes aceptarlas o rechazarlas; si las rechazas, la web funciona igual. Más info en la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.'
+     data-en='We use Google and Meta cookies to measure our advertising. You can accept or reject them; the site works the same either way. More in our <a href="privacidad.html" target="_blank" rel="noopener">privacy policy</a>.'
+     data-pt='Usamos cookies da Google e da Meta para medir a publicidade. Podes aceitar ou recusar; o site funciona na mesma. Mais informação na <a href="privacidad.html" target="_blank" rel="noopener">política de privacidade</a>.'
+     data-ru='Мы используем файлы cookie Google и Meta для оценки рекламы. Их можно принять или отклонить — сайт работает одинаково. Подробнее в <a href="privacidad.html" target="_blank" rel="noopener">политике конфиденциальности</a>.'>
+     Usamos cookies de Google y Meta para medir la publicidad. Puedes aceptarlas o rechazarlas; si las rechazas, la web funciona igual. Más info en la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+  <div class="ck-btns">
+    <button class="ck-btn" type="button" id="ckNo"
+      data-es="Rechazar" data-en="Reject" data-pt="Recusar" data-ru="Отклонить">Rechazar</button>
+    <button class="ck-btn si" type="button" id="ckSi"
+      data-es="Aceptar" data-en="Accept" data-pt="Aceitar" data-ru="Принять">Aceptar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ck=document.getElementById('ck');
+  if(window.MCC_consentimiento){ return; }        /* ya respondió antes */
+  ck.hidden=false;
+  requestAnimationFrame(function(){ ck.classList.add('ver'); });
+  function responder(v){
+    try{ localStorage.setItem('mcc-cookies', v); }catch(e){}
+    window.MCC_consentimiento=v;
+    if(v==='si') mccCargarEtiquetas();
+    ck.classList.remove('ver');
+    setTimeout(function(){ ck.hidden=true; }, 420);
+  }
+  document.getElementById('ckSi').addEventListener('click',function(){responder('si');});
+  document.getElementById('ckNo').addEventListener('click',function(){responder('no');});
+})();
+</script>
+
+<!-- ══════════ CONVERSIONES DE GOOGLE ADS ══════════
+     Ojo con el muro de WhatsApp: los botones del hero, de ubicación y
+     el flotante NO llevan a WhatsApp, abren el formulario. Contar una
+     conversión ahí infla los números. Sólo se cuenta cuando el usuario
+     sale de verdad hacia WhatsApp o marca el teléfono. -->
+<script>
+(function(){
+  var ETIQUETAS = {
+    wa:  'AW-17089526484/gdBLCPOcy-wcENT19dQ_',
+    tel: 'AW-17089526484/teE2CPacy-wcENT19dQ_'
+  };
+  var ultimo={};
+  function repetido(k){
+    var t=Date.now();
+    if(ultimo[k] && t-ultimo[k] < 3000) return true;
+    ultimo[k]=t; return false;
+  }
+  function conversion(k){
+    if(window.MCC_consentimiento!=='si') return;   /* sin permiso, no se mide */
+    if(repetido(k)) return;
+    if(typeof gtag==='function') gtag('event','conversion',{send_to:ETIQUETAS[k]});
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    var href=a.getAttribute('href')||'';
+    /* los CTA gateados abren el formulario, no WhatsApp: no cuentan */
+    if(a.closest('#waHero, #waUbic, .wa-flota, [data-wa-gate]')) return;
+    if(/wa\.me|api\.whatsapp\.com|web\.whatsapp\.com|whatsapp:\/\//i.test(href)) return conversion('wa');
+    if(/^tel:/i.test(href)) return conversion('tel');
+  }, true);
+})();
+</script>
 </body>
 </html>
