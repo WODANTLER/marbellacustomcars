@@ -11,24 +11,59 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- ── Meta Pixel ──────────────────────────────────────────────────
-     ⚠ PONER EL MISMO ID QUE EN index.html en MCC_PIXEL_ID.
-     Esta página es el destino de los dos formularios de Kommo:
-     aquí se dispara el evento Lead (100% fiable, sin depender de
-     detectar el envío dentro del iframe).
-     - gracias.html            → lead del formulario de presupuesto
-     - gracias.html?goto=wpp   → lead del gate de WhatsApp (redirige al chat) -->
+<!-- ══════════ ETIQUETAS Y CONSENTIMIENTO ══════════
+     Mismo bloque que index.html. Aquí NO va el aviso de cookies: a esta
+     página se llega desde el formulario, o sea que la persona ya
+     respondió, y su respuesta se lee de localStorage. Si dijo que no,
+     no se carga nada.
+     Esta página es el final del camino bueno: quien llega aquí con
+     ?goto=wpp es alguien que rellenó el formulario y va camino del
+     chat. Esa sí es la conversión que interesa contar.            -->
 <script>
-window.MCC_PIXEL_ID = '4384965891721827'; /* PIXEL SITIO WEB MCC */
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+window.MCC_PIXEL_ID = '4384965891721827';   /* Píxel de Meta */
+window.MCC_ADS_ID   = 'AW-17089526484';     /* Google Ads    */
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
+  analytics_storage:'denied', wait_for_update: 500
+});
+gtag('js', new Date());
+gtag('config', window.MCC_ADS_ID);
+
+window.MCC_consentimiento = (function(){
+  try { return localStorage.getItem('mcc-cookies'); } catch(e){ return null; }
+})();
+
 var esWpp = /(?:\?|&)goto=wpp/.test(location.search);
-fbq('init','4384965891721827');
-fbq('track','PageView');
-fbq('track','Lead',{content_name: esWpp ? 'gate-whatsapp' : 'form-presupuesto'});
+
+if(window.MCC_consentimiento === 'si'){
+  gtag('consent','update',{
+    ad_storage:'granted', ad_user_data:'granted',
+    ad_personalization:'granted', analytics_storage:'granted'
+  });
+
+  var g=document.createElement('script'); g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id='+window.MCC_ADS_ID;
+  document.head.appendChild(g);
+
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.MCC_PIXEL_ID);
+  fbq('track','PageView');
+  fbq('track','Lead',{content_name: esWpp ? 'gate-whatsapp' : 'form-presupuesto'});
+
+  /* Conversión de WhatsApp en Google Ads: sólo para quien viene del
+     formulario camino del chat. Los botones de la home ya no la
+     disparan, porque allí abren el formulario y no WhatsApp. */
+  if(esWpp){
+    gtag('event','conversion',{ send_to: window.MCC_ADS_ID + '/gdBLCPOcy-wcENT19dQ_' });
+  }
+}
 </script>
 
 <style>
@@ -96,7 +131,7 @@ p{color:var(--muted);font-size:clamp(14.5px,1.6vw,16.5px);max-width:38ch;margin:
 (function(){
   var WA_URL = 'https://wa.me/34672936398?text=' +
     encodeURIComponent('Hola, acabo de dejar mis datos en la web. Quiero pedir un presupuesto.');
-  if(/(?:\?|&)goto=wpp/.test(location.search)){
+  if(esWpp){
     document.getElementById('tit').innerHTML = '¡<em>Listo</em>!';
     document.getElementById('txt').textContent = 'Tus datos ya están con nosotros. Abriendo WhatsApp…';
     /* margen para que el píxel dispare el Lead antes de salir */
