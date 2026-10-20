@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://marbellacustomcars.com/">
 <meta property="og:title" content="Detailing en Marbella — PPF, cerámico y wrapping">
 <meta property="og:description" content="Detailing premium para coches de alta gama en Marbella. PPF, tratamiento cerámico, wrapping, pulido y quitabollos.">
-<meta property="og:image" content="https://marbellacustomcars.com/img/og-mcc.jpg">
+<meta property="og:image" content="https://marbellacustomcars.com/img/og-mcc-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Marbella Custom Cars — especialistas en el cuidado de tu coche en Marbella">
@@ -37,7 +37,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Detailing en Marbella — Marbella Custom Cars">
 <meta name="twitter:description" content="PPF, tratamiento cerámico, wrapping y detailing para coches de alta gama.">
-<meta name="twitter:image" content="https://marbellacustomcars.com/img/og-mcc.jpg">
+<meta name="twitter:image" content="https://marbellacustomcars.com/img/og-mcc-v2.jpg">
 <meta name="twitter:image:alt" content="Marbella Custom Cars — detailing en Marbella">
 
 <!-- Datos estructurados. Es lo que lee Google (y los buscadores con IA)
@@ -61,7 +61,7 @@
    "url": "https://marbellacustomcars.com/",
    "logo": "https://marbellacustomcars.com/favicon-512.png",
    "image": [
-    "https://marbellacustomcars.com/img/og-mcc.jpg",
+    "https://marbellacustomcars.com/img/og-mcc-v2.jpg",
     "https://marbellacustomcars.com/img/porsche-banner-d.webp",
     "https://marbellacustomcars.com/img/hero-b.webp"
    ],
@@ -305,7 +305,7 @@
    "about": {
     "@id": "https://marbellacustomcars.com/#negocio"
    },
-   "primaryImageOfPage": "https://marbellacustomcars.com/img/og-mcc.jpg",
+   "primaryImageOfPage": "https://marbellacustomcars.com/img/og-mcc-v2.jpg",
    "inLanguage": "es"
   },
   {
@@ -1824,6 +1824,21 @@ section.mani{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,rgba(
   section.mani .mani-txt{font-size:clamp(27px,7.6vw,36px);text-shadow:0 2px 24px rgba(0,0,0,.6)}
   section.mani .mani-txt .w{opacity:max(var(--o,.14),.32)}
   section.mani .mani-firma{margin-top:18px;color:#bdb6a8;margin-right:62px}
+}
+
+/* ── móvil: WhatsApp y llamar siempre abajo a la derecha, uno encima del otro;
+   la frase del hero deja libre ese rincón ── */
+@media(max-width:760px){
+  .hx-o2.hx-txt{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)!important}
+}
+/* ── móvil: "Hablemos de tu coche" con el Ferrari arriba a pantalla completa
+   y el formulario debajo, sin taparlo ── */
+@media(max-width:899px){
+  #presupuesto-final .sec{padding-top:0!important}
+  #presupuesto-final .sec-cab{padding-top:calc(min(64svh,520px) - 150px);position:relative}
+  .pf-fondo{top:0;height:min(64svh,520px)!important;-webkit-mask-image:none!important;mask-image:none!important}
+  .pf-fondo img{opacity:1!important;object-position:35% 50%!important}
+  .pf-fondo::after{background:linear-gradient(180deg,rgba(6,6,8,.35) 0%,rgba(6,6,8,0) 25%,rgba(6,6,8,.15) 55%,rgba(6,6,8,.92) 88%,#0b0b0e 100%)!important}
 }
 /* idiomas comprimidos */
 .idioma{position:relative;flex:none}
@@ -3582,22 +3597,6 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
 })();
 </script>
 
-<script>
-/* móvil: los botones redondos viven bajo la frase mientras se ve el hero */
-(function(){
-  var hx=document.getElementById('inicio'), fl=document.querySelector('.flotantes');
-  if(!hx||!fl||!('IntersectionObserver' in window)) return;
-  var dentro=null, t=null;
-  function pon(v){
-    if(v===dentro) return; var primera=dentro===null; dentro=v;
-    if(primera){ document.body.classList.toggle('en-hero',v); return; }
-    fl.classList.add('cambiando'); clearTimeout(t);
-    t=setTimeout(function(){ document.body.classList.toggle('en-hero',v);
-      requestAnimationFrame(function(){ fl.classList.remove('cambiando'); }); },220);
-  }
-  new IntersectionObserver(function(es){ pon(es[0].intersectionRatio>.6); },{threshold:[0,.6,1]}).observe(hx);
-})();
-</script>
 
 <script>
 /* ── fondo vivo: cada sección tiene su propia luz ambiente y, al bajar, el
