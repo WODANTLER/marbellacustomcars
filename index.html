@@ -1583,10 +1583,9 @@ body.menu-abierto .flotantes{opacity:0;pointer-events:none}
 
 /* ── Formulario propio de presupuesto ──
    Sin Kommo: lo que escribe la persona llega por correo a
-   marbellacustomcars@gmail.com a través de FormSubmit (formsubmit.co).
-   La primera vez que alguien lo envía, FormSubmit manda un correo de
-   activación a esa dirección: hay que pulsar "Activate Form" una vez
-   y a partir de ahí todos los envíos llegan solos. */
+   marbellacustomcars@gmail.com a través de Web3Forms (web3forms.com),
+   con la clave de acceso que está en el script del formulario. Si el
+   envío falla, el aviso de error abre WhatsApp con los datos ya escritos. */
 .presu-final{max-width:600px;margin-inline:auto;width:100%}
 .pf{position:relative;border:1px solid var(--line);background:var(--panel);
   padding:clamp(24px,3.4vw,40px)}
@@ -3156,7 +3155,7 @@ window.addEventListener('resize',marca);
 <!-- ════════════════════════════════════════════════════════════
      WhatsApp directo: todos los botones abren el chat sin pasar por
      ningún formulario. Cada clic se cuenta en el píxel como Contact.
-     Formulario de presupuesto: se envía por correo con FormSubmit.
+     Formulario de presupuesto: se envía por correo con Web3Forms.
      ════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
@@ -3167,7 +3166,9 @@ document.addEventListener('click',function(e){
   if(a && window.fbq && window.MCC_PIXEL_ID) fbq('track','Contact');
 });
 
-var DESTINO='https://formsubmit.co/ajax/marbellacustomcars@gmail.com';
+/* Web3Forms: los pedidos llegan a marbellacustomcars@gmail.com. La clave es pública por diseño
+   (solo sirve para enviar a ese correo) y se gestiona en web3forms.com con ese Gmail. */
+var DESTINO='https://api.web3forms.com/submit', CLAVE='bb374af2-e8ad-4d65-a98c-f762659ee314';
 var pf=document.getElementById('pf'), form=document.getElementById('pfForm');
 if(!pf||!form) return;
 var boton=form.querySelector('.pf-enviar');
@@ -3239,11 +3240,11 @@ form.addEventListener('submit',function(e){
     'Servicios':srv.length?srv.join(', '):'—',
     'Mensaje':form.mensaje.value.trim()||'—',
     'Idioma de la web':idi().toUpperCase(),
-    _subject:'Presupuesto web: '+nom+(srv.length?' · '+srv.join(', '):''),
-    _template:'table',
-    _captcha:'false'
+    access_key:CLAVE,
+    subject:'Presupuesto web: '+nom+(srv.length?' · '+srv.join(', '):''),
+    from_name:'Web Marbella Custom Cars'
   };
-  if(form.email.value.trim()) datos._replyto=form.email.value.trim();
+  if(form.email.value.trim()) datos.replyto=form.email.value.trim();
 
   pf.classList.remove('con-error');
   var txt=boton.innerHTML; boton.disabled=true; boton.textContent=ENVIANDO[idi()];
@@ -3255,7 +3256,17 @@ form.addEventListener('submit',function(e){
       if(window.fbq && window.MCC_PIXEL_ID) fbq('track','Lead');
       pf.scrollIntoView({behavior:'smooth',block:'center'});
     })
-    .catch(function(){ pf.classList.add('con-error'); })
+    .catch(function(){
+      pf.classList.add('con-error');
+      /* si el correo falla, el enlace de WhatsApp del aviso lleva ya escritos los datos del formulario */
+      var T={es:['Hola, quiero pedir un presupuesto.','Nombre','Teléfono','Coche','Servicio','Mensaje'],
+             en:['Hi, I would like a quote.','Name','Phone','Car','Service','Message'],
+             pt:['Olá, quero pedir um orçamento.','Nome','Telefone','Carro','Serviço','Mensagem'],
+             ru:['Здравствуйте, хочу узнать стоимость.','Имя','Телефон','Автомобиль','Услуга','Сообщение']}[idi()];
+      var v=[nom,tel,form.coche.value.trim(),srv.join(', '),form.mensaje.value.trim()];
+      var txt2=T[0]; v.forEach(function(x,i){ if(x) txt2+='\n'+T[i+1]+': '+x; });
+      var w=pf.querySelector('.pf-error a'); if(w) w.href='https://wa.me/34672936398?text='+encodeURIComponent(txt2);
+    })
     .then(function(){ boton.disabled=false; boton.innerHTML=txt; });
 });
 })();
