@@ -1740,7 +1740,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:-1;pointer-events:none;
   @keyframes luz{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-2%,1.5%,0) scale(1.06)}}
 }
 /* la frase después del hero arranca negra (sigue al vídeo) y se abre a la luz */
-section.mani{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,0) 100%)}
+section.mani{background:transparent}
 /* paneles y tarjetas un punto más claros que el fondo, para que se despeguen */
 :root{--ink:#0b0b0e;--panel:#141419}
 
@@ -1850,6 +1850,8 @@ section.mani{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,rgba(
   .wa-flota svg{width:24px!important;height:24px!important}
   .tel-flota svg{width:21px!important;height:21px!important}
 }
+/* el negro del vídeo se funde con el fondo al entrar en servicios */
+.puente{position:relative;height:clamp(140px,22vh,240px);margin-bottom:calc(-1*clamp(140px,22vh,240px));background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 40%,rgba(0,0,0,0) 100%);pointer-events:none;z-index:0}
 /* idiomas comprimidos */
 .idioma{position:relative;flex:none}
 .idi-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,.16);cursor:pointer;
@@ -2006,17 +2008,9 @@ br.sm{display:none}
   <span class="hx-baja" aria-hidden="true"></span>
 </section>
 
-<!-- ── la frase: se ilumina palabra a palabra al bajar ── -->
-<section class="mani" aria-label="Quiénes somos">
-  <div class="wrap mani-grid">
-    <div class="mani-tx">
-    <p class="mani-txt" id="mani" data-es="No somos los más baratos de Marbella. Trabajamos sin atajos y respondemos por cada detalle." data-en="We are not the cheapest in Marbella. We work without shortcuts and stand behind every detail." data-pt="Não somos os mais baratos de Marbella. Trabalhamos sem atalhos e respondemos por cada detalhe." data-ru="Мы не самые дешёвые в Марбелье. Мы работаем без компромиссов и отвечаем за каждую деталь.">No somos los más baratos de Marbella. Trabajamos sin atajos y respondemos por cada detalle.</p>
-    <span class="mani-firma" data-es="Marbella Custom Cars · Calle Oro 32" data-en="Marbella Custom Cars · Calle Oro 32" data-pt="Marbella Custom Cars · Calle Oro 32" data-ru="Marbella Custom Cars · Calle Oro 32">Marbella Custom Cars · Calle Oro 32</span>
-    </div>
-    <div class="mani-media"><figure class="mani-foto" data-v=".06"><img src="img/mani-3.webp" alt="Técnico de Marbella Custom Cars aplicando lámina PPF" loading="lazy" decoding="async"></figure></div>
-  </div>
-</section>
 
+
+  <div class="puente" aria-hidden="true"></div>
   <div class="wrap" id="servicios">
     <section class="sec">
       <div class="sec-cab">
@@ -2057,6 +2051,17 @@ br.sm{display:none}
     
 
   </div>
+
+<!-- ── la frase: se ilumina palabra a palabra al bajar ── -->
+<section class="mani" aria-label="Quiénes somos">
+  <div class="wrap mani-grid">
+    <div class="mani-tx">
+    <p class="mani-txt" id="mani" data-es="No somos los más baratos de Marbella. Trabajamos sin atajos y respondemos por cada detalle." data-en="We are not the cheapest in Marbella. We work without shortcuts and stand behind every detail." data-pt="Não somos os mais baratos de Marbella. Trabalhamos sem atalhos e respondemos por cada detalhe." data-ru="Мы не самые дешёвые в Марбелье. Мы работаем без компромиссов и отвечаем за каждую деталь.">No somos los más baratos de Marbella. Trabajamos sin atajos y respondemos por cada detalle.</p>
+    <span class="mani-firma" data-es="Marbella Custom Cars · Calle Oro 32" data-en="Marbella Custom Cars · Calle Oro 32" data-pt="Marbella Custom Cars · Calle Oro 32" data-ru="Marbella Custom Cars · Calle Oro 32">Marbella Custom Cars · Calle Oro 32</span>
+    </div>
+    <div class="mani-media"><figure class="mani-foto" data-v=".06"><img src="img/mani-3.webp" alt="Técnico de Marbella Custom Cars aplicando lámina PPF" loading="lazy" decoding="async"></figure></div>
+  </div>
+</section>
 
 <!-- ── PRESUPUESTO, justo antes de las preguntas frecuentes: el
        visitante ya ha visto servicios y precios y llega convencido. Formulario propio: los datos
@@ -2447,9 +2452,52 @@ var FAM = {
   integral:  {es:'Servicio integral',  pt:'Serviço integral', ru:'Комплексная услуга', en:'Full programme'}
 };
 
-/* ORDEN: de más barato a más caro. Para mover un servicio de sitio,
+/* ORDEN: primero PPF, wrapping, cerámico y lavado; después el resto. Para mover un servicio de sitio,
    basta con cambiarlo de posición en esta lista. */
 var SERVICIOS = [
+
+  { fam:'proteccion', id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
+    dEs:'PPF: lámina invisible contra piedras y arañazos.',
+    dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
+    dEn:'Invisible film against stone chips and scratches.',
+    v:[
+      {es:'Full body', pt:'Full body', ru:'Full body', en:'Full body',
+       p:{t:'rango', v:'4.200 – 5.000'}},
+      {es:'Full front', pt:'Full front', ru:'Full front', en:'Full front',
+       p:{t:'rango', v:'1.500 – 2.000'}},
+      {es:'Sectorizado', pt:'Por zonas', ru:'Локальная защита', en:'Sectional',
+       p:{t:'pendiente'}}
+    ]},
+
+  { fam:'estetica', id:'wrapping', es:'Wrapping', pt:'Wrapping', ru:'Оклейка винилом', en:'Wrapping', foto:FOTOS.wrapping,
+    dEs:'Vinilo de cambio de color, reversible y sin tocar la pintura.',
+    dPt:'Mudança de cor reversível, sem tocar na pintura.', dRu:'Обратимая смена цвета без вреда для краски.',
+    dEn:'Colour-change vinyl wrap, reversible, factory paint untouched.',
+    v:[
+      {es:'Wrapping total', pt:'Wrapping total', ru:'Полная оклейка', en:'Full wrap',
+       p:{t:'consultar'}},
+      {es:'Wrapping parcial', pt:'Wrapping parcial', ru:'Частичная оклейка', en:'Partial wrap',
+       p:{t:'pendiente'}},
+      {es:'Personalizado', pt:'Personalizado', ru:'Индивидуальный дизайн', en:'Custom design',
+       p:{t:'consultar'}}
+    ]},
+
+  { fam:'proteccion', id:'ceramico', es:'Tratamiento cerámico', pt:'Tratamento cerâmico', ru:'Керамическое покрытие', en:'Ceramic coating', foto:FOTOS.ceramico,
+    dEs:'Sella la pintura, repele agua y suciedad.',
+    dPt:'Sela a pintura, repele água e sujidade.', dRu:'Запечатывает краску, отталкивает воду и грязь.',
+    dEn:'Seals the paint, repels water and dirt.',
+    v:[
+      {es:'Carrocería Signature', pt:'Carroçaria Signature', ru:'Кузов Signature', en:'Bodywork Signature',
+       p:{t:'fijo', v:'800'}},
+      {es:'Carrocería Premium', pt:'Carroçaria Premium', ru:'Кузов Premium', en:'Bodywork Premium',
+       p:{t:'fijo', v:'1.000'}},
+      {es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', p:{t:'pendiente'}},
+      {es:'Cristales', pt:'Vidros', ru:'Стёкла', en:'Glass', p:{t:'pendiente'}},
+      {es:'Plásticos exteriores', pt:'Plásticos exteriores', ru:'Наружный пластик', en:'Exterior plastics', p:{t:'pendiente'}},
+      {es:'Tela de capota', pt:'Capota de lona', ru:'Тканевая крыша', en:'Soft top', p:{t:'pendiente'}},
+      {es:'Tela del interior', pt:'Tecidos do interior', ru:'Ткани салона', en:'Interior fabric', p:{t:'pendiente'}},
+      {es:'Cueros del interior', pt:'Pele do interior', ru:'Кожа салона', en:'Interior leather', p:{t:'pendiente'}}
+    ]},
 
   { fam:'interior', id:'lavado', es:'Lavado', pt:'Lavagem', ru:'Мойка', en:'Wash', foto:FOTOS.lavado,
     dEs:'Mantenimiento periódico en tres niveles.',
@@ -2508,6 +2556,19 @@ var SERVICIOS = [
               ru:'Отдельно или в дополнение к любому уровню.'}}
     ]},
 
+  { fam:'ruedas', id:'llantas', es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', foto:FOTOS.llantas,
+    dEs:'Reparación, pintura y protección cerámica.',
+    dPt:'Reparação, pintura e proteção cerâmica.', dRu:'Ремонт, покраска и керамическая защита.',
+    dEn:'Repair, paint and ceramic protection.',
+    v:[
+      {es:'Reparación y pintura', pt:'Reparação e pintura', ru:'Ремонт и покраска', en:'Repair and paint',
+       p:{t:'pendiente'}},
+      {es:'Pulido y cerámico', pt:'Polimento e cerâmico', ru:'Полировка и керамика', en:'Polish and ceramic',
+       p:{t:'desde', v:'290'}},
+      {es:'Pintura de pinzas', pt:'Pintura de pinças', ru:'Покраска суппортов', en:'Caliper paint',
+       p:{t:'pendiente'}}
+    ]},
+
   { fam:'ruedas', id:'cristales', es:'Tintado de cristales', pt:'Tintagem de vidros', ru:'Тонировка стёкол', en:'Window tinting', foto:FOTOS.cristales,
     dEs:'Menos calor, menos UV, más privacidad.',
     dPt:'Menos calor, menos UV, mais privacidade.', dRu:'Меньше жары и ультрафиолета, больше приватности.',
@@ -2519,24 +2580,6 @@ var SERVICIOS = [
        p:{t:'pendiente'}},
       {es:'Tratamiento antilluvia', pt:'Tratamento anti-chuva', ru:'Антидождь', en:'Rain-repellent treatment',
        p:{t:'desde', v:'190'}}
-    ]},
-
-  { fam:'interior', id:'int', es:'Interior', pt:'Interior', ru:'Салон', en:'Interior', foto:FOTOS.interior,
-    dEs:'Limpieza a fondo y protección de cuero y telas.',
-    dPt:'Limpeza a fundo e proteção de pele e tecidos.', dRu:'Глубокая чистка и защита кожи и тканей.',
-    dEn:'Deep clean and protection for leather and fabrics.',
-    v:[
-      {es:'Limpieza completa de interior', pt:'Limpeza completa de interior', ru:'Полная химчистка салона', en:'Full interior detailing',
-       p:{t:'desde', v:'250', nota:'coche pequeño', notaEn:'small car'},
-       sub:{es:'Limpieza profunda del habitáculo', en:'Deep clean of the cabin',
-            pt:'Limpeza profunda do habitáculo', ru:'Глубокая чистка салона'},
-       pts:{es:['Inyección-extracción en moquetas, alfombrillas, techo y maletero','Acondicionamiento de plásticos, volante, puertas y palanca'],
-            en:['Hot-water extraction on carpets, mats, headliner and boot','Plastics, steering wheel, door cards and gear lever conditioned'],
-            pt:['Injeção-extração em alcatifas, tapetes, tejadilho e mala','Condicionamento de plásticos, volante, portas e alavanca'],
-            ru:['Экстракторная чистка ковролина, ковриков, потолка и багажника','Обработка пластика, руля, дверных карт и рычага КПП']}},
-      {es:'Extra: tratamiento cerámico para cueros', pt:'Extra: tratamento cerâmico para peles',
-       ru:'Дополнительно: керамика для кожи салона', en:'Add-on: ceramic coating for leather',
-       p:{t:'pendiente'}}
     ]},
 
   { fam:'carroceria', id:'quitabollos', foto:FOTOS.quitabollos, pos:'58% 52%',
@@ -2557,49 +2600,6 @@ var SERVICIOS = [
        p:{t:'consultar'}}
     ]},
 
-  { fam:'ruedas', id:'llantas', es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', foto:FOTOS.llantas,
-    dEs:'Reparación, pintura y protección cerámica.',
-    dPt:'Reparação, pintura e proteção cerâmica.', dRu:'Ремонт, покраска и керамическая защита.',
-    dEn:'Repair, paint and ceramic protection.',
-    v:[
-      {es:'Reparación y pintura', pt:'Reparação e pintura', ru:'Ремонт и покраска', en:'Repair and paint',
-       p:{t:'pendiente'}},
-      {es:'Pulido y cerámico', pt:'Polimento e cerâmico', ru:'Полировка и керамика', en:'Polish and ceramic',
-       p:{t:'desde', v:'290'}},
-      {es:'Pintura de pinzas', pt:'Pintura de pinças', ru:'Покраска суппортов', en:'Caliper paint',
-       p:{t:'pendiente'}}
-    ]},
-
-  { fam:'proteccion', id:'ceramico', es:'Tratamiento cerámico', pt:'Tratamento cerâmico', ru:'Керамическое покрытие', en:'Ceramic coating', foto:FOTOS.ceramico,
-    dEs:'Sella la pintura, repele agua y suciedad.',
-    dPt:'Sela a pintura, repele água e sujidade.', dRu:'Запечатывает краску, отталкивает воду и грязь.',
-    dEn:'Seals the paint, repels water and dirt.',
-    v:[
-      {es:'Carrocería Signature', pt:'Carroçaria Signature', ru:'Кузов Signature', en:'Bodywork Signature',
-       p:{t:'fijo', v:'800'}},
-      {es:'Carrocería Premium', pt:'Carroçaria Premium', ru:'Кузов Premium', en:'Bodywork Premium',
-       p:{t:'fijo', v:'1.000'}},
-      {es:'Llantas', pt:'Jantes', ru:'Диски', en:'Wheels', p:{t:'pendiente'}},
-      {es:'Cristales', pt:'Vidros', ru:'Стёкла', en:'Glass', p:{t:'pendiente'}},
-      {es:'Plásticos exteriores', pt:'Plásticos exteriores', ru:'Наружный пластик', en:'Exterior plastics', p:{t:'pendiente'}},
-      {es:'Tela de capota', pt:'Capota de lona', ru:'Тканевая крыша', en:'Soft top', p:{t:'pendiente'}},
-      {es:'Tela del interior', pt:'Tecidos do interior', ru:'Ткани салона', en:'Interior fabric', p:{t:'pendiente'}},
-      {es:'Cueros del interior', pt:'Pele do interior', ru:'Кожа салона', en:'Interior leather', p:{t:'pendiente'}}
-    ]},
-
-  { fam:'estetica', id:'wrapping', es:'Wrapping', pt:'Wrapping', ru:'Оклейка винилом', en:'Wrapping', foto:FOTOS.wrapping,
-    dEs:'Vinilo de cambio de color, reversible y sin tocar la pintura.',
-    dPt:'Mudança de cor reversível, sem tocar na pintura.', dRu:'Обратимая смена цвета без вреда для краски.',
-    dEn:'Colour-change vinyl wrap, reversible, factory paint untouched.',
-    v:[
-      {es:'Wrapping total', pt:'Wrapping total', ru:'Полная оклейка', en:'Full wrap',
-       p:{t:'consultar'}},
-      {es:'Wrapping parcial', pt:'Wrapping parcial', ru:'Частичная оклейка', en:'Partial wrap',
-       p:{t:'pendiente'}},
-      {es:'Personalizado', pt:'Personalizado', ru:'Индивидуальный дизайн', en:'Custom design',
-       p:{t:'consultar'}}
-    ]},
-
   { fam:'estetica', id:'bodykits', es:'Body kits', pt:'Body kits', ru:'Обвесы', en:'Body kits', foto:FOTOS.bodykits,
     dEs:'Aerodinámica y piezas de carbono a medida.',
     dPt:'Aerodinâmica e peças de carbono à medida.', dRu:'Аэродинамика и карбон на заказ.',
@@ -2613,64 +2613,6 @@ var SERVICIOS = [
        p:{t:'pendiente'}},
       {es:'Volantes personalizados', pt:'Volantes personalizados', ru:'Рули на заказ', en:'Custom steering wheels',
        p:{t:'consultar'}}
-    ]},
-
-  { fam:'proteccion', id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
-    dEs:'PPF: lámina invisible contra piedras y arañazos.',
-    dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
-    dEn:'Invisible film against stone chips and scratches.',
-    v:[
-      {es:'Full body', pt:'Full body', ru:'Full body', en:'Full body',
-       p:{t:'rango', v:'4.200 – 5.000'}},
-      {es:'Full front', pt:'Full front', ru:'Full front', en:'Full front',
-       p:{t:'rango', v:'1.500 – 2.000'}},
-      {es:'Sectorizado', pt:'Por zonas', ru:'Локальная защита', en:'Sectional',
-       p:{t:'pendiente'}}
-    ]},
-
-  { fam:'integral', id:'premium', foto:FOTOS.premium, pos:'50% 42%',
-    es:'Premium Detailing', pt:'Premium Detailing', ru:'Premium Detailing', en:'Premium Detailing',
-    dEs:'El coche entero protegido por dentro y por fuera.',
-    dPt:'O carro inteiro protegido por dentro e por fora.',
-    dRu:'Автомобиль защищён снаружи и изнутри.',
-    dEn:'The whole car protected inside and out.',
-    v:[
-      {es:'Programa completo', pt:'Programa completo', ru:'Полная программа', en:'Complete programme',
-       p:{t:'consultar'}, foto:FOTOS.premium,
-       sub:{es:'Fuera, dentro y después', en:'Outside, inside and after',
-            pt:'Fora, dentro e depois', ru:'Снаружи, внутри и потом'},
-       pts:{es:['PPF Full Body: la carrocería entera bajo lámina',
-                'PPF de interior: piano black, salpicadero y consola',
-                'Tratamiento cerámico sobre el PPF',
-                'Limpieza completa de interior, antes de laminar',
-                'Lavado de motor',
-                'Tres Lavados Black durante el año',
-                'Kit de limpieza Marbella Custom Cars'],
-            en:['Full-body PPF: the whole bodywork under film',
-                'Interior PPF: piano black, dashboard and console',
-                'Ceramic coating over the PPF',
-                'Full interior detailing, done before the film goes on',
-                'Engine bay detailing',
-                'Three Black washes through the year',
-                'Marbella Custom Cars cleaning kit'],
-            pt:['PPF Full Body: toda a carroçaria sob película',
-                'PPF de interior: piano black, tablier e consola',
-                'Tratamento cerâmico sobre o PPF',
-                'Limpeza completa de interior, antes de aplicar a película',
-                'Lavagem de motor',
-                'Três Lavagens Black ao longo do ano',
-                'Kit de limpeza Marbella Custom Cars'],
-            ru:['PPF на весь кузов: кузов целиком под плёнкой',
-                'PPF в салоне: piano black, панель и консоль',
-                'Керамика поверх PPF',
-                'Полная химчистка салона — до оклейки, не после',
-                'Мойка моторного отсека',
-                'Три мойки Black в течение года',
-                'Набор для ухода Marbella Custom Cars']},
-       ideal:{es:'Para quien acaba de comprar el coche y quiere devolverlo intacto.',
-              en:'For someone who has just bought the car and wants to hand it back untouched.',
-              pt:'Para quem acabou de comprar o carro e quer devolvê-lo intacto.',
-              ru:'Для тех, кто только купил автомобиль и хочет вернуть его нетронутым.'}}
     ]}
 ];
 
@@ -3618,9 +3560,9 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
      l1/l2: posición de las luces (en %) · a1..a3: intensidad */
   var T=[
     {sel:'#inicio',            c1:[195,162,102],a1:.176,c2:[195,162,102],a2:.108,c3:[78,84,102], a3:.20,b1:[12,12,15],b2:[19,19,24],l1:[100,-5], l2:[-10,105]},
-    {sel:'.mani',              c1:[205,165,95], a1:.216,c2:[120,90,60],  a2:.108,c3:[60,58,70],  a3:.16,b1:[11,10,12],b2:[20,17,16],l1:[85,10],  l2:[0,95]},
     {sel:'#servicios',         c1:[90,120,175], a1:.176,c2:[195,162,102],a2:.095,c3:[70,82,110], a3:.22,b1:[10,12,16],b2:[17,20,27],l1:[-5,15],  l2:[105,90]},
     {sel:'#en3d',              c1:[150,185,230],a1:.203,c2:[80,110,160], a2:.121,c3:[60,72,100], a3:.24,b1:[8,10,14], b2:[15,18,25],l1:[100,30], l2:[0,85]},
+    {sel:'.mani',              c1:[205,165,95], a1:.216,c2:[120,90,60],  a2:.108,c3:[60,58,70],  a3:.16,b1:[11,10,12],b2:[20,17,16],l1:[85,10],  l2:[0,95]},
     {sel:'#presupuesto-final', c1:[200,70,50],  a1:.176,c2:[195,140,90], a2:.108,c3:[90,60,60],  a3:.18,b1:[13,10,11],b2:[22,15,16],l1:[-5,40],  l2:[100,100]},
     {sel:'#faq',               c1:[195,162,102],a1:.108,c2:[110,120,140],a2:.095,c3:[70,74,86],  a3:.18,b1:[12,12,14],b2:[18,18,22],l1:[100,0],  l2:[-10,100]},
     {sel:'#ubicacion',         c1:[70,140,150], a1:.162,c2:[195,162,102],a2:.095,c3:[50,80,90],  a3:.20,b1:[9,12,13], b2:[14,20,22],l1:[0,20],   l2:[100,95]},
