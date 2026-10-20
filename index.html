@@ -1840,6 +1840,16 @@ section.mani{background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,rgba(
   .pf-fondo img{opacity:1!important;object-position:35% 50%!important}
   .pf-fondo::after{background:linear-gradient(180deg,rgba(6,6,8,.35) 0%,rgba(6,6,8,0) 25%,rgba(6,6,8,.15) 55%,rgba(6,6,8,.92) 88%,#0b0b0e 100%)!important}
 }
+/* móvil: frase del hero abajo del todo y los botones al lado */
+@media(max-width:760px){
+  .hx-o2.hx-txt{bottom:calc(env(safe-area-inset-bottom,0px) + 24px)!important;right:70px!important}
+  .hx[data-tipo="A"] .hx-h1{font-size:clamp(19px,5.6vw,26px)!important}
+  .hx-srv{font-size:8.5px!important;letter-spacing:.06em!important;gap:3px 6px!important}
+  .flotantes{bottom:calc(20px + env(safe-area-inset-bottom,0px))!important;right:14px!important;gap:8px!important}
+  .wa-flota,.tel-flota{width:46px!important;height:46px!important}
+  .wa-flota svg{width:24px!important;height:24px!important}
+  .tel-flota svg{width:21px!important;height:21px!important}
+}
 /* idiomas comprimidos */
 .idioma{position:relative;flex:none}
 .idi-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,.16);cursor:pointer;
