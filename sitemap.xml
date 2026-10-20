@@ -1,4 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://marbellacustomcars.com/</loc><priority>1.0</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://marbellacustomcars.com/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/"/>
+    <image:image><image:loc>https://marbellacustomcars.com/img/og-mcc.jpg</image:loc></image:image>
+  </url>
+  <url><loc>https://marbellacustomcars.com/?lang=en</loc><lastmod>2026-10-19</lastmod><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/"/></url>
+  <url><loc>https://marbellacustomcars.com/?lang=pt</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/"/></url>
+  <url><loc>https://marbellacustomcars.com/?lang=ru</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/"/></url>
+  <url>
+    <loc>https://marbellacustomcars.com/servicios-3d/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/servicios-3d/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/servicios-3d/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/servicios-3d/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/servicios-3d/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/servicios-3d/"/>
+    <image:image><image:loc>https://marbellacustomcars.com/img/og-3d.jpg</image:loc></image:image>
+  </url>
 </urlset>
