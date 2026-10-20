@@ -1970,7 +1970,7 @@ section.mani{background:transparent}
 }
 /* ── móvil: frase y foto a la vez (entra desde la derecha) ── */
 @media(max-width:860px){
-  section.mani{height:190svh;--mi:1}
+  section.mani{height:150svh;--mi:1}
   section.mani .mani-media{translate:calc((1 - var(--mi)) * 104%) 0;opacity:calc(.2 + var(--mi) * .8);will-change:translate}
   section.mani .mani-media>.mani-foto img{scale:calc(1.12 - var(--mi) * .12)}
 }
@@ -3858,7 +3858,7 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
   function paso(){
     if(innerWidth<=860){
       var r=sec.getBoundingClientRect(), s=-r.top/Math.max(1,r.height-innerHeight);
-      sec.style.setProperty('--mi',ease(cl((s+.12)/.62)).toFixed(4));
+      var k=cl((innerHeight-r.top)/(innerHeight*.6)); k=1-Math.pow(1-k,3); sec.style.setProperty('--mi',(k>.995?1:k).toFixed(4));
     }
     requestAnimationFrame(paso);
   }
