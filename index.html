@@ -2131,6 +2131,23 @@ br.sm{display:none}
 .sec-cab.pre > *{opacity:0;transform:translateY(22px)}
 .sec-cab.forma > *{opacity:1;transform:none;transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
 .sec-cab.forma > :nth-child(2){transition-delay:.1s}.sec-cab.forma > :nth-child(3){transition-delay:.2s}
+
+/* ── Servicios: solo el nombre en grande y una línea; cada tarjeta lleva a su página ── */
+#lista a.card-cab{text-decoration:none;color:inherit;min-height:clamp(170px,19vw,230px);align-items:flex-end}
+#lista .card-link h3{font-size:clamp(34px,4.4vw,58px);line-height:.92;letter-spacing:-.02em}
+#lista .card-link .linea{font-size:clamp(14px,1.25vw,16px);margin-top:12px;max-width:30ch;color:var(--muted)}
+#lista .card-link .txt{width:64%}
+#lista .card-link .ir{display:inline-flex;margin-top:16px;width:38px;height:38px;border-radius:50%;align-items:center;justify-content:center;
+  border:1px solid rgba(195,162,102,.55);color:var(--oro);transition:background .25s,color .25s,transform .25s}
+#lista .card-link .ir svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(hover:hover){#lista .card-link:hover .ir{background:var(--oro);color:#0b0906;transform:translateX(4px)}}
+@media(max-width:520px){
+  #lista a.card-cab{min-height:150px}
+  #lista .card-link h3{font-size:clamp(28px,8.6vw,38px)}
+  #lista .card-link .txt{width:68%}
+  #lista .card-link .linea{font-size:13.5px;margin-top:8px}
+  #lista .card-link .ir{width:34px;height:34px;margin-top:12px}
+}
 </style>
 </head>
 <body>
@@ -2176,8 +2193,8 @@ br.sm{display:none}
       <div class="sec-cab">
         <p class="eyebrow" data-es="Catálogo completo" data-pt="Catálogo completo" data-ru="Полный каталог" data-en="Full catalogue">Catálogo completo</p>
         <h2 class="h2" data-es="Servicios" data-pt="Serviços" data-ru="Услуги" data-en="Services">Servicios</h2>
-        <p class="sub" data-es="PPF, tratamiento cerámico, vinilo, quitabollos y detailing. Toca cualquier servicio para ver opciones y precios." data-pt="Toque em qualquer serviço para ver as opções e os preços." data-ru="Нажмите на любую услугу, чтобы увидеть варианты и цены."
-                       data-en="Tap any service to see options and pricing.">Toca cualquier servicio para ver las opciones y los precios.</p>
+        <p class="sub" data-es="Toca un servicio para saber más." data-pt="Toque num serviço para saber mais." data-ru="Нажмите на услугу, чтобы узнать больше."
+                       data-en="Tap a service to find out more.">Toca un servicio para saber más.</p>
         <a class="cab-3d" href="servicios-3d/">
           <span class="cab-3d-et" data-es="Prueba nuestra explicación interactiva en 3D" data-en="Try our interactive 3D explainer" data-pt="Experimente a nossa explicação interativa em 3D" data-ru="Попробуйте нашу интерактивную 3D-презентацию">Prueba nuestra explicación interactiva en 3D</span>
           <span class="cab-3d-btn"><span data-es="Ver en 3D" data-en="View in 3D" data-pt="Ver em 3D" data-ru="Смотреть в 3D">Ver en 3D</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -2628,10 +2645,13 @@ var FAM = {
 
 /* ORDEN: primero PPF, wrapping, cerámico y lavado; después el resto. Para mover un servicio de sitio,
    basta con cambiarlo de posición en esta lista. */
+/* Páginas propias de cada servicio (carpetas del repo). Al publicar una nueva, se añade aquí. */
+var PAGINA = { ppf:'ppf/', wrapping:'wrapping/' };
+
 var SERVICIOS = [
 
   { fam:'proteccion', id:'ppf', es:'PPF', pt:'PPF', ru:'PPF', en:'PPF', foto:FOTOS.ppf,
-    dEs:'PPF: lámina invisible contra piedras y arañazos.',
+    dEs:'Lámina invisible contra piedras y arañazos.',
     dPt:'Película invisível contra pedras e riscos.', dRu:'Невидимая плёнка против камней и царапин.',
     dEn:'Invisible film against stone chips and scratches.',
     v:[
@@ -2878,20 +2898,16 @@ function render(){
       });
       var foto = s.foto ? '<span class="card-foto" style="background-image:url('+s.foto+');'
                    + (s.pos?'--pos:'+s.pos:'')+'"></span>' : '';
-      out+='<div class="card" id="srv-'+s.id+'">'
-         + '<button class="card-cab" type="button" aria-expanded="false">'+foto
+      /* Cada servicio lleva a su página propia; los que aún no la tienen, al formulario de presupuesto. */
+      var href = PAGINA[s.id] ? PAGINA[s.id]+'?lang='+lang : '#presupuesto-final';
+      out+='<div class="card card-link" id="srv-'+s.id+'">'
+         + '<a class="card-cab" href="'+href+'">'+foto
          + '<div class="txt">'
          + '<span class="fam">'+esc(L(f))+'</span>'
          + '<h3>'+esc(L(s))+'</h3>'
          + '<p class="linea">'+esc(DESC(s))+'</p>'
-         + anclaje(s)
-         + '<span class="mas">'+esc(t.ver)+' ('+s.v.length+')'
-         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>'
-         + '</div></button><div class="detalle">'+vs
-         + '<a class="btn-min" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='
-         + encodeURIComponent(t.wa(L(s)))+'">'
-         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.09c-.25.69-1.45 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09s.77-2.19 1.04-2.49c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.49l-.45.52c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>'
-         + t.pide+'</a></div></div>';
+         + '<span class="ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
+         + '</div></a></div>';
     })();
   });
   document.getElementById('lista').innerHTML=out;
@@ -2924,7 +2940,7 @@ function abreNivel(n,v){
   n.querySelector('.nivel-cab').setAttribute('aria-expanded',String(v));
 }
 function conectaTarjetas(){
-  document.querySelectorAll('.card').forEach(function(c){
+  document.querySelectorAll('.card:not(.card-link)').forEach(function(c){
     c.querySelector('.card-cab').addEventListener('click',function(){
       var abierta=c.classList.toggle('abierta');
       this.setAttribute('aria-expanded',String(abierta));
