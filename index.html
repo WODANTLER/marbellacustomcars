@@ -465,7 +465,7 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Unbounded:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Unbounded:wght@300;400;500&display=swap" rel="stylesheet">
 
 <!-- ══════════ ETIQUETAS DE PUBLICIDAD Y CONSENTIMIENTO ══════════
      Orden obligatorio: primero el modo de consentimiento con todo
@@ -539,7 +539,7 @@ html{scroll-behavior:smooth}
 /* La cabecera es fija y flota por encima del contenido, así que cada
    destino de ancla necesita reservarse esa altura. Va del alto real de
    la cabecera en móvil (70px) al de escritorio (125px), más aire. */
-#top,#servicios,#en3d,#faq,#ubicacion,#presupuesto-final,#contacto,#resenas{
+#top,#reserva,#servicios,#en3d,#faq,#ubicacion,#presupuesto-final,#contacto,#resenas{
   scroll-margin-top:clamp(88px,10.5vw,146px);
 }
 body{background:var(--ink);color:var(--chrome);font-family:var(--sans);
@@ -2149,15 +2149,189 @@ br.sm{display:none}
   #lista .card-link .ir{width:34px;height:34px;margin-top:12px}
 }
 </style>
+<!--MCC:RSV-CSS--><style>
+/* ── Reserva en 4 pasos (misma estética que las landings de PPF, wrapping y cerámico) ── */
+.rsv{--r-ink:#0b0b0e;--r-panel:#141419;--r-panel2:#1c1c22;--r-line:rgba(255,255,255,.12);--r-line2:rgba(255,255,255,.24);
+  --r-fg:#f2f2f4;--r-soft:#c9c9d1;--r-muted:#a7a7b0;--r-gold:#c3a266;--r-gold-ink:#0b0906;--r-wa:#25d366;--r-wa-ink:#05200f;
+  --r-disp:"Unbounded","Helvetica Neue",Arial,sans-serif;--r-body:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  position:relative;padding:clamp(72px,10vh,112px) 0 clamp(56px,8vh,96px);font-family:var(--r-body);color:var(--r-fg)}
+.rsv *{box-sizing:border-box}
+.rsv-in{display:grid;gap:clamp(28px,4vw,64px);align-items:start}
+@media (min-width:960px){.rsv-in{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.rsv-intro{display:flex;flex-direction:column;gap:14px}
+@media (min-width:960px){.rsv-intro{position:sticky;top:150px;padding-top:12px}}
+.rsv-kick{margin:0;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--r-gold)}
+.rsv-h{margin:0;font-family:var(--r-disp);font-weight:300;font-size:clamp(34px,4.2vw,60px);line-height:1.02;letter-spacing:-.015em;text-wrap:balance}
+.rsv-sub{margin:0;color:var(--r-soft);font-size:clamp(16px,1.3vw,18px);line-height:1.5;max-width:38ch}
+.rsv-stars{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--r-soft)}
+.rsv-stars span:first-child{color:var(--r-gold);letter-spacing:2px}
+.rsv-stars b{color:var(--r-fg);font-weight:600}
+.rsv-ok{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;color:var(--r-muted);font-size:14.5px}
+.rsv-ok li{display:grid;grid-template-columns:8px 1fr;gap:14px;align-items:start}
+.rsv-ok li::before{content:"";width:8px;height:8px;border-radius:50%;margin-top:.55em;background:var(--r-gold);box-shadow:0 0 10px rgba(195,162,102,.5)}
+.rsv-tel{margin:0;font-size:14px;color:var(--r-muted)}
+.rsv-tel a{color:var(--r-fg);font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums}
+
+/* tarjeta */
+.rsv-card{background:var(--r-panel);border:1px solid var(--r-line);padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:18px;min-height:600px}
+.rsv-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.rsv-bar i{height:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.rsv-bar i::after{content:"";position:absolute;inset:0;background:var(--r-gold);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.rsv-bar i.on::after{transform:scaleX(1)}
+.rsv-meta{display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--r-muted);margin-top:-8px}
+.rsv-meta span:last-child{color:var(--r-gold)}
+.rsv-step{display:flex;flex-direction:column;gap:16px;flex:1}
+.rsv-step.fwd{animation:rsvR .45s cubic-bezier(.2,.8,.2,1) both}
+.rsv-step.bwd{animation:rsvL .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rsvR{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes rsvL{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+.rsv-q{margin:0;font-family:var(--r-disp);font-weight:300;font-size:clamp(24px,2.2vw,30px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.rsv-l{margin:-6px 0 0;color:var(--r-muted);font-size:15px}
+.rsv-lbl{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--r-muted)}
+.rsv-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rsv-row small{font-size:12px;color:#7d7d86;white-space:nowrap}
+
+/* servicios */
+.rsv-svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.rsv-o{appearance:none;position:relative;display:flex;align-items:center;gap:12px;text-align:left;min-height:62px;padding:12px 38px 12px 14px;
+  background:var(--r-ink);border:1px solid var(--r-line2);color:var(--r-fg);font:inherit;cursor:pointer;border-radius:2px;transition:border-color .2s,background .2s,transform .15s}
+.rsv-o:active{transform:scale(.98)}
+.rsv-o svg.ic{width:22px;height:22px;flex:none;color:var(--r-gold)}
+.rsv-o b{display:block;font-weight:600;font-size:15px;line-height:1.2}
+.rsv-o small{display:block;color:var(--r-muted);font-size:12.5px;line-height:1.3;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rsv-o>span:not(.rsv-ck){min-width:0}
+.rsv-o .rsv-ck{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;border:1px solid var(--r-line2);display:grid;place-items:center}
+.rsv-o .rsv-ck svg{width:10px;height:10px;stroke:var(--r-gold-ink);stroke-width:3;fill:none;opacity:0}
+.rsv-o[aria-pressed="true"]{border-color:var(--r-gold);background:rgba(195,162,102,.1)}
+.rsv-o[aria-pressed="true"] .rsv-ck{background:var(--r-gold);border-color:var(--r-gold)}
+.rsv-o[aria-pressed="true"] .rsv-ck svg{opacity:1}
+@media (hover:hover){.rsv-o:hover{border-color:var(--r-gold)}}
+
+/* coche */
+.rsv-chips{display:flex;flex-wrap:wrap;gap:6px}
+.rsv-chip{appearance:none;background:var(--r-ink);border:1px solid var(--r-line2);color:var(--r-soft);font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:0 14px;min-height:38px;cursor:pointer;transition:transform .15s}
+.rsv-chip:active{transform:scale(.96)}
+.rsv-chip.model{background:var(--r-panel2);color:var(--r-fg);border-color:rgba(255,255,255,.14)}
+.rsv-chip.ghost{background:transparent;border-style:dashed}
+.rsv-chip[aria-pressed="true"]{background:var(--r-gold);border-color:var(--r-gold);color:var(--r-gold-ink)}
+.rsv-models{border-left:2px solid var(--r-gold);padding-left:12px;display:flex;flex-direction:column;gap:8px;animation:rsvUp .35s ease both}
+@keyframes rsvUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rsv input[type=text],.rsv input[type=tel]{width:100%;background:var(--r-ink);border:1px solid var(--r-line2);color:var(--r-fg);font:inherit;font-size:16px;font-weight:500;padding:12px 14px;border-radius:2px;min-height:50px}
+.rsv input::placeholder{color:#6f6f78}
+.rsv input:focus,.rsv select:focus{outline:none;border-color:var(--r-gold)}
+.rsv-hint{margin:0;font-size:13px;color:var(--r-gold)}
+
+/* días */
+.rsv-days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.rsv-day{appearance:none;background:var(--r-ink);border:1px solid var(--r-line2);color:var(--r-fg);font:inherit;border-radius:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 2px 7px;min-height:66px;font-variant-numeric:tabular-nums;transition:transform .15s}
+.rsv-day:active{transform:scale(.96)}
+.rsv-day small,.rsv-day em{font-size:11px;font-style:normal;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--r-muted)}
+.rsv-day b{font-family:var(--r-disp);font-weight:500;font-size:21px;line-height:1.2}
+.rsv-day[aria-pressed="true"]{background:var(--r-gold);border-color:var(--r-gold);color:var(--r-gold-ink)}
+.rsv-day[aria-pressed="true"] small,.rsv-day[aria-pressed="true"] em{color:var(--r-gold-ink)}
+.rsv-otra{position:relative;grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border:1px solid rgba(195,162,102,.7);background:rgba(195,162,102,.06);color:var(--r-gold);font-weight:600;font-size:15px;cursor:pointer}
+.rsv-otra svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}
+.rsv-otra input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;color-scheme:dark;border:0;padding:0;min-height:0}
+.rsv-otra.on{background:var(--r-gold);border-color:var(--r-gold);color:var(--r-gold-ink)}
+.rsv-err{margin:0;color:#ff9a8a;font-size:14px}
+
+/* datos */
+.rsv-f{display:flex;flex-direction:column;gap:8px}
+.rsv-telrow{display:grid;grid-template-columns:96px 1fr;gap:8px}
+.rsv select{appearance:none;-webkit-appearance:none;background:var(--r-ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23c3a266' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 12px center/10px 6px;
+  border:1px solid var(--r-line2);color:var(--r-fg);font:inherit;font-size:16px;font-weight:600;padding:0 26px 0 12px;border-radius:2px;min-height:50px}
+
+/* resumen */
+.rsv-sum{border:1px solid var(--r-line);background:var(--r-ink)}
+.rsv-sr{appearance:none;width:100%;border:0;border-top:1px solid var(--r-line);background:none;color:var(--r-fg);font:inherit;text-align:left;display:grid;grid-template-columns:96px 1fr auto;gap:12px;align-items:center;padding:13px 14px;cursor:pointer}
+.rsv-sr:first-child{border-top:0}
+.rsv-sr .k{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--r-muted)}
+.rsv-sr .v{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.rsv-sr .e{font-size:13px;color:var(--r-gold);font-weight:600}
+@media (hover:hover){.rsv-sr:hover{background:var(--r-panel2)}}
+
+/* botones */
+.rsv-foot{display:flex;gap:8px;margin-top:auto;padding-top:4px}
+.rsv-btn{appearance:none;border:1px solid transparent;border-radius:2px;font:inherit;font-weight:600;font-size:16px;min-height:54px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;text-decoration:none;transition:transform .15s,opacity .25s}
+.rsv-btn:active{transform:scale(.98)}
+.rsv-btn.go{flex:1;color:var(--r-gold-ink);background:linear-gradient(110deg,var(--r-gold) 0%,var(--r-gold) 38%,#f0dfb4 50%,var(--r-gold) 62%,var(--r-gold) 100%);background-size:280% 100%;animation:rsvBrillo 5.5s ease-in-out infinite}
+@keyframes rsvBrillo{0%,55%{background-position:100% 0}85%,100%{background-position:0 0}}
+.rsv-btn.go[disabled]{opacity:.35;cursor:not-allowed;animation:none;background:var(--r-gold)}
+.rsv-btn.go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.rsv-btn.back{padding:0 18px 0 14px;gap:8px;background:transparent;border-color:var(--r-line2);color:var(--r-fg);font-size:15px}
+@media (hover:hover){.rsv-btn.back:hover{border-color:var(--r-gold);color:var(--r-gold)}}
+.rsv-otro{appearance:none;background:none;border:0;padding:6px 0;margin:0 auto;color:var(--r-gold);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:underline;text-underline-offset:4px}
+.rsv-otro svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.rsv-bar i.ir{cursor:pointer}
+.rsv-bar i.ir:hover{background:rgba(195,162,102,.45)}
+.rsv-bar{padding-block:6px;margin-block:-6px}
+.rsv-btn.back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rsv-btn.wa{flex:1;background:var(--r-wa);color:var(--r-wa-ink)}
+.rsv-btn.wa svg{width:22px;height:22px;fill:currentColor}
+.rsv :focus-visible{outline:2px solid var(--r-gold);outline-offset:2px}
+
+/* móvil: el formulario ocupa una pantalla, sin caja alrededor */
+@media (max-width:959px){
+  .rsv{padding:calc(76px + 8px) 0 32px;min-height:100svh}
+  .rsv-in{gap:16px}
+  .rsv-h{font-size:clamp(30px,8.4vw,38px)}
+  .rsv-sub,.rsv-ok,.rsv-tel{display:none}
+  .rsv-stars{font-size:13px}
+  .rsv-card{background:none;border:0;padding:0;min-height:0;gap:14px}
+  .rsv-q{font-size:clamp(21px,6vw,26px)}
+  .rsv-l{font-size:14px}
+  .rsv-o{min-height:58px;padding:10px 30px 10px 11px;gap:10px}
+  .rsv-o b{font-size:14px}
+  .rsv-o small{font-size:11.5px}
+  .rsv-o .rsv-ck{right:9px;width:14px;height:14px}
+  .rsv-day{min-height:58px}
+  .rsv-day b{font-size:19px}
+  .rsv-foot{position:sticky;bottom:0;z-index:2;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));margin-top:4px;
+    background:linear-gradient(180deg,rgba(7,7,8,0) 0%,#070708 34%)}
+  .rsv-sr{grid-template-columns:78px 1fr auto;padding:12px}
+  .rsv-btn.back{padding:0 14px}
+  .rsv-btn.back span{display:none}
+}
+@media (max-width:959px){body.en-rsv .flotantes{opacity:0!important;pointer-events:none!important;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){.rsv *{animation:none!important;transition:none!important}}
+</style><!--/MCC:RSV-CSS-->
+<!--MCC:HXCTA-CSS--><style>
+.hx-rsv{display:inline-flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap;
+  font-family:"Instrument Sans",system-ui,-apple-system,sans-serif;font-weight:600;font-size:15px;letter-spacing:.01em;color:#f2f2f4;
+  padding:15px 22px 15px 20px;border-radius:999px;border:1px solid var(--oro,#c3a266);
+  background:rgba(9,9,12,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 0 0 1px rgba(195,162,102,.08);
+  transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+.hx-rsv svg{width:19px;height:19px;flex:none;fill:none;stroke:var(--oro,#c3a266);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s,transform .25s}
+.hx-rsv .hx-rsv-fl{width:17px;height:17px}
+.hx-rsv:hover{background:var(--oro,#c3a266);color:#0b0906;transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.hx-rsv:hover svg{stroke:#0b0906}.hx-rsv:hover .hx-rsv-fl{transform:translateX(3px)}
+.hx-rsv:focus-visible{outline:2px solid #f2f2f4;outline-offset:4px}
+/* web: anclado encima de los flotantes (2 botones de 58px + 14px de separación) */
+.hx-rsv-d{position:absolute;z-index:3;right:clamp(16px,3.2vw,28px);
+  bottom:calc(clamp(16px,3.2vw,28px) + env(safe-area-inset-bottom,0px) + 58px + 58px + 14px + 22px)}
+.hx-rsv-mw{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .hx-rsv{animation:hx-rsv-in .9s cubic-bezier(.2,.7,.2,1) 1.1s both}
+  @keyframes hx-rsv-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
+/* móvil y tablet vertical: centrado en pantalla, entre el coche y el titular */
+@media (max-width:760px),(max-aspect-ratio:1/1){
+  .hx-rsv-d{display:none}
+  .hx-rsv-mw{display:flex;justify-content:center;position:relative;width:100vw;
+    margin-left:calc(-1 * var(--hx-l,20px));margin-bottom:clamp(26px,4.2vh,40px)}
+  .hx-rsv{font-size:15.5px;padding:16px 26px 16px 22px;min-width:min(78vw,300px);justify-content:center}
+}
+</style><!--/MCC:HXCTA-CSS-->
 </head>
-<body>
+<body data-origen="web-principal">
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="#top" aria-label="Marbella Custom Cars">
       <img src="img/logo.webp" width="520" height="338" alt="Marbella Custom Cars">
     </a>
     <nav class="nav">
-      <a href="#presupuesto-final" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
+      <a href="#reserva" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
       <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
       <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
       <a href="#presupuesto-final" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
@@ -2170,7 +2344,7 @@ br.sm{display:none}
 </header>
 
 <nav class="panel" id="panel" aria-label="Menú">
-  <a href="#presupuesto-final" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
+  <a href="#reserva" data-es="Presupuesto" data-en="Get a quote" data-pt="Orçamento" data-ru="Расчёт">Presupuesto</a>
   <a href="#servicios" data-es="Servicios" data-en="Services" data-pt="Serviços" data-ru="Услуги">Servicios</a>
   <a href="#faq" data-es="Preguntas" data-en="FAQ" data-pt="Perguntas" data-ru="Вопросы">Preguntas</a>
   <a href="#presupuesto-final" data-es="Contacto" data-en="Contact" data-pt="Contacto" data-ru="Контакты">Contacto</a>
@@ -2179,14 +2353,38 @@ br.sm{display:none}
 <section class="hx" id="inicio" data-op="2" data-tipo="A" aria-label="Marbella Custom Cars">
   <div class="hx-foto hx-o2"><video id="hxVid" muted playsinline loop autoplay preload="auto" poster="img/hero-poster-h.webp" aria-hidden="true"></video></div>
   <div class="hx-txt hx-o2">
-    <p class="hx-kick" data-es="Car detailing premium · Marbella" data-en="Premium car detailing · Marbella" data-pt="Car detailing premium · Marbella" data-ru="Премиальный детейлинг · Марбелья">Car detailing premium · Marbella</p>
+<!--MCC:HXCTA-M--><div class="hx-rsv-mw"><a class="hx-rsv hx-rsv-m" href="#reserva"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg><span data-es="Reserva tu cita" data-en="Book your visit" data-pt="Marque a sua visita" data-ru="Записаться">Reserva tu cita</span><svg class="hx-rsv-fl" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <!--/MCC:HXCTA-M--><p class="hx-kick" data-es="Car detailing premium · Marbella" data-en="Premium car detailing · Marbella" data-pt="Car detailing premium · Marbella" data-ru="Премиальный детейлинг · Марбелья">Car detailing premium · Marbella</p>
     <h1 class="hx-h1"><span class="vA" data-es="Especialistas en<br>el <i>cuidado</i> de tu coche." data-en="Specialists in<br><i>caring</i> for your car." data-pt="Especialistas no<br><i>cuidado</i> do seu carro." data-ru="Специалисты по<br><i>уходу</i> за вашим автомобилем.">Especialistas en<br>el <i>cuidado</i> de tu coche.</span></h1><p class="hx-srv" data-es="&lt;span&gt;PPF&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Tratamiento cerámico&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Wrapping&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Detailing&lt;/span&gt;" data-en="&lt;span&gt;PPF&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Ceramic coating&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Wrapping&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Detailing&lt;/span&gt;" data-pt="&lt;span&gt;PPF&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Tratamento cerâmico&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Wrapping&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Detailing&lt;/span&gt;" data-ru="&lt;span&gt;PPF&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Керамика&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Оклейка&lt;/span&gt;&lt;i aria-hidden=&quot;true&quot;&gt;·&lt;/i&gt;&lt;span&gt;Детейлинг&lt;/span&gt;"><span>PPF</span><i aria-hidden="true">·</i><span>Tratamiento cerámico</span><i aria-hidden="true">·</i><span>Wrapping</span><i aria-hidden="true">·</i><span>Detailing</span></p><span class="hx-regla" aria-hidden="true"></span>
   </div>
+  <!--MCC:HXCTA-D--><a class="hx-rsv hx-rsv-d" href="#reserva"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg><span data-es="Reserva tu cita" data-en="Book your visit" data-pt="Marque a sua visita" data-ru="Записаться">Reserva tu cita</span><svg class="hx-rsv-fl" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><!--/MCC:HXCTA-D-->
   <span class="hx-baja" aria-hidden="true"></span>
 </section>
 
 
 
+<!--MCC:RSV-HTML--><section class="rsv" id="reserva" aria-labelledby="rsv-h">
+  <div class="wrap rsv-in">
+    <div class="rsv-intro">
+      <p class="rsv-kick" data-es="Reserva en menos de un minuto" data-en="Book in under a minute" data-pt="Marque em menos de um minuto" data-ru="Запись меньше чем за минуту">Reserva en menos de un minuto</p>
+      <h2 class="rsv-h" id="rsv-h" data-es="Reserva tu cita." data-en="Book your visit." data-pt="Marque a visita." data-ru="Запишитесь к нам.">Reserva tu cita.</h2>
+      <p class="rsv-sub" data-es="Elige servicio, coche y día. Te respondemos hoy mismo por WhatsApp." data-en="Pick the service, your car and a day. We reply on WhatsApp today." data-pt="Escolha o serviço, o carro e o dia. Respondemos hoje mesmo por WhatsApp." data-ru="Выберите услугу, автомобиль и день. Ответим в WhatsApp сегодня же.">Elige servicio, coche y día. Te respondemos hoy mismo por WhatsApp.</p>
+      <div class="rsv-stars"><span aria-hidden="true">★★★★★</span><span data-es="<b>5,0 en Google</b> · 71 reseñas" data-en="<b>5.0 on Google</b> · 71 reviews" data-pt="<b>5,0 no Google</b> · 71 avaliações" data-ru="<b>5,0 в Google</b> · 71 отзыв"><b>5,0 en Google</b> · 71 reseñas</span></div>
+      <ul class="rsv-ok">
+        <li data-es="Sin compromiso. Precio cerrado antes de empezar." data-en="No obligation. Fixed price before we start." data-pt="Sem compromisso. Preço fechado antes de começar." data-ru="Без обязательств. Точная цена до начала работ.">Sin compromiso. Precio cerrado antes de empezar.</li>
+        <li data-es="Te respondemos hoy mismo con tu presupuesto." data-en="We reply today with your quote." data-pt="Respondemos hoje mesmo com o seu orçamento." data-ru="Сегодня же пришлём расчёт.">Te respondemos hoy mismo con tu presupuesto.</li>
+        <li data-es="Calle Oro 32, Marbella · junto a la A-7." data-en="Calle Oro 32, Marbella · next to the A-7." data-pt="Calle Oro 32, Marbella · junto à A-7." data-ru="Calle Oro 32, Марбелья · рядом с A-7.">Calle Oro 32, Marbella · junto a la A-7.</li>
+      </ul>
+      <p class="rsv-tel"><span data-es="¿Prefieres llamar?" data-en="Rather call?" data-pt="Prefere ligar?" data-ru="Хотите позвонить?">¿Prefieres llamar?</span> <a href="tel:+34672936398">+34 672 93 63 98</a></p>
+    </div>
+    <div class="rsv-card" id="rsvCard">
+      <div class="rsv-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="rsv-meta"><span id="rsvName">Servicio</span><span id="rsvNo">Paso 1 de 4</span></div>
+      <div id="rsvMain" aria-live="polite"><noscript><p class="rsv-l">Escríbenos por WhatsApp: <a href="https://wa.me/34672936398">+34 672 93 63 98</a></p></noscript></div>
+      <div class="rsv-foot" id="rsvFoot"></div>
+    </div>
+  </div>
+</section><!--/MCC:RSV-HTML-->
   <div class="puente" aria-hidden="true"></div>
   <div class="wrap" id="servicios">
     <section class="sec">
@@ -2899,9 +3097,9 @@ function render(){
       var foto = s.foto ? '<span class="card-foto" style="background-image:url('+s.foto+');'
                    + (s.pos?'--pos:'+s.pos:'')+'"></span>' : '';
       /* Cada servicio lleva a su página propia; los que aún no la tienen, al formulario de presupuesto. */
-      var href = PAGINA[s.id] ? PAGINA[s.id]+'?lang='+lang : '#presupuesto-final';
+      var href = PAGINA[s.id] ? PAGINA[s.id]+'?lang='+lang : '#reserva';
       out+='<div class="card card-link" id="srv-'+s.id+'">'
-         + '<a class="card-cab" href="'+href+'">'+foto
+         + '<a class="card-cab" href="'+href+'"'+(PAGINA[s.id]?'':' data-rsv="'+s.id+'"')+'>'+foto
          + '<div class="txt">'
          + '<span class="fam">'+esc(L(f))+'</span>'
          + '<h3>'+esc(L(s))+'</h3>'
@@ -3178,7 +3376,7 @@ window.addEventListener('resize',marca);
 "use strict";
 /* clic a WhatsApp o teléfono = contacto en el píxel de Meta */
 document.addEventListener('click',function(e){
-  var a=e.target.closest('a[href*="wa.me/"],a[href^="tel:"]');
+  var a=e.target.closest('a[href^="tel:"]');   /* WhatsApp suelto → Contact lo cuenta el script de medición */
   if(a && window.fbq && window.MCC_PIXEL_ID) fbq('track','Contact');
 });
 
@@ -3269,7 +3467,7 @@ form.addEventListener('submit',function(e){
     .then(function(r){return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw j; return j;});})
     .then(function(){
       pf.classList.add('enviado');
-      if(window.fbq && window.MCC_PIXEL_ID) fbq('track','Lead');
+      if(window.MCC_registrarLead) window.MCC_registrarLead(srv.length?srv.join(' '):'presupuesto');
       pf.scrollIntoView({behavior:'smooth',block:'center'});
     })
     .catch(function(){
@@ -3912,5 +4110,318 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
   requestAnimationFrame(paso);
 })();
 </script>
+<!--MCC:MEDICION--><script>
+/* Script de medición (del equipo de anuncios). Único cambio: el botón de WhatsApp del último paso
+   del formulario (data-lead) no cuenta como Contact, porque esa persona ya es un Lead. */
+(function () {
+  'use strict';
+  var ORIGEN = document.body.getAttribute('data-origen') || 'web-principal';
+  var GOOGLE_LEAD = 'AW-17089526484/PEGAR_ETIQUETA'; // te paso la etiqueta aparte
+  var NOMBRE_EVENTO = {
+    'web-principal': 'FormularioWeb',
+    'landing-ppf': 'FormularioLandingPPF',
+    'landing-ceramico': 'FormularioLandingCeramico',
+    'landing-wrapping': 'FormularioLandingWrapping'
+  };
+
+  var CLAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  var atrib = {};
+  try { atrib = JSON.parse(sessionStorage.getItem('mcc_atrib') || '{}') || {}; } catch (e) {}
+  try {
+    var q = new URLSearchParams(location.search), hay = false;
+    CLAVES.forEach(function (k) { var v = q.get(k); if (v) { atrib[k] = v.slice(0, 200); hay = true; } });
+    if (hay) sessionStorage.setItem('mcc_atrib', JSON.stringify(atrib));
+  } catch (e) {}
+  window.MCC_atrib = function () { return atrib; };
+
+  function nuevaRef(servicio) {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    var fecha = String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate());
+    var abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', cola = '';
+    for (var i = 0; i < 4; i++) cola += abc.charAt(Math.floor(Math.random() * abc.length));
+    var serv = String(servicio || 'GEN').toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4) || 'GEN';
+    var org = { 'web-principal':'WEB','landing-ppf':'LPPF','landing-ceramico':'LCER','landing-wrapping':'LWRP' }[ORIGEN] || 'WEB';
+    return serv + '-' + org + '-' + fecha + '-' + cola;
+  }
+
+  function parametros(extra) {
+    var d = { origen: ORIGEN };
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function (k) { if (atrib[k]) d[k] = atrib[k]; });
+    for (var k in extra) d[k] = extra[k];
+    return d;
+  }
+
+  window.MCC_registrarLead = function (servicio) {
+    var ref = nuevaRef(servicio);
+    var datos = parametros({ metodo: 'formulario_whatsapp', servicio: servicio || 'sin_dato', content_category: servicio || 'sin_dato', ref: ref });
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', datos, { eventID: ref });
+      fbq('trackCustom', NOMBRE_EVENTO[ORIGEN] || 'FormularioWeb', datos, { eventID: ref + '-o' });
+    }
+    if (typeof gtag === 'function' && GOOGLE_LEAD.indexOf('PEGAR') === -1) {
+      gtag('event', 'conversion', { send_to: GOOGLE_LEAD, transaction_id: ref });
+    }
+    return ref;
+  };
+
+  // Botones de WhatsApp sueltos (flotante, cabecera…) = Contact, no Lead
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a || a.hasAttribute('data-lead')) return;
+    if (typeof fbq === 'function') fbq('track', 'Contact', parametros({ metodo: 'whatsapp_directo' }));
+  }, true);
+})();
+</script><!--/MCC:MEDICION-->
+<!--MCC:RSV-JS--><script>
+/* Reserva en 4 pasos: servicio → coche → día → datos → resumen.
+   Al pasar al resumen con todo válido: Lead (script de medición, con ref), copia por mail y lead en Kommo.
+   El botón final abre WhatsApp con el mensaje y la ref. */
+(function(){
+  var main=document.getElementById('rsvMain'), foot=document.getElementById('rsvFoot'); if(!main) return;
+  var WA='34672936398', KOMMO='https://mcc-kommo.marbellacustomcars.workers.dev/';
+  var MAIL='https://api.web3forms.com/submit', KEY='bb374af2-e8ad-4d65-a98c-f762659ee314';
+  var ICON={
+    ppf:'<path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/>',
+    cer:'<path d="M12 3c3 4 6 7.3 6 10.5A6 6 0 0 1 6 13.5C6 10.3 9 7 12 3z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>',
+    wrap:'<path d="M12 7.3h2.9a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-2.9a2.2 2.2 0 0 0-4.4 0H12z" fill="currentColor" fill-opacity=".4" stroke="none"/><path d="M4.8 16H3a.5.5 0 0 1-.5-.5v-2.3a1.5 1.5 0 0 1 1.1-1.4l3-.9 2.5-3a2 2 0 0 1 1.5-.7h4.3a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-1.8M9.2 16h5.6"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="16" r="2.2"/><path d="M6.6 11.4h12.8M12 7.3v4.1"/>',
+    pul:'<path d="M4.5 6H13v4H4.5a2 2 0 0 1 0-4z"/><path d="M5.5 8h4"/><path d="M2.5 8H1.2"/><rect x="13" y="5.5" width="4" height="8.5" rx="1.2"/><path d="M17 8h4.5"/><rect x="9" y="14" width="11" height="3" rx="1.5"/><path d="M10.5 20.2c2.5 1 5.5 1 8 0"/>',
+    bol:'<path d="M3 15c2 0 3-4 9-4s7 4 9 4"/><path d="M8 19h8"/><circle cx="12" cy="6" r="2"/>',
+    lav:'<path d="M4.5 12.5l9-3.2a2.5 2.5 0 0 1 3.2 1.5l1.6 4.5a2.5 2.5 0 0 1-1.5 3.2l-9 3.2a2.5 2.5 0 0 1-3.2-1.5L3 15.7a2.5 2.5 0 0 1 1.5-3.2z"/><path d="M8.2 16.4h.01M11.5 14.8h.01M10.6 18.2h.01M13.8 16.9h.01"/><circle cx="17.5" cy="5" r="2"/><circle cx="12.5" cy="4.5" r="1.2"/><circle cx="21" cy="9" r="1.1"/>',
+    int:'<path d="M8 3h6a2 2 0 0 1 2 2v7H7V4a1 1 0 0 1 1-1z"/><path d="M5 12h14l-1 5H6z"/><path d="M8 17v4M16 17v4"/>',
+    hlp:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V14"/><circle cx="12" cy="17" r=".6"/>'};
+  var SVC=['ppf','cer','wrap','pul','bol','lav','int','hlp'];
+  var ES_NAME={ppf:'PPF',cer:'Tratamiento cerámico',wrap:'<path d="M12 7.3h2.9a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-2.9a2.2 2.2 0 0 0-4.4 0H12z" fill="currentColor" fill-opacity=".4" stroke="none"/><path d="M4.8 16H3a.5.5 0 0 1-.5-.5v-2.3a1.5 1.5 0 0 1 1.1-1.4l3-.9 2.5-3a2 2 0 0 1 1.5-.7h4.3a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-1.8M9.2 16h5.6"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="16" r="2.2"/><path d="M6.6 11.4h12.8M12 7.3v4.1"/>',pul:'<path d="M4.5 6H13v4H4.5a2 2 0 0 1 0-4z"/><path d="M5.5 8h4"/><path d="M2.5 8H1.2"/><rect x="13" y="5.5" width="4" height="8.5" rx="1.2"/><path d="M17 8h4.5"/><rect x="9" y="14" width="11" height="3" rx="1.5"/><path d="M10.5 20.2c2.5 1 5.5 1 8 0"/>',bol:'Quitabollos',lav:'<path d="M4.5 12.5l9-3.2a2.5 2.5 0 0 1 3.2 1.5l1.6 4.5a2.5 2.5 0 0 1-1.5 3.2l-9 3.2a2.5 2.5 0 0 1-3.2-1.5L3 15.7a2.5 2.5 0 0 1 1.5-3.2z"/><path d="M8.2 16.4h.01M11.5 14.8h.01M10.6 18.2h.01M13.8 16.9h.01"/><circle cx="17.5" cy="5" r="2"/><circle cx="12.5" cy="4.5" r="1.2"/><circle cx="21" cy="9" r="1.1"/>',int:'Interior',hlp:'Aún no lo sé'};
+  var KEYLEAD={ppf:'ppf',cer:'ceramico',wrap:'<path d="M12 7.3h2.9a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-2.9a2.2 2.2 0 0 0-4.4 0H12z" fill="currentColor" fill-opacity=".4" stroke="none"/><path d="M4.8 16H3a.5.5 0 0 1-.5-.5v-2.3a1.5 1.5 0 0 1 1.1-1.4l3-.9 2.5-3a2 2 0 0 1 1.5-.7h4.3a2 2 0 0 1 1.5.6l3 3.1 2.1.5a1.5 1.5 0 0 1 1.1 1.4v2.7a.5.5 0 0 1-.5.5h-1.8M9.2 16h5.6"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="16" r="2.2"/><path d="M6.6 11.4h12.8M12 7.3v4.1"/>',pul:'<path d="M4.5 6H13v4H4.5a2 2 0 0 1 0-4z"/><path d="M5.5 8h4"/><path d="M2.5 8H1.2"/><rect x="13" y="5.5" width="4" height="8.5" rx="1.2"/><path d="M17 8h4.5"/><rect x="9" y="14" width="11" height="3" rx="1.5"/><path d="M10.5 20.2c2.5 1 5.5 1 8 0"/>',bol:'quitabollos',lav:'<path d="M4.5 12.5l9-3.2a2.5 2.5 0 0 1 3.2 1.5l1.6 4.5a2.5 2.5 0 0 1-1.5 3.2l-9 3.2a2.5 2.5 0 0 1-3.2-1.5L3 15.7a2.5 2.5 0 0 1 1.5-3.2z"/><path d="M8.2 16.4h.01M11.5 14.8h.01M10.6 18.2h.01M13.8 16.9h.01"/><circle cx="17.5" cy="5" r="2"/><circle cx="12.5" cy="4.5" r="1.2"/><circle cx="21" cy="9" r="1.1"/>',int:'interior',hlp:'asesoramiento'};
+  var T={
+   es:{names:['Servicio','Tu coche','Fecha','Tus datos','Resumen'],paso:'Paso # de 4',ult:'Último paso',
+     q1:'¿Qué te gustaría para tu coche?',l1:'Elige uno o varios. Sin compromiso.',
+     q2:'¿Qué coche tienes?',l2:'Toca la marca y después el modelo.',marca:'Marca',modeloDe:'Modelo de ',otraM:'Otra marca',otroM:'Otro modelo',carPh:'Tu coche: ej. Mercedes A 200 AMG Line',vh:'Si quieres, añade la versión o el año. No es obligatorio.',
+     q3:'¿Qué día te viene bien?',l3:'La hora te la confirmamos por WhatsApp.',cerr:'Domingos cerrado',otra:'Elegir otra fecha',sun:'Los domingos el taller está cerrado. Elige otro día.',
+     q4:'¿Cómo te contactamos?',l4:'Te escribimos por WhatsApp para confirmar.',nom:'Tu nombre',nomPh:'Ej. Carlos',tel:'Tu WhatsApp',telPh:'600 000 000',
+     q5:'Perfecto, #. Revisa tu reserva.',l5:'Si algo no está bien, tócalo para cambiarlo.',k:['Servicio','Coche','Día','Nombre','WhatsApp'],camb:'Cambiar',
+     cont:'Continuar',ver:'Ver resumen',guard:'Guardar y volver',atras:'Volver',otro:'Reservar otro coche',env:'Enviar por WhatsApp',
+     svc:{ppf:['PPF','Protege la pintura'],cer:['Cerámico','Brillo duradero'],wrap:['Wrapping','Cambio de color'],pul:['Pulido','Quita arañazos'],bol:['Quitabollos','Sin pintar'],lav:['Detailing','Lavado a fondo'],int:['Interior','Tapicería y más'],hlp:['Aún no lo sé','Te asesoramos']},
+     dow:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],mon:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
+     dowl:['domingo','lunes','martes','miércoles','jueves','viernes','sábado'],monl:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+     day:function(d,l){return l.dowl[d.getDay()]+' '+d.getDate()+' de '+l.monl[d.getMonth()];},
+     msg:function(o){return 'Hola, soy '+o.name+'. Me gustaría reservar cita en Marbella Custom Cars.\n\n• Coche: '+o.car+'\n• Servicio: '+o.svc+'\n• Día: '+o.day+'\n• Mi WhatsApp: '+o.tel+'\n\n¿Me confirmáis la hora? Gracias.';}},
+   en:{names:['Service','Your car','Date','Your details','Summary'],paso:'Step # of 4',ult:'Last step',
+     q1:'What would you like for your car?',l1:'Pick one or more. No obligation.',
+     q2:'Which car do you have?',l2:'Tap the make, then the model.',marca:'Make',modeloDe:'Model of ',otraM:'Other make',otroM:'Other model',carPh:'Your car: e.g. Mercedes A 200 AMG Line',vh:'Add the version or year if you like. Optional.',
+     q3:'Which day suits you?',l3:'We confirm the time on WhatsApp.',cerr:'Closed Sundays',otra:'Pick another date',sun:'The workshop is closed on Sundays. Please pick another day.',
+     q4:'How do we reach you?',l4:'We message you on WhatsApp to confirm.',nom:'Your name',nomPh:'e.g. James',tel:'Your WhatsApp',telPh:'Phone number',
+     q5:'Great, #. Check your booking.',l5:'Tap anything to change it.',k:['Service','Car','Day','Name','WhatsApp'],camb:'Change',
+     cont:'Continue',ver:'See summary',guard:'Save and go back',atras:'Back',otro:'Book another car',env:'Send on WhatsApp',
+     svc:{ppf:['PPF','Paint protection'],cer:['Ceramic','Lasting gloss'],wrap:['Wrapping','Colour change'],pul:['Polishing','Removes scratches'],bol:['Dent removal','No repainting'],lav:['Detailing','Deep clean'],int:['Interior','Upholstery & more'],hlp:['Not sure yet','We advise you']},
+     dow:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],mon:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+     dowl:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],monl:['January','February','March','April','May','June','July','August','September','October','November','December'],
+     day:function(d,l){return l.dowl[d.getDay()]+' '+d.getDate()+' '+l.monl[d.getMonth()];},
+     msg:function(o){return "Hi, I'm "+o.name+". I'd like to book an appointment at Marbella Custom Cars.\n\n• Car: "+o.car+'\n• Service: '+o.svc+'\n• Day: '+o.day+'\n• My WhatsApp: '+o.tel+'\n\nCould you confirm the time? Thanks.';}},
+   pt:{names:['Serviço','O seu carro','Data','Os seus dados','Resumo'],paso:'Passo # de 4',ult:'Último passo',
+     q1:'O que gostaria para o seu carro?',l1:'Escolha um ou vários. Sem compromisso.',
+     q2:'Que carro tem?',l2:'Toque na marca e depois no modelo.',marca:'Marca',modeloDe:'Modelo de ',otraM:'Outra marca',otroM:'Outro modelo',carPh:'O seu carro: ex. Mercedes A 200 AMG Line',vh:'Se quiser, acrescente a versão ou o ano. Opcional.',
+     q3:'Que dia lhe dá jeito?',l3:'Confirmamos a hora por WhatsApp.',cerr:'Fechado ao domingo',otra:'Escolher outra data',sun:'Ao domingo a oficina está fechada. Escolha outro dia.',
+     q4:'Como o contactamos?',l4:'Escrevemos-lhe por WhatsApp para confirmar.',nom:'O seu nome',nomPh:'Ex. João',tel:'O seu WhatsApp',telPh:'Número',
+     q5:'Perfeito, #. Reveja a sua marcação.',l5:'Se algo não estiver bem, toque para alterar.',k:['Serviço','Carro','Dia','Nome','WhatsApp'],camb:'Alterar',
+     cont:'Continuar',ver:'Ver resumo',guard:'Guardar e voltar',atras:'Voltar',otro:'Marcar outro carro',env:'Enviar por WhatsApp',
+     svc:{ppf:['PPF','Protege a pintura'],cer:['Cerâmico','Brilho duradouro'],wrap:['Wrapping','Mudança de cor'],pul:['Polimento','Tira riscos'],bol:['Bate-chapa','Sem pintar'],lav:['Detailing','Lavagem a fundo'],int:['Interior','Estofos e mais'],hlp:['Ainda não sei','Aconselhamos']},
+     dow:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],mon:['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+     dowl:['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'],monl:['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'],
+     day:function(d,l){return l.dowl[d.getDay()]+' '+d.getDate()+' de '+l.monl[d.getMonth()];},
+     msg:function(o){return 'Olá, sou '+o.name+'. Gostaria de marcar uma visita na Marbella Custom Cars.\n\n• Carro: '+o.car+'\n• Serviço: '+o.svc+'\n• Dia: '+o.day+'\n• O meu WhatsApp: '+o.tel+'\n\nPodem confirmar-me a hora? Obrigado.';}},
+   ru:{names:['Услуга','Автомобиль','Дата','Контакты','Итог'],paso:'Шаг # из 4',ult:'Последний шаг',
+     q1:'Что нужно вашему автомобилю?',l1:'Выберите одну или несколько услуг. Без обязательств.',
+     q2:'Какой у вас автомобиль?',l2:'Выберите марку, затем модель.',marca:'Марка',modeloDe:'Модель ',otraM:'Другая марка',otroM:'Другая модель',carPh:'Ваш автомобиль: напр. Mercedes A 200',vh:'При желании укажите версию или год. Необязательно.',
+     q3:'Какой день вам удобен?',l3:'Время подтвердим в WhatsApp.',cerr:'Вс — выходной',otra:'Выбрать другую дату',sun:'По воскресеньям мастерская закрыта. Выберите другой день.',
+     q4:'Как с вами связаться?',l4:'Напишем в WhatsApp для подтверждения.',nom:'Ваше имя',nomPh:'Напр. Иван',tel:'Ваш WhatsApp',telPh:'Номер',
+     q5:'Отлично, #. Проверьте заявку.',l5:'Нажмите на пункт, чтобы изменить.',k:['Услуга','Авто','День','Имя','WhatsApp'],camb:'Изменить',
+     cont:'Далее',ver:'К итогу',guard:'Сохранить',atras:'Назад',otro:'Записать ещё авто',env:'Отправить в WhatsApp',
+     svc:{ppf:['PPF','Защита краски'],cer:['Керамика','Стойкий блеск'],wrap:['Оклейка','Смена цвета'],pul:['Полировка','Убирает царапины'],bol:['Удаление вмятин','Без покраски'],lav:['Детейлинг','Глубокая мойка'],int:['Салон','Обивка и др.'],hlp:['Пока не знаю','Подскажем']},
+     dow:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],mon:['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'],
+     dowl:['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],monl:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
+     day:function(d,l){return l.dowl[d.getDay()]+', '+d.getDate()+' '+l.monl[d.getMonth()];},
+     msg:function(o){return 'Здравствуйте, меня зовут '+o.name+'. Хочу записаться в Marbella Custom Cars.\n\n• Автомобиль: '+o.car+'\n• Услуга: '+o.svc+'\n• День: '+o.day+'\n• Мой WhatsApp: '+o.tel+'\n\nПодтвердите, пожалуйста, время. Спасибо.';}}
+  };
+  var MODELS={"Mercedes":["Clase A","Clase C","Clase E","Clase S","Clase G","CLA","GLA","GLC","GLE","GLS","AMG GT","Maybach","EQS"],
+    "Porsche":["911","Taycan","Cayenne","Macan","Panamera","718 Cayman","718 Boxster"],
+    "BMW":["Serie 1","Serie 3","Serie 4","Serie 5","Serie 7","X1","X3","X5","X6","X7","M2","M3","M4","M5","i4","iX"],
+    "Audi":["A3","A4","A5","A6","A7","Q3","Q5","Q7","Q8","RS3","RS6","R8","e-tron GT"],
+    "Land Rover":["Range Rover","Range Rover Sport","Range Rover Velar","Range Rover Evoque","Defender","Discovery"],
+    "Ferrari":["Roma","296 GTB","F8 Tributo","SF90","812","Purosangue","488","458"],
+    "Lamborghini":["Urus","Huracán","Revuelto","Aventador"],
+    "Rolls-Royce":["Cullinan","Ghost","Phantom","Wraith","Dawn","Spectre"],
+    "Bentley":["Continental GT","Bentayga","Flying Spur"],
+    "Maserati":["Levante","Ghibli","Grecale","MC20","Quattroporte"],
+    "McLaren":["720S","750S","Artura","GT"],
+    "Tesla":["Model 3","Model Y","Model S","Model X"]};
+  var BRANDS=Object.keys(MODELS), ALIAS={"Mercedes":["mercedes","merc"],"Land Rover":["land rover","landrover","range rover","range","defender","discovery"],"Rolls-Royce":["rolls"]};
+  var PREF=['+34','+44','+33','+49','+31','+32','+41','+39','+351','+7','+46','+47','+45','+971','+1'];
+  var S={step:0,svc:[],car:'',date:'',dateObj:null,name:'',pref:'+34',tel:'',back:false}, dir='fwd', lastLead='', REF='';
+
+  function lang(){ var l=document.documentElement.getAttribute('lang')||'es'; return T[l]?l:'es'; }
+  function L(){ return T[lang()]; }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function cap(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
+  function dayLbl(d,l){ return cap((l||L()).day(d,l||L())); }
+  function svcTxt(es){ return S.svc.map(function(k){ return es?ES_NAME[k]:L().svc[k][0]; }).join(', '); }
+  function phone(){ var t=S.tel.trim(); if(t.charAt(0)==='+') return t; return S.pref+' '+t; }
+  function detect(t){ t=(t||'').toLowerCase().trim(); if(!t) return '';
+    for(var i=0;i<BRANDS.length;i++){ var al=ALIAS[BRANDS[i]]||[BRANDS[i].toLowerCase()]; for(var j=0;j<al.length;j++) if(t.indexOf(al[j])===0) return BRANDS[i]; } return ''; }
+  function full(b,m){ return m.indexOf('Range Rover')===0?m:b+' '+m; }
+  function valid(st){
+    if(st===0) return S.svc.length>0;
+    if(st===1) return S.car.trim().length>=2;
+    if(st===2) return !!S.date;
+    if(st===3) return S.name.trim().length>=2 && S.tel.replace(/\D/g,'').length>=6;
+    return true; }
+  var ARR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var BACK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+  var CHK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  var CAL='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>';
+  var WAI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>';
+
+  function nextDays(){ var o=[],d=new Date(); d.setHours(12,0,0,0); while(o.length<8){ d.setDate(d.getDate()+1); if(d.getDay()!==0) o.push(new Date(d)); } return o; }
+
+  function render(){
+    var st=S.step, l=L(), h='';
+    document.querySelectorAll('.rsv-bar i').forEach(function(b,i){ b.classList.toggle('on',i<=st); var ir=i<st&&st<4&&!S.back; b.classList.toggle('ir',ir);
+      b.onclick=ir?function(){ dir='bwd'; go(i); }:null; b.title=ir?L().names[i]:''; });
+    document.getElementById('rsvName').textContent=l.names[st];
+    document.getElementById('rsvNo').textContent= st<4 ? l.paso.replace('#',st+1) : l.ult;
+    if(st===0){
+      h='<h3 class="rsv-q">'+l.q1+'</h3><p class="rsv-l">'+l.l1+'</p><div class="rsv-svc">';
+      SVC.forEach(function(k){ h+='<button type="button" class="rsv-o" data-svc="'+k+'" aria-pressed="'+(S.svc.indexOf(k)>-1)+'"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[k]+'</svg><span><b>'+l.svc[k][0]+'</b><small>'+l.svc[k][1]+'</small></span><span class="rsv-ck">'+CHK+'</span></button>'; });
+      h+='</div>';
+    }
+    if(st===1){
+      var cb=detect(S.car);
+      h='<h3 class="rsv-q">'+l.q2+'</h3><p class="rsv-l">'+l.l2+'</p>'+
+        '<input id="rsvCar" type="text" autocomplete="off" autocapitalize="words" placeholder="'+esc(l.carPh)+'" value="'+esc(S.car)+'" aria-label="'+esc(l.names[1])+'">'+
+        '<div class="rsv-f"><span class="rsv-lbl">'+l.marca+'</span><div class="rsv-chips" id="rsvBrands"></div></div>'+
+        '<div class="rsv-models" id="rsvModels"'+(cb?'':' hidden')+'></div><p class="rsv-hint" id="rsvVh" hidden>'+l.vh+'</p>';
+    }
+    if(st===2){
+      h='<h3 class="rsv-q">'+l.q3+'</h3><div class="rsv-row"><p class="rsv-l" style="margin:0">'+l.l3+'</p><small>'+l.cerr+'</small></div><div class="rsv-days">';
+      var days=nextDays(), inList=false;
+      days.forEach(function(d){ var v=iso(d); if(v===S.date) inList=true;
+        h+='<button type="button" class="rsv-day" data-date="'+v+'" aria-pressed="'+(S.date===v)+'" aria-label="'+esc(dayLbl(d))+'"><small>'+l.dow[d.getDay()]+'</small><b>'+d.getDate()+'</b><em>'+l.mon[d.getMonth()]+'</em></button>'; });
+      var t=new Date(); t.setDate(t.getDate()+1);
+      var otherOn=S.date && !inList && S.dateObj;
+      h+='<label class="rsv-otra'+(otherOn?' on':'')+'">'+CAL+'<span>'+(otherOn?esc(dayLbl(S.dateObj)):l.otra)+'</span><input id="rsvOther" type="date" min="'+iso(t)+'" aria-label="'+esc(l.otra)+'"></label></div>'+
+        '<p class="rsv-err" id="rsvSun" hidden>'+l.sun+'</p>';
+    }
+    if(st===3){
+      h='<h3 class="rsv-q">'+l.q4+'</h3><p class="rsv-l">'+l.l4+'</p>'+
+        '<label class="rsv-f"><span class="rsv-lbl">'+l.nom+'</span><input id="rsvNom" type="text" autocomplete="given-name" autocapitalize="words" placeholder="'+esc(l.nomPh)+'" value="'+esc(S.name)+'"></label>'+
+        '<div class="rsv-f"><label class="rsv-lbl" for="rsvTel">'+l.tel+'</label><div class="rsv-telrow"><select id="rsvPref" aria-label="Prefijo">'+
+        PREF.map(function(p){ return '<option'+(p===S.pref?' selected':'')+'>'+p+'</option>'; }).join('')+'</select>'+
+        '<input id="rsvTel" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="'+esc(l.telPh)+'" value="'+esc(S.tel)+'"></div></div>';
+    }
+    if(st===4){
+      var fn=S.name.trim().split(/\s+/)[0];
+      h='<h3 class="rsv-q">'+esc(l.q5.replace('#',fn))+'</h3><p class="rsv-l">'+l.l5+'</p><div class="rsv-sum">'+
+        sr(0,l.k[0],svcTxt())+sr(1,l.k[1],S.car)+sr(2,l.k[2],dayLbl(S.dateObj))+sr(3,l.k[3],S.name)+sr(3,l.k[4],phone())+'</div>'+
+        '<button type="button" class="rsv-otro" id="rsvOtro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'+l.otro+'</button>';
+    }
+    main.innerHTML='<div class="rsv-step '+dir+'">'+h+'</div>'; dir='fwd';
+    renderFoot(); bind();
+  }
+  function sr(st,k,v){ return '<button type="button" class="rsv-sr" data-edit="'+st+'"><span class="k">'+esc(k)+'</span><span class="v">'+esc(v)+'</span><span class="e">'+L().camb+'</span></button>'; }
+  function renderFoot(){
+    var st=S.step, l=L();
+    if(st===4){ foot.innerHTML='<button type="button" class="rsv-btn back" id="rsvBack" aria-label="'+l.atras+'">'+BACK+'<span>'+l.atras+'</span></button><a class="rsv-btn wa" id="rsvWa" data-lead target="_blank" rel="noopener" href="'+waUrl()+'">'+WAI+l.env+'</a>';
+      document.getElementById('rsvBack').onclick=function(){ dir='bwd'; go(3); }; return; }
+    var lab=S.back?l.guard:(st===3?l.ver:l.cont);
+    foot.innerHTML=(st>0&&!S.back?'<button type="button" class="rsv-btn back" id="rsvBack" aria-label="'+l.atras+'">'+BACK+'<span>'+l.atras+'</span></button>':'')+'<button type="button" class="rsv-btn go" id="rsvNext">'+lab+ARR+'</button>';
+    document.getElementById('rsvNext').onclick=function(){ if(!valid(S.step)) return; if(S.back){ S.back=false; finish(); } else if(S.step===3) finish(); else go(S.step+1); };
+    var b=document.getElementById('rsvBack'); if(b) b.onclick=function(){ dir='bwd'; go(S.step-1); };
+    refresh();
+  }
+  function refresh(){ var n=document.getElementById('rsvNext'); if(n) n.disabled=!valid(S.step); }
+  function go(n){ S.step=n; render(); var c=document.getElementById('rsvCard'); if(c && c.getBoundingClientRect().top<0) c.scrollIntoView({behavior:'smooth',block:'start'}); }
+  function waUrl(){ var l=L(); return 'https://wa.me/'+WA+'?text='+encodeURIComponent(l.msg({name:S.name.trim(),car:S.car.trim(),svc:svcTxt(),day:dayLbl(S.dateObj),tel:phone()})+(REF?'\n(Ref: '+REF+')':'')); }
+
+  /* reserva válida: Lead (una vez por reserva), copia por mail y lead en Kommo */
+  function finish(){
+    var firma=[S.svc.join(','),S.car,S.date,S.name,phone()].join('|');
+    if(firma!==lastLead){
+      lastLead=firma;
+      var kl=S.svc.length===1?KEYLEAD[S.svc[0]]:'varios';
+      REF=window.MCC_registrarLead?window.MCC_registrarLead(kl):'';
+      var eday=dayLbl(S.dateObj,T.es)+' de '+S.dateObj.getFullYear();
+      var at=window.MCC_atrib?window.MCC_atrib():{};
+      var data={"Servicio":svcTxt(true),"Coche":S.car.trim(),"Día que prefiere":eday,"Nombre":S.name.trim(),"WhatsApp del cliente":phone(),
+        "Escribirle por WhatsApp":'https://wa.me/'+phone().replace(/\D/g,''),"Idioma de la web":lang().toUpperCase(),"Página":location.href.split('#')[0],
+        "Ref":REF||'—',"Origen":document.body.getAttribute('data-origen')||'web-principal'};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){ if(at[k]) data[k]=at[k]; });
+      var mail={access_key:KEY,subject:'Reserva web: '+S.name.trim()+' · '+svcTxt(true)+' · '+S.car.trim(),from_name:'Web Marbella Custom Cars · Reserva'};
+      for(var k in data) mail[k]=data[k];
+      try{ fetch(MAIL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(mail)}).catch(function(){}); }catch(e){}
+      try{ fetch(KOMMO,{method:'POST',mode:'cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(data)}).then(function(r){return r.text();}).then(function(t){try{console.log('[Kommo]',t);}catch(e){}}).catch(function(){}); }catch(e){}
+    }
+    go(4);
+  }
+
+  function bind(){
+    main.querySelectorAll('[data-svc]').forEach(function(b){ b.onclick=function(){
+      var v=b.dataset.svc, i=S.svc.indexOf(v);
+      if(v==='hlp') S.svc = i>-1?[]:['hlp']; else { S.svc=S.svc.filter(function(x){return x!=='hlp';}); if(i>-1) S.svc.splice(i,1); else S.svc.push(v); }
+      main.querySelectorAll('[data-svc]').forEach(function(x){ x.setAttribute('aria-pressed',S.svc.indexOf(x.dataset.svc)>-1); });
+      refresh(); }; });
+    var car=document.getElementById('rsvCar');
+    if(car){
+      var bx=document.getElementById('rsvBrands'), mx=document.getElementById('rsvModels'), vh=document.getElementById('rsvVh'), cur=detect(S.car);
+      var drawB=function(){ var h=''; BRANDS.forEach(function(b){ h+='<button type="button" class="rsv-chip" data-brand="'+b+'" aria-pressed="'+(b===cur)+'">'+b+'</button>'; });
+        h+='<button type="button" class="rsv-chip ghost" data-brand="">'+L().otraM+'</button>'; bx.innerHTML=h;
+        bx.querySelectorAll('[data-brand]').forEach(function(c){ c.onclick=function(){ var b=c.dataset.brand;
+          if(!b){ cur=''; car.value=''; S.car=''; drawB(); drawM(); vh.hidden=true; car.focus(); refresh(); return; }
+          if(b!==cur){ car.value=b+' '; S.car=car.value; vh.hidden=true; } cur=b; drawB(); drawM(); refresh(); }; }); };
+      var drawM=function(){ if(!cur){ mx.hidden=true; mx.innerHTML=''; return; }
+        var v=car.value.trim().toLowerCase(), h='<span class="rsv-lbl">'+L().modeloDe+esc(cur)+'</span><div class="rsv-chips">';
+        MODELS[cur].forEach(function(m){ var fn=full(cur,m).toLowerCase(), on=(v===fn||v.indexOf(fn+' ')===0); h+='<button type="button" class="rsv-chip model" data-model="'+esc(m)+'" aria-pressed="'+on+'">'+esc(m)+'</button>'; });
+        h+='<button type="button" class="rsv-chip ghost" data-model="">'+L().otroM+'</button></div>'; mx.innerHTML=h; mx.hidden=false;
+        mx.querySelectorAll('[data-model]').forEach(function(c){ c.onclick=function(){
+          if(!c.dataset.model){ car.value=cur+' '; vh.hidden=true; car.focus(); } else { car.value=full(cur,c.dataset.model); vh.hidden=false; }
+          S.car=car.value; drawM(); refresh(); }; }); };
+      drawB(); drawM();
+      car.oninput=function(){ S.car=car.value; var b=detect(car.value); if(b!==cur){ cur=b; drawB(); } drawM(); refresh(); };
+      car.onkeydown=function(e){ if(e.key==='Enter'&&valid(1)) document.getElementById('rsvNext').click(); };
+    }
+    main.querySelectorAll('[data-date]').forEach(function(b){ b.onclick=function(){
+      S.date=b.dataset.date; var p=S.date.split('-'); S.dateObj=new Date(+p[0],+p[1]-1,+p[2],12);
+      document.getElementById('rsvSun').hidden=true;
+      main.querySelectorAll('[data-date]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+      var o=main.querySelector('.rsv-otra'); o.classList.remove('on'); o.querySelector('span').textContent=L().otra; refresh(); }; });
+    var other=document.getElementById('rsvOther');
+    if(other){
+      other.addEventListener('click',function(){ try{ if(other.showPicker) other.showPicker(); }catch(e){} });
+      other.onchange=function(){ if(!other.value) return; var p=other.value.split('-'), d=new Date(+p[0],+p[1]-1,+p[2],12);
+        if(d.getDay()===0){ document.getElementById('rsvSun').hidden=false; S.date=''; S.dateObj=null; other.value=''; refresh(); return; }
+        document.getElementById('rsvSun').hidden=true; S.date=other.value; S.dateObj=d;
+        main.querySelectorAll('[data-date]').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        var o=main.querySelector('.rsv-otra'); o.classList.add('on'); o.querySelector('span').textContent=dayLbl(d); refresh(); }; }
+    var nom=document.getElementById('rsvNom'), tel=document.getElementById('rsvTel'), pref=document.getElementById('rsvPref');
+    if(nom){ nom.oninput=function(){ S.name=nom.value; refresh(); };
+      tel.oninput=function(){ S.tel=tel.value; refresh(); }; pref.onchange=function(){ S.pref=pref.value; };
+      [nom,tel].forEach(function(x){ x.onkeydown=function(e){ if(e.key==='Enter'&&valid(3)) document.getElementById('rsvNext').click(); }; }); }
+    var otro=document.getElementById('rsvOtro');
+    if(otro) otro.onclick=function(){ S.svc=[]; S.car=''; S.date=''; S.dateObj=null; S.back=false; REF=''; dir='bwd'; go(0); };
+    main.querySelectorAll('[data-edit]').forEach(function(r){ r.onclick=function(){ S.back=true; dir='bwd'; go(+r.dataset.edit); }; });
+  }
+
+  /* servicio preseleccionado: ?servicio=ppf (anuncios) o desde las tarjetas de Servicios */
+  var MAP={ppf:'ppf',ceramico:'cer','cerámico':'cer',wrapping:'wrap',vinilo:'wrap',pulido:'pul',quitabollos:'bol',detailing:'lav',lavado:'lav',interior:'int',tapiceria:'int'};
+  function preselect(k){ var v=MAP[k]; if(!v) return false; S.svc=[v]; S.step=1; S.back=false; dir='fwd'; render(); return true; }
+  try{ var q=(new URLSearchParams(location.search).get('servicio')||'').toLowerCase();
+    if(q && preselect(q)) setTimeout(function(){ document.getElementById('reserva').scrollIntoView({behavior:'smooth'}); },400); }catch(e){}
+  document.addEventListener('click',function(e){ var a=e.target.closest('[data-rsv]'); if(!a) return;
+    var id=a.getAttribute('data-rsv'); if(MAP[id]) preselect(id); else { S.step=0; render(); } });
+  document.addEventListener('mcc:lang',function(){ render(); });
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ document.body.classList.toggle('en-rsv',es[0].isIntersecting); },{rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('rsvCard')); }
+  render();
+})();
+</script><!--/MCC:RSV-JS-->
+<!--MCC:HXCTA-D--><script>(function(){function f(){var t=document.querySelector('.hx-txt.hx-o2');if(t)document.documentElement.style.setProperty('--hx-l',t.getBoundingClientRect().left+'px');}f();addEventListener('resize',f);})();</script><!--/MCC:HXCTA-D-->
 </body>
 </html>
