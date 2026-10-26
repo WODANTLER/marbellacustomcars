@@ -1,0 +1,1328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--MCC:HEAD--><script>
+/* ══ Etiquetas de publicidad (igual que la web principal) ══
+   1) Consent Mode v2 con todo denegado, antes de cualquier otro script.
+   2) La etiqueta de Google se carga siempre, pero sin cookies hasta que se acepte.
+   3) El píxel de Meta solo se carga después de aceptar.
+   La elección se guarda en "mcc-cookies" (si / no), la misma clave que la web principal:
+   quien ya respondió allí no vuelve a ver el aviso aquí. */
+window.MCC_PIXEL_ID = '4384965891721827';
+window.MCC_ADS_ID   = 'AW-17089526484';
+/* Dirección del puente a Kommo (Cloudflare Worker). Vacía = no se envía a Kommo, solo el mail. */
+window.MCC_KOMMO_URL = 'https://mcc-kommo.marbellacustomcars.workers.dev/';
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+window.MCC_consentimiento = (function(){ try { return localStorage.getItem('mcc-cookies'); } catch(e){ return null; } })();
+function cargarPixelMeta(){
+  if (window.fbq) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.MCC_PIXEL_ID); fbq('track','PageView');
+}
+function mccAceptarCookies(){
+  gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  cargarPixelMeta();
+  try { localStorage.setItem('mcc-cookies','si'); } catch(e){}
+  window.MCC_consentimiento = 'si';
+}
+function mccRechazarCookies(){
+  gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  try { localStorage.setItem('mcc-cookies','no'); } catch(e){}
+  window.MCC_consentimiento = 'no';
+}
+if (window.MCC_consentimiento === 'si') {
+  gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  cargarPixelMeta();
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17089526484"></script>
+<script>gtag('js', new Date()); gtag('config', 'AW-17089526484');</script>
+<!--/MCC:HEAD-->
+<title>Detailing en Marbella · Marbella Custom Cars</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Detailing en Marbella desde 150€. Lavado a mano por niveles (Gold, Black y Platinum), interior, motor y protección. Reserva tu cita.">
+<link rel="canonical" href="https://marbellacustomcars.com/detailing/">
+<link rel="alternate" hreflang="es" href="https://marbellacustomcars.com/detailing/">
+<link rel="alternate" hreflang="en" href="https://marbellacustomcars.com/detailing/?lang=en">
+<link rel="alternate" hreflang="pt" href="https://marbellacustomcars.com/detailing/?lang=pt">
+<link rel="alternate" hreflang="ru" href="https://marbellacustomcars.com/detailing/?lang=ru">
+<link rel="alternate" hreflang="x-default" href="https://marbellacustomcars.com/detailing/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0b0b0e">
+<meta name="geo.region" content="ES-MA">
+<meta name="geo.placename" content="Marbella">
+<meta name="geo.position" content="36.511952;-4.8673708">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Marbella Custom Cars">
+<meta property="og:title" content="Detailing en Marbella · Como el día que lo compraste">
+<meta property="og:description" content="Lavado a mano por niveles, interior y motor. Desde 150€. Reserva tu cita.">
+<meta property="og:url" content="https://marbellacustomcars.com/detailing/">
+<meta property="og:image" content="https://marbellacustomcars.com/detailing/img/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="img/hero.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Landing de un solo objetivo: precio arriba, reserva de cita enseguida, prueba social después. Oscuro de marca, un único acento dorado. */
+:root{
+  --ink:#0b0b0e;
+  --panel:#141419;
+  --panel-2:#1c1c22;
+  --line:rgba(255,255,255,.12);
+  --line-2:rgba(255,255,255,.24);
+  --fg:#f2f2f4;
+  --soft:#c9c9d1;
+  --muted:#a7a7b0;
+  --gold:#c3a266;
+  --gold-ink:#0b0906;
+  --lang:#5fb4ff;
+  --wa:#25d366;
+  --wa-ink:#05200f;
+  --err:#ff9a8a;
+  --display:"Unbounded","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{overflow-x:clip}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:#000}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(24px,3.2vw,36px);line-height:1.15}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:2px;font:inherit;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .15s,background .2s,border-color .2s}
+.btn:active{transform:scale(.98)}
+.btn-gold{background:var(--gold);color:var(--gold-ink)}
+.btn-line{border-color:var(--line-2);color:var(--fg);background:transparent}
+.btn-wa{background:var(--wa);color:var(--wa-ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Cabecera */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px}
+.logo img{height:38px;width:auto}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{font-size:14px;text-decoration:none;padding:12px 10px;color:var(--soft)}
+.nav .btn{min-height:44px;padding:0 16px;font-size:14px;color:var(--gold-ink)}
+
+.idioma{position:relative;flex:none;margin-right:4px}
+.idi-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,.16);cursor:pointer;font:500 12px/1 var(--body);letter-spacing:.14em;color:var(--fg);padding:9px 11px 9px 13px;border-radius:999px;min-height:40px;transition:border-color .2s,color .2s}
+.idi-btn:hover,.idi-btn[aria-expanded="true"]{border-color:var(--gold);color:var(--gold)}
+.idi-btn svg{width:9px;height:6px;stroke:currentColor;fill:none;stroke-width:1.4;transition:transform .25s}
+.idi-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.idioma .lang{position:absolute;right:0;top:calc(100% + 10px);display:flex;flex-direction:column;min-width:172px;padding:6px;background:rgba(12,12,14,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility 0s .22s;z-index:40}
+.idioma.abierto .lang{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .22s}
+.idioma .lang button{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;background:none;border:0;cursor:pointer;color:var(--muted);font:500 12px/1 var(--body);letter-spacing:.12em;text-align:left}
+.idioma .lang button svg{width:21px;height:14px;flex:none;border-radius:2px}
+.idioma .lang button span{width:22px}
+.idioma .lang button em{font-style:normal;font-size:14px;letter-spacing:0}
+.idioma .lang button:hover{background:rgba(255,255,255,.05);color:var(--fg)}
+.idioma .lang button[aria-pressed="true"]{color:var(--gold)}
+.nav .hide-sm,.nav .hide-xs{display:none}
+@media (min-width:420px){.nav .hide-xs{display:inline-block}}
+@media (min-width:640px){.nav .hide-sm{display:inline-block}}
+
+/* Portada: foto grande y apaisada, viva (deriva lenta + destello), con el texto encima */
+.hero{position:relative;display:grid;isolation:isolate;overflow:hidden;min-height:min(86svh,780px);align-items:center}
+.hero-media{position:absolute;top:0;bottom:0;right:0;width:min(62%,calc((min(86svh,780px)) * 1.043));z-index:-1;overflow:hidden;background:#000}
+.hero-img,.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;transform-origin:50% 70%;animation:deriva 18s ease-in-out infinite alternate}
+.hero-vid{opacity:0;transition:opacity 1.2s ease}
+.hero-vid.on{opacity:1}
+.hero-media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--ink) 0,rgba(11,11,14,.4) 9%,rgba(11,11,14,0) 24%),
+  linear-gradient(180deg,rgba(11,11,14,0) 70%,var(--ink) 100%)}
+.hero-shine{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-shine::after{content:"";position:absolute;top:-20%;bottom:-20%;width:32%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent);transform:skewX(-14deg);animation:destello 7s cubic-bezier(.4,0,.2,1) 2.2s infinite}
+.hero-copy{display:flex;flex-direction:column;gap:14px;padding-block:60px;width:100%}
+@media (min-width:860px){.hero-copy>*{max-width:44%}}
+.hero h1{font-size:clamp(36px,3.9vw,56px);line-height:1.02}
+@media (min-width:860px){.hero-copy>h1{max-width:52%}}
+.hero p{margin:0;font-size:clamp(17px,1.4vw,20px);color:var(--soft);max-width:40ch}
+.stars{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--soft)}
+.stars span{color:var(--gold);letter-spacing:2px}
+.stars b{color:var(--fg)}
+.h1-kw{display:flex;align-items:center;gap:14px;font-family:var(--body);font-size:12px;line-height:1;margin-bottom:18px}
+.kw-ppf{font-family:var(--display);font-weight:500;font-size:clamp(30px,3vw,44px);letter-spacing:.06em;line-height:.9;color:var(--gold);
+  background:linear-gradient(110deg,var(--gold) 0%,var(--gold) 40%,#f3e3ba 50%,var(--gold) 60%,var(--gold) 100%);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:brillo 5.5s ease-in-out infinite}
+.kw-ppf{line-height:1.05;padding-top:.14em;white-space:nowrap}
+.kw-loc{padding-left:14px;border-left:1px solid rgba(195,162,102,.5);font-size:13px;letter-spacing:.2em;line-height:1.5}
+.hero .guar{font-size:14px;color:var(--soft);border-left:2px solid var(--gold);padding-left:10px;max-width:46ch}
+.hero .guar b{color:var(--fg)}
+@media (max-width:859px){
+  .hero{min-height:auto;align-items:stretch}
+  .hero-media{position:relative;inset:auto;width:100%;aspect-ratio:980/940}
+  .hero-img{object-position:50% 50%}
+  .hero-media::after{background:linear-gradient(180deg,rgba(11,11,14,0) 66%,var(--ink) 100%)}
+  .hero-copy{padding-block:6px 28px;position:relative}
+}
+@keyframes deriva{from{transform:scale(1)}to{transform:scale(1.05)}}
+@keyframes destello{from{left:-60%}to{left:130%}}
+
+/* Precios */
+.prices{display:flex;flex-direction:column;gap:12px;padding-block:8px 28px}
+.prices-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.plist{display:grid;gap:8px}
+@media (min-width:860px){.plist{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px;background:var(--panel);border:1px solid var(--line);color:var(--fg);font:inherit;text-align:left;cursor:pointer;width:100%;min-height:76px}
+.prow.star{border-color:var(--gold)}
+.prow strong{font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.prow small{display:block;color:var(--muted);font-size:14px}
+.prow .price{font-family:var(--display);font-size:17px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.prow.star .price{color:var(--gold)}
+.price .desde{display:block;font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;margin-bottom:3px}
+.tag{font-family:var(--body);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--gold);color:var(--gold-ink);padding:3px 7px}
+.fine{font-size:14px;color:var(--muted);margin:0}
+
+/* Reserva */
+.book{background:#101014;border-block:1px solid var(--line)}
+.book .wrap{display:grid;gap:24px;padding-block:32px 40px}
+@media (min-width:860px){.book .wrap{grid-template-columns:4fr 7fr;gap:48px;padding-block:44px;align-items:start}}
+.book-intro{display:flex;flex-direction:column;gap:10px}
+.book-intro h2{font-size:clamp(30px,4vw,46px)}
+form{background:var(--panel);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.steps-in{display:flex;flex-direction:column;gap:16px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:0}
+legend,.lbl{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:8px}
+.leg-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%}
+.leg-nota{font-weight:500;letter-spacing:.04em;text-transform:none;font-size:12px;color:#7d7d86}
+.lbl{margin:0}
+.opts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.opt{background:var(--ink);border:1px solid var(--line-2);color:var(--fg);font:inherit;font-size:15px;font-weight:600;min-height:52px;padding:6px 4px;border-radius:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;text-align:center}
+.opt small{font-weight:500;font-size:12px;color:var(--muted);white-space:nowrap}
+.opt[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.opt[aria-pressed="true"] small{color:var(--gold-ink)}
+input{width:100%;background:var(--ink);border:1px solid var(--line-2);color:var(--fg);font:inherit;font-size:16px;font-weight:500;padding:11px 14px;border-radius:2px;min-height:48px}
+input::placeholder{color:#6f6f78}
+input:focus{outline:none;border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--ink);border:1px solid var(--line-2);color:var(--soft);font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:0 14px;min-height:40px;cursor:pointer}
+.chip.model{background:var(--panel-2);color:var(--fg);border-color:rgba(255,255,255,.14)}
+.chip.ghost{background:transparent;border-style:dashed}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.models{border-left:2px solid var(--gold);padding-left:12px;display:flex;flex-direction:column;gap:8px}
+.hint{font-size:13px;color:var(--gold);margin:0}
+.days-row{display:flex;gap:7px}
+.days{display:contents}
+.day{background:var(--ink);border:1px solid var(--line-2);color:var(--fg);font:inherit;border-radius:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;padding:7px 2px 6px;min-height:62px;flex:1 0 0;min-width:0;justify-content:center;font-variant-numeric:tabular-nums}
+.day small,.day em{font-size:11px;font-style:normal;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.day b{font-family:var(--display);font-weight:500;font-size:19px;line-height:1.2}
+.day[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.day[aria-pressed="true"] small,.day[aria-pressed="true"] em{color:var(--gold-ink)}
+.day.otra{position:relative;border-style:dashed}
+.otra-l{display:none}
+#otherTxt{display:contents}
+.day.otra svg{width:18px;height:18px;margin:3px 0 2px;fill:none;stroke:var(--gold);stroke-width:1.6}
+.day.otra input{position:absolute;inset:0;width:100%;height:100%;min-height:0;padding:0;border:0;opacity:0;cursor:pointer;color-scheme:dark}
+.day.otra.on{background:var(--gold);border:1px solid var(--gold);color:var(--gold-ink)}
+.day.otra.on small,.day.otra.on em{color:var(--gold-ink)}
+.day.otra:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+input[type=date]{color-scheme:dark}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.err{color:var(--err);font-size:14px;margin:0}
+.submit{min-height:52px;font-size:17px;width:100%}
+.form-pie{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:2px 16px}
+.alt{font-size:14px;color:var(--soft);padding:6px 0}
+.legal{font-size:12.5px;color:var(--muted);margin:0}
+.done{display:flex;flex-direction:column;gap:14px}
+.sum{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;padding:16px;background:var(--ink);border:1px solid var(--line)}
+.sum dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sum dd{margin:0;font-weight:600;min-width:0;overflow-wrap:anywhere}
+
+/* Secciones de confianza */
+.sec{padding-block:44px 8px;display:flex;flex-direction:column;gap:18px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.sec-head a{font-size:14px;color:var(--soft);padding:10px 0}
+/* Galería: avanza sola, se puede deslizar con el dedo / el trackpad y tiene flechas para ir más rápido */
+.g-wrap{position:relative;min-width:0;--fw:min(78vw,430px)}
+.gallery{overflow-x:auto;scrollbar-width:none;user-select:none;-webkit-user-select:none;
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.gallery::-webkit-scrollbar{display:none}
+.g-wrap.js .gallery{overflow:hidden;touch-action:pan-y;cursor:grab}
+.gallery.arrastrando{cursor:grabbing}
+.gallery.arrastrando img{pointer-events:none}
+.g-track{display:flex;gap:12px;width:max-content;will-change:transform}
+.gallery figure{margin:0;display:flex;flex-direction:column;gap:8px;width:var(--fw);flex:none}
+.gallery .g-img{position:relative;overflow:hidden}
+.gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s ease;-webkit-user-drag:none;user-select:none}
+.gallery figure:hover img{transform:scale(1.07);filter:brightness(1.1) saturate(1.1)}
+.gallery figcaption{font-size:14px;font-weight:600}
+.gallery figcaption{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.gallery .g-tag{font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.gallery .g-tag::before{content:"·";margin-right:10px;color:rgba(255,255,255,.35)}
+@media (max-width:859px){.gallery figcaption{flex-direction:column;align-items:flex-start;gap:5px}.gallery .g-tag::before{content:none}}
+.g-btn{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;position:absolute;z-index:5;transform:translateZ(0);will-change:transform;top:calc(var(--fw) * .3125);translate:0 -50%;z-index:2;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:rgba(9,9,12,.78);border:1px solid var(--gold);color:var(--gold);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.45);transition:background .2s,color .2s,transform .15s}
+.g-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.g-btn.prev{left:0}
+.g-btn.next{right:0}
+.g-btn:active{transform:translateZ(0) scale(.92)}
+@media (hover:hover){.g-btn:hover{background:var(--gold);color:var(--gold-ink)}}
+/* flechas: se ve solo el par que toca (sin JavaScript cada par apunta a la foto vecina) */
+.g-btn{display:none}
+.g-wrap .g-btn.lb-0{display:flex}
+.gal-r:checked ~ .g-wrap .g-btn.lb-0{display:none}
+#gr0:checked ~ .g-wrap .g-btn.lb-0{display:flex}
+#gr1:checked ~ .g-wrap .g-btn.lb-1{display:flex}
+#gr2:checked ~ .g-wrap .g-btn.lb-2{display:flex}
+#gr3:checked ~ .g-wrap .g-btn.lb-3{display:flex}
+#gr4:checked ~ .g-wrap .g-btn.lb-4{display:flex}
+.g-wrap:not(.js) .g-track{animation:cinta 70s linear infinite}
+.gal-r:checked ~ .g-wrap:not(.js) .g-track{animation:none;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+#gr0:checked ~ .g-wrap:not(.js) .g-track{transform:translateX(calc(-0 * (var(--fw) + 12px)))}
+#gr1:checked ~ .g-wrap:not(.js) .g-track{transform:translateX(calc(-1 * (var(--fw) + 12px)))}
+#gr2:checked ~ .g-wrap:not(.js) .g-track{transform:translateX(calc(-2 * (var(--fw) + 12px)))}
+#gr3:checked ~ .g-wrap:not(.js) .g-track{transform:translateX(calc(-3 * (var(--fw) + 12px)))}
+#gr4:checked ~ .g-wrap:not(.js) .g-track{transform:translateX(calc(-4 * (var(--fw) + 12px)))}
+@keyframes cinta{to{transform:translate3d(calc(-50% - 6px),0,0)}}
+
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:860px){.pains{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pain{background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:2px}
+.pain strong{font-size:16px}
+.pain span{font-size:14px;color:var(--muted)}
+.resale{margin:0;color:var(--soft)}
+.resale b{color:var(--fg)}
+.how{display:grid;gap:22px;align-items:center}
+@media (min-width:860px){.how{grid-template-columns:1fr 1fr;gap:48px}}
+.how img,.how .photo{width:100%;aspect-ratio:4/3;object-fit:cover}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.steps li{display:grid;grid-template-columns:8px 1fr;gap:16px;align-items:start;border-top:1px solid var(--line);padding-block:12px}
+.steps li > .dot{width:8px;height:8px;margin-top:calc(.5lh - 4px);border-radius:50%;background:var(--gold);box-shadow:0 0 10px rgba(195,162,102,.5)}
+.reviews{display:grid;gap:8px}
+@media (min-width:640px){.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.review{margin:0;background:var(--panel);padding:16px 16px 20px;display:flex;flex-direction:column;gap:10px}
+.review img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:4px}
+.review footer b{color:var(--fg);font-weight:600}
+.review .st{color:var(--gold);letter-spacing:2px}
+.review p{margin:0;color:var(--soft)}
+.review footer{font-size:14px;color:var(--muted)}
+.ph{outline:1px dashed var(--line-2);outline-offset:-1px}
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-weight:400}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--muted)}
+.faq{border-top:1px solid var(--line);max-width:760px}
+.place{display:grid;gap:20px;align-items:center}
+@media (min-width:860px){.place{grid-template-columns:1fr 1fr;gap:48px}}
+.place img,.place .photo{width:100%;aspect-ratio:4/5;object-fit:cover}
+@media (min-width:860px){.place .photo{max-height:640px}}
+.place-copy{display:flex;flex-direction:column;gap:12px}
+.place-copy .btns{display:flex;gap:8px;flex-wrap:wrap}
+.phone{font-size:14px;color:var(--muted);margin:0}
+.phone b{color:var(--fg);user-select:all;font-variant-numeric:tabular-nums}
+.foot{border-top:1px solid var(--line);margin-top:44px}
+.foot .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:20px 28px;font-size:14px;color:var(--muted)}
+.foot a{color:var(--soft);padding:8px 0}
+
+/* Movimiento: lo mismo que la web principal */
+.js-rv [data-rv]{transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1),filter .9s ease,clip-path 1.3s cubic-bezier(.65,0,.35,1)}
+.js-rv [data-rv="txt"].pre{opacity:0;transform:translateY(18px);filter:blur(6px)}
+.js-rv [data-rv="slide"].pre{opacity:0;transform:translateX(56px)}
+/* the clip goes on the picture inside, so the box itself stays measurable for the observer */
+.js-rv [data-rv="img"] img,.js-rv [data-rv="img"] video{clip-path:inset(0 0 0 0);transition:clip-path 1.3s cubic-bezier(.65,0,.35,1),scale 1.6s cubic-bezier(.2,.7,.2,1),opacity 1.2s ease}
+.js-rv [data-rv="img"].pre img,.js-rv [data-rv="img"].pre video{clip-path:inset(0 0 0 100%);scale:1.14}
+.js-rv [data-rv]{transition-delay:calc(var(--i,0) * 110ms)}
+.photo{position:relative;overflow:hidden;display:block}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+/* destellos: barrido de luz al aparecer y al pasar el ratón */
+.shine-box{position:relative;overflow:hidden;display:block}
+.shine-box::after{content:"";position:absolute;top:-20%;bottom:-20%;width:38%;left:-60%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-14deg)}
+[data-rv].in .shine-box::after,[data-rv].in.shine-box::after{animation:destello 1.3s cubic-bezier(.4,0,.2,1) .9s both}
+@media (hover:hover){.shine-box:hover::after{animation:destello 1.1s cubic-bezier(.4,0,.2,1) both}}
+/* la tarjeta destacada brilla cada pocos segundos */
+.prow{position:relative;overflow:hidden;transition:border-color .25s,background .25s}
+.prow::after{content:"";position:absolute;top:-30%;bottom:-30%;width:30%;left:-60%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(240,223,180,.16),transparent);transform:skewX(-14deg)}
+.prow.star::after{animation:destello 1.4s cubic-bezier(.4,0,.2,1) 1.6s infinite;animation-duration:6s}
+@media (hover:hover){.prow:hover{border-color:var(--gold);background:var(--panel-2)}.prow:hover::after{animation:destello 1s cubic-bezier(.4,0,.2,1) both}}
+/* botones dorados con brillo que recorre */
+.btn-gold{background:linear-gradient(110deg,var(--gold) 0%,var(--gold) 38%,#f0dfb4 50%,var(--gold) 62%,var(--gold) 100%);background-size:280% 100%;animation:brillo 5.5s ease-in-out infinite}
+@keyframes brillo{0%,55%{background-position:100% 0}85%,100%{background-position:0 0}}
+.pain,.review{transition:transform .35s ease,background .3s}
+@media (hover:hover){.pain:hover,.review:hover{transform:translateY(-3px);background:var(--panel-2)}}
+@media (prefers-reduced-motion:reduce){
+  .hero-img,.hero-shine::after,.btn-gold,.g-track,.hero-copy > *,.kw-ppf,.prow.star::after{animation:none!important}
+  .js-rv [data-rv].pre{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+}
+
+/* Portada: botones */
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.hero-cta .btn{min-height:54px;padding:0 26px}
+.solo-m{display:none!important}
+
+/* Llamar y WhatsApp redondos (solo en la fila de botones de la portada en el móvil) */
+.tel-flota,.wa-flota{width:58px;height:58px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .22s,background .22s}
+.tel-flota{background:rgba(9,9,12,.92);border:1px solid var(--gold)}
+.tel-flota svg{width:26px;height:26px;fill:var(--gold);display:block}
+.wa-flota{background:var(--gold)}
+.wa-flota svg{width:30px;height:30px;fill:#070708;display:block}
+.tel-flota:active,.wa-flota:active{transform:scale(.95)}
+@media (hover:hover){.tel-flota:hover{transform:translateY(-2px);background:var(--gold)}.tel-flota:hover svg{fill:#070708}.wa-flota:hover{transform:translateY(-2px);background:#d4b478}}
+@media (prefers-reduced-motion:no-preference){.wa-flota{animation:wa-pulso 3.6s ease-out infinite}}
+@keyframes wa-pulso{0%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 0 rgba(195,162,102,.45)}70%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 16px rgba(195,162,102,0)}100%{box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 0 rgba(195,162,102,0)}}
+
+/* ── Móvil: misma lógica que la web principal ──
+   márgenes de 20–28px, fotos a sangre con el texto montado encima del degradado,
+   titulares grandes, botones a todo el ancho. */
+@media (max-width:859px){
+  .wrap{padding-left:clamp(20px,5.6vw,28px);padding-right:clamp(20px,5.6vw,28px)}
+  .logo img{height:34px}
+
+  /* portada: entra entera en la primera pantalla (foto + texto + botones), sin tocar bordes.
+     La foto se estira o encoge con el alto del móvil; el texto y los botones mandan. */
+  .hero{display:flex;flex-direction:column;min-height:calc(100svh - var(--hdr,61px) - env(safe-area-inset-top,0px))}
+  .hero-media{flex:1 1 0;min-height:170px;aspect-ratio:auto}
+  .hero-img{object-position:50% 60%}
+  .hero-media::after{background:linear-gradient(180deg,rgba(11,11,14,.45) 0%,rgba(11,11,14,0) 16%,rgba(11,11,14,0) 46%,rgba(11,11,14,.85) 80%,var(--ink) 100%)}
+  .hero-copy{flex:none;margin-top:-58px;padding-block:0 22px;gap:12px}
+  .h1-kw{margin-bottom:10px;gap:14px}
+  .kw-ppf{font-size:clamp(34px,9.8vw,46px)}
+  .h1-kw{flex-wrap:wrap;row-gap:8px}
+  .kw-loc{font-size:12px}
+  .hero h1{font-size:clamp(36px,10.4vw,50px);line-height:.98;letter-spacing:-.02em}
+  .hero p{font-size:clamp(16px,4.3vw,18px);line-height:1.45}
+  .hero .guar{display:none}
+  .solo-pc{display:none!important}
+  .solo-m{display:flex!important}
+  /* botón de reservar + llamar y WhatsApp en la misma fila */
+  .hero-cta{flex-wrap:nowrap;align-items:center;gap:10px;margin-top:6px}
+  .hero-cta .btn-gold{flex:1 1 auto;min-height:54px;font-size:16px;padding:0 16px}
+  .hero-cta .tel-flota,.hero-cta .wa-flota{width:54px;height:54px;box-shadow:none}
+
+  /* el segundo deslizamiento ya es el formulario: la reserva va justo después de la portada */
+  main{display:flex;flex-direction:column}
+  main>*{min-width:0;width:100%}
+  .hero{order:-2}
+  .book{order:-1}
+
+  /* secciones más aireadas y titulares más grandes */
+  h2{font-size:clamp(27px,8vw,34px);line-height:1.12}
+  .sec{padding-block:clamp(52px,9vh,76px) 0;gap:22px}
+  .prices{padding-block:16px 40px;gap:16px}
+  .prow{padding:20px 18px;min-height:84px}
+  .prow .price{font-size:18px}
+
+  /* reserva: entra entera en una pantalla. Sin caja alrededor, etiquetas dentro de los campos
+     y los días en una tira que se desliza */
+  .book .wrap{padding-block:18px 26px;gap:14px}
+  .book-intro{gap:4px}
+  .book-intro .fine{display:none}
+  .book-intro h2{font-size:clamp(30px,8.4vw,38px)}
+  .book-intro p{font-size:15px}
+  form{background:none;border:0;padding:0;gap:14px}
+  .steps-in{gap:14px}
+  .opts{gap:6px}
+  .opt{min-height:50px;font-size:clamp(12px,3.35vw,13.5px);padding:5px 3px;letter-spacing:-.01em}
+  .opt small{font-size:10.5px}
+  /* reserva más compacta para que entre en una pantalla con los días en dos filas */
+  .book .wrap{padding-block:14px 18px;gap:10px}
+  .book-intro p{display:none}
+  .book-intro h2{font-size:clamp(28px,8vw,36px)}
+  form,.steps-in{gap:11px}
+  legend,.lbl{margin-bottom:6px}
+  .opt{min-height:46px}
+  input{min-height:46px;padding:10px 13px}
+  .submit{min-height:50px}
+  .form-pie{gap:0 12px}
+  .alt{padding:3px 0}
+  /* días: dos filas de cuatro y debajo un botón ancho para elegir otra fecha */
+  .days-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .day{min-height:52px;padding:5px 2px 4px}
+  .day b{font-size:18px;line-height:1.15}
+  .day.otra{grid-column:1/-1;flex-direction:row;gap:10px;min-height:46px;border:1px solid rgba(195,162,102,.7);background:rgba(195,162,102,.06)}
+  .day.otra small,.day.otra em{display:none}
+  .day.otra svg{margin:0}
+  .day.otra .otra-l{display:inline;font:600 15px/1.2 var(--body);color:var(--gold);letter-spacing:0;text-transform:none}
+  .day.otra.on .otra-l{color:var(--gold-ink)}
+  .day.otra.on svg{stroke:var(--gold-ink)}
+  .two{grid-template-columns:1fr 1fr;gap:8px}
+
+  /* galería: tarjetas más anchas */
+  .gallery{margin-inline:calc(-1 * clamp(20px,5.6vw,28px))}
+  .g-wrap{--fw:min(80vw,430px)}
+
+  /* galería: fotos verticales y la sección ocupa una pantalla entera */
+  .trab{padding-block:22px 18px;gap:14px}
+  .trab .sec-head{gap:2px 12px}
+  .trab .sec-head a{padding:4px 0}
+  .trab .g-wrap{--fw:min(84vw,430px)}
+  .trab .gallery img{aspect-ratio:16/10}
+  .trab .gallery figure{gap:10px}
+  .trab .gallery figcaption{font-size:15px}
+  .trab .gallery .g-car{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .trab .g-btn{top:calc(var(--fw) * .3125)}
+  .g-btn{width:46px;height:46px}
+  .g-btn.prev{left:-6px}
+  .g-btn.next{right:-6px}
+
+  .pain{padding:18px 16px;min-height:112px}
+
+  /* "no somos los más baratos": la foto va primero y a sangre */
+  /* "no somos los más baratos" y "dónde estamos": foto a sangre de fondo y el texto encima,
+     sobre un degradado oscuro, como en la web principal */
+  .how,.place{position:relative;isolation:isolate;display:block;padding:min(64vw,300px) 0 34px}
+  .how .photo,.place .photo{position:absolute;top:0;bottom:0;left:calc(-1 * clamp(20px,5.6vw,28px));right:calc(-1 * clamp(20px,5.6vw,28px));width:auto;height:auto;margin:0;aspect-ratio:auto;max-height:none;z-index:-2}
+  .how .photo img,.place .photo img{width:100%;height:100%;aspect-ratio:auto}
+  .how .photo{bottom:auto;height:calc(min(64vw,300px) + 240px);-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%)}
+  .how .photo img{object-position:50% 50%}
+  .place .photo img{object-position:50% 18%}
+  .how::before,.place::before{content:"";position:absolute;top:0;bottom:0;left:calc(-1 * clamp(20px,5.6vw,28px));right:calc(-1 * clamp(20px,5.6vw,28px));z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(11,11,14,.35) 0%,rgba(11,11,14,0) 14%,rgba(11,11,14,.25) 30%,rgba(11,11,14,.82) 46%,rgba(11,11,14,.94) 64%,var(--ink) 100%)}
+  .how h2,.place h2{text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .how .muted,.place .muted{color:#c4c4cc}
+  .how .steps li{border-top-color:rgba(255,255,255,.16)}
+  .steps li{padding-block:15px}
+
+  .review{padding:20px 18px 22px}
+  details{padding-block:18px}
+  summary{font-size:16px}
+
+  /* dónde estamos: foto a sangre y botones repartidos */
+
+  .place-copy{gap:14px}
+  .place-copy .btns{margin-right:0}
+  .place-copy .btns .btn{flex:1 1 0;min-height:54px}
+
+  .foot .wrap{flex-direction:column;gap:4px;padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+}
+/* móviles bajitos (iPhone SE con las barras del navegador): el formulario se aprieta un poco más para seguir entrando en una pantalla */
+@media (max-width:859px) and (max-height:620px){
+  .book .wrap{padding-block:10px 12px;gap:8px}
+  .book-intro h2{font-size:26px}
+  form,.steps-in{gap:8px}
+  legend,.lbl{margin-bottom:5px;font-size:11px}
+  .opt{min-height:40px}
+  .day{min-height:44px;padding:3px 2px}
+  .day b{font-size:16px}
+  .day small,.day em{font-size:10px}
+  .day.otra{min-height:40px}
+  input{min-height:42px;padding:8px 12px}
+  .submit{min-height:46px}
+  .legal{display:none}
+}
+
+/* ── Móvil con vida (la web de escritorio no cambia) ── */
+@media (max-width:859px){
+  /* portada: el texto entra escalonado al abrir, aunque el navegador no ejecute JavaScript */
+  .hero-copy > *{animation:subeM .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero-copy > :nth-child(1){animation-delay:.25s}
+  .hero-copy > :nth-child(2){animation-delay:.45s}
+  .hero-copy > :nth-child(3){animation-delay:.6s}
+  .hero-copy > :nth-child(4){animation-delay:.75s}
+  .hero-copy > :nth-child(5){animation-delay:.9s}
+  .kw-ppf{animation:brillo 5.5s ease-in-out infinite,abreM 1.2s cubic-bezier(.2,.7,.2,1) .3s both}
+  .hero-img{animation:entraM 2.4s cubic-bezier(.2,.7,.2,1) both,deriva 18s ease-in-out 2.4s infinite alternate}
+  .hero-cta .wa-flota{animation:wa-pulso 3.6s ease-out 2s infinite}
+  /* barra dorada de progreso bajo la cabecera */
+  .top::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:calc(var(--prog,0) * 100%);background:linear-gradient(90deg,var(--gold),#f0dfb4);box-shadow:0 0 10px rgba(195,162,102,.6)}
+  /* títulos: una raya dorada que se dibuja al aparecer */
+  .sec h2,.prices h2,.book-intro h2{position:relative}
+  .sec h2::after,.prices h2::after{content:"";display:block;height:2px;width:46px;margin-top:14px;background:var(--gold);transform-origin:0 50%;transition:transform .9s cubic-bezier(.2,.7,.2,1) .35s}
+  .js-rv .sec h2.pre::after,.js-rv .prices h2.pre::after{transform:scaleX(0)}
+  /* fotos a sangre con un leve paralaje al bajar */
+  .how .photo img,.place .photo img{height:calc(100% + 70px);margin-top:-35px;translate:0 calc(var(--px,0) * 1px)}
+  /* tarjetas de precio y días: respuesta al toque */
+  .prow:active,.opt:active,.day:active,.chip:active{transform:scale(.97)}
+  .prow,.opt,.day,.chip{transition:transform .15s ease,background .2s,border-color .2s}
+  /* galería: indicador de posición */
+  .g-dots{display:flex;justify-content:center;gap:7px;margin-top:2px}
+  .g-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.22);transition:background .3s,width .3s}
+  .g-dots i.on{width:18px;border-radius:3px;background:var(--gold)}
+}
+@media (min-width:860px){.g-dots{display:none}}
+@keyframes subeM{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes abreM{from{letter-spacing:.28em;opacity:0}to{letter-spacing:.06em;opacity:1}}
+@keyframes entraM{from{transform:scale(1.18);filter:brightness(.4)}to{transform:scale(1);filter:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+
+<!--MCC:CSS--><style>
+/* Aviso de cookies: tres botones iguales, rechazar tan fácil como aceptar */
+.ck{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;max-width:760px;margin:0 auto;
+  background:rgba(14,14,18,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  padding:18px;display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.5;color:var(--soft);
+  opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s}
+.ck.ver{opacity:1;transform:none}
+.ck p{margin:0}
+.ck a{color:var(--gold)}
+.ck-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ck-btn{min-height:46px;padding:0 10px;border:1px solid rgba(255,255,255,.26);background:transparent;color:var(--fg);font:600 14px/1.1 var(--body);cursor:pointer;border-radius:2px}
+.ck-btn:hover{border-color:var(--gold);color:var(--gold)}
+.ck-btn.si{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.ck-btn.si:hover{color:var(--gold-ink);filter:brightness(1.08)}
+.ck-conf{display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.ck-fila{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.ck-fila b{display:block;color:var(--fg);font-weight:600}
+.ck-fila small{color:var(--muted);font-size:12.5px}
+.ck-fila input{appearance:none;-webkit-appearance:none;flex:none;width:44px;height:26px;min-height:0;padding:0;border-radius:999px;background:rgba(255,255,255,.16);border:0;position:relative;cursor:pointer;transition:background .2s}
+.ck-fila input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.ck-fila input:checked{background:var(--gold)}
+.ck-fila input:checked::after{transform:translateX(18px)}
+.ck-fila input:disabled{opacity:.55;cursor:default}
+.foot .ck-abrir{background:none;border:0;padding:8px 0;color:var(--soft);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer}
+@media (min-width:860px){.ck{left:auto;right:24px;bottom:24px;max-width:520px}}
+</style><!--/MCC:CSS-->
+</head>
+<body data-origen="landing-detailing">
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="https://marbellacustomcars.com/" aria-label="Marbella Custom Cars, ir al inicio"><img src="img/logo.webp" alt="Marbella Custom Cars" width="59" height="38"></a>
+    <nav class="nav" aria-label="Principal">
+      <div class="idioma" id="idioma">
+        <button class="idi-btn" id="idiBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="idiLista" aria-label="Idioma / Language"><span id="idiCod">ES</span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="lang" id="idiLista" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es" lang="es" aria-pressed="true"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#C60B1E"/><rect y="3.5" width="21" height="7" fill="#FFC400"/></svg><span>ES</span><em>Español</em></button><button type="button" data-lang="en" lang="en" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#012169"/><path d="M0 0l21 14M21 0L0 14" stroke="#fff" stroke-width="2.6"/><path d="M0 0l21 14M21 0L0 14" stroke="#C8102E" stroke-width="1.4"/><path d="M10.5 0v14M0 7h21" stroke="#fff" stroke-width="4"/><path d="M10.5 0v14M0 7h21" stroke="#C8102E" stroke-width="2.2"/></svg><span>EN</span><em>English</em></button><button type="button" data-lang="pt" lang="pt" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#DA291C"/><path d="M2 0h6.4v14H2z" fill="#046A38"/><circle cx="8.4" cy="7" r="3" fill="#FFE900" stroke="#046A38" stroke-width=".7"/></svg><span>PT</span><em>Português</em></button><button type="button" data-lang="ru" lang="ru" aria-pressed="false"><svg viewBox="0 0 21 14"><rect width="21" height="14" rx="2" fill="#fff"/><rect y="4.67" width="21" height="4.66" fill="#0039A6"/><rect y="9.33" width="21" height="4.67" fill="#D52B1E"/></svg><span>RU</span><em>Русский</em></button></div>
+      </div>
+      <a class="hide-xs" href="https://marbellacustomcars.com/" data-en="Home" data-pt="Início" data-ru="Главная">Inicio</a>
+      <a class="hide-sm" href="#precios" data-en="Prices" data-pt="Preços" data-ru="Цены">Precios</a>
+      <a class="btn btn-gold" href="#cita" data-en="Book" data-pt="Reservar" data-ru="Записаться">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Detailing en Marbella">
+    <div class="hero-media" data-rv="img">
+      <img class="hero-img" src="img/hero.webp" alt="Mercedes cubierto de espuma activa durante un detailing en el taller de Marbella Custom Cars" width="1000" height="1000" fetchpriority="high">
+      <span class="hero-shine" aria-hidden="true"></span>
+    </div>
+    <div class="wrap hero-copy" data-rv="txt">
+      <h1 data-en="&lt;span class=&quot;eyebrow h1-kw&quot;&gt;&lt;b class=&quot;kw-ppf&quot;&gt;DETAILING&lt;/b&gt;&lt;span class=&quot;kw-loc&quot;&gt;in Marbella&lt;/span&gt;&lt;/span&gt;Like the day you bought it." data-pt="&lt;span class=&quot;eyebrow h1-kw&quot;&gt;&lt;b class=&quot;kw-ppf&quot;&gt;DETAILING&lt;/b&gt;&lt;span class=&quot;kw-loc&quot;&gt;em Marbella&lt;/span&gt;&lt;/span&gt;Como no dia em que o comprou." data-ru="&lt;span class=&quot;eyebrow h1-kw&quot;&gt;&lt;b class=&quot;kw-ppf&quot;&gt;ДЕТЕЙЛИНГ&lt;/b&gt;&lt;span class=&quot;kw-loc&quot;&gt;в Марбелье&lt;/span&gt;&lt;/span&gt;Как в день покупки."><span class="eyebrow h1-kw"><b class="kw-ppf">DETAILING</b><span class="kw-loc">en Marbella</span></span>Como el día que lo compraste.</h1>
+      <p data-en="Hand wash by levels, interior and engine bay. For cars that are looked after." data-pt="Lavagem à mão por níveis, interior e motor. Para carros bem cuidados." data-ru="Ручная мойка по уровням, салон и мотор. Для автомобилей, за которыми следят.">Lavado a mano por niveles, interior y motor. Para coches que se cuidan.</p>
+      <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr" data-en="&lt;b&gt;5.0 on Google&lt;/b&gt; · 71 reviews" data-pt="&lt;b&gt;5,0 no Google&lt;/b&gt; · 71 avaliações" data-ru="&lt;b&gt;5,0 в Google&lt;/b&gt; · 71 отзыв"><b>5,0 en Google</b> · 71 reseñas</span></div>
+      <p class="guar" data-en="&lt;b&gt;By hand, no rollers&lt;/b&gt; · Leaves protected, not just clean" data-pt="&lt;b&gt;À mão, sem rolos&lt;/b&gt; · Sai protegido, não só limpo" data-ru="&lt;b&gt;Вручную, без щёток&lt;/b&gt; · Не просто чистый, а защищённый"><b>A mano, sin rodillos</b> · Sale protegido, no solo limpio</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#cita" data-en="Book now" data-pt="Marcar visita" data-ru="Записаться">Reservar cita</a>
+        <a class="btn btn-line solo-pc" href="#precios" data-en="See prices" data-pt="Ver preços" data-ru="Цены">Ver precios</a>
+        <a class="tel-flota solo-m" href="tel:+34672936398" aria-label="Llamar a Marbella Custom Cars" data-en-aria="Call Marbella Custom Cars" data-pt-aria="Ligar para a Marbella Custom Cars" data-ru-aria="Позвонить в Marbella Custom Cars">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.85 21 3 13.15 3 3.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+      </a>
+        <a class="wa-flota wa-direct solo-m" href="https://wa.me/34672936398?text=Hola%2C%20quiero%20reservar%20cita%20para%20detailing.%20Mi%20coche%20es%3A%20" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" data-en-aria="Message us on WhatsApp" data-pt-aria="Escreva-nos por WhatsApp" data-ru-aria="Написать в WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap prices" id="precios" aria-labelledby="precios-t">
+    <div class="prices-head">
+      <h2 data-rv="txt" id="precios-t" data-en="Car detailing prices." data-pt="Preços de detailing." data-ru="Цены на детейлинг.">Precios de detailing.</h2>
+      <span class="muted" data-rv="txt" style="font-size:14px" data-en="Three levels · Gold, Black and Platinum" data-pt="Três níveis · Gold, Black e Platinum" data-ru="Три уровня · Gold, Black и Platinum">Tres niveles · Gold, Black y Platinum</span>
+    </div>
+    <div class="plist">
+      <button data-rv="slide" style="--i:0" class="prow" type="button" data-pick="Gold">
+        <span><strong data-en="Gold" data-pt="Gold" data-ru="Gold">Gold</strong><small data-en="Detailed exterior, liquid wax and vacuum" data-pt="Exterior detalhado, cera líquida e aspiração" data-ru="Детальная мойка кузова, жидкий воск и пылесос">Exterior detallado, cera líquida y aspirado</small></span>
+        <span class="price" data-en="&lt;small class=&quot;desde&quot;&gt;from&lt;/small&gt;€150" data-pt="&lt;small class=&quot;desde&quot;&gt;a partir de&lt;/small&gt;150 €" data-ru="&lt;small class=&quot;desde&quot;&gt;от&lt;/small&gt;150 €"><small class="desde">desde</small>150€</span>
+      </button>
+      <button data-rv="slide" style="--i:1" class="prow star" type="button" data-pick="Black">
+        <span><strong data-en="Black &lt;span class=&quot;tag&quot;&gt;MOST POPULAR&lt;/span&gt;" data-pt="Black &lt;span class=&quot;tag&quot;&gt;O MAIS PEDIDO&lt;/span&gt;" data-ru="Black &lt;span class=&quot;tag&quot;&gt;ПОПУЛЯРНЫЙ&lt;/span&gt;">Black <span class="tag">MÁS PEDIDO</span></strong><small data-en="Gold + decontamination, paste wax and full interior" data-pt="Gold + descontaminação, cera em pasta e interior completo" data-ru="Gold + очистка, твёрдый воск и полный салон">Gold + descontaminado, cera en pasta e interior completo</small></span>
+        <span class="price" data-en="&lt;small class=&quot;desde&quot;&gt;from&lt;/small&gt;€250" data-pt="&lt;small class=&quot;desde&quot;&gt;a partir de&lt;/small&gt;250 €" data-ru="&lt;small class=&quot;desde&quot;&gt;от&lt;/small&gt;250 €"><small class="desde">desde</small>250€</span>
+      </button>
+      <button data-rv="slide" style="--i:2" class="prow" type="button" data-pick="Platinum">
+        <span><strong data-en="Platinum" data-pt="Platinum" data-ru="Platinum">Platinum</strong><small data-en="Black + wheels off and synthetic sealant" data-pt="Black + rodas desmontadas e cera sintética" data-ru="Black + снятие колёс и синтетический воск">Black + ruedas desmontadas y cera sintética</small></span>
+        <span class="price" data-en="&lt;small class=&quot;desde&quot;&gt;from&lt;/small&gt;€350" data-pt="&lt;small class=&quot;desde&quot;&gt;a partir de&lt;/small&gt;350 €" data-ru="&lt;small class=&quot;desde&quot;&gt;от&lt;/small&gt;350 €"><small class="desde">desde</small>350€</span>
+      </button>
+    </div>
+    <p class="fine" data-rv="txt" data-en="Engine bay clean from €90, on its own or added to any level · Price depends on the size and condition of the car" data-pt="Lavagem do motor desde 90 €, sozinha ou com qualquer nível · O preço depende do tamanho e do estado do carro" data-ru="Мойка мотора — от 90 €, отдельно или к любому уровню · Цена зависит от размера и состояния автомобиля">Lavado de motor desde 90€, suelto o sumado a cualquier nivel · El precio depende del tamaño y del estado del coche</p>
+  </section>
+
+  <section class="book" id="cita" aria-labelledby="cita-t">
+    <div class="wrap">
+      <div class="book-intro" data-rv="txt">
+        <h2 data-rv="txt" id="cita-t" data-en="Book your visit." data-pt="Marque a visita." data-ru="Запишитесь к нам.">Reserva tu cita.</h2>
+        <p class="muted" style="margin:0" data-en="Pick a day and we’ll confirm the time on WhatsApp." data-pt="Escolha o dia e confirmamos a hora por WhatsApp." data-ru="Выберите день — время подтвердим в WhatsApp.">Elige el día y te confirmamos la hora por WhatsApp.</p>
+        <p class="fine" data-en="Free, no-obligation inspection · English · Español" data-pt="Diagnóstico gratuito e sem compromisso · Español · English" data-ru="Бесплатный осмотр без обязательств · Español · English">Diagnóstico sin compromiso · Español · English</p>
+      </div>
+
+      <form id="f" novalidate data-rv="slide">
+        <div id="steps">
+          <div class="steps-in">
+            <fieldset>
+              <legend data-en="Level" data-pt="Nível" data-ru="Уровень">Nivel</legend>
+              <div class="opts" id="cov">
+                <button type="button" class="opt" data-cov="Gold" aria-pressed="false" data-en="Gold&lt;small&gt;from €150&lt;/small&gt;" data-pt="Gold&lt;small&gt;desde 150 €&lt;/small&gt;" data-ru="Gold&lt;small&gt;от 150 €&lt;/small&gt;">Gold<small>desde 150€</small></button>
+                <button type="button" class="opt" data-cov="Black" aria-pressed="false" data-en="Black&lt;small&gt;from €250&lt;/small&gt;" data-pt="Black&lt;small&gt;desde 250 €&lt;/small&gt;" data-ru="Black&lt;small&gt;от 250 €&lt;/small&gt;">Black<small>desde 250€</small></button>
+                <button type="button" class="opt" data-cov="Platinum" aria-pressed="false" data-en="Platinum&lt;small&gt;from €350&lt;/small&gt;" data-pt="Platinum&lt;small&gt;desde 350 €&lt;/small&gt;" data-ru="Platinum&lt;small&gt;от 350 €&lt;/small&gt;">Platinum<small>desde 350€</small></button>
+                <button type="button" class="opt" data-cov="Lavado de motor" aria-pressed="false" data-en="Engine&lt;small&gt;from €90&lt;/small&gt;" data-pt="Motor&lt;small&gt;desde 90 €&lt;/small&gt;" data-ru="Мотор&lt;small&gt;от 90 €&lt;/small&gt;">Motor<small>desde 90€</small></button>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label class="lbl vh" for="car" data-en="Your car" data-pt="O seu carro" data-ru="Ваш автомобиль">Tu coche</label>
+              <input id="car" name="coche" type="text" autocomplete="off" autocapitalize="words" placeholder="Tu coche: toca y elige la marca" data-en-ph="Your car: tap and pick the make" data-pt-ph="O seu carro: toque e escolha a marca" data-ru-ph="Ваш автомобиль: выберите марку">
+              <div id="brandsBox" hidden style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+                <span class="lbl" style="font-size:11px" data-en="Make" data-pt="Marca" data-ru="Марка">Marca</span>
+                <div class="chips" id="brands"></div>
+              </div>
+              <div class="models" id="models" hidden></div>
+              <p class="hint" id="vhint" hidden data-en="Add the version or year if you like (e.g. 2023). Optional." data-pt="Se quiser, acrescente a versão ou o ano (ex. 2023). Opcional." data-ru="При желании укажите версию или год (напр. 2023). Необязательно.">Si quieres, añade la versión o el año (ej. 2023). No es obligatorio.</p>
+            </div>
+
+            <fieldset>
+              <legend class="leg-row"><span data-en="Which day suits you?" data-pt="Que dia lhe dá jeito?" data-ru="Какой день вам удобен?">¿Qué día te viene bien?</span><span class="leg-nota" data-en="Closed Sundays" data-pt="Fechado ao domingo" data-ru="Вс — выходной">Domingos cerrado</span></legend>
+              <div class="days-row">
+                <div class="days" id="days"></div>
+                <label class="day otra" id="otherBtn"><span id="otherTxt"></span><input id="other" type="date" aria-label="Otra fecha" data-en-aria="Another date" data-pt-aria="Outra data" data-ru-aria="Другая дата"></label>
+              </div>
+            </fieldset>
+
+            <div class="two">
+              <div class="field"><label class="lbl vh" for="name" data-en="Name" data-pt="Nome" data-ru="Имя">Nombre</label><input id="name" type="text" autocomplete="given-name" autocapitalize="words" placeholder="Tu nombre" data-en-ph="Your name" data-pt-ph="O seu nome" data-ru-ph="Ваше имя"></div>
+              <div class="field"><label class="lbl vh" for="tel">WhatsApp</label><input id="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="Tu WhatsApp" data-en-ph="Your WhatsApp" data-pt-ph="O seu WhatsApp" data-ru-ph="Ваш WhatsApp"></div>
+            </div>
+
+            <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+            <p class="err" id="err" hidden></p>
+            <button class="btn btn-gold submit" type="submit" data-en="Book my appointment" data-pt="Marcar a minha visita" data-ru="Записаться">Reservar mi cita</button>
+            <div class="form-pie">
+              <a class="alt wa-direct" href="https://wa.me/34672936398?text=Hola%2C%20quiero%20reservar%20cita%20para%20detailing.%20Mi%20coche%20es%3A%20" target="_blank" rel="noopener" data-en="Rather write yourself? WhatsApp →" data-pt="Prefere escrever? WhatsApp →" data-ru="Хотите написать сами? WhatsApp →">¿Prefieres escribir tú? WhatsApp →</a>
+              <p class="legal" data-en='You accept the <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">privacy policy</a>.' data-pt='Aceita a <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">política de privacidade</a>.' data-ru='Вы принимаете <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">политику конфиденциальности</a>.'>Aceptas la <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="done" id="done" hidden>
+          <p class="eyebrow" data-en="Last step" data-pt="Último passo" data-ru="Последний шаг">Último paso</p>
+          <h3 style="font-size:26px;line-height:1.15" id="doneT">Perfecto. Envíanos tu reserva.</h3>
+          <dl class="sum" id="sum"></dl>
+          <a class="btn btn-wa submit" id="waBtn" data-lead href="#" target="_blank" rel="noopener" data-en="Send on WhatsApp" data-pt="Enviar por WhatsApp" data-ru="Отправить в WhatsApp">Enviar por WhatsApp</a>
+          <button class="btn btn-line" type="button" id="edit" data-en="Change something" data-pt="Alterar algo" data-ru="Изменить">Cambiar algo</button>
+          <p class="phone" data-en="Prefer to call? <b>+34 672 93 63 98</b>" data-pt="Prefere ligar? <b>+34 672 93 63 98</b>" data-ru="Хотите позвонить? <b>+34 672 93 63 98</b>">¿Prefieres llamar? <b>+34 672 93 63 98</b></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap sec trab" aria-labelledby="trab-t">
+    <div class="sec-head">
+      <h2 data-rv="txt" id="trab-t" data-en="Work from the workshop." data-pt="Trabalhos na oficina." data-ru="Работы из мастерской.">Trabajos en el taller.</h2>
+      <a href="https://www.instagram.com/marbellacustomcars/" target="_blank" rel="noopener" data-en="More on Instagram →" data-pt="Mais no Instagram →" data-ru="Больше в Instagram →">Más en Instagram →</a>
+    </div>
+    <!-- sin JavaScript, las flechas mueven la cinta con estos radios; con JavaScript los maneja el script -->
+    <input type="radio" name="gal" id="gr0" class="gal-r" hidden>
+    <input type="radio" name="gal" id="gr1" class="gal-r" hidden>
+    <input type="radio" name="gal" id="gr2" class="gal-r" hidden>
+    <input type="radio" name="gal" id="gr3" class="gal-r" hidden>
+    <input type="radio" name="gal" id="gr4" class="gal-r" hidden>
+    <div class="g-wrap" data-rv="txt">
+    <div class="gallery" tabindex="0" aria-label="Trabajos en el taller" data-en-aria="Work from the workshop" data-pt-aria="Trabalhos na oficina" data-ru-aria="Работы из мастерской">
+      <div class="g-track">
+      <figure><span class="g-img shine-box"><img src="img/g-ferrari-lavado.webp" alt="Ferrari gris cubierto de espuma activa durante el lavado a mano en el taller" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Ferrari</span><span class="g-tag" data-en="Hand wash" data-pt="Lavagem à mão" data-ru="Ручная мойка">Lavado a mano</span></figcaption></figure>
+      <figure><span class="g-img shine-box"><img src="img/g-clasev-interior.webp" alt="Interior VIP de cuero naranja de una Mercedes Clase V tras la limpieza" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Mercedes Clase V</span><span class="g-tag" data-en="VIP interior" data-pt="Interior VIP" data-ru="VIP-салон">Interior VIP</span></figcaption></figure>
+      <figure><span class="g-img shine-box"><img src="img/g1.webp" alt="BMW M8 rojo tras un detailing exterior" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">BMW M8</span><span class="g-tag" data-en="Exterior detailing" data-pt="Detailing exterior" data-ru="Детейлинг кузова">Detailing exterior</span></figcaption></figure>
+      <figure><span class="g-img shine-box"><img src="img/g2.webp" alt="Dodge Challenger negro tras un detailing completo" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Dodge Challenger</span><span class="g-tag" data-en="Full detailing" data-pt="Detailing completo" data-ru="Полный детейлинг">Detailing completo</span></figcaption></figure>
+      <figure><span class="g-img shine-box"><img src="img/g3.webp" alt="Interior de Audi con cuero rojo tras la limpieza" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Audi</span><span class="g-tag" data-en="Full interior" data-pt="Interior completo" data-ru="Полный салон">Interior completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-ferrari-lavado.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Ferrari</span><span class="g-tag" data-en="Hand wash" data-pt="Lavagem à mão" data-ru="Ручная мойка">Lavado a mano</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-clasev-interior.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Mercedes Clase V</span><span class="g-tag" data-en="VIP interior" data-pt="Interior VIP" data-ru="VIP-салон">Interior VIP</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g1.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">BMW M8</span><span class="g-tag" data-en="Exterior detailing" data-pt="Detailing exterior" data-ru="Детейлинг кузова">Detailing exterior</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g2.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Dodge Challenger</span><span class="g-tag" data-en="Full detailing" data-pt="Detailing completo" data-ru="Полный детейлинг">Detailing completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g3.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Audi</span><span class="g-tag" data-en="Full interior" data-pt="Interior completo" data-ru="Полный салон">Interior completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-ferrari-lavado.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Ferrari</span><span class="g-tag" data-en="Hand wash" data-pt="Lavagem à mão" data-ru="Ручная мойка">Lavado a mano</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-clasev-interior.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Mercedes Clase V</span><span class="g-tag" data-en="VIP interior" data-pt="Interior VIP" data-ru="VIP-салон">Interior VIP</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g1.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">BMW M8</span><span class="g-tag" data-en="Exterior detailing" data-pt="Detailing exterior" data-ru="Детейлинг кузова">Detailing exterior</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g2.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Dodge Challenger</span><span class="g-tag" data-en="Full detailing" data-pt="Detailing completo" data-ru="Полный детейлинг">Detailing completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g3.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Audi</span><span class="g-tag" data-en="Full interior" data-pt="Interior completo" data-ru="Полный салон">Interior completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-ferrari-lavado.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Ferrari</span><span class="g-tag" data-en="Hand wash" data-pt="Lavagem à mão" data-ru="Ручная мойка">Lavado a mano</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g-clasev-interior.webp" alt="" width="1280" height="800" loading="lazy"></span><figcaption><span class="g-car">Mercedes Clase V</span><span class="g-tag" data-en="VIP interior" data-pt="Interior VIP" data-ru="VIP-салон">Interior VIP</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g1.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">BMW M8</span><span class="g-tag" data-en="Exterior detailing" data-pt="Detailing exterior" data-ru="Детейлинг кузова">Detailing exterior</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g2.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Dodge Challenger</span><span class="g-tag" data-en="Full detailing" data-pt="Detailing completo" data-ru="Полный детейлинг">Detailing completo</span></figcaption></figure>
+      <figure aria-hidden="true"><span class="g-img shine-box"><img src="img/g3.webp" alt="" width="640" height="400" loading="lazy"></span><figcaption><span class="g-car">Audi</span><span class="g-tag" data-en="Full interior" data-pt="Interior completo" data-ru="Полный салон">Interior completo</span></figcaption></figure>
+      </div>
+    </div>
+    <label for="gr4" class="g-btn prev lb-0" role="button" tabindex="0" aria-label="Fotos anteriores" data-en-aria="Previous photos" data-pt-aria="Fotos anteriores" data-ru-aria="Предыдущие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></label>
+    <label for="gr1" class="g-btn next lb-0" role="button" tabindex="0" aria-label="Fotos siguientes" data-en-aria="Next photos" data-pt-aria="Próximas fotos" data-ru-aria="Следующие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></label>
+    <label for="gr0" class="g-btn prev lb-1" role="button" tabindex="0" aria-label="Fotos anteriores" data-en-aria="Previous photos" data-pt-aria="Fotos anteriores" data-ru-aria="Предыдущие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></label>
+    <label for="gr2" class="g-btn next lb-1" role="button" tabindex="0" aria-label="Fotos siguientes" data-en-aria="Next photos" data-pt-aria="Próximas fotos" data-ru-aria="Следующие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></label>
+    <label for="gr1" class="g-btn prev lb-2" role="button" tabindex="0" aria-label="Fotos anteriores" data-en-aria="Previous photos" data-pt-aria="Fotos anteriores" data-ru-aria="Предыдущие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></label>
+    <label for="gr3" class="g-btn next lb-2" role="button" tabindex="0" aria-label="Fotos siguientes" data-en-aria="Next photos" data-pt-aria="Próximas fotos" data-ru-aria="Следующие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></label>
+    <label for="gr2" class="g-btn prev lb-3" role="button" tabindex="0" aria-label="Fotos anteriores" data-en-aria="Previous photos" data-pt-aria="Fotos anteriores" data-ru-aria="Предыдущие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></label>
+    <label for="gr4" class="g-btn next lb-3" role="button" tabindex="0" aria-label="Fotos siguientes" data-en-aria="Next photos" data-pt-aria="Próximas fotos" data-ru-aria="Следующие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></label>
+    <label for="gr3" class="g-btn prev lb-4" role="button" tabindex="0" aria-label="Fotos anteriores" data-en-aria="Previous photos" data-pt-aria="Fotos anteriores" data-ru-aria="Предыдущие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></label>
+    <label for="gr0" class="g-btn next lb-4" role="button" tabindex="0" aria-label="Fotos siguientes" data-en-aria="Next photos" data-pt-aria="Próximas fotos" data-ru-aria="Следующие фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></label>
+    </div>
+    <div class="g-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="como-t">
+    <div class="how">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <h2 data-rv="txt" id="como-t" data-en="We’re not the cheapest. We do it right." data-pt="Não somos os mais baratos. Fazemos bem feito." data-ru="Мы не самые дешёвые. Мы делаем на совесть.">No somos los más baratos. Hacemos las cosas bien.</h2>
+        <ul class="steps">
+          <li data-rv="slide" style="--i:0"><span class="dot" aria-hidden="true"></span><div data-en="&lt;b&gt;Inspection.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;We assess the car and pick the level.&lt;/span&gt;" data-pt="&lt;b&gt;Diagnóstico.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Vemos o estado e escolhemos o nível.&lt;/span&gt;" data-ru="&lt;b&gt;Осмотр.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Оцениваем состояние и выбираем уровень.&lt;/span&gt;"><b>Diagnóstico.</b> <span class="muted">Vemos el estado y elegimos el nivel.</span></div></li>
+          <li data-rv="slide" style="--i:1"><span class="dot" aria-hidden="true"></span><div data-en="&lt;b&gt;Pre-wash.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Snow foam and deep wheel clean.&lt;/span&gt;" data-pt="&lt;b&gt;Pré-lavagem.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Espuma ativa e jantes a fundo.&lt;/span&gt;" data-ru="&lt;b&gt;Предмойка.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Активная пена и тщательная мойка дисков.&lt;/span&gt;"><b>Prelavado.</b> <span class="muted">Espuma activa y llantas a fondo.</span></div></li>
+          <li data-rv="slide" style="--i:2"><span class="dot" aria-hidden="true"></span><div data-en="&lt;b&gt;Detailing.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Professionals with years of experience.&lt;/span&gt;" data-pt="&lt;b&gt;Detalhe.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Profissionais com anos de experiência.&lt;/span&gt;" data-ru="&lt;b&gt;Детейлинг.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Специалисты с многолетним опытом.&lt;/span&gt;"><b>Detallado.</b> <span class="muted">Profesionales con años de experiencia.</span></div></li>
+          <li data-rv="slide" style="--i:3"><span class="dot" aria-hidden="true"></span><div data-en="&lt;b&gt;Protection.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Wax or sealant depending on the level.&lt;/span&gt;" data-pt="&lt;b&gt;Proteção.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Cera ou selante conforme o nível.&lt;/span&gt;" data-ru="&lt;b&gt;Защита.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Воск или силант в зависимости от уровня.&lt;/span&gt;"><b>Protección.</b> <span class="muted">Cera o sellador según el nivel.</span></div></li>
+          <li data-rv="slide" style="--i:4"><span class="dot" aria-hidden="true"></span><div data-en="&lt;b&gt;Handover.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Final check, inside and out.&lt;/span&gt;" data-pt="&lt;b&gt;Entrega.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Revisão final, por dentro e por fora.&lt;/span&gt;" data-ru="&lt;b&gt;Выдача.&lt;/b&gt; &lt;span class=&quot;muted&quot;&gt;Финальная проверка снаружи и внутри.&lt;/span&gt;"><b>Entrega.</b> <span class="muted">Revisión final, por dentro y por fuera.</span></div></li>
+        </ul>
+      </div>
+      <span class="photo shine-box" data-rv="img"><img src="img/proceso.webp" alt="Llanta cubierta de espuma durante el prelavado de un detailing" width="1000" height="750" loading="lazy"></span>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="res-t">
+    <div class="sec-head">
+      <h2 data-rv="txt" id="res-t" data-en="5.0 ★ · 71 reviews" data-pt="5,0 ★ · 71 avaliações" data-ru="5,0 ★ · 71 отзыв">5,0 ★ · 71 reseñas</h2>
+      <a href="https://search.google.com/local/reviews?placeid=ChIJD30solDZcg0RqnzteCX1OXI" target="_blank" rel="noopener" data-en="See on Google →" data-pt="Ver no Google →" data-ru="Смотреть в Google →">Ver en Google →</a>
+    </div>
+    <div class="reviews">
+      <blockquote class="review" data-rv="slide" style="--i:0">
+        <span class="st" aria-label="5 de 5 estrellas">★★★★★</span>
+        <p>“Increíble experiencia y de ahora en adelante siempre me lo harán ellos!! Joaquín un crack!”</p>
+        <footer><b>Christopher Rodríguez</b> · Porsche Cayenne · Google</footer>
+      </blockquote>
+      <blockquote class="review" data-rv="slide" style="--i:1">
+        <span class="st" aria-label="5 de 5 estrellas">★★★★★</span>
+        <p>“Lo han dejado como nuevo. El sitio súper lindo y limpio.”</p>
+        <footer><b>Cristian Peke</b> · Audi R8 · Google</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="faq-t">
+    <h2 data-rv="txt" id="faq-t" data-en="Frequently asked questions." data-pt="Perguntas frequentes." data-ru="Частые вопросы.">Dudas frecuentes.</h2>
+    <div class="faq">
+      <details data-rv="slide" style="--i:0"><summary data-en="What does each level include?" data-pt="O que inclui cada nível?" data-ru="Что входит в каждый уровень?">¿Qué incluye cada nivel?</summary><p data-en="Gold: detailed exterior, liquid wax and vacuum. Black: plus decontamination, paste wax and full interior. Platinum: plus wheels off and synthetic sealant." data-pt="Gold: exterior detalhado, cera líquida e aspiração. Black: além disso, descontaminação, cera em pasta e interior completo. Platinum: além disso, rodas desmontadas e cera sintética." data-ru="Gold: детальная мойка кузова, жидкий воск и пылесос. Black: плюс очистка, твёрдый воск и полный салон. Platinum: плюс снятие колёс и синтетический воск.">Gold: exterior detallado, cera líquida y aspirado. Black: además descontaminado, cera en pasta e interior completo. Platinum: además ruedas desmontadas y cera sintética.</p></details>
+      <details data-rv="slide" style="--i:1"><summary data-en="How is it different from a car wash?" data-pt="Qual é a diferença para uma lavagem?" data-ru="Чем это отличается от мойки?">¿Qué diferencia hay con un lavado?</summary><p data-en="A wash cleans what you can see. Detailing brings the car as close as possible to factory condition and leaves it protected." data-pt="Uma lavagem limpa o que se vê. O detailing devolve o carro o mais perto possível do estado de fábrica e deixa-o protegido." data-ru="Мойка убирает то, что видно. Детейлинг максимально возвращает автомобиль к заводскому состоянию и оставляет его под защитой.">Un lavado limpia lo que se ve. El detailing devuelve el coche lo más cerca posible del estado de fábrica y lo deja protegido.</p></details>
+      <details data-rv="slide" style="--i:2"><summary data-en="How often should I do it?" data-pt="Com que frequência convém fazer?" data-ru="Как часто это делать?">¿Cada cuánto conviene hacerlo?</summary><p data-en="Usually one full detail a year and maintenance washes every two or three months." data-pt="O habitual: um detailing completo por ano e manutenções a cada dois ou três meses." data-ru="Обычно — полный детейлинг раз в год и обслуживание каждые два-три месяца.">Lo habitual: un detailing completo al año y mantenimientos cada dos o tres meses.</p></details>
+      <details data-rv="slide" style="--i:3"><summary data-en="How long does it take?" data-pt="Quanto tempo demora?" data-ru="Сколько это занимает?">¿Cuánto tarda?</summary><p data-en="It depends on the level. We give you the collection time when you book." data-pt="Depende do nível. Damos-lhe a hora de entrega ao marcar." data-ru="Зависит от уровня. Время выдачи сообщим при записи.">Depende del nivel. Te damos la hora de entrega al reservar.</p></details>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="donde-t">
+    <div class="place">
+      <span class="photo shine-box" data-rv="img"><img src="img/taller.webp" alt="Joaquín trabajando en un Ferrari SF90 XX rojo en el taller de Marbella Custom Cars" width="960" height="1200" loading="lazy"></span>
+      <div class="place-copy" data-rv="txt">
+        <h2 data-rv="txt" id="donde-t">Calle Oro 32, Marbella.</h2>
+        <span class="muted" data-en="Polígono La Ermita, next to the A-7. We detail cars for clients from Marbella, Puerto Banús, San Pedro, Estepona, Mijas and Fuengirola." data-pt="Polígono La Ermita, junto à A-7. Fazemos detailing a clientes de Marbella, Puerto Banús, San Pedro, Estepona, Mijas e Fuengirola." data-ru="Polígono La Ermita, рядом с трассой A-7. Делаем детейлинг для клиентов из Марбельи, Пуэрто-Бануса, Сан-Педро, Эстепоны, Михаса и Фуэнхиролы.">Polígono La Ermita, junto a la A-7. Hacemos detailing a clientes de Marbella, Puerto Banús, San Pedro, Estepona, Mijas y Fuengirola.</span>
+        <div class="btns">
+          <a class="btn btn-gold" href="#cita" data-en="Book now" data-pt="Marcar visita" data-ru="Записаться">Reservar cita</a>
+          <a class="btn btn-line" href="https://www.google.com/maps/dir/?api=1&amp;destination=36.511952%2C-4.8673708" target="_blank" rel="noopener" data-en="Directions" data-pt="Como chegar" data-ru="Как добраться">Cómo llegar</a>
+        </div>
+        <p class="phone" data-en="Phone: <b>+34 672 93 63 98</b>" data-pt="Telefone: <b>+34 672 93 63 98</b>" data-ru="Телефон: <b>+34 672 93 63 98</b>">Teléfono: <b>+34 672 93 63 98</b></p>
+      </div>
+    </div>
+  </section>
+</main>
+<!--MCC:BANNER--><div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-en="We use Google and Meta cookies to measure our advertising. You can accept, reject or choose; the site works the same if you reject them. More in our &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;privacy and cookie policy&lt;/a&gt;." data-pt="Usamos cookies da Google e da Meta para medir a publicidade. Pode aceitar, recusar ou escolher; se recusar, o site funciona na mesma. Mais informação na &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;política de privacidade e cookies&lt;/a&gt;." data-ru="Мы используем cookie Google и Meta для оценки рекламы. Их можно принять, отклонить или настроить — сайт работает одинаково. Подробнее в &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;политике конфиденциальности и cookie&lt;/a&gt;.">Usamos cookies de Google y Meta para medir la publicidad. Puedes aceptarlas, rechazarlas o elegir; si las rechazas, la web funciona igual. Más info en la <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">política de privacidad y cookies</a>.</p>
+  <div class="ck-conf" id="ckConf" hidden>
+    <div class="ck-fila"><span><b data-en="Necessary" data-pt="Necessárias" data-ru="Необходимые">Necesarias</b><small data-en="For the site to work. Always on." data-pt="Para o site funcionar. Sempre ativas." data-ru="Нужны для работы сайта. Всегда включены.">Para que la web funcione. Siempre activas.</small></span><input type="checkbox" checked disabled aria-label="Necesarias"></div>
+    <div class="ck-fila"><span><b data-en="Advertising and measurement" data-pt="Publicidade e medição" data-ru="Реклама и аналитика">Publicidad y medición</b><small>Google Ads · Meta</small></span><input type="checkbox" id="ckPub" aria-label="Publicidad y medición"></div>
+  </div>
+  <div class="ck-btns">
+    <button class="ck-btn" type="button" id="ckNo" data-en="Reject" data-pt="Recusar" data-ru="Отклонить">Rechazar</button>
+    <button class="ck-btn" type="button" id="ckConfBtn" data-en="Settings" data-pt="Configurar" data-ru="Настроить">Configurar</button>
+    <button class="ck-btn si" type="button" id="ckSi" data-en="Accept" data-pt="Aceitar" data-ru="Принять">Aceptar</button>
+  </div>
+</div><!--/MCC:BANNER-->
+
+<footer class="foot">
+  <div class="wrap">
+    <a href="https://marbellacustomcars.com/" data-en="← All services" data-pt="← Todos os serviços" data-ru="← Все услуги">← Todos los servicios</a>
+    <span>Marbella Custom Cars</span>
+    <!--MCC:PIE--><button type="button" class="ck-abrir" id="ckAbrir" data-en="Cookies" data-pt="Cookies" data-ru="Cookie">Cookies</button><!--/MCC:PIE-->
+  </div>
+</footer>
+
+
+<!--MCC:MEDICION--><script>
+/* Aviso de cookies */
+(function(){
+  var ck=document.getElementById('ck'), conf=document.getElementById('ckConf'), pub=document.getElementById('ckPub'), cb=document.getElementById('ckConfBtn');
+  var GUARDAR={es:'Guardar',en:'Save',pt:'Guardar',ru:'Сохранить'};
+  function abrir(){ ck.hidden=false; pub.checked=window.MCC_consentimiento==='si'; requestAnimationFrame(function(){ ck.classList.add('ver'); }); }
+  function cerrar(){ ck.classList.remove('ver'); setTimeout(function(){ ck.hidden=true; conf.hidden=true; cb.dataset.modo=''; cb.textContent=cb.dataset[(document.documentElement.lang||'es')]||'Configurar'; },380); }
+  document.getElementById('ckSi').addEventListener('click',function(){ mccAceptarCookies(); cerrar(); });
+  document.getElementById('ckNo').addEventListener('click',function(){ mccRechazarCookies(); cerrar(); });
+  cb.addEventListener('click',function(){
+    if(cb.dataset.modo!=='guardar'){ conf.hidden=false; cb.dataset.modo='guardar'; cb.textContent=GUARDAR[document.documentElement.lang]||'Guardar'; return; }
+    if(pub.checked) mccAceptarCookies(); else mccRechazarCookies(); cerrar();
+  });
+  document.getElementById('ckAbrir').addEventListener('click',abrir);
+  if(!window.MCC_consentimiento) setTimeout(abrir,900);
+})();
+</script>
+<script>
+/* Script de medición (del equipo de anuncios). Único cambio: el botón de WhatsApp del último paso
+   del formulario (data-lead) no cuenta como Contact, porque esa persona ya es un Lead. */
+(function () {
+  'use strict';
+  var ORIGEN = document.body.getAttribute('data-origen') || 'web-principal';
+  var GOOGLE_LEAD = 'AW-17089526484/PEGAR_ETIQUETA'; // te paso la etiqueta aparte
+  var NOMBRE_EVENTO = {
+    'web-principal': 'FormularioWeb',
+    'landing-ppf': 'FormularioLandingPPF',
+    'landing-ceramico': 'FormularioLandingCeramico',
+    'landing-wrapping': 'FormularioLandingWrapping',
+    'landing-detailing': 'FormularioLandingDetailing',
+    'landing-llantas': 'FormularioLandingLlantas',
+    'landing-quitabollos': 'FormularioLandingQuitabollos',
+    'landing-tintado-lunas': 'FormularioLandingTintado',
+    'landing-body-kits': 'FormularioLandingBodyKits'
+  };
+
+  var CLAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  var atrib = {};
+  try { atrib = JSON.parse(sessionStorage.getItem('mcc_atrib') || '{}') || {}; } catch (e) {}
+  try {
+    var q = new URLSearchParams(location.search), hay = false;
+    CLAVES.forEach(function (k) { var v = q.get(k); if (v) { atrib[k] = v.slice(0, 200); hay = true; } });
+    if (hay) sessionStorage.setItem('mcc_atrib', JSON.stringify(atrib));
+  } catch (e) {}
+  window.MCC_atrib = function () { return atrib; };
+
+  function nuevaRef(servicio) {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    var fecha = String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate());
+    var abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', cola = '';
+    for (var i = 0; i < 4; i++) cola += abc.charAt(Math.floor(Math.random() * abc.length));
+    var serv = String(servicio || 'GEN').toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4) || 'GEN';
+    var org = { 'web-principal':'WEB','landing-ppf':'LPPF','landing-ceramico':'LCER','landing-wrapping':'LWRP','landing-detailing':'LDET','landing-llantas':'LLLA','landing-quitabollos':'LQUI','landing-tintado-lunas':'LTIN','landing-body-kits':'LBOD' }[ORIGEN] || 'WEB';
+    return serv + '-' + org + '-' + fecha + '-' + cola;
+  }
+
+  function parametros(extra) {
+    var d = { origen: ORIGEN };
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function (k) { if (atrib[k]) d[k] = atrib[k]; });
+    for (var k in extra) d[k] = extra[k];
+    return d;
+  }
+
+  window.MCC_registrarLead = function (servicio) {
+    var ref = nuevaRef(servicio);
+    var datos = parametros({ metodo: 'formulario_whatsapp', servicio: servicio || 'sin_dato', content_category: servicio || 'sin_dato', ref: ref });
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', datos, { eventID: ref });
+      fbq('trackCustom', NOMBRE_EVENTO[ORIGEN] || 'FormularioWeb', datos, { eventID: ref + '-o' });
+    }
+    if (typeof gtag === 'function' && GOOGLE_LEAD.indexOf('PEGAR') === -1) {
+      gtag('event', 'conversion', { send_to: GOOGLE_LEAD, transaction_id: ref });
+    }
+    return ref;
+  };
+
+  // Botones de WhatsApp sueltos (flotante, cabecera…) = Contact, no Lead
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a || a.hasAttribute('data-lead')) return;
+    if (typeof fbq === 'function') fbq('track', 'Contact', parametros({ metodo: 'whatsapp_directo' }));
+  }, true);
+})();
+</script><!--/MCC:MEDICION-->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "AutoRepair", "@id": "https://marbellacustomcars.com/#taller", "name": "Marbella Custom Cars", "url": "https://marbellacustomcars.com/", "image": "https://marbellacustomcars.com/detailing/img/hero.webp", "telephone": "+34672936398", "priceRange": "€€€", "address": {"@type": "PostalAddress", "streetAddress": "Calle Oro 32, Polígono La Ermita", "addressLocality": "Marbella", "addressRegion": "Málaga", "addressCountry": "ES"}, "geo": {"@type": "GeoCoordinates", "latitude": 36.511952, "longitude": -4.8673708}, "areaServed": ["Marbella", "Puerto Banús", "San Pedro de Alcántara", "Estepona", "Mijas", "Fuengirola"], "sameAs": ["https://www.instagram.com/marbellacustomcars/", "https://www.youtube.com/@MarbellaCustomCars", "https://www.tiktok.com/@marbellacustomcars"]}, {"@type": "Service", "@id": "https://marbellacustomcars.com/detailing/#servicio", "name": "Detailing en Marbella", "serviceType": "Car detailing", "description": "Detailing en Marbella desde 150€. Lavado a mano por niveles (Gold, Black y Platinum), interior, motor y protección. Reserva tu cita.", "provider": {"@id": "https://marbellacustomcars.com/#taller"}, "areaServed": ["Marbella", "Estepona", "Mijas", "Fuengirola"], "offers": [{"@type": "Offer", "name": "Gold", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 150, "priceCurrency": "EUR"}}, {"@type": "Offer", "name": "Black", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 250, "priceCurrency": "EUR"}}, {"@type": "Offer", "name": "Platinum", "priceSpecification": {"@type": "PriceSpecification", "minPrice": 350, "priceCurrency": "EUR"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://marbellacustomcars.com/"}, {"@type": "ListItem", "position": 2, "name": "Detailing en Marbella", "item": "https://marbellacustomcars.com/detailing/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué incluye cada nivel?", "acceptedAnswer": {"@type": "Answer", "text": "Gold: exterior detallado, cera líquida y aspirado. Black: además descontaminado, cera en pasta e interior completo. Platinum: además ruedas desmontadas y cera sintética."}}, {"@type": "Question", "name": "¿Qué diferencia hay con un lavado?", "acceptedAnswer": {"@type": "Answer", "text": "Un lavado limpia lo que se ve. El detailing devuelve el coche lo más cerca posible del estado de fábrica y lo deja protegido."}}, {"@type": "Question", "name": "¿Cada cuánto conviene hacerlo?", "acceptedAnswer": {"@type": "Answer", "text": "Lo habitual: un detailing completo al año y mantenimientos cada dos o tres meses."}}, {"@type": "Question", "name": "¿Cuánto tarda?", "acceptedAnswer": {"@type": "Answer", "text": "Depende del nivel. Te damos la hora de entrega al reservar."}}]}]}
+</script>
+<script>
+/* Movimiento: entradas al hacer scroll (se rearman al salir, como en la web principal) y vídeo de portada */
+(function(){
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els=[].slice.call(document.querySelectorAll("[data-rv]"));
+  if(!reduce && "IntersectionObserver" in window){
+    document.documentElement.classList.add("js-rv");
+    els.forEach(function(e){ e.classList.add("pre"); });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(x){ var e=x.target;
+      if(x.isIntersecting){ e.classList.remove("pre"); e.classList.add("in"); }
+      else if(x.boundingClientRect.top>innerHeight){ e.classList.remove("in"); e.classList.add("pre"); }
+    }); },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    els.forEach(function(e){ io.observe(e); });
+  } else els.forEach(function(e){ e.classList.add("in"); });
+  /* Galería en bucle infinito. La cinta se mueve con transform (no con el scroll del navegador),
+     así el dedo, el ratón, la rueda/trackpad y las flechas funcionan igual en cualquier móvil o visor.
+     Avanza sola; al tocarla se para unos segundos y luego sigue. */
+  (function(){
+    var g=document.querySelector(".gallery"); if(!g) return;
+    var wrap=g.parentNode; wrap.classList.add("js"); g.scrollLeft=0;
+    var tr=g.querySelector(".g-track"), figs=tr.children, btns=[].slice.call(wrap.querySelectorAll(".g-btn.lb-0")), ultimo=0;
+    var off=0, v=0, last=0, pausa=0, encima=false, anim=null, drag=null;
+    var VEL=reduce?0:0.032; /* px por ms */
+    function half(){ return figs[figs.length/2].offsetLeft - figs[0].offsetLeft; }
+    function paso(){ return figs[1].offsetLeft - figs[0].offsetLeft; }
+    function mod(x,h){ return ((x%h)+h)%h; }
+    var dots=[].slice.call(document.querySelectorAll(".g-dots i")), dotOn=-1;
+    var mqM=window.matchMedia&&matchMedia("(max-width:859px)");
+    /* en el móvil la foto que toca queda centrada en la pantalla */
+    function centro(){ return (mqM&&mqM.matches)?Math.max(0,(g.clientWidth-figs[0].offsetWidth)/2):0; }
+    function pinta(){ var h=half(); if(h>0){ var x=mod(off-centro(),h); tr.style.transform="translate3d("+(-x)+"px,0,0)";
+      var n=Math.round(mod(off,h)/paso())%dots.length; if(n!==dotOn&&dots.length){ if(dots[dotOn]) dots[dotOn].classList.remove("on"); dots[n].classList.add("on"); dotOn=n; } } }
+    function parar(ms){ pausa=performance.now()+(ms||3500); }
+    function tick(t){
+      var dt=last?Math.min(t-last,64):16; last=t;
+      if(anim){
+        var k=Math.min(1,(t-anim.t0)/anim.d), e=1-Math.pow(1-k,3);
+        off=anim.from+(anim.to-anim.from)*e; if(k>=1) anim=null;
+      } else if(!drag){
+        if(Math.abs(v)>0.01){ off+=v*dt; v*=Math.pow(0.994,dt); parar(); }
+        else if(VEL && !encima && t>pausa) off+=VEL*dt;
+      }
+      pinta(); requestAnimationFrame(tick);
+    }
+    /* flechas: avanzan o retroceden una foto, sin fin hacia los dos lados */
+    function ir(dir){
+      var ahora=performance.now(); if(ahora-ultimo<120) return; ultimo=ahora;   /* no contar dos veces el mismo toque */
+      var p=paso(), base=anim?anim.to:Math.round(off/p)*p;
+      v=0; parar(5000);
+      anim={from:off,to:base+dir*p,t0:performance.now(),d:reduce?1:460};
+    }
+    btns.forEach(function(b){
+      b.addEventListener("click",function(e){ e.preventDefault(); e.stopPropagation(); ir(b.classList.contains("next")?1:-1); });
+      b.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ir(b.classList.contains("next")?1:-1); } });
+    });
+    /* dedo y ratón */
+    g.addEventListener("pointerdown",function(e){
+      if(e.button>0) return;
+      drag={id:e.pointerId,x0:e.clientX,y0:e.clientY,o0:off,lx:e.clientX,lt:e.timeStamp,vx:0,on:false};
+      anim=null; v=0; parar();
+    });
+    g.addEventListener("pointermove",function(e){
+      if(!drag||e.pointerId!==drag.id) return;
+      var dx=e.clientX-drag.x0, dy=e.clientY-drag.y0;
+      if(!drag.on){
+        if(Math.abs(dx)<6) return;
+        if(Math.abs(dy)>Math.abs(dx)){ drag=null; return; }
+        drag.on=true; g.classList.add("arrastrando"); if(e.pointerType==="mouse"){ try{g.setPointerCapture(e.pointerId);}catch(_){} }
+      }
+      off=drag.o0-dx;
+      var dtm=e.timeStamp-drag.lt; if(dtm>0){ drag.vx=0.75*((drag.lx-e.clientX)/dtm)+0.25*drag.vx; }
+      drag.lx=e.clientX; drag.lt=e.timeStamp; parar();
+    });
+    function flechaEn(x,y){
+      for(var k=0;k<btns.length;k++){ var r=btns[k].getBoundingClientRect(); if(!r.width) continue;
+        if(x>=r.left-6&&x<=r.right+6&&y>=r.top-6&&y<=r.bottom+6) return btns[k].classList.contains("next")?1:-1; }
+      return 0;
+    }
+    function suelta(e){
+      if(!drag) return;
+      if(!drag.on && e && e.type==="pointerup"){ var d=flechaEn(e.clientX,e.clientY); if(d){ drag=null; ir(d); return; } }
+      if(drag.on){ v=Math.max(-2.5,Math.min(2.5,drag.vx)); g.classList.remove("arrastrando"); }
+      drag=null; parar();
+    }
+    g.addEventListener("pointerup",suelta); g.addEventListener("pointercancel",suelta);
+    g.addEventListener("dragstart",function(e){ e.preventDefault(); });
+    /* rueda / trackpad horizontal en el ordenador */
+    g.addEventListener("wheel",function(e){
+      if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)) return;
+      e.preventDefault(); anim=null; v=0; off+=e.deltaX; parar();
+    },{passive:false});
+    g.addEventListener("keydown",function(e){ if(e.key==="ArrowRight"){e.preventDefault();ir(1);} if(e.key==="ArrowLeft"){e.preventDefault();ir(-1);} });
+    g.addEventListener("mouseenter",function(){ encima=true; });
+    g.addEventListener("mouseleave",function(){ encima=false; });
+    requestAnimationFrame(tick);
+  })();
+
+  /* móvil: barra de progreso, paralaje de las fotos a sangre y puntos de la galería */
+  (function(){
+    var mq=window.matchMedia&&matchMedia("(max-width:859px)"); if(!mq) return;
+    var fotos=[].slice.call(document.querySelectorAll(".how .photo img,.place .photo img")), raf=0;
+    function upd(){
+      raf=0; if(!mq.matches) return;
+      var h=document.documentElement, max=h.scrollHeight-innerHeight;
+      h.style.setProperty("--prog",max>0?Math.min(1,scrollY/max).toFixed(4):0);
+      if(!reduce) fotos.forEach(function(im){ var r=im.parentNode.getBoundingClientRect();
+        if(r.bottom<0||r.top>innerHeight) return;
+        var k=(r.top+r.height/2-innerHeight/2)/(innerHeight/2+r.height/2); im.style.setProperty("--px",(k*-30).toFixed(1)); });
+    }
+    addEventListener("scroll",function(){ if(!raf) raf=requestAnimationFrame(upd); },{passive:true});
+    addEventListener("resize",upd); upd();
+  })();
+
+  /* alto real de la cabecera, para que la portada mida justo una pantalla */
+  var top=document.querySelector(".top");
+  function hdr(){ if(top) document.documentElement.style.setProperty("--hdr",top.offsetHeight+"px"); }
+  hdr(); addEventListener("resize",hdr);
+})();
+</script>
+<script>
+(function(){
+  var WA="34672936398";
+  var S={cov:"",car:"",date:"",dateObj:null,name:"",tel:""};
+  var $=function(id){return document.getElementById(id);};
+  var LANG="es";
+
+  /* Textos que genera el script */
+  var T={
+    es:{otra:["OTRA","FECHA"],otraL:"Elegir otra fecha",other:"Otra marca",otherModel:"Otro modelo",modelOf:"Modelo de ",
+        dow:["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"],mon:["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"],
+        dowl:["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],monl:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
+        sunday:"Los domingos el taller está cerrado. Elige otro día.",
+        missing:"Falta ",and:", ",miss:{cov:"el nivel",car:"tu coche",date:"el día",name:"tu nombre",tel:"tu WhatsApp"},
+        cov:{"Gold": "Gold", "Black": "Black", "Platinum": "Platinum", "Lavado de motor": "Lavado de motor", "Que me asesoren": "Que me asesoren"},
+        sum:["Coche", "Nivel", "Día", "Nombre"],done:function(n){return "Perfecto, "+n+". Envíanos tu reserva.";},
+        msg:function(s){return "Hola, soy "+s.name+". Quiero reservar cita para detailing en Marbella Custom Cars.\n\n• Coche: "+s.car+"\n• Nivel: "+s.cov+"\n• Día: "+s.day+"\n• Mi WhatsApp: "+s.tel+"\n\n¿Me confirmáis la hora? Gracias.";},
+        direct:"Hola, quiero reservar cita para detailing. Mi coche es: ",
+        title:"Detailing en Marbella · Marbella Custom Cars"},
+    en:{otra:["OTHER","DATE"],otraL:"Pick another date",other:"Other make",otherModel:"Other model",modelOf:"Model of ",
+        dow:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],mon:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        dowl:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],monl:["January","February","March","April","May","June","July","August","September","October","November","December"],
+        sunday:"The workshop is closed on Sundays. Please pick another day.",
+        missing:"Please add ",and:", ",miss:{cov:"the level",car:"your car",date:"the day",name:"your name",tel:"your WhatsApp"},
+        cov:{"Gold": "Gold", "Black": "Black", "Platinum": "Platinum", "Lavado de motor": "Engine bay clean", "Que me asesoren": "Advise me"},
+        sum:["Car", "Level", "Day", "Name"],done:function(n){return "Great, "+n+". Send us your booking.";},
+        msg:function(s){return "Hi, I'm "+s.name+". I'd like to book a car detailing appointment at Marbella Custom Cars.\n\n• Car: "+s.car+"\n• Level: "+s.cov+"\n• Day: "+s.day+"\n• My WhatsApp: "+s.tel+"\n\nCould you confirm the time? Thanks.";},
+        direct:"Hi, I'd like to book a car detailing appointment. My car is: ",
+        title:"Car detailing in Marbella · Marbella Custom Cars"},
+    pt:{otra:["OUTRA","DATA"],otraL:"Escolher outra data",other:"Outra marca",otherModel:"Outro modelo",modelOf:"Modelo de ",
+        dow:["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"],mon:["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],
+        dowl:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],monl:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"],
+        sunday:"Ao domingo a oficina está fechada. Escolha outro dia.",
+        missing:"Falta ",and:", ",miss:{cov:"o nível",car:"o seu carro",date:"o dia",name:"o seu nome",tel:"o seu WhatsApp"},
+        cov:{"Gold": "Gold", "Black": "Black", "Platinum": "Platinum", "Lavado de motor": "Lavagem do motor", "Que me asesoren": "Aconselhem-me"},
+        sum:["Carro", "Nível", "Dia", "Nome"],done:function(n){return "Perfeito, "+n+". Envie-nos a sua marcação.";},
+        msg:function(s){return "Olá, sou "+s.name+". Quero marcar uma visita para detailing na Marbella Custom Cars.\n\n• Carro: "+s.car+"\n• Nível: "+s.cov+"\n• Dia: "+s.day+"\n• O meu WhatsApp: "+s.tel+"\n\nPodem confirmar-me a hora? Obrigado.";},
+        direct:"Olá, quero marcar uma visita para detailing. O meu carro é: ",
+        title:"Detailing em Marbella · Marbella Custom Cars"},
+    ru:{otra:["ДРУГАЯ","ДАТА"],otraL:"Выбрать другую дату",other:"Другая марка",otherModel:"Другая модель",modelOf:"Модель ",
+        dow:["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],mon:["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"],
+        dowl:["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"],monl:["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
+        sunday:"По воскресеньям мастерская закрыта. Выберите другой день.",
+        missing:"Укажите ",and:", ",miss:{cov:"уровень",car:"автомобиль",date:"день",name:"имя",tel:"WhatsApp"},
+        cov:{"Gold": "Gold", "Black": "Black", "Platinum": "Platinum", "Lavado de motor": "Мойка мотора", "Que me asesoren": "Нужна консультация"},
+        sum:["Автомобиль", "Уровень", "День", "Имя"],done:function(n){return "Отлично, "+n+". Отправьте нам заявку.";},
+        msg:function(s){return "Здравствуйте, меня зовут "+s.name+". Хочу записаться на детейлинг в Marbella Custom Cars.\n\n• Автомобиль: "+s.car+"\n• Уровень: "+s.cov+"\n• День: "+s.day+"\n• Мой WhatsApp: "+s.tel+"\n\nПодтвердите, пожалуйста, время. Спасибо.";},
+        direct:"Здравствуйте, хочу записаться на детейлинг. Мой автомобиль: ",
+        title:"Детейлинг в Марбелье · Marbella Custom Cars"}
+  };
+  function L(){return T[LANG];}
+
+  /* Cambio de idioma: ES (texto original), EN, PT, RU. Comparte la elección con la web principal. */
+  var LANGS=["es","en","pt","ru"];
+  var tagged=[].slice.call(document.querySelectorAll("[data-en],[data-en-ph],[data-en-aria]"));
+  tagged.forEach(function(el){
+    if(el.hasAttribute("data-en")) el.dataset.es=el.innerHTML;
+    if(el.hasAttribute("data-en-ph")) el.dataset.esPh=el.getAttribute("placeholder");
+    if(el.hasAttribute("data-en-aria")) el.dataset.esAria=el.getAttribute("aria-label");
+  });
+  function pick(el,base,l){ var v=el.getAttribute("data-"+l+base); return v!==null?v:el.getAttribute("data-en"+base); }
+  function setLang(lang,remember){
+    LANG=LANGS.indexOf(lang)>=0?lang:"en";
+    document.documentElement.lang=LANG;
+    document.title=L().title;
+    tagged.forEach(function(el){
+      if(el.hasAttribute("data-en")) el.innerHTML=LANG==="es"?el.dataset.es:pick(el,"",LANG);
+      if(el.hasAttribute("data-en-ph")) el.setAttribute("placeholder",LANG==="es"?el.dataset.esPh:pick(el,"-ph",LANG));
+      if(el.hasAttribute("data-en-aria")) el.setAttribute("aria-label",LANG==="es"?el.dataset.esAria:pick(el,"-aria",LANG));
+    });
+    document.querySelectorAll("[data-lang]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===LANG));});
+    var cod=$("idiCod"); if(cod) cod.textContent=LANG.toUpperCase();
+    document.querySelectorAll(".wa-direct").forEach(function(a){a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(L().direct);});
+    /* enlaces a la web principal: se abre en el mismo idioma */
+    document.querySelectorAll('a[href^="https://marbellacustomcars.com/"]').forEach(function(a){
+      if(a.getAttribute("href").indexOf("privacidad")>=0) return;
+      a.href="https://marbellacustomcars.com/"+(LANG==="es"?"":"?lang="+LANG);
+    });
+    drawBrands();drawModels();drawDays();
+    if(!$("done").hidden) buildDone();
+    if(remember){ try{localStorage.setItem("mcc-lang",LANG);}catch(e){} }
+  }
+  document.querySelectorAll("[data-lang]").forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.lang,true);abre(false);});});
+  /* desplegable de idiomas */
+  var caja=$("idioma"), ibtn=$("idiBtn");
+  function abre(v){ caja.classList.toggle("abierto",v); ibtn.setAttribute("aria-expanded",String(v)); }
+  ibtn.addEventListener("click",function(e){ e.stopPropagation(); abre(!caja.classList.contains("abierto")); });
+  document.addEventListener("click",function(e){ if(!caja.contains(e.target)) abre(false); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape" && caja.classList.contains("abierto")){ abre(false); ibtn.focus(); } });
+
+  /* Cobertura (también desde la lista de precios) */
+  function setCov(v){
+    S.cov=v;
+    document.querySelectorAll("[data-cov]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.cov===v));});
+  }
+  document.querySelectorAll("[data-cov]").forEach(function(b){b.addEventListener("click",function(){setCov(b.dataset.cov);});});
+  document.querySelectorAll("[data-pick]").forEach(function(b){b.addEventListener("click",function(){
+    setCov(b.dataset.pick);
+    $("cita").scrollIntoView({behavior:"smooth",block:"start"});
+  });});
+
+  /* Coche: marcas y modelos */
+  var MODELS={
+    "Mercedes":["Clase A","Clase C","Clase E","Clase S","Clase G","CLA","GLA","GLC","GLE","GLS","AMG GT","Maybach","EQS"],
+    "Porsche":["911","Taycan","Cayenne","Macan","Panamera","718 Cayman","718 Boxster"],
+    "BMW":["Serie 1","Serie 3","Serie 4","Serie 5","Serie 7","X1","X3","X5","X6","X7","M2","M3","M4","M5","i4","iX"],
+    "Audi":["A3","A4","A5","A6","A7","Q3","Q5","Q7","Q8","RS3","RS6","R8","e-tron GT"],
+    "Land Rover":["Range Rover","Range Rover Sport","Range Rover Velar","Range Rover Evoque","Defender","Discovery"],
+    "Ferrari":["Roma","296 GTB","F8 Tributo","SF90","812","Purosangue","488","458"],
+    "Lamborghini":["Urus","Huracán","Revuelto","Aventador"],
+    "Rolls-Royce":["Cullinan","Ghost","Phantom","Wraith","Dawn","Spectre"],
+    "Bentley":["Continental GT","Bentayga","Flying Spur"],
+    "Maserati":["Levante","Ghibli","Grecale","MC20","Quattroporte"],
+    "McLaren":["720S","750S","Artura","GT"],
+    "Tesla":["Model 3","Model Y","Model S","Model X"]
+  };
+  var ALIASES={"Mercedes":["mercedes","merc"],"Land Rover":["land rover","landrover","range rover","range","defender","discovery"],"Rolls-Royce":["rolls"]};
+  var BRANDS=Object.keys(MODELS), cur="";
+  var car=$("car"), brandsBox=$("brandsBox"), brands=$("brands"), models=$("models"), vhint=$("vhint");
+  function detect(t){t=(t||"").toLowerCase().trim(); if(!t) return "";
+    for(var i=0;i<BRANDS.length;i++){var al=ALIASES[BRANDS[i]]||[BRANDS[i].toLowerCase()];
+      for(var j=0;j<al.length;j++){ if(t.indexOf(al[j])===0) return BRANDS[i]; }}
+    return "";}
+  function full(b,m){return m.indexOf("Range Rover")===0?m:b+" "+m;}
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function drawBrands(){
+    var h="";
+    BRANDS.forEach(function(b){h+='<button type="button" class="chip" data-brand="'+b+'" aria-pressed="'+(b===cur)+'">'+b+'</button>';});
+    h+='<button type="button" class="chip ghost" data-brand="">'+L().other+'</button>';
+    brands.innerHTML=h;
+    brands.querySelectorAll("[data-brand]").forEach(function(c){c.addEventListener("click",function(){
+      var b=c.dataset.brand;
+      if(!b){cur="";car.value="";S.car="";drawBrands();drawModels();vhint.hidden=true;car.focus();return;}
+      if(b!==cur){car.value=b+" ";S.car=car.value;vhint.hidden=true;}
+      cur=b;drawBrands();drawModels();
+    });});
+  }
+  function drawModels(){
+    if(!cur){models.hidden=true;models.innerHTML="";return;}
+    var v=car.value.trim().toLowerCase();
+    var h='<span class="lbl" style="font-size:11px">'+L().modelOf+esc(cur)+'</span><div class="chips">';
+    MODELS[cur].forEach(function(m){var fn=full(cur,m).toLowerCase(), on=(v===fn||v.indexOf(fn+" ")===0);
+      h+='<button type="button" class="chip model" data-model="'+esc(m)+'" aria-pressed="'+on+'">'+esc(m)+'</button>';});
+    h+='<button type="button" class="chip ghost" data-model="">'+L().otherModel+'</button></div>';
+    models.innerHTML=h;models.hidden=false;
+    models.querySelectorAll("[data-model]").forEach(function(c){c.addEventListener("click",function(){
+      if(!c.dataset.model){car.value=cur+" ";vhint.hidden=true;car.focus();}
+      else{car.value=full(cur,c.dataset.model);vhint.hidden=false;}
+      S.car=car.value;drawModels();
+    });});
+  }
+  car.addEventListener("focus",function(){brandsBox.hidden=false;});
+  car.addEventListener("input",function(){
+    S.car=car.value;var b=detect(car.value);vhint.hidden=true;
+    if(b!==cur){cur=b;drawBrands();}
+    drawModels();brandsBox.hidden=false;
+  });
+
+  /* Días */
+  function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+  function label(d){
+    var l=L();
+    var s=LANG==="en"?l.dowl[d.getDay()]+" "+d.getDate()+" "+l.monl[d.getMonth()]:l.dowl[d.getDay()]+" "+d.getDate()+" de "+l.monl[d.getMonth()];
+    return s.charAt(0).toUpperCase()+s.slice(1);
+  }
+  var list=[],d=new Date();d.setHours(12,0,0,0);
+  while(list.length<8){d.setDate(d.getDate()+1);if(d.getDay()!==0)list.push(new Date(d));}
+  var days=$("days"), other=$("other");
+  function drawDays(){
+    var h="",l=L();
+    list.forEach(function(x){var on=S.date===iso(x);
+      h+='<button type="button" class="day" data-date="'+iso(x)+'" aria-pressed="'+on+'" aria-label="'+label(x)+'"><small>'+l.dow[x.getDay()]+'</small><b>'+x.getDate()+'</b><em>'+l.mon[x.getMonth()]+'</em></button>';});
+    days.innerHTML=h;
+    drawOther();
+    days.querySelectorAll(".day").forEach(function(b){b.addEventListener("click",function(){
+      S.date=b.dataset.date;var p=S.date.split("-");S.dateObj=new Date(+p[0],+p[1]-1,+p[2],12);other.value="";
+      days.querySelectorAll(".day").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});
+      drawOther();
+    });});
+  }
+  /* "Otra fecha": la casilla final de la tira abre el calendario del móvil y, al elegir, muestra el día */
+  function drawOther(){
+    var l=L(), on=!!(other.value && S.date===other.value && S.dateObj);
+    $("otherBtn").classList.toggle("on",on);
+    var ico='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>';
+    $("otherTxt").innerHTML=on?'<small>'+l.dow[S.dateObj.getDay()]+'</small><b>'+S.dateObj.getDate()+'</b><em>'+l.mon[S.dateObj.getMonth()]+'</em><span class="otra-l">'+ico.replace('<svg','<svg style="display:none"')+label(S.dateObj)+'</span>'
+      :'<small>'+l.otra[0]+'</small>'+ico+'<em>'+l.otra[1]+'</em><span class="otra-l">'+l.otraL+'</span>';
+  }
+  other.addEventListener("click",function(){ try{ if(other.showPicker) other.showPicker(); }catch(e){} });
+  var t=new Date();t.setDate(t.getDate()+1);other.min=iso(t);
+  other.addEventListener("change",function(){
+    if(!other.value)return;var p=other.value.split("-"),x=new Date(+p[0],+p[1]-1,+p[2],12);
+    if(x.getDay()===0){showErr(L().sunday);S.date="";S.dateObj=null;other.value="";drawOther();return;}
+    $("err").hidden=true;S.date=other.value;S.dateObj=x;
+    days.querySelectorAll(".day").forEach(function(y){y.setAttribute("aria-pressed","false");});
+    drawOther();
+  });
+
+  /* Envío: resumen y WhatsApp */
+  function showErr(m){var e=$("err");e.textContent=m;e.hidden=false;}
+  function buildDone(){
+    var l=L(), cov=l.cov[S.cov]||S.cov, day=label(S.dateObj);
+    $("waBtn").href="https://wa.me/"+WA+"?text="+encodeURIComponent(l.msg({name:S.name,car:S.car,cov:cov,day:day,tel:S.tel}));
+    $("sum").innerHTML="<dt>"+l.sum[0]+"</dt><dd>"+esc(S.car)+"</dd><dt>"+l.sum[1]+"</dt><dd>"+esc(cov)+"</dd><dt>"+l.sum[2]+"</dt><dd>"+esc(day)+"</dd><dt>"+l.sum[3]+"</dt><dd>"+esc(S.name)+"</dd>";
+    $("doneT").textContent=l.done(S.name.split(/\s+/)[0]);
+    if(REF) $("waBtn").href+=encodeURIComponent("\n(Ref: "+REF+")");
+  }
+  /* Copia por correo: cada reserva llega también a marbellacustomcars@gmail.com a través de
+     Web3Forms (la misma clave que el formulario de presupuesto de la web principal). Se envía al
+     pulsar "Reservar mi cita", aunque la persona no llegue a mandar el WhatsApp. Siempre en español. */
+  /* servicio y ref de la reserva (la ref la genera el script de medición) */
+  var SERVICIO=(document.body.getAttribute("data-origen")||"landing-ppf").replace("landing-",""), REF="", lastLead="";
+  var MAIL_URL="https://api.web3forms.com/submit", MAIL_KEY="bb374af2-e8ad-4d65-a98c-f762659ee314", lastMail="";
+  function esDay(x){var e=T.es;return e.dowl[x.getDay()]+" "+x.getDate()+" de "+e.monl[x.getMonth()]+" de "+x.getFullYear();}
+  function waLink(t){var d=t.replace(/\D/g,"");if(/^[67]\d{8}$/.test(d))d="34"+d;return "https://wa.me/"+d;}
+  function sendMail(){
+    if($("botcheck").checked)return;
+    var day=esDay(S.dateObj), sig=[S.cov,S.car,S.date,S.name,S.tel].join("|");
+    if(sig===lastMail)return; lastMail=sig;
+    var data={access_key:MAIL_KEY,
+      subject:"Reserva detailing: "+S.name+" · "+S.car+" · "+day,
+      from_name:"Web Marbella Custom Cars · Detailing",
+      "Servicio":"Detailing",
+      "Opción":T.es.cov[S.cov]||S.cov,
+      "Coche":S.car,
+      "Día que prefiere":day,
+      "Nombre":S.name,
+      "WhatsApp del cliente":S.tel,
+      "Escribirle por WhatsApp":waLink(S.tel),
+      "Idioma de la web":LANG.toUpperCase(),
+      "Página":location.href.split("#")[0],
+      "Ref":REF||"—", "Origen":document.body.getAttribute("data-origen")||""};
+    var at=window.MCC_atrib?window.MCC_atrib():{};
+    ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"].forEach(function(k){ if(at[k]) data[k]=at[k]; });
+    /* MCC_KOMMO: la reserva entra también en Kommo a través del puente (si está configurado) */
+    if(window.MCC_KOMMO_URL){ var kd={}; for(var kk in data){ if(!/^(access_key|subject|from_name|botcheck)$/.test(kk)) kd[kk]=data[kk]; }
+      try{fetch(window.MCC_KOMMO_URL,{method:"POST",mode:"cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(kd)}).then(function(r){return r.text();}).then(function(t){try{console.log("[Kommo]",t);}catch(e){}}).catch(function(e){try{console.warn("[Kommo] no enviado",e);}catch(_){}});}catch(e){} }
+    try{fetch(MAIL_URL,{method:"POST",keepalive:true,headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)}).catch(function(){});}catch(e){}
+  }
+  $("f").addEventListener("submit",function(ev){
+    ev.preventDefault();
+    S.name=$("name").value.trim();S.tel=$("tel").value.trim();S.car=car.value.trim();
+    var m=L().miss, miss=[];
+    if(!S.cov)miss.push(m.cov);
+    if(S.car.length<2)miss.push(m.car);
+    if(!S.date)miss.push(m.date);
+    if(S.name.length<2)miss.push(m.name);
+    if(S.tel.replace(/\D/g,"").length<9)miss.push(m.tel);
+    if(miss.length){showErr(L().missing+miss.join(L().and)+".");return;}
+    $("err").hidden=true;
+    /* Lead: una sola vez por reserva válida (si corrige y reenvía lo mismo, no se cuenta dos veces) */
+    var firma=[S.cov,S.car,S.date,S.name,S.tel].join("|");
+    if(firma!==lastLead){ lastLead=firma; REF=window.MCC_registrarLead?window.MCC_registrarLead(SERVICIO):""; }
+    buildDone();
+    sendMail();
+    $("steps").hidden=true;$("done").hidden=false;
+    $("cita").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+  $("edit").addEventListener("click",function(){$("done").hidden=true;$("steps").hidden=false;});
+
+  /* Idioma inicial, igual que la web principal: ?lang= del enlace (anuncios), luego la última elección, luego el idioma del móvil (si no es uno de los cuatro, inglés) */
+  (function(){
+    var q=(new URLSearchParams(location.search).get("lang")||"").toLowerCase(), g=null;
+    if(location.hash==="#en") q="en";
+    try{ g=localStorage.getItem("mcc-lang"); }catch(e){}
+    var n=((navigator.languages&&navigator.languages[0])||navigator.language||"en").toLowerCase();
+    var dev=/^(es|ca|gl|eu)\b/.test(n)?"es":LANGS.indexOf(n.slice(0,2))>=0?n.slice(0,2):"en";
+    var bot=/bot|crawl|spider|slurp|google|bing|yandex|baidu|duckduck|facebookexternalhit|lighthouse/i.test(navigator.userAgent||"");
+    setLang(LANGS.indexOf(q)>=0?q:LANGS.indexOf(g)>=0?g:bot?"es":dev, false);
+  })();
+})();
+</script>
+
+</body>
+</html>
