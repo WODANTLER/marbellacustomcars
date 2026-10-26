@@ -3,6 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--MCC:HEAD--><script>
+/* ══ Etiquetas de publicidad (igual que la web principal) ══
+   1) Consent Mode v2 con todo denegado, antes de cualquier otro script.
+   2) La etiqueta de Google se carga siempre, pero sin cookies hasta que se acepte.
+   3) El píxel de Meta solo se carga después de aceptar.
+   La elección se guarda en "mcc-cookies" (si / no), la misma clave que la web principal:
+   quien ya respondió allí no vuelve a ver el aviso aquí. */
+window.MCC_PIXEL_ID = '4384965891721827';
+window.MCC_ADS_ID   = 'AW-17089526484';
+/* Dirección del puente a Kommo (Cloudflare Worker). Vacía = no se envía a Kommo, solo el mail. */
+window.MCC_KOMMO_URL = 'https://mcc-kommo.marbellacustomcars.workers.dev/';
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+window.MCC_consentimiento = (function(){ try { return localStorage.getItem('mcc-cookies'); } catch(e){ return null; } })();
+function cargarPixelMeta(){
+  if (window.fbq) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.MCC_PIXEL_ID); fbq('track','PageView');
+}
+function mccAceptarCookies(){
+  gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  cargarPixelMeta();
+  try { localStorage.setItem('mcc-cookies','si'); } catch(e){}
+  window.MCC_consentimiento = 'si';
+}
+function mccRechazarCookies(){
+  gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  try { localStorage.setItem('mcc-cookies','no'); } catch(e){}
+  window.MCC_consentimiento = 'no';
+}
+if (window.MCC_consentimiento === 'si') {
+  gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  cargarPixelMeta();
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17089526484"></script>
+<script>gtag('js', new Date()); gtag('config', 'AW-17089526484');</script>
+<!--/MCC:HEAD-->
 <title>PPF en Marbella · Marbella Custom Cars</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="PPF en Marbella con 10 años de garantía. Lámina de protección de pintura XPEL, STEK y BodyFence. Full front desde 1.500€. Reserva tu cita.">
@@ -508,8 +551,34 @@ details p{margin:10px 0 0;color:var(--muted)}
 </style>
 
 
+<!--MCC:CSS--><style>
+/* Aviso de cookies: tres botones iguales, rechazar tan fácil como aceptar */
+.ck{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;max-width:760px;margin:0 auto;
+  background:rgba(14,14,18,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  padding:18px;display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.5;color:var(--soft);
+  opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s}
+.ck.ver{opacity:1;transform:none}
+.ck p{margin:0}
+.ck a{color:var(--gold)}
+.ck-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ck-btn{min-height:46px;padding:0 10px;border:1px solid rgba(255,255,255,.26);background:transparent;color:var(--fg);font:600 14px/1.1 var(--body);cursor:pointer;border-radius:2px}
+.ck-btn:hover{border-color:var(--gold);color:var(--gold)}
+.ck-btn.si{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.ck-btn.si:hover{color:var(--gold-ink);filter:brightness(1.08)}
+.ck-conf{display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.ck-fila{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.ck-fila b{display:block;color:var(--fg);font-weight:600}
+.ck-fila small{color:var(--muted);font-size:12.5px}
+.ck-fila input{appearance:none;-webkit-appearance:none;flex:none;width:44px;height:26px;min-height:0;padding:0;border-radius:999px;background:rgba(255,255,255,.16);border:0;position:relative;cursor:pointer;transition:background .2s}
+.ck-fila input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.ck-fila input:checked{background:var(--gold)}
+.ck-fila input:checked::after{transform:translateX(18px)}
+.ck-fila input:disabled{opacity:.55;cursor:default}
+.foot .ck-abrir{background:none;border:0;padding:8px 0;color:var(--soft);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer}
+@media (min-width:860px){.ck{left:auto;right:24px;bottom:24px;max-width:520px}}
+</style><!--/MCC:CSS-->
 </head>
-<body>
+<body data-origen="landing-ppf">
 <header class="top">
   <div class="wrap">
     <a class="logo" href="https://marbellacustomcars.com/" aria-label="Marbella Custom Cars, ir al inicio"><img src="img/logo.webp" alt="Marbella Custom Cars" width="59" height="38"></a>
@@ -630,7 +699,7 @@ details p{margin:10px 0 0;color:var(--muted)}
           <p class="eyebrow" data-en="Last step" data-pt="Último passo" data-ru="Последний шаг">Último paso</p>
           <h3 style="font-size:26px;line-height:1.15" id="doneT">Perfecto. Envíanos tu reserva.</h3>
           <dl class="sum" id="sum"></dl>
-          <a class="btn btn-wa submit" id="waBtn" href="#" target="_blank" rel="noopener" data-en="Send on WhatsApp" data-pt="Enviar por WhatsApp" data-ru="Отправить в WhatsApp">Enviar por WhatsApp</a>
+          <a class="btn btn-wa submit" id="waBtn" data-lead href="#" target="_blank" rel="noopener" data-en="Send on WhatsApp" data-pt="Enviar por WhatsApp" data-ru="Отправить в WhatsApp">Enviar por WhatsApp</a>
           <button class="btn btn-line" type="button" id="edit" data-en="Change something" data-pt="Alterar algo" data-ru="Изменить">Cambiar algo</button>
           <p class="phone" data-en="Prefer to call? <b>+34 672 93 63 98</b>" data-pt="Prefere ligar? <b>+34 672 93 63 98</b>" data-ru="Хотите позвонить? <b>+34 672 93 63 98</b>">¿Prefieres llamar? <b>+34 672 93 63 98</b></p>
         </div>
@@ -746,15 +815,107 @@ details p{margin:10px 0 0;color:var(--muted)}
     </div>
   </section>
 </main>
+<!--MCC:BANNER--><div class="ck" id="ck" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-en="We use Google and Meta cookies to measure our advertising. You can accept, reject or choose; the site works the same if you reject them. More in our &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;privacy and cookie policy&lt;/a&gt;." data-pt="Usamos cookies da Google e da Meta para medir a publicidade. Pode aceitar, recusar ou escolher; se recusar, o site funciona na mesma. Mais informação na &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;política de privacidade e cookies&lt;/a&gt;." data-ru="Мы используем cookie Google и Meta для оценки рекламы. Их можно принять, отклонить или настроить — сайт работает одинаково. Подробнее в &lt;a href=&quot;https://marbellacustomcars.com/privacidad.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;политике конфиденциальности и cookie&lt;/a&gt;.">Usamos cookies de Google y Meta para medir la publicidad. Puedes aceptarlas, rechazarlas o elegir; si las rechazas, la web funciona igual. Más info en la <a href="https://marbellacustomcars.com/privacidad.html" target="_blank" rel="noopener">política de privacidad y cookies</a>.</p>
+  <div class="ck-conf" id="ckConf" hidden>
+    <div class="ck-fila"><span><b data-en="Necessary" data-pt="Necessárias" data-ru="Необходимые">Necesarias</b><small data-en="For the site to work. Always on." data-pt="Para o site funcionar. Sempre ativas." data-ru="Нужны для работы сайта. Всегда включены.">Para que la web funcione. Siempre activas.</small></span><input type="checkbox" checked disabled aria-label="Necesarias"></div>
+    <div class="ck-fila"><span><b data-en="Advertising and measurement" data-pt="Publicidade e medição" data-ru="Реклама и аналитика">Publicidad y medición</b><small>Google Ads · Meta</small></span><input type="checkbox" id="ckPub" aria-label="Publicidad y medición"></div>
+  </div>
+  <div class="ck-btns">
+    <button class="ck-btn" type="button" id="ckNo" data-en="Reject" data-pt="Recusar" data-ru="Отклонить">Rechazar</button>
+    <button class="ck-btn" type="button" id="ckConfBtn" data-en="Settings" data-pt="Configurar" data-ru="Настроить">Configurar</button>
+    <button class="ck-btn si" type="button" id="ckSi" data-en="Accept" data-pt="Aceitar" data-ru="Принять">Aceptar</button>
+  </div>
+</div><!--/MCC:BANNER-->
 
 <footer class="foot">
   <div class="wrap">
     <a href="https://marbellacustomcars.com/" data-en="← All services" data-pt="← Todos os serviços" data-ru="← Все услуги">← Todos los servicios</a>
     <span>Marbella Custom Cars</span>
+    <!--MCC:PIE--><button type="button" class="ck-abrir" id="ckAbrir" data-en="Cookies" data-pt="Cookies" data-ru="Cookie">Cookies</button><!--/MCC:PIE-->
   </div>
 </footer>
 
 
+<!--MCC:MEDICION--><script>
+/* Aviso de cookies */
+(function(){
+  var ck=document.getElementById('ck'), conf=document.getElementById('ckConf'), pub=document.getElementById('ckPub'), cb=document.getElementById('ckConfBtn');
+  var GUARDAR={es:'Guardar',en:'Save',pt:'Guardar',ru:'Сохранить'};
+  function abrir(){ ck.hidden=false; pub.checked=window.MCC_consentimiento==='si'; requestAnimationFrame(function(){ ck.classList.add('ver'); }); }
+  function cerrar(){ ck.classList.remove('ver'); setTimeout(function(){ ck.hidden=true; conf.hidden=true; cb.dataset.modo=''; cb.textContent=cb.dataset[(document.documentElement.lang||'es')]||'Configurar'; },380); }
+  document.getElementById('ckSi').addEventListener('click',function(){ mccAceptarCookies(); cerrar(); });
+  document.getElementById('ckNo').addEventListener('click',function(){ mccRechazarCookies(); cerrar(); });
+  cb.addEventListener('click',function(){
+    if(cb.dataset.modo!=='guardar'){ conf.hidden=false; cb.dataset.modo='guardar'; cb.textContent=GUARDAR[document.documentElement.lang]||'Guardar'; return; }
+    if(pub.checked) mccAceptarCookies(); else mccRechazarCookies(); cerrar();
+  });
+  document.getElementById('ckAbrir').addEventListener('click',abrir);
+  if(!window.MCC_consentimiento) setTimeout(abrir,900);
+})();
+</script>
+<script>
+/* Script de medición (del equipo de anuncios). Único cambio: el botón de WhatsApp del último paso
+   del formulario (data-lead) no cuenta como Contact, porque esa persona ya es un Lead. */
+(function () {
+  'use strict';
+  var ORIGEN = document.body.getAttribute('data-origen') || 'web-principal';
+  var GOOGLE_LEAD = 'AW-17089526484/PEGAR_ETIQUETA'; // te paso la etiqueta aparte
+  var NOMBRE_EVENTO = {
+    'web-principal': 'FormularioWeb',
+    'landing-ppf': 'FormularioLandingPPF',
+    'landing-ceramico': 'FormularioLandingCeramico',
+    'landing-wrapping': 'FormularioLandingWrapping'
+  };
+
+  var CLAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  var atrib = {};
+  try { atrib = JSON.parse(sessionStorage.getItem('mcc_atrib') || '{}') || {}; } catch (e) {}
+  try {
+    var q = new URLSearchParams(location.search), hay = false;
+    CLAVES.forEach(function (k) { var v = q.get(k); if (v) { atrib[k] = v.slice(0, 200); hay = true; } });
+    if (hay) sessionStorage.setItem('mcc_atrib', JSON.stringify(atrib));
+  } catch (e) {}
+  window.MCC_atrib = function () { return atrib; };
+
+  function nuevaRef(servicio) {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    var fecha = String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate());
+    var abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', cola = '';
+    for (var i = 0; i < 4; i++) cola += abc.charAt(Math.floor(Math.random() * abc.length));
+    var serv = String(servicio || 'GEN').toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4) || 'GEN';
+    var org = { 'web-principal':'WEB','landing-ppf':'LPPF','landing-ceramico':'LCER','landing-wrapping':'LWRP' }[ORIGEN] || 'WEB';
+    return serv + '-' + org + '-' + fecha + '-' + cola;
+  }
+
+  function parametros(extra) {
+    var d = { origen: ORIGEN };
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function (k) { if (atrib[k]) d[k] = atrib[k]; });
+    for (var k in extra) d[k] = extra[k];
+    return d;
+  }
+
+  window.MCC_registrarLead = function (servicio) {
+    var ref = nuevaRef(servicio);
+    var datos = parametros({ metodo: 'formulario_whatsapp', servicio: servicio || 'sin_dato', content_category: servicio || 'sin_dato', ref: ref });
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', datos, { eventID: ref });
+      fbq('trackCustom', NOMBRE_EVENTO[ORIGEN] || 'FormularioWeb', datos, { eventID: ref + '-o' });
+    }
+    if (typeof gtag === 'function' && GOOGLE_LEAD.indexOf('PEGAR') === -1) {
+      gtag('event', 'conversion', { send_to: GOOGLE_LEAD, transaction_id: ref });
+    }
+    return ref;
+  };
+
+  // Botones de WhatsApp sueltos (flotante, cabecera…) = Contact, no Lead
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a || a.hasAttribute('data-lead')) return;
+    if (typeof fbq === 'function') fbq('track', 'Contact', parametros({ metodo: 'whatsapp_directo' }));
+  }, true);
+})();
+</script><!--/MCC:MEDICION-->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"AutoRepair","@id":"https://marbellacustomcars.com/#taller","name":"Marbella Custom Cars","url":"https://marbellacustomcars.com/","image":"https://marbellacustomcars.com/ppf/img/hero-recto.webp","telephone":"+34672936398","priceRange":"€€€","address":{"@type":"PostalAddress","streetAddress":"Calle Oro 32, Polígono La Ermita","addressLocality":"Marbella","addressRegion":"Málaga","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":36.511952,"longitude":-4.8673708},"areaServed":["Marbella","Puerto Banús","San Pedro de Alcántara","Estepona","Mijas","Fuengirola"],"sameAs":["https://www.instagram.com/marbellacustomcars/","https://www.youtube.com/@MarbellaCustomCars","https://www.tiktok.com/@marbellacustomcars"]},
@@ -1093,10 +1254,13 @@ details p{margin:10px 0 0;color:var(--muted)}
     $("waBtn").href="https://wa.me/"+WA+"?text="+encodeURIComponent(l.msg({name:S.name,car:S.car,cov:cov,day:day,tel:S.tel}));
     $("sum").innerHTML="<dt>"+l.sum[0]+"</dt><dd>"+esc(S.car)+"</dd><dt>"+l.sum[1]+"</dt><dd>"+esc(cov)+"</dd><dt>"+l.sum[2]+"</dt><dd>"+esc(day)+"</dd><dt>"+l.sum[3]+"</dt><dd>"+esc(S.name)+"</dd>";
     $("doneT").textContent=l.done(S.name.split(/\s+/)[0]);
+    if(REF) $("waBtn").href+=encodeURIComponent("\n(Ref: "+REF+")");
   }
   /* Copia por correo: cada reserva llega también a marbellacustomcars@gmail.com a través de
      Web3Forms (la misma clave que el formulario de presupuesto de la web principal). Se envía al
      pulsar "Reservar mi cita", aunque la persona no llegue a mandar el WhatsApp. Siempre en español. */
+  /* servicio y ref de la reserva (la ref la genera el script de medición) */
+  var SERVICIO=(document.body.getAttribute("data-origen")||"landing-ppf").replace("landing-",""), REF="", lastLead="";
   var MAIL_URL="https://api.web3forms.com/submit", MAIL_KEY="bb374af2-e8ad-4d65-a98c-f762659ee314", lastMail="";
   function esDay(x){var e=T.es;return e.dowl[x.getDay()]+" "+x.getDate()+" de "+e.monl[x.getMonth()]+" de "+x.getFullYear();}
   function waLink(t){var d=t.replace(/\D/g,"");if(/^[67]\d{8}$/.test(d))d="34"+d;return "https://wa.me/"+d;}
@@ -1115,7 +1279,13 @@ details p{margin:10px 0 0;color:var(--muted)}
       "WhatsApp del cliente":S.tel,
       "Escribirle por WhatsApp":waLink(S.tel),
       "Idioma de la web":LANG.toUpperCase(),
-      "Página":location.href.split("#")[0]};
+      "Página":location.href.split("#")[0],
+      "Ref":REF||"—", "Origen":document.body.getAttribute("data-origen")||""};
+    var at=window.MCC_atrib?window.MCC_atrib():{};
+    ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"].forEach(function(k){ if(at[k]) data[k]=at[k]; });
+    /* MCC_KOMMO: la reserva entra también en Kommo a través del puente (si está configurado) */
+    if(window.MCC_KOMMO_URL){ var kd={}; for(var kk in data){ if(!/^(access_key|subject|from_name|botcheck)$/.test(kk)) kd[kk]=data[kk]; }
+      try{fetch(window.MCC_KOMMO_URL,{method:"POST",keepalive:true,headers:{"Content-Type":"application/json"},body:JSON.stringify(kd)}).catch(function(){});}catch(e){} }
     try{fetch(MAIL_URL,{method:"POST",keepalive:true,headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)}).catch(function(){});}catch(e){}
   }
   $("f").addEventListener("submit",function(ev){
@@ -1129,12 +1299,14 @@ details p{margin:10px 0 0;color:var(--muted)}
     if(S.tel.replace(/\D/g,"").length<9)miss.push(m.tel);
     if(miss.length){showErr(L().missing+miss.join(L().and)+".");return;}
     $("err").hidden=true;
+    /* Lead: una sola vez por reserva válida (si corrige y reenvía lo mismo, no se cuenta dos veces) */
+    var firma=[S.cov,S.car,S.date,S.name,S.tel].join("|");
+    if(firma!==lastLead){ lastLead=firma; REF=window.MCC_registrarLead?window.MCC_registrarLead(SERVICIO):""; }
     buildDone();
     sendMail();
     $("steps").hidden=true;$("done").hidden=false;
     $("cita").scrollIntoView({behavior:"smooth",block:"start"});
   });
-  $("waBtn").addEventListener("click",function(){try{if(window.fbq)fbq("track","Lead");if(window.gtag)gtag("event","generate_lead");}catch(e){}});
   $("edit").addEventListener("click",function(){$("done").hidden=true;$("steps").hidden=false;});
 
   /* Idioma inicial, igual que la web principal: ?lang= del enlace (anuncios), luego la última elección, luego el idioma del móvil (si no es uno de los cuatro, inglés) */
