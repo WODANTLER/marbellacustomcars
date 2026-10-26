@@ -2844,7 +2844,7 @@ var FAM = {
 /* ORDEN: primero PPF, wrapping, cerámico y lavado; después el resto. Para mover un servicio de sitio,
    basta con cambiarlo de posición en esta lista. */
 /* Páginas propias de cada servicio (carpetas del repo). Al publicar una nueva, se añade aquí. */
-var PAGINA = { ppf:'ppf/', wrapping:'wrapping/', ceramico:'tratamiento-ceramico/' };
+var PAGINA = { ppf:'ppf/', wrapping:'wrapping/', ceramico:'tratamiento-ceramico/', lavado:'detailing/' };
 
 var SERVICIOS = [
 
@@ -4121,7 +4121,12 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
     'web-principal': 'FormularioWeb',
     'landing-ppf': 'FormularioLandingPPF',
     'landing-ceramico': 'FormularioLandingCeramico',
-    'landing-wrapping': 'FormularioLandingWrapping'
+    'landing-wrapping': 'FormularioLandingWrapping',
+    'landing-detailing': 'FormularioLandingDetailing',
+    'landing-llantas': 'FormularioLandingLlantas',
+    'landing-quitabollos': 'FormularioLandingQuitabollos',
+    'landing-tintado-lunas': 'FormularioLandingTintado',
+    'landing-body-kits': 'FormularioLandingBodyKits'
   };
 
   var CLAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
@@ -4140,7 +4145,7 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
     var abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', cola = '';
     for (var i = 0; i < 4; i++) cola += abc.charAt(Math.floor(Math.random() * abc.length));
     var serv = String(servicio || 'GEN').toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4) || 'GEN';
-    var org = { 'web-principal':'WEB','landing-ppf':'LPPF','landing-ceramico':'LCER','landing-wrapping':'LWRP' }[ORIGEN] || 'WEB';
+    var org = { 'web-principal':'WEB','landing-ppf':'LPPF','landing-ceramico':'LCER','landing-wrapping':'LWRP','landing-detailing':'LDET','landing-llantas':'LLLA','landing-quitabollos':'LQUI','landing-tintado-lunas':'LTIN','landing-body-kits':'LBOD' }[ORIGEN] || 'WEB';
     return serv + '-' + org + '-' + fecha + '-' + cola;
   }
 
