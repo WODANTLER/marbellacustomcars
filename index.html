@@ -2399,7 +2399,7 @@ br.sm{display:none}
         </a>
       </div>
       <div class="rejilla" id="lista"></div>
-      <div class="mas-srv"><button class="mas-srv-btn" id="masSrv" type="button" aria-expanded="false" aria-controls="lista"><span data-es="Ver más servicios" data-en="More services" data-pt="Ver mais serviços" data-ru="Другие услуги">Ver más servicios</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
+      <div class="mas-srv"><button class="mas-srv-btn" id="masSrv" type="button" aria-expanded="false" aria-controls="lista"><span class="mas" data-es="Ver más servicios" data-en="More services" data-pt="Ver mais serviços" data-ru="Другие услуги">Ver más servicios</span><span class="menos" data-es="Ver menos" data-en="Show less" data-pt="Ver menos" data-ru="Свернуть">Ver menos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
     </section>
   </div>
 
@@ -3109,7 +3109,7 @@ function render(){
          + '<a class="card-cab" href="'+href+'"'+(PAGINA[s.id]?'':' data-rsv="'+s.id+'"')+'>'+foto
          + '<div class="txt">'
          + '<span class="fam">'+esc(L(f))+'</span>'
-         + '<h3>'+esc(L(s))+'</h3>'
+         + '<h3>'+esc(L(s)).replace(/ (de|da|do) /i,'&nbsp;$1 ')+'</h3>'
          + '<p class="linea">'+esc(DESC(s))+'</p>'
          + '<span class="ir" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
          + '</div></a></div>';
@@ -4445,13 +4445,25 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
 .mas-srv-btn:hover{background:var(--oro);color:#0b0906;border-color:var(--oro)}
 .mas-srv-btn:hover svg{stroke:#0b0906;transform:translateY(2px)}
 .mas-srv-btn:focus-visible{outline:2px solid var(--chrome);outline-offset:4px}
-#lista.ver-mas + .mas-srv{display:none}
+#masSrv .menos{display:none}
+#lista.ver-mas + .mas-srv .mas{display:none}
+#lista.ver-mas + .mas-srv .menos{display:inline}
+#lista.ver-mas + .mas-srv .mas-srv-btn svg{transform:rotate(180deg)}
+#lista.ver-mas + .mas-srv .mas-srv-btn:hover svg{transform:rotate(180deg) translateY(2px)}
+/* tarjetas de servicios: todas del mismo alto, foto a toda la altura y la flecha siempre abajo */
+#lista .card-link .card-cab{flex:1 1 auto;align-items:stretch}
+#lista .card-link .txt{display:flex;flex-direction:column;align-self:stretch}
+#lista .card-link .linea{margin-bottom:16px}
+#lista .card-link .ir{margin-top:auto}
+#lista{grid-auto-rows:1fr}
 @media(max-width:760px){.mas-srv-btn{width:100%;justify-content:center;padding:17px 20px}}
 </style>
 <script>
 document.addEventListener('click',function(e){ var b=e.target.closest('#masSrv'); if(!b) return;
-  var l=document.getElementById('lista'); l.classList.add('ver-mas'); b.setAttribute('aria-expanded','true');
-  var c=l.querySelector('.card-extra'); if(c) setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'nearest'}); },60); });
+  var l=document.getElementById('lista'), abrir=!l.classList.contains('ver-mas');
+  l.classList.toggle('ver-mas',abrir); b.setAttribute('aria-expanded',String(abrir));
+  if(abrir){ var c=l.querySelector('.card-extra'); if(c) setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'nearest'}); },60); }
+  else b.scrollIntoView({block:'center'}); });
 if(/^#srv-(quitabollos|cristales)$/.test(location.hash)){ var l=document.getElementById('lista'); if(l) l.classList.add('ver-mas'); }
 </script><!--/MCC:MASSRV-->
 </body>
