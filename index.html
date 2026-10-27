@@ -2399,6 +2399,7 @@ br.sm{display:none}
         </a>
       </div>
       <div class="rejilla" id="lista"></div>
+      <div class="mas-srv"><button class="mas-srv-btn" id="masSrv" type="button" aria-expanded="false" aria-controls="lista"><span data-es="Ver más servicios" data-en="More services" data-pt="Ver mais serviços" data-ru="Другие услуги">Ver más servicios</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
     </section>
   </div>
 
@@ -3064,9 +3065,15 @@ function anclaje(srv){
   return '<div class="desde"><b>'+T[lang].desde+'</b>'+n+'<i>€</i></div>';
 }
 
+var SRV_EXTRA=['quitabollos','cristales'];
+function ORDEN_SRV(){
+  var a=SERVICIOS.filter(function(s){ return SRV_EXTRA.indexOf(s.id)<0; });
+  SRV_EXTRA.forEach(function(id){ SERVICIOS.forEach(function(s){ if(s.id===id) a.push(s); }); });
+  return a;
+}
 function render(){
   var t=T[lang], out='';
-  SERVICIOS.forEach(function(s){
+  ORDEN_SRV().forEach(function(s){
     var f = FAM[s.fam];
     (function(){
       var vs='';
@@ -3098,7 +3105,7 @@ function render(){
                    + (s.pos?'--pos:'+s.pos:'')+'"></span>' : '';
       /* Cada servicio lleva a su página propia; los que aún no la tienen, al formulario de presupuesto. */
       var href = PAGINA[s.id] ? PAGINA[s.id]+'?lang='+lang : '#reserva';
-      out+='<div class="card card-link" id="srv-'+s.id+'">'
+      out+='<div class="card card-link'+(SRV_EXTRA.indexOf(s.id)>=0?' card-extra':'')+'" id="srv-'+s.id+'">'
          + '<a class="card-cab" href="'+href+'"'+(PAGINA[s.id]?'':' data-rsv="'+s.id+'"')+'>'+foto
          + '<div class="txt">'
          + '<span class="fam">'+esc(L(f))+'</span>'
@@ -4428,5 +4435,24 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
 })();
 </script><!--/MCC:RSV-JS-->
 <!--MCC:HXCTA-D--><script>(function(){function f(){var t=document.querySelector('.hx-txt.hx-o2');if(t)document.documentElement.style.setProperty('--hx-l',t.getBoundingClientRect().left+'px');}f();addEventListener('resize',f);})();</script><!--/MCC:HXCTA-D-->
+<!--MCC:MASSRV--><style>
+#lista:not(.ver-mas) .card-extra{display:none}
+.mas-srv{display:flex;justify-content:center;margin-top:clamp(22px,3vh,32px)}
+.mas-srv-btn{display:inline-flex;align-items:center;gap:12px;cursor:pointer;background:transparent;color:var(--chrome);
+  border:1px solid rgba(195,162,102,.55);padding:15px 28px;font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;
+  transition:background .25s,color .25s,border-color .25s}
+.mas-srv-btn svg{width:16px;height:16px;fill:none;stroke:var(--oro);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s,transform .25s}
+.mas-srv-btn:hover{background:var(--oro);color:#0b0906;border-color:var(--oro)}
+.mas-srv-btn:hover svg{stroke:#0b0906;transform:translateY(2px)}
+.mas-srv-btn:focus-visible{outline:2px solid var(--chrome);outline-offset:4px}
+#lista.ver-mas + .mas-srv{display:none}
+@media(max-width:760px){.mas-srv-btn{width:100%;justify-content:center;padding:17px 20px}}
+</style>
+<script>
+document.addEventListener('click',function(e){ var b=e.target.closest('#masSrv'); if(!b) return;
+  var l=document.getElementById('lista'); l.classList.add('ver-mas'); b.setAttribute('aria-expanded','true');
+  var c=l.querySelector('.card-extra'); if(c) setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'nearest'}); },60); });
+if(/^#srv-(quitabollos|cristales)$/.test(location.hash)){ var l=document.getElementById('lista'); if(l) l.classList.add('ver-mas'); }
+</script><!--/MCC:MASSRV-->
 </body>
 </html>
