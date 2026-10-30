@@ -501,10 +501,6 @@ function mccCargarEtiquetas(){
     ad_personalization:'granted', analytics_storage:'granted'
   });
 
-  var g=document.createElement('script'); g.async=true;
-  g.src='https://www.googletagmanager.com/gtag/js?id='+window.MCC_ADS_ID;
-  document.head.appendChild(g);
-
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -513,6 +509,14 @@ function mccCargarEtiquetas(){
   if(window.MCC_PIXEL_ID){ fbq('init', window.MCC_PIXEL_ID); fbq('track','PageView'); }
 }
 if(window.MCC_consentimiento === 'si') mccCargarEtiquetas();
+
+/* ── 3. La etiqueta de Google se carga siempre: sin cookies hasta que se acepte
+        (Consent Mode avanzado, igual que las landings). Así cuentan las conversiones. ── */
+(function(){
+  var g=document.createElement('script'); g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id='+window.MCC_ADS_ID;
+  document.head.appendChild(g);
+})();
 </script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
@@ -3766,7 +3770,6 @@ form.addEventListener('submit',function(e){
     ultimo[k]=t; return false;
   }
   function conversion(k){
-    if(window.MCC_consentimiento!=='si') return;   /* sin permiso, no se mide */
     if(repetido(k)) return;
     if(typeof gtag==='function') gtag('event','conversion',{send_to:ETIQUETAS[k]});
   }
@@ -4123,7 +4126,7 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
 (function () {
   'use strict';
   var ORIGEN = document.body.getAttribute('data-origen') || 'web-principal';
-  var GOOGLE_LEAD = 'AW-17089526484/PEGAR_ETIQUETA'; // te paso la etiqueta aparte
+  var GOOGLE_LEAD = 'AW-17089526484/9bnUCO_Jiu4cENT19dQ_'; // formulario → Google Ads
   var NOMBRE_EVENTO = {
     'web-principal': 'FormularioWeb',
     'landing-ppf': 'FormularioLandingPPF',

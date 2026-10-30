@@ -868,7 +868,7 @@ details p{margin:10px 0 0;color:var(--muted)}
 (function () {
   'use strict';
   var ORIGEN = document.body.getAttribute('data-origen') || 'web-principal';
-  var GOOGLE_LEAD = 'AW-17089526484/PEGAR_ETIQUETA'; // te paso la etiqueta aparte
+  var GOOGLE_LEAD = 'AW-17089526484/9bnUCO_Jiu4cENT19dQ_'; // formulario → Google Ads
   var NOMBRE_EVENTO = {
     'web-principal': 'FormularioWeb',
     'landing-ppf': 'FormularioLandingPPF',
@@ -926,6 +926,25 @@ details p{margin:10px 0 0;color:var(--muted)}
     var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
     if (!a || a.hasAttribute('data-lead')) return;
     if (typeof fbq === 'function') fbq('track', 'Contact', parametros({ metodo: 'whatsapp_directo' }));
+  }, true);
+
+  // Google Ads: clic en WhatsApp y clic en llamar (el botón del formulario ya cuenta como Lead)
+  var GOOGLE_CLIC = {
+    wa:  'AW-17089526484/gdBLCPOcy-wcENT19dQ_',
+    tel: 'AW-17089526484/teE2CPacy-wcENT19dQ_'
+  };
+  var ultimoClic = {};
+  function convClic(k) {
+    var t = Date.now();
+    if (ultimoClic[k] && t - ultimoClic[k] < 3000) return;
+    ultimoClic[k] = t;
+    if (typeof gtag === 'function') gtag('event', 'conversion', { send_to: GOOGLE_CLIC[k] });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a'); if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/^tel:/i.test(href)) return convClic('tel');
+    if (/wa\.me|api\.whatsapp\.com|web\.whatsapp\.com|whatsapp:\/\//i.test(href) && !a.hasAttribute('data-lead')) return convClic('wa');
   }, true);
 })();
 </script><!--/MCC:MEDICION-->
