@@ -932,6 +932,36 @@ details p{margin:10px 0 0;color:var(--muted)}
     return ref;
   };
 
+  // WhatsApp directo: añade al mensaje una referencia con la página y el canal del anuncio,
+  // para que en Kommo se sepa de dónde vino el chat (G = Google, M = Meta, O = orgánico).
+  var HOLA = { es: 'Hola, quiero información.', en: "Hi, I'd like some information.",
+               pt: 'Olá, gostaria de informações.', ru: 'Здравствуйте, хочу узнать подробнее.' };
+  function canal() {
+    var s = String(atrib.utm_source || '').toLowerCase();
+    if (atrib.gclid || /google|adwords/.test(s)) return 'G';
+    if (atrib.fbclid || /facebook|instagram|meta|^fb$|^ig$/.test(s)) return 'M';
+    return s ? 'X' : 'O';
+  }
+  function refWhatsApp() {
+    var r = canal() + '-' + nuevaRef(ORIGEN.replace('landing-', '').replace('web-principal', 'web'));
+    var c = atrib.utm_content || atrib.utm_campaign;
+    return r + (c ? ' · ' + String(c).slice(0, 40) : '');
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a || a.hasAttribute('data-lead')) return;
+    try {
+      var u = new URL(a.href);
+      var t = u.searchParams.get('text');
+      if (t) t = t.replace(/^\(Ref: [^)]*\)\n/, '');
+      var idi = (document.documentElement.lang || 'es').slice(0, 2);
+      // la referencia va arriba: así el cursor queda al final del mensaje ("Mi coche es: …")
+      t = '(Ref: ' + refWhatsApp() + ')\n' + (t || HOLA[idi] || HOLA.es);
+      u.searchParams.set('text', t);
+      a.href = u.toString();
+    } catch (err) {}
+  }, true);
+
   // Botones de WhatsApp sueltos (flotante, cabecera…) = Contact, no Lead
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');

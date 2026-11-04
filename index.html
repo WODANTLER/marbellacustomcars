@@ -3447,6 +3447,7 @@ document.addEventListener('mcc:lang',function(){
 function marca(el,mal){ el.closest('.pf-campo').classList.toggle('pf-mal',mal); }
 form.addEventListener('input',function(e){ if(e.target.closest('.pf-mal')) marca(e.target,false); });
 
+var presuFirma='', presuRef='';
 form.addEventListener('submit',function(e){
   e.preventDefault();
   var nom=form.nombre.value.trim(), tel=form.telefono.value.trim();
@@ -3457,18 +3458,30 @@ form.addEventListener('submit',function(e){
   if(form._honey.value) return;              /* robot: se ignora en silencio */
 
   var srv=form.servicio.value?[form.servicio.value]:[];
-  var datos={
-    'Nombre':nom,
-    'Teléfono':tel,
+  /* Lead + referencia una sola vez por envío (si reintenta lo mismo, no se cuenta dos veces) */
+  var firma=[nom,tel,form.coche.value.trim(),srv.join(',')].join('|');
+  if(firma!==presuFirma){ presuFirma=firma; presuRef=window.MCC_registrarLead?window.MCC_registrarLead(srv.length?srv.join(' '):'presupuesto'):''; }
+  var kd={
+    'Servicio':srv.length?srv.join(', '):'—',
     'Coche':form.coche.value.trim()||'—',
+    'Nombre':nom,
+    'WhatsApp del cliente':tel,
+    'Escribirle por WhatsApp':'https://wa.me/'+tel.replace(/\D/g,''),
     'Email':form.email.value.trim()||'—',
-    'Servicios':srv.length?srv.join(', '):'—',
     'Mensaje':form.mensaje.value.trim()||'—',
     'Idioma de la web':idi().toUpperCase(),
-    access_key:CLAVE,
-    subject:'Presupuesto web: '+nom+(srv.length?' · '+srv.join(', '):''),
-    from_name:'Web Marbella Custom Cars'
+    'Página':location.href.split('#')[0],
+    'Ref':presuRef||'—',
+    'Origen':'web-principal-presupuesto'
   };
+  var at=window.MCC_atrib?window.MCC_atrib():{};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function(k){ if(at[k]) kd[k]=at[k]; });
+  /* a Kommo por el mismo puente que la reserva y las landings */
+  try{ fetch('https://mcc-kommo.marbellacustomcars.workers.dev/',{method:'POST',mode:'cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(kd)}).then(function(r){return r.text();}).then(function(t){try{console.log('[Kommo]',t);}catch(e){}}).catch(function(){}); }catch(e){}
+  var datos={access_key:CLAVE,
+    subject:'Presupuesto web: '+nom+(srv.length?' · '+srv.join(', '):''),
+    from_name:'Web Marbella Custom Cars'};
+  for(var kk in kd) datos[kk]=kd[kk];
   if(form.email.value.trim()) datos.replyto=form.email.value.trim();
 
   pf.classList.remove('con-error');
@@ -3478,7 +3491,6 @@ form.addEventListener('submit',function(e){
     .then(function(r){return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw j; return j;});})
     .then(function(){
       pf.classList.add('enviado');
-      if(window.MCC_registrarLead) window.MCC_registrarLead(srv.length?srv.join(' '):'presupuesto');
       pf.scrollIntoView({behavior:'smooth',block:'center'});
     })
     .catch(function(){
@@ -4178,6 +4190,36 @@ if(location.protocol==='file:') document.addEventListener('click',function(e){
     }
     return ref;
   };
+
+  // WhatsApp directo: añade al mensaje una referencia con la página y el canal del anuncio,
+  // para que en Kommo se sepa de dónde vino el chat (G = Google, M = Meta, O = orgánico).
+  var HOLA = { es: 'Hola, quiero información.', en: "Hi, I'd like some information.",
+               pt: 'Olá, gostaria de informações.', ru: 'Здравствуйте, хочу узнать подробнее.' };
+  function canal() {
+    var s = String(atrib.utm_source || '').toLowerCase();
+    if (atrib.gclid || /google|adwords/.test(s)) return 'G';
+    if (atrib.fbclid || /facebook|instagram|meta|^fb$|^ig$/.test(s)) return 'M';
+    return s ? 'X' : 'O';
+  }
+  function refWhatsApp() {
+    var r = canal() + '-' + nuevaRef(ORIGEN.replace('landing-', '').replace('web-principal', 'web'));
+    var c = atrib.utm_content || atrib.utm_campaign;
+    return r + (c ? ' · ' + String(c).slice(0, 40) : '');
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a || a.hasAttribute('data-lead')) return;
+    try {
+      var u = new URL(a.href);
+      var t = u.searchParams.get('text');
+      if (t) t = t.replace(/^\(Ref: [^)]*\)\n/, '');
+      var idi = (document.documentElement.lang || 'es').slice(0, 2);
+      // la referencia va arriba: así el cursor queda al final del mensaje ("Mi coche es: …")
+      t = '(Ref: ' + refWhatsApp() + ')\n' + (t || HOLA[idi] || HOLA.es);
+      u.searchParams.set('text', t);
+      a.href = u.toString();
+    } catch (err) {}
+  }, true);
 
   // Botones de WhatsApp sueltos (flotante, cabecera…) = Contact, no Lead
   document.addEventListener('click', function (e) {
